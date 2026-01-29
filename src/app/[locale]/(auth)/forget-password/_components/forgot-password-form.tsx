@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useContext } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import {
@@ -20,10 +20,14 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { UserEmail } from '@/components/providers/app/forget-password/email-provider';
 
 export default function ForgotPasswordForm() {
-  // Treanslation
+  // Translation
   const t = useTranslations('auth');
+
+  // Context
+  const { emailState } = useContext(UserEmail)!;
 
   // Hook
   const { error, forgot, isPending } = useForgot({ redirect: true });
@@ -39,6 +43,7 @@ export default function ForgotPasswordForm() {
 
   // Function
   const onsubmit: SubmitHandler<ForgotPasswordFormFields> = (data) => {
+    emailState(data.email);
     forgot(data);
   };
 

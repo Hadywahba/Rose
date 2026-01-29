@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslations } from 'next-intl';
 import SubmitButton from '@/components/features/auth/submit-button';
@@ -11,7 +11,6 @@ import {
 } from '@/lib/schemas/reset-password';
 import { ResetPasswordPayload } from '@/lib/types/auth/forget-password/reset';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useSearchParams } from 'next/navigation';
 import { useResetPassword } from '../_hooks/use-reset-password';
 import {
   Form,
@@ -26,14 +25,19 @@ import { Eye, EyeOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLocale } from 'next-intl';
 import { cn } from '@/lib/utility/tailwind-merge';
+import { UserEmail } from '@/components/providers/app/forget-password/email-provider';
 
 export default function ResetPasswordForm() {
-  // Treanslation
+  // Translation
   const t = useTranslations('auth');
+
+  // Context
+  const { email } = useContext(UserEmail)!;
 
   // Hook
   const locale = useLocale();
   const { error, isPending, resetpassword } = useResetPassword();
+
   // State
   const [showOldPassword, setShowOldPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
@@ -48,17 +52,13 @@ export default function ResetPasswordForm() {
     },
   });
 
-  // !! To be handled by the flow owner when get search params from verfiy password componnent and delete static email
-  // Const
-  const params = useSearchParams();
-  const email = params.get('email') || 'hadywahba19@gmail.com';
-
   // Function
   const onsubmit: SubmitHandler<ResetPasswordFormFields> = (data) => {
     const payload: ResetPasswordPayload = {
-      email: email,
+      email: email!,
       newPassword: data.newPassword,
     };
+
     resetpassword(payload);
   };
 
@@ -183,23 +183,3 @@ export default function ResetPasswordForm() {
     </section>
   );
 }
-
-//  <div className="space-y-3">
-//           {/* Password section */}
-//           <PasswordField
-//             register={register}
-//             errors={formState.errors}
-//             label="reset-password.form.password.old-password"
-//             name="password"
-//             placeholder="********"
-//           />
-
-//           {/* Confirm Password section */}
-//           <PasswordField
-//             errors={formState.errors}
-//             register={register}
-//             label="reset-password.form.password.new-password"
-//             name="newPassword"
-//             placeholder="********"
-//           />
-//         </div>
