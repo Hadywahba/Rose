@@ -1,7 +1,7 @@
 'use client';
 import * as React from 'react';
 import { cn } from '@/lib/utility/tailwind-merge';
-import { Eye, EyeClosed, Search } from 'lucide-react';
+import { Eye, EyeOff, Search } from 'lucide-react';
 
 type InputVariant =
   | 'text'
@@ -70,7 +70,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             className="absolute end-4 top-[50%] flex h-full -translate-y-[50%] items-center justify-center"
             onClick={handleTogglePassword}
           >
-            {!showPassword ? <EyeClosed /> : <Eye />}
+            {!showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
           </button>
         </div>
       );
