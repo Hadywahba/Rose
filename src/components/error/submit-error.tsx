@@ -1,4 +1,4 @@
-'usec client';
+'use client';
 import React from 'react';
 import { CircleX } from 'lucide-react';
 interface SubmitErrorProps {

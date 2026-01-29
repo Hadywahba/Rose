@@ -1,18 +1,22 @@
+'use client';
+
 import Image from 'next/image';
 import React from 'react';
+import MainHeading from './main-heading';
+import { useTranslations } from 'next-intl';
 
 /**
  * Gallery section displaying gift box images in a masonry-style grid layout
  */
 export default function Gallery() {
+  // Translation
+  const t = useTranslations('gallery');
+
   return (
     <section className="container mx-auto w-11/12 py-10">
       {/* Section header */}
       <div className="mb-11 text-center">
-        <h2 className="mb-2 font-bold text-softPink-500">Gallery</h2>
-        <h3 className="text-4xl font-bold text-maroon-700">
-          Check Out our Wonderful Gallery
-        </h3>
+        <MainHeading heading={t('heading')} paragraph={t('paragraph')} />
       </div>
 
       {/* 12-column grid with varied image sizes */}
@@ -21,7 +25,7 @@ export default function Gallery() {
         <div className="relative col-span-4 row-span-6">
           <Image
             src="/images/galleryGrid1.svg"
-            alt="4 presents wedding, birthday, anniversary, graduation"
+            alt={t('images.galleryGrid1')}
             fill
             className="object-cover"
           />
@@ -31,7 +35,7 @@ export default function Gallery() {
         <div className="relative col-span-4 col-start-5 row-span-4">
           <Image
             src="/images/galleryGrid2.svg"
-            alt="2 red gifts and 1 fluffy heart"
+            alt={t('images.galleryGrid2')}
             fill
             className="object-cover"
           />
@@ -41,7 +45,7 @@ export default function Gallery() {
         <div className="relative col-span-4 col-start-9 row-span-4">
           <Image
             src="/images/galleryGrid3.svg"
-            alt="engagement ring in middle of flowers"
+            alt={t('images.galleryGrid3')}
             fill
             className="object-cover"
           />
@@ -51,7 +55,7 @@ export default function Gallery() {
         <div className="relative col-span-4 col-start-1 row-span-4 row-start-7">
           <Image
             src="/images/galleryGrid4.svg"
-            alt="flower bouquet and box of chocolate heart shape"
+            alt={t('images.galleryGrid4')}
             fill
             className="object-cover"
           />
@@ -61,7 +65,7 @@ export default function Gallery() {
         <div className="relative col-span-4 col-start-5 row-span-6 row-start-5">
           <Image
             src="/images/galleryGrid5.svg"
-            alt="engagement ring in middle of bouquet of white flowers"
+            alt={t('images.galleryGrid5')}
             fill
             className="object-cover"
           />
@@ -71,7 +75,7 @@ export default function Gallery() {
         <div className="relative col-span-4 col-start-9 row-span-6 row-start-5">
           <Image
             src="/images/galleryGrid6.svg"
-            alt="engagement ring with white engagement card gift"
+            alt={t('images.galleryGrid6')}
             fill
             className="object-cover"
           />
@@ -79,6 +83,4 @@ export default function Gallery() {
       </div>
     </section>
   );
-};
-
-
+}

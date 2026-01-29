@@ -29,13 +29,6 @@ export default function SubmitButton({
 
   return (
     <div className="flex flex-col gap-6 pt-9">
-      {/* Error */}
-      {error && (
-        <div className="">
-          <SubmitError errors={error} />
-        </div>
-      )}
-
       {/* Button */}
       <div className="">
         <Button
@@ -49,7 +42,7 @@ export default function SubmitButton({
         {/* Optional Title */}
         {title && (
           <div className="mt-9 text-center">
-            <p className="border-t-[.0625rem] border-zinc-200 pt-5 text-center text-sm font-medium text-zinc-800 dark:text-zinc-50 first-letter:capitalize">
+            <p className="border-t-[.0625rem] border-zinc-200 pt-5 text-center text-sm font-medium text-zinc-800 first-letter:capitalize dark:text-zinc-50">
               {t.rich(title, {
                 span: (chunk: React.ReactNode) =>
                   link ? (
@@ -68,6 +61,12 @@ export default function SubmitButton({
           </div>
         )}
       </div>
+      {/* Error */}
+      {error && (
+        <div className="">
+          <SubmitError errors={error} />
+        </div>
+      )}
     </div>
   );
 }
