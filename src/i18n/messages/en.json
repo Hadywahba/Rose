@@ -26,44 +26,91 @@
       }
     ]
   },
-    "hero": {
-      "static-image": {
-        "button": " shop now"
+  "hero": {
+    "static-image": {
+      "button": " shop now"
+    },
+    "special-gift": "special gifts for the people you love",
+    "gift-price": "Staring from 10.99 EGP",
+    "carousel-button": "I’m buying!",
+    "carousel-subtitle": "Elegant gifts for every special moment.",
+    "carousel-title": "say it with flowers",
+    "free-delivery": {
+      "title": "Free delivery",
+      "text": "For orders above 120 EGP"
+    },
+    "refund": {
+      "title": "Get refund",
+      "text": "Refunds within 30 days"
+    },
+    "secure-payment": {
+      "title": "Safe payment",
+      "text": "100% Secure Payment"
+    },
+    "support": {
+      "title": "24/7 support",
+      "text": "Contact us at any time"
+    },
+    "occasion": {
+      "wedding": {
+        "text": "Celebrate Her Forever with a Gift She’ll Always Remember",
+        "badge": "wedding"
       },
-      "special-gift": "special gifts for the people you love",
-      "gift-price": "Staring from 10.99 EGP",
-      "carousel-button": "I’m buying!",
-      "carousel-subtitle": "Elegant gifts for every special moment.",
-      "carousel-title": "say it with flowers",
-      "free-delivery": {
-        "title": "Free delivery",
-        "text": "For orders above 120 EGP"
+      "engagement": {
+        "text": "Honor the Beginning of a Beautiful Journey Together",
+        "badge": "engagement"
       },
-      "refund": {
-        "title": "Get refund",
-        "text": "Refunds within 30 days"
-      },
-      "secure-payment": {
-        "title": "Safe payment",
-        "text": "100% Secure Payment"
-      },
-      "support": {
-        "title": "24/7 support",
-        "text": "Contact us at any time"
-      },
-      "occasion": {
-        "wedding": {
-          "text": "Celebrate Her Forever with a Gift She’ll Always Remember",
-          "badge": "wedding"
-        },
-        "engagement": {
-          "text": "Honor the Beginning of a Beautiful Journey Together",
-          "badge": "engagement"
-        },
-        "anniversary": {
-          "text": "Mark Every Year of Love with a Meaningful Surprise",
-          "badge": "anniversary"
-        }
+      "anniversary": {
+        "text": "Mark Every Year of Love with a Meaningful Surprise",
+        "badge": "anniversary"
       }
     }
+  },
+  "auth": {
+    "forget-password": {
+      "forgot-password": "forgot password?",
+      "forget-text": "worry not, we’ll send you instructions to help you reset it.",
+      "form": {
+        "email": {
+          "label": "Email",
+          "placeholder": "user@example.com"
+        },
+        "submit": {
+          "continue": "Continue",
+          "no-account": "Don’t have an account yet?  <span> Create one now! </span>",
+          "loading": "Loading..."
+        },
+        "schema": {
+          "email-required": "email is required",
+          "email-invalid": "Invalid email"
+        }
+      },
+      "forget-message": " OTP sent to your email"
+    },
+    "reset-password": {
+      "create-new-password": "create a new password",
+      "reset-text": "Set a strong password to secure your account.",
+      "form": {
+        "password": {
+          "old-password": "Password",
+          "new-password": "Confirm Password"
+        },
+        "submit": {
+          "reset": "Reset Password",
+          "contact": "Need help? <span> Contact us </span>"
+        },
+        "schema": {
+          "password-required": "your password is required",
+          "password-min": "Password must be at least 8 characters long.",
+          "password-uppercase": "Password must contain at least one uppercase letter.",
+          "password-lowercase": "Password must contain at least one lowercase letter.",
+          "password-number": "Password must contain at least one number.",
+          "password-character": "Password must contain at least one special character.",
+          "confirmpassword-required": "your Confirm Password is required",
+          "password-match": "Passwords do not match"
+        }
+      },
+      "reset-message": " Your password has been successfully updated"
+    }
+  }
 }

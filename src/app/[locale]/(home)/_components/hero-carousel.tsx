@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { EmblaOptionsType } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
 
-import { HeroSlider } from '@/lib/types/hero-slider';
+import { HeroSlider } from '@/lib/types/home/hero-slider';
 import { cn } from '@/lib/utility/tailwind-merge';
 import { DotButton, useDotButton } from './hero-carousel-dot';
 import {

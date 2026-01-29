@@ -65,5 +65,52 @@
         "badge": "ذكرى سنوية"
       }
     }
+  },
+  "auth": {
+    "forget-password": {
+      "forgot-password": "هل نسيت كلمة المرور؟",
+      "forget-text": "لا تقلق، سنرسل لك تعليمات لمساعدتك في إعادة ضبطه.",
+      "form": {
+        "email": {
+          "label": "البريد الإلكتروني",
+          "placeholder": "example@domain.com"
+        },
+        "submit": {
+          "continue": "استمر",
+          "no-account": "ليس لديك حساب بعد؟ <span>أنشئ واحدًا الآن!</span>",
+          "loading": "جاري التحميل..."
+        },
+        "schema": {
+          "email-required": "البريد الإلكتروني مطلوب",
+          "email-invalid": "بريد إلكتروني غير صالح"
+        }
+      },
+      "forget-message": "تم إرسال رمز التحقق (OTP) إلى بريدك الإلكتروني"
+    },
+    "reset-password": {
+      "form": {
+        "password": {
+          "old-password": "كلمة المرور",
+          "new-password": "تأكيد كلمة المرور"
+        },
+        "submit": {
+          "reset": "إعادة تعيين كلمة المرور",
+          "contact": "هل تحتاج مساعدة؟<span> تواصل معنا </span>"
+        },
+        "schema": {
+          "password-required": "كلمة المرور الخاصة بك مطلوبة",
+          "password-match": "كلمات المرور غير متطابقة",
+          "confirmpassword-required": "تأكيد كلمة المرور الخاصة بك مطلوب",
+          "password-character": "يجب أن تحتوي كلمة المرور على حرف خاص واحد على الأقل.",
+          "password-number": "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل.",
+          "password-min": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل.",
+          "password-uppercase": "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل.",
+          "password-lowercase": "يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل."
+        }
+      },
+      "create-new-password": "إنشاء كلمة مرور جديدة",
+      "reset-text": "قم بتعيين كلمة مرور قوية لتأمين حسابك.",
+      "reset-message": "تم تحديث كلمة المرور الخاصة بك بنجاح"
+    }
   }
 }
