@@ -5,7 +5,7 @@ import { VerifyResetFields } from '@/lib/types/auth/verify';
 
 export async function VerifyPassword(data: VerifyResetFields) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API}/auth/verifyResetCode`,
+    `${process.env.API_URL}/auth/verifyResetCode`,
     {
       method: 'POST',
       headers: {
