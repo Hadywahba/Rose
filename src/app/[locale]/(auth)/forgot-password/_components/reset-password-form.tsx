@@ -117,7 +117,7 @@ export default function ResetPasswordForm() {
                     </div>
                   </FormControl>
 
-                  {/* Feedلاack */}
+                  {/* Feedback */}
                   <FormMessage />
                 </FormItem>
               )}
@@ -162,7 +162,7 @@ export default function ResetPasswordForm() {
                     {/* Toggle Password Button */}
                   </FormControl>
 
-                  {/* Feedلاack */}
+                  {/* Feedback */}
                   <FormMessage />
                 </FormItem>
               )}
