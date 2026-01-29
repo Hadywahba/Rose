@@ -1,6 +1,6 @@
-import { JSON_HEADER } from '../constants/api.constant';
-import { ForgotPasswordFormFields } from '../schemas/forgot-password';
-import { ForgotResponse } from '../types/auth/forget-password/forgot';
+import { JSON_HEADER } from '@/lib/constants/api.constant';
+import { ForgotPasswordFormFields } from '@/lib/schemas/forgot-password';
+import { ForgotResponse } from '@/lib/types/auth/forget-password/forgot';
 
 export const forgetPassword = async (data: ForgotPasswordFormFields) => {
   const response = await fetch(

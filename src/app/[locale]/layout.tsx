@@ -26,7 +26,7 @@ type LayoutProps = {
 export async function generateMetadata({
   params: { locale },
 }: Pick<LayoutProps, 'params'>) {
-  const t = await getTranslations({ locale });
+  const t = await getTranslations({ locale } as never);
   return {
     title: t('title'),
     alternates: {

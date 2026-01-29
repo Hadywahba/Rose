@@ -1,8 +1,8 @@
-import { JSON_HEADER } from '../constants/api.constant';
+import { JSON_HEADER } from '@/lib/constants/api.constant';
 import {
   ResetPasswordPayload,
   ResetResponse,
-} from '../types/auth/forget-password/reset';
+} from '@/lib/types/auth/forget-password/reset';
 
 export const resetPassword = async (data: ResetPasswordPayload) => {
   const response = await fetch(

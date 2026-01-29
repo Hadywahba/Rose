@@ -1,5 +1,5 @@
 import { useRouter } from '@/i18n/navigation';
-import { resetPassword } from '@/lib/services/reset-password.service';
+import { resetPassword } from '@/lib/services/auth/reset-password.service';
 import { ResetPasswordPayload } from '@/lib/types/auth/forget-password/reset';
 import { useMutation } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
