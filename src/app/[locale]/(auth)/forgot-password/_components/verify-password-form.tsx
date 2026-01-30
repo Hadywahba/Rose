@@ -15,7 +15,7 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from '@/components/ui/input-otp';
-import { verifySchema } from '@/lib/schema/verify-password';
+import { verifySchema } from '@/lib/schemas/verify-password';
 import { VerifyResetFields } from '@/lib/types/auth/verify';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useLocale, useTranslations } from 'next-intl';
@@ -24,6 +24,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { useResendTimer } from '../_hooks/use-resend-timer';
 import { useVerifyPassword } from '../_hooks/use-verify-password';
+import { useForgot } from '../_hooks/use-forgot-password';
 
 type VerifyPasswordProps = {
   email: string;
@@ -46,8 +47,7 @@ export default function VerifyPasswordForm({
 
   // Hooks
   const { isPending, error, verifyResetCode } = useVerifyPassword();
-  // TODO remove this comment
-  // const { forgot } = UseForgot();
+  const { forgot } = useForgot({ redirect: true });
   const { timeLeft, canResend, startTimer } = useResendTimer();
 
   // Hook Form

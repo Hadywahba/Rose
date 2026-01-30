@@ -83,7 +83,7 @@ export default function ForgotPasswordForm() {
                   />
                 </FormControl>
 
-                {/* Feedلاack */}
+                {/* Feedback */}
                 <FormMessage />
               </FormItem>
             )}
