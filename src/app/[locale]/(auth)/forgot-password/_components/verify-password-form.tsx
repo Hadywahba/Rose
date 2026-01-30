@@ -47,7 +47,7 @@ export default function VerifyPasswordForm({
 
   // Hooks
   const { isPending, error, verifyResetCode } = useVerifyPassword();
-  const { forgot } = useForgot({ redirect: true });
+  const { forgot } = useForgot();
   const { timeLeft, canResend, startTimer } = useResendTimer();
 
   // Hook Form
@@ -58,7 +58,7 @@ export default function VerifyPasswordForm({
 
   // Functions
   const onsubmit: SubmitHandler<VerifyResetFields> = async (values) => {
-    verifyResetCode(values);
+    verifyResetCode(values,);
   };
 
   return (

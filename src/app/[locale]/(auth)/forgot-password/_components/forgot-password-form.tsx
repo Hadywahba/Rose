@@ -21,6 +21,8 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { UserEmail } from '@/components/providers/app/forget-password/email-provider';
+import { toast } from 'sonner';
+import { useResendTimer } from '../_hooks/use-resend-timer';
 
 export default function ForgotPasswordForm() {
   // Translation
@@ -30,7 +32,9 @@ export default function ForgotPasswordForm() {
   const { emailState } = useContext(UserEmail)!;
 
   // Hook
-  const { error, forgot, isPending } = useForgot({ redirect: true });
+  const { error, forgot, isPending } = useForgot();
+    const { timeLeft, startTimer } = useResendTimer();
+
 
   // Form
   const form = useForm<ForgotPasswordFormFields>({
@@ -42,10 +46,22 @@ export default function ForgotPasswordForm() {
   });
 
   // Function
-  const onsubmit: SubmitHandler<ForgotPasswordFormFields> = (data) => {
-    emailState(data.email);
-    forgot(data);
-  };
+const onsubmit: SubmitHandler<ForgotPasswordFormFields> = (data) => {
+  emailState(data.email);
+
+  forgot(data, {
+    onSuccess: () => {
+      if (timeLeft === 0) {
+        startTimer();
+      }
+
+      toast.success(t('forget-password.forget-message'));
+    },
+  });
+};
+
+
+
 
   return (
     <section className="lg:max-w-auth mx-auto flex min-h-screen w-full max-w-[25.375rem] flex-col justify-center gap-6 px-6 sm:w-[70%] lg:px-0">
