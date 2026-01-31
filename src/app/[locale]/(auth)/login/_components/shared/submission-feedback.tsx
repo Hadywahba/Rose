@@ -10,7 +10,7 @@ export default function SubmissionFeedback({ className, children, ...props }: Re
             {...props}
             className={cn(
                 "relative mx-auto mb-5 w-fit rounded-2xl border border-maroon-200/50 bg-maroon-50/60 px-5 pb-5 pt-3 text-center text-maroon-700 shadow-sm",
-        
+
                 className
             )}
         >

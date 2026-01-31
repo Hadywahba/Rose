@@ -1,18 +1,23 @@
-import Providers from '@/components/providers';
 import { routing } from '@/i18n/routing';
-import { hasLocale } from 'next-intl';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { hasLocale, NextIntlClientProvider } from 'next-intl';
+import {
+  getMessages,
+  getTranslations,
+  setRequestLocale,
+} from 'next-intl/server';
 import { Sarabun, Tajawal } from 'next/font/google';
 import { notFound } from 'next/navigation';
-import Header from '../../components/layout/app/header';
+import Header from '@/components/layout/app/header';
 import Footer from '@/components/layout/app/footer';
+import Providers from '@/components/providers';
 
-export const sarabun = Sarabun({
+const sarabun = Sarabun({
   subsets: ['latin', 'thai'],
   weight: ['300', '400', '500', '600', '700'],
   variable: '--font-sarabun',
 });
-export const tajawal = Tajawal({
+
+const tajawal = Tajawal({
   subsets: ['arabic'],
   weight: ['300', '400', '500', '700', '800'],
   variable: '--font-tajawal',
@@ -27,6 +32,7 @@ export async function generateMetadata({
   params: { locale },
 }: Pick<LayoutProps, 'params'>) {
   const t = await getTranslations({ locale });
+
   return {
     title: t('title'),
     alternates: {
@@ -38,28 +44,42 @@ export async function generateMetadata({
     },
   };
 }
-
+// Generate static parameters for all supported locales, enabling pre-rendering for each language version
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export default function LocaleLayout({
+export default async function LocaleLayout({
   children,
-  params: { locale },
-}: LayoutProps) {
+  params: { locale }
+}: {
+  children: React.ReactNode;
+  params: { locale: string };
+}) {
+
+
   if (!hasLocale(routing.locales, locale)) {
     notFound();
-  } // Enable static rendering
+  }
+
+  // Static rendering
   setRequestLocale(locale);
+
+  const messages = await getMessages();
 
   return (
     <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <body
-        className={` ${locale === 'ar' ? tajawal.className : sarabun.className} antialiased [@media(min-width:1920px)]:container [@media(min-width:1920px)]:mx-auto`}
+        className={`${locale === 'ar'
+          ? tajawal.className
+          : sarabun.className
+          } antialiased [@media(min-width:1920px)]:container [@media(min-width:1920px)]:mx-auto`}
       >
         <Providers>
           <Header />
-          {children}
+          <NextIntlClientProvider messages={messages}>
+            {children}
+          </NextIntlClientProvider>
           <Footer />
         </Providers>
       </body>

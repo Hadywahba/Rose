@@ -1,5 +1,15 @@
 {
   "title": "Rose App",
+  "login-page": {
+    "title": "Welcome Back!",
+    "noAccount": "Don’t have an account yet?",
+    "createNow": "Create one now!",
+    "forgotpss": "Forgot your password?",
+    "password": "Password",
+    "email": "Email",
+    "submit": "Login"
+  },
+
   "testimonials": {
     "heading": "What Our Customers Say",
     "customer": "Customer",
@@ -26,44 +36,44 @@
       }
     ]
   },
-    "hero": {
-      "static-image": {
-        "button": " shop now"
+  "hero": {
+    "static-image": {
+      "button": " shop now"
+    },
+    "special-gift": "special gifts for the people you love",
+    "gift-price": "Staring from 10.99 EGP",
+    "carousel-button": "I’m buying!",
+    "carousel-subtitle": "Elegant gifts for every special moment.",
+    "carousel-title": "say it with flowers",
+    "free-delivery": {
+      "title": "Free delivery",
+      "text": "For orders above 120 EGP"
+    },
+    "refund": {
+      "title": "Get refund",
+      "text": "Refunds within 30 days"
+    },
+    "secure-payment": {
+      "title": "Safe payment",
+      "text": "100% Secure Payment"
+    },
+    "support": {
+      "title": "24/7 support",
+      "text": "Contact us at any time"
+    },
+    "occasion": {
+      "wedding": {
+        "text": "Celebrate Her Forever with a Gift She’ll Always Remember",
+        "badge": "wedding"
       },
-      "special-gift": "special gifts for the people you love",
-      "gift-price": "Staring from 10.99 EGP",
-      "carousel-button": "I’m buying!",
-      "carousel-subtitle": "Elegant gifts for every special moment.",
-      "carousel-title": "say it with flowers",
-      "free-delivery": {
-        "title": "Free delivery",
-        "text": "For orders above 120 EGP"
+      "engagement": {
+        "text": "Honor the Beginning of a Beautiful Journey Together",
+        "badge": "engagement"
       },
-      "refund": {
-        "title": "Get refund",
-        "text": "Refunds within 30 days"
-      },
-      "secure-payment": {
-        "title": "Safe payment",
-        "text": "100% Secure Payment"
-      },
-      "support": {
-        "title": "24/7 support",
-        "text": "Contact us at any time"
-      },
-      "occasion": {
-        "wedding": {
-          "text": "Celebrate Her Forever with a Gift She’ll Always Remember",
-          "badge": "wedding"
-        },
-        "engagement": {
-          "text": "Honor the Beginning of a Beautiful Journey Together",
-          "badge": "engagement"
-        },
-        "anniversary": {
-          "text": "Mark Every Year of Love with a Meaningful Surprise",
-          "badge": "anniversary"
-        }
+      "anniversary": {
+        "text": "Mark Every Year of Love with a Meaningful Surprise",
+        "badge": "anniversary"
       }
     }
+  }
 }

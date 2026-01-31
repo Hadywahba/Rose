@@ -1,26 +1,34 @@
 import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
 
-const authPages = new Set (['/login','/register','/forgot-password'])
 
+// Constants
+const authPages = new Set(['/login', '/register', '/forgot-password'])
+// Middleware
 export default async function middleware(req: NextRequest) {
-    const {pathname} = req.nextUrl;
-    const token = await getToken({req});
+    const { pathname } = req.nextUrl;
+    // Auth
+    const token = await getToken({ req });
+    const purePathname = pathname.replace(/^\/(en|ar)/, '') || '/';
+    const isAuthPage = authPages.has(purePathname);
+    // Protected Pages Logic
+    if (!isAuthPage) {
+        if (token) return NextResponse.next();
+        // Redirect unauthenticated users to login
+        const locale = pathname.split('/')[1] || 'en';
+        const redirectUrl = new URL(`/${locale}/login`, req.nextUrl.origin);
+        redirectUrl.searchParams.set('callbackUrl', pathname);
+        return NextResponse.redirect(redirectUrl);
+    }
+    // Redirect authenticated users away from auth pages
+    if (token) {
+        const locale = pathname.split('/')[1] || 'en';
+        return NextResponse.redirect(new URL(`/${locale}`, req.nextUrl.origin));
+    }
 
-if (!authPages.has(pathname)) {
-    if (token) return NextResponse.next();
-    const redirectUrl = new URL('/login', req.nextUrl.origin);
-    redirectUrl.searchParams.set('callbackUrl', pathname);
-    return NextResponse.redirect(redirectUrl);
-}
-
-if (!token) return NextResponse.next();
-return NextResponse.redirect(new URL('/', req.nextUrl.origin));
-
-
-
+    return NextResponse.next();
 }
 
 export const config = {
-    matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+    matcher: ['/((?!api|_next|.*\\..*).*)'],
 }

@@ -1,5 +1,15 @@
 {
   "title": "تطبيق روز",
+  "login-page": {
+    "title": "مرحباً بعودتك!",
+    "noAccount": "ليس لديك حساب بعد؟",
+    "createNow": "أنشئ واحداً الآن!",
+    "forgotpss": "نسيت رقمك السري؟",
+    "submit": "دخول",
+    "password": "كلمة المرور",
+    "email": "البريد الالكتروني"
+  },
+
   "testimonials": {
     "heading": "ماذا يقول عملاؤنا",
     "customer": "عميل",

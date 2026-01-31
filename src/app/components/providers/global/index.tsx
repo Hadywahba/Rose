@@ -1,13 +1,17 @@
+
+import { NextIntlClientProvider } from "next-intl";
 import ReactQueryProvider from "../../react-quary.provider";
 import NextAuthProvider from "./components/next-auth.provider";
 
-export default function Provider({ children }: { children: React.ReactNode }) {
+export default function Providers({ children }: { children: React.ReactNode }) {
     return (
-        <ReactQueryProvider>
+        <NextIntlClientProvider>
             <NextAuthProvider>
-                {children}
+                <ReactQueryProvider>
+                    {children}
+                </ReactQueryProvider>
             </NextAuthProvider>
-        </ReactQueryProvider>
+        </NextIntlClientProvider>
 
     )
 }

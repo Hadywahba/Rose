@@ -14,7 +14,7 @@ export default async function AuthLayout({ children }: { children: ReactNode }) 
       </main>
 
       {/* Right Section */}
-      <section className="relative h-full w-6/12 bg-red-600">
+      <section className="relative h-full w-6/12">
 
       </section>
     </div>
