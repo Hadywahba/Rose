@@ -1,3 +1,4 @@
+import createNextIntlPlugin from "next-intl/plugin";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     // remote images source
@@ -19,5 +20,6 @@ const nextConfig = {
     },
 };
 
-
-export default (nextConfig);
+// ===== Apply next-intl plugin =====
+const withNextIntl = createNextIntlPlugin();
+export default withNextIntl(nextConfig);

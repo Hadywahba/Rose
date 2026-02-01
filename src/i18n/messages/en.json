@@ -1,0 +1,168 @@
+{
+  "title": "Rose App",
+
+  "hero": {
+    "static-image": {
+      "button": " shop now"
+    },
+    "special-gift": "special gifts for the people you love",
+    "gift-price": "Staring from 10.99 EGP",
+    "carousel-button": "I’m buying!",
+    "carousel-subtitle": "Elegant gifts for every special moment.",
+    "carousel-title": "say it with flowers",
+    "free-delivery": {
+      "title": "Free delivery",
+      "text": "For orders above 120 EGP"
+    },
+    "refund": {
+      "title": "Get refund",
+      "text": "Refunds within 30 days"
+    },
+    "secure-payment": {
+      "title": "Safe payment",
+      "text": "100% Secure Payment"
+    },
+    "support": {
+      "title": "24/7 support",
+      "text": "Contact us at any time"
+    },
+    "occasion": {
+      "wedding": {
+        "text": "Celebrate Her Forever with a Gift She’ll Always Remember",
+        "badge": "wedding"
+      },
+      "engagement": {
+        "text": "Honor the Beginning of a Beautiful Journey Together",
+        "badge": "engagement"
+      },
+      "anniversary": {
+        "text": "Mark Every Year of Love with a Meaningful Surprise",
+        "badge": "anniversary"
+      }
+    }
+  },
+
+  "about": {
+    "title": "About",
+    "heading": "Delivering the <span>Finest</span> Gift Boxes for Your <span>Special</span> Moments",
+    "description": "Make every moment memorable with our premium gift boxes. Carefully curated and beautifully packaged, each box is filled with handpicked items designed to impress. Whether it's for a birthday, wedding, or a simple “thank you,” our gift boxes are crafted to leave a lasting impression — because thoughtful gifting starts here.",
+    "discover": "Discover",
+    "images": {
+      "violet": "Unwrapping violet gift",
+      "orange": "Orange gift",
+      "blue": "Blue gift with balloons"
+    },
+    "featuresLabel": "Service features",
+    "services": [
+      "Competitive Prices & Easy Shopping",
+      "Premium Quality & Elegant Packaging",
+      "Perfect for Every Occasion",
+      "Fast & Reliable Delivery"
+    ]
+  },
+
+  "gallery": {
+    "heading": "Gallery",
+    "paragraph": "Check Out our Wonderful Gallery",
+    "images": {
+      "galleryGrid1": "4 presents wedding, birthday, anniversary, graduation",
+      "galleryGrid2": "2 red gifts and 1 fluffy heart",
+      "galleryGrid3": "Engagement ring in middle of flowers",
+      "galleryGrid4": "Flower bouquet and box of chocolate heart shape",
+      "galleryGrid5": "Engagement ring in middle of bouquet of white flowers",
+      "galleryGrid6": "Engagement ring with white engagement card gift"
+    }
+  },
+
+  "testimonials": {
+    "heading": "What Our Customers Say",
+    "customer": "Customer",
+    "reviews": [
+      {
+        "name": "Jake Miller",
+        "review": "I've been ordering from this flower shop for years and they never disappoint. The quality and service are exceptional!",
+        "date": "January 12, 2025"
+      },
+      {
+        "name": "Tyler Brooks",
+        "review": "Customer service is top-notch and the flowers last longer than any others I've bought. Highly recommend!",
+        "date": "January 12, 2025"
+      },
+      {
+        "name": "Max Turner",
+        "review": "The team truly cares about every order. I always feel confident when I buy flowers from here. The checkout process was sup...",
+        "date": "January 12, 2025"
+      },
+      {
+        "name": "Lisa Anderson",
+        "review": "Amazing quality and beautiful presentation! Every bouquet I receive is absolutely stunning. The delivery is always on time and the flowers stay fresh for so long!",
+        "date": "January 10, 2025"
+      }
+    ]
+  },
+  
+  "companies": {
+    "trustedBy": "Trusted by over <span></span> companies"
+  },
+
+  "auth": {
+    "forget-password": {
+      "forgot-password": "forgot password?",
+      "forget-text": "worry not, we’ll send you instructions to help you reset it.",
+      "form": {
+        "email": {
+          "label": "Email",
+          "placeholder": "user@example.com"
+        },
+        "submit": {
+          "continue": "Continue",
+          "no-account": "Don’t have an account yet?  <span> Create one now! </span>",
+          "loading": "Loading..."
+        },
+        "schema": {
+          "email-required": "email is required",
+          "email-invalid": "Invalid email"
+        }
+      },
+      "forget-message": " OTP sent to your email"
+    },
+    "verifyPassword": {
+      "title": "Enter the OTP Code",
+      "description": "We have sent a 6-digit code to",
+      "edit": "Edit",
+      "resendOtp": "Send a new code",
+      "submit": "Verify OTP",
+      "Contact": "Need help? <span>Contact us</span>",
+      "loading": "Verifying...",
+      "new-otp-sent": "a new OTP have been sent to your email.",
+      "otp-schema": "OTP must be 6 digits code",
+      "request-another-code": "You can request another code in",
+      "successfully-reset-toast": "Your Password has been successfully reset."
+    },
+    "reset-password": {
+      "create-new-password": "create a new password",
+      "reset-text": "Set a strong password to secure your account.",
+      "form": {
+        "password": {
+          "old-password": "Password",
+          "new-password": "Confirm Password"
+        },
+        "submit": {
+          "reset": "Reset Password",
+          "contact": "Need help? <span> Contact us </span>"
+        },
+        "schema": {
+          "password-required": "your password is required",
+          "password-min": "Password must be at least 8 characters long.",
+          "password-uppercase": "Password must contain at least one uppercase letter.",
+          "password-lowercase": "Password must contain at least one lowercase letter.",
+          "password-number": "Password must contain at least one number.",
+          "password-character": "Password must contain at least one special character.",
+          "confirmpassword-required": "your Confirm Password is required",
+          "password-match": "Passwords do not match"
+        }
+      },
+      "reset-message": " Your password has been successfully updated"
+    }
+  }
+}

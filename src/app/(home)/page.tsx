@@ -5,7 +5,7 @@ import MostPopularSection from "@/components/features/most-popular-section/most-
 export default function Home() {
 
   return <>
-  <BestSellingSection/>
-  <MostPopularSection/>
+    <BestSellingSection />
+    <MostPopularSection />
   </>;
 }
