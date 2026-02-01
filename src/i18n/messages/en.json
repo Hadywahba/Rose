@@ -204,48 +204,46 @@
         }
       }
     },
-    "auth": {
-      "register": {
-        "title": "Become part of our family!",
-        "firstName": "First name",
-        "firstNamePlaceholder": "Ahmed",
-        "lastName": "Last name",
-        "lastNamePlaceholder": "Mohamed",
-        "email": "Email",
-        "emailPlaceholder": "user@example.com",
-        "phone": "Phone",
-        "phonePlaceholder": "1012345678",
-        "gender": "Gender",
-        "genderPlaceholder": "Select gender",
-        "genderMale": "Male",
-        "genderFemale": "Female",
-        "password": "Password",
-        "passwordPlaceholder": "••••••••",
-        "confirmPassword": "Confirm Password",
-        "confirmPasswordPlaceholder": "••••••••",
-        "createAccount": "Create Account",
-        "creatingAccount": "Creating Account...",
-        "alreadyHaveAccount": "Already have an account?",
-        "login": "Login",
-        "validation": {
-          "firstNameRequired": "First name is required",
-          "lastNameRequired": "Last name is required",
-          "emailRequired": "Email is required",
-          "emailInvalid": "Please enter a valid email address",
-          "phoneRequired": "Phone number is required",
-          "phoneInvalid": "Phone number must be at least 10 digits",
-          "genderRequired": "Please select your gender",
-          "passwordRequired": "Password is required",
-          "passwordMinLength": "Password must be at least 8 characters",
-          "passwordPattern": "Password must contain uppercase, lowercase, number, and special character",
-          "confirmPasswordRequired": "Confirm password is required",
-          "passwordsNotMatch": "Passwords don't match"
-        },
-        "toast": {
-          "loading": "Creating your account...",
-          "success": "Account created successfully",
-          "error": "Failed to create account"
-        }
+    "register": {
+      "title": "Become part of our family!",
+      "firstName": "First name",
+      "firstNamePlaceholder": "Ahmed",
+      "lastName": "Last name",
+      "lastNamePlaceholder": "Mohamed",
+      "email": "Email",
+      "emailPlaceholder": "user@example.com",
+      "phone": "Phone",
+      "phonePlaceholder": "1012345678",
+      "gender": "Gender",
+      "genderPlaceholder": "Select gender",
+      "genderMale": "Male",
+      "genderFemale": "Female",
+      "password": "Password",
+      "passwordPlaceholder": "••••••••",
+      "confirmPassword": "Confirm Password",
+      "confirmPasswordPlaceholder": "••••••••",
+      "createAccount": "Create Account",
+      "creatingAccount": "Creating Account...",
+      "alreadyHaveAccount": "Already have an account?",
+      "login": "Login",
+      "validation": {
+        "firstNameRequired": "First name is required",
+        "lastNameRequired": "Last name is required",
+        "emailRequired": "Email is required",
+        "emailInvalid": "Please enter a valid email address",
+        "phoneRequired": "Phone number is required",
+        "phoneInvalid": "Phone number must be at least 10 digits",
+        "genderRequired": "Please select your gender",
+        "passwordRequired": "Password is required",
+        "passwordMinLength": "Password must be at least 8 characters",
+        "passwordPattern": "Password must contain uppercase, lowercase, number, and special character",
+        "confirmPasswordRequired": "Confirm password is required",
+        "passwordsNotMatch": "Passwords don't match"
+      },
+      "toast": {
+        "loading": "Creating your account...",
+        "success": "Account created successfully",
+        "error": "Failed to create account"
       }
     }
   }
