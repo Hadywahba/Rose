@@ -95,7 +95,7 @@
       }
     ]
   },
-  
+
   "companies": {
     "trustedBy": "موثوق به من قبل أكثر من <span></span> شركة"
   },
@@ -158,6 +158,50 @@
       "create-new-password": "إنشاء كلمة مرور جديدة",
       "reset-text": "قم بتعيين كلمة مرور قوية لتأمين حسابك.",
       "reset-message": "تم تحديث كلمة المرور الخاصة بك بنجاح"
+    },
+    "auth": {
+      "register": {
+        "title": "كن جزءاً من عائلتنا!",
+        "firstName": "الاسم الأول",
+        "firstNamePlaceholder": "أحمد",
+        "lastName": "اسم العائلة",
+        "lastNamePlaceholder": "محمد",
+        "email": "البريد الإلكتروني",
+        "emailPlaceholder": "user@example.com",
+        "phone": "رقم الهاتف",
+        "phonePlaceholder": "1012345678",
+        "gender": "الجنس",
+        "genderPlaceholder": "اختر الجنس",
+        "genderMale": "ذكر",
+        "genderFemale": "أنثى",
+        "password": "كلمة المرور",
+        "passwordPlaceholder": "••••••••",
+        "confirmPassword": "تأكيد كلمة المرور",
+        "confirmPasswordPlaceholder": "••••••••",
+        "createAccount": "إنشاء حساب",
+        "creatingAccount": "جاري إنشاء الحساب...",
+        "alreadyHaveAccount": "هل لديك حساب بالفعل؟",
+        "login": "تسجيل الدخول",
+        "validation": {
+          "firstNameRequired": "الاسم الأول مطلوب",
+          "lastNameRequired": "اسم العائلة مطلوب",
+          "emailRequired": "البريد الإلكتروني مطلوب",
+          "emailInvalid": "يرجى إدخال بريد إلكتروني صحيح",
+          "phoneRequired": "رقم الهاتف مطلوب",
+          "phoneInvalid": "رقم الهاتف يجب أن يكون 10 أرقام على الأقل",
+          "genderRequired": "يرجى اختيار الجنس",
+          "passwordRequired": "كلمة المرور مطلوبة",
+          "passwordMinLength": "كلمة المرور يجب أن تكون 8 أحرف على الأقل",
+          "passwordPattern": "كلمة المرور يجب أن تحتوي على حرف كبير وصغير ورقم ورمز خاص",
+          "confirmPasswordRequired": "تأكيد كلمة المرور مطلوب",
+          "passwordsNotMatch": "كلمات المرور غير متطابقة"
+        },
+        "toast": {
+          "loading": "جاري إنشاء الحساب...",
+          "success": "تم إنشاء الحساب بنجاح",
+          "error": "فشل إنشاء الحساب"
+        }
+      }
     }
   }
 }

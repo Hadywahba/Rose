@@ -100,7 +100,7 @@
       }
     ]
   },
-  
+
   "companies": {
     "trustedBy": "Trusted by over <span></span> companies"
   },
@@ -163,6 +163,90 @@
         }
       },
       "reset-message": " Your password has been successfully updated"
+    },
+    "hero": {
+      "static-image": {
+        "button": " shop now"
+      },
+      "special-gift": "special gifts for the people you love",
+      "gift-price": "Staring from 10.99 EGP",
+      "carousel-button": "I’m buying!",
+      "carousel-subtitle": "Elegant gifts for every special moment.",
+      "carousel-title": "say it with flowers",
+      "free-delivery": {
+        "title": "Free delivery",
+        "text": "For orders above 120 EGP"
+      },
+      "refund": {
+        "title": "Get refund",
+        "text": "Refunds within 30 days"
+      },
+      "secure-payment": {
+        "title": "Safe payment",
+        "text": "100% Secure Payment"
+      },
+      "support": {
+        "title": "24/7 support",
+        "text": "Contact us at any time"
+      },
+      "occasion": {
+        "wedding": {
+          "text": "Celebrate Her Forever with a Gift She’ll Always Remember",
+          "badge": "wedding"
+        },
+        "engagement": {
+          "text": "Honor the Beginning of a Beautiful Journey Together",
+          "badge": "engagement"
+        },
+        "anniversary": {
+          "text": "Mark Every Year of Love with a Meaningful Surprise",
+          "badge": "anniversary"
+        }
+      }
+    },
+    "auth": {
+      "register": {
+        "title": "Become part of our family!",
+        "firstName": "First name",
+        "firstNamePlaceholder": "Ahmed",
+        "lastName": "Last name",
+        "lastNamePlaceholder": "Mohamed",
+        "email": "Email",
+        "emailPlaceholder": "user@example.com",
+        "phone": "Phone",
+        "phonePlaceholder": "1012345678",
+        "gender": "Gender",
+        "genderPlaceholder": "Select gender",
+        "genderMale": "Male",
+        "genderFemale": "Female",
+        "password": "Password",
+        "passwordPlaceholder": "••••••••",
+        "confirmPassword": "Confirm Password",
+        "confirmPasswordPlaceholder": "••••••••",
+        "createAccount": "Create Account",
+        "creatingAccount": "Creating Account...",
+        "alreadyHaveAccount": "Already have an account?",
+        "login": "Login",
+        "validation": {
+          "firstNameRequired": "First name is required",
+          "lastNameRequired": "Last name is required",
+          "emailRequired": "Email is required",
+          "emailInvalid": "Please enter a valid email address",
+          "phoneRequired": "Phone number is required",
+          "phoneInvalid": "Phone number must be at least 10 digits",
+          "genderRequired": "Please select your gender",
+          "passwordRequired": "Password is required",
+          "passwordMinLength": "Password must be at least 8 characters",
+          "passwordPattern": "Password must contain uppercase, lowercase, number, and special character",
+          "confirmPasswordRequired": "Confirm password is required",
+          "passwordsNotMatch": "Passwords don't match"
+        },
+        "toast": {
+          "loading": "Creating your account...",
+          "success": "Account created successfully",
+          "error": "Failed to create account"
+        }
+      }
     }
   }
 }

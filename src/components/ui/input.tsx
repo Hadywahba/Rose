@@ -47,7 +47,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             /* ================= Disabled ================= */
             'disabled:cursor-not-allowed disabled:border-0 disabled:bg-zinc-100 disabled:opacity-50',
 
-            /* ================= Variants ================= */
+          /* ================= Variants ================= */
 
             // Text / Email / URL / Tel
             (variant === 'text' ||
