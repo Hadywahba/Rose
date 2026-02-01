@@ -1,9 +1,9 @@
 import { useMutation } from '@tanstack/react-query';
-import { registerService } from '../_services/register.service';
 import { useRouter } from 'next/navigation';
 import { RegisterFields } from '@/lib/types/auth';
 import { toast } from 'sonner';
 import { useTranslations } from 'next-intl';
+import { registerService } from '../_action/register.action';
 
 export default function useRegister() {
   // Translation
