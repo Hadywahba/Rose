@@ -18,7 +18,7 @@ export default function ToggleLocale() {
   return (
     <button
       onClick={toggleLocale}
-      className="text-white rounded-md bg-blue-500 px-3 py-2 text-sm font-medium hover:bg-blue-600"
+      className="text-zinc-800 rounded-md bg-white px-3 py-2 text-sm font-medium "
     >
       {locale === 'ar' ? 'English' : 'العربية'}
     </button>

@@ -1,33 +1,32 @@
-'use client'
+'use client';
 
-import React, { useState } from 'react'
-import RememberMe from './remeber-me'
-import { useRouter } from '@/i18n/navigation'
-import { Button } from '@/components/ui/button'
+import React, { useState } from 'react';
+import RememberMe from './remeber-me';
+import { Button } from '@/components/ui/button';
+import { signIn } from 'next-auth/react'
 
 export default function LoginForm() {
-            const [rememberMe, setRememberMe] = useState(false)
-  const router = useRouter()
 
-     const handleLogin = () => {
+   const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [rememberMe, setRememberMe] = useState(false)
 
-    const user = "userLogged"
-
-    if (rememberMe) {
-      localStorage.setItem('user', JSON.stringify(user))
-    } else {
-      sessionStorage.setItem('user', JSON.stringify(user))
-    }
-
-    router.push('/dashboard')
+  const handleLogin = async () => {
+    await signIn('credentials', {
+      email,
+      password,
+      rememberMe,
+      redirect: true,
+      callbackUrl: '/dashboard',
+    })
   }
 
   return (
     <div>
-      <RememberMe checked={rememberMe}
-        onChange={setRememberMe} />
-        <Button onClick={handleLogin} className="mt-4 w-full">Login</Button>
-       
+      <RememberMe checked={rememberMe} onChange={setRememberMe} />
+      <Button onClick={handleLogin} className="mt-4 w-full">
+        Login
+      </Button>
     </div>
-  )
+  );
 }

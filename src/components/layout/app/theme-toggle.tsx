@@ -17,7 +17,7 @@ export default function ThemeToggleIcon() {
             : 'dark',
         )
       }
-      className="rounded-md p-2 transition"
+      className="rounded-md p-2 transition w-7"
     >
       {/*  Light mode */}
       <Sun className="block h-5 w-5 dark:hidden" />
