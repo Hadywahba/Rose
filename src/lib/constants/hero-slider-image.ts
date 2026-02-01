@@ -1,4 +1,4 @@
-import { HeroSlider } from '../types/hero-slider';
+import { HeroSlider } from '../types/home/hero-slider';
 
 export const heroSlider: HeroSlider[] = [
   {

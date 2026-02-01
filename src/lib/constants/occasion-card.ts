@@ -1,4 +1,4 @@
-import { OccasionCard } from '../types/occasion-card';
+import { OccasionCard } from '../types/home/occasion-card';
 
 export const occasionCard: OccasionCard[] = [
   {

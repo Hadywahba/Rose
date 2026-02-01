@@ -36,35 +36,90 @@
       }
     ]
   },
-  "hero": {
-    "static-image": {
-      "button": " shop now"
+
+  "companies": {
+    "trustedBy": "Trusted by over <span></span> companies"
+  },
+
+  "auth": {
+    "forget-password": {
+      "forgot-password": "forgot password?",
+      "forget-text": "worry not, we’ll send you instructions to help you reset it.",
+      "form": {
+        "email": {
+          "label": "Email",
+          "placeholder": "user@example.com"
+        },
+        "submit": {
+          "continue": "Continue",
+          "no-account": "Don’t have an account yet?  <span> Create one now! </span>",
+          "loading": "Loading..."
+        },
+        "schema": {
+          "email-required": "email is required",
+          "email-invalid": "Invalid email"
+        }
+      },
+      "forget-message": " OTP sent to your email"
     },
-    "special-gift": "special gifts for the people you love",
-    "gift-price": "Staring from 10.99 EGP",
-    "carousel-button": "I’m buying!",
-    "carousel-subtitle": "Elegant gifts for every special moment.",
-    "carousel-title": "say it with flowers",
-    "free-delivery": {
-      "title": "Free delivery",
-      "text": "For orders above 120 EGP"
+    "verifyPassword": {
+      "title": "Enter the OTP Code",
+      "description": "We have sent a 6-digit code to",
+      "edit": "Edit",
+      "resendOtp": "Send a new code",
+      "submit": "Verify OTP",
+      "Contact": "Need help? <span>Contact us</span>",
+      "loading": "Verifying...",
+      "new-otp-sent": "a new OTP have been sent to your email.",
+      "otp-schema": "OTP must be 6 digits code",
+      "request-another-code": "You can request another code in",
+      "successfully-reset-toast": "Your Password has been successfully reset."
     },
-    "refund": {
-      "title": "Get refund",
-      "text": "Refunds within 30 days"
+    "reset-password": {
+      "create-new-password": "create a new password",
+      "reset-text": "Set a strong password to secure your account.",
+      "form": {
+        "password": {
+          "old-password": "Password",
+          "new-password": "Confirm Password"
+        },
+        "submit": {
+          "reset": "Reset Password",
+          "contact": "Need help? <span> Contact us </span>"
+        },
+        "schema": {
+          "password-required": "your password is required",
+          "password-min": "Password must be at least 8 characters long.",
+          "password-uppercase": "Password must contain at least one uppercase letter.",
+          "password-lowercase": "Password must contain at least one lowercase letter.",
+          "password-number": "Password must contain at least one number.",
+          "password-character": "Password must contain at least one special character.",
+          "confirmpassword-required": "your Confirm Password is required",
+          "password-match": "Passwords do not match"
+        }
+      },
+      "reset-message": " Your password has been successfully updated"
     },
-    "secure-payment": {
-      "title": "Safe payment",
-      "text": "100% Secure Payment"
-    },
-    "support": {
-      "title": "24/7 support",
-      "text": "Contact us at any time"
-    },
-    "occasion": {
-      "wedding": {
-        "text": "Celebrate Her Forever with a Gift She’ll Always Remember",
-        "badge": "wedding"
+    "hero": {
+      "static-image": {
+        "button": " shop now"
+      },
+      "special-gift": "special gifts for the people you love",
+      "gift-price": "Staring from 10.99 EGP",
+      "carousel-button": "I’m buying!",
+      "carousel-subtitle": "Elegant gifts for every special moment.",
+      "carousel-title": "say it with flowers",
+      "free-delivery": {
+        "title": "Free delivery",
+        "text": "For orders above 120 EGP"
+      },
+      "refund": {
+        "title": "Get refund",
+        "text": "Refunds within 30 days"
+      },
+      "secure-payment": {
+        "title": "Safe payment",
+        "text": "100% Secure Payment"
       },
       "engagement": {
         "text": "Honor the Beginning of a Beautiful Journey Together",
@@ -73,6 +128,48 @@
       "anniversary": {
         "text": "Mark Every Year of Love with a Meaningful Surprise",
         "badge": "anniversary"
+      }
+    },
+    "register": {
+      "title": "Become part of our family!",
+      "firstName": "First name",
+      "firstNamePlaceholder": "Ahmed",
+      "lastName": "Last name",
+      "lastNamePlaceholder": "Mohamed",
+      "email": "Email",
+      "emailPlaceholder": "user@example.com",
+      "phone": "Phone",
+      "phonePlaceholder": "1012345678",
+      "gender": "Gender",
+      "genderPlaceholder": "Select gender",
+      "genderMale": "Male",
+      "genderFemale": "Female",
+      "password": "Password",
+      "passwordPlaceholder": "••••••••",
+      "confirmPassword": "Confirm Password",
+      "confirmPasswordPlaceholder": "••••••••",
+      "createAccount": "Create Account",
+      "creatingAccount": "Creating Account...",
+      "alreadyHaveAccount": "Already have an account?",
+      "login": "Login",
+      "validation": {
+        "firstNameRequired": "First name is required",
+        "lastNameRequired": "Last name is required",
+        "emailRequired": "Email is required",
+        "emailInvalid": "Please enter a valid email address",
+        "phoneRequired": "Phone number is required",
+        "phoneInvalid": "Phone number must be at least 10 digits",
+        "genderRequired": "Please select your gender",
+        "passwordRequired": "Password is required",
+        "passwordMinLength": "Password must be at least 8 characters",
+        "passwordPattern": "Password must contain uppercase, lowercase, number, and special character",
+        "confirmPasswordRequired": "Confirm password is required",
+        "passwordsNotMatch": "Passwords don't match"
+      },
+      "toast": {
+        "loading": "Creating your account...",
+        "success": "Account created successfully",
+        "error": "Failed to create account"
       }
     }
   }
