@@ -16,34 +16,36 @@ import {
   InputOTPSlot,
 } from '@/components/ui/input-otp';
 import { verifySchema } from '@/lib/schemas/verify-password';
-import { VerifyResetFields } from '@/lib/types/auth/verify';
+import {
+  ForgotPasswordFormProps,
+  VerifyResetFields,
+} from '@/lib/types/auth/verify';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useLocale, useTranslations } from 'next-intl';
-import { Dispatch, SetStateAction } from 'react';
+// import { Dispatch, SetStateAction } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { useResendTimer } from '../_hooks/use-resend-timer';
 import { useVerifyPassword } from '../_hooks/use-verify-password';
 import { useForgot } from '../_hooks/use-forgot-password';
+import { FORGOT_PASSWORD_STEPS } from '@/lib/constants/auth.constant';
 
-type VerifyPasswordProps = {
-  email: string;
-  // TODO set step to forget password
-  setStep: Dispatch<
-SetStateAction<'forget-password' | 'verify-password' | 'reset-password'>>;
-};
+// type VerifyPasswordProps = {
+//   email: string;
+//   // TODO set step to forget password
+//   setStep: Dispatch<
+// SetStateAction<'forget-password' | 'verify-password' | 'reset-password'>>;
+// };
 
 export default function VerifyPasswordForm({
-  // email,
   setStep,
-}: VerifyPasswordProps) {
+}: ForgotPasswordFormProps) {
   // TODO remove this email
   const email = 'mostafaelyan45@gmail.com';
 
   // Translations
   const t = useTranslations('auth');
   const locale = useLocale();
-
 
   // Hooks
   const { isPending, error, verifyResetCode } = useVerifyPassword();
@@ -57,8 +59,13 @@ export default function VerifyPasswordForm({
   });
 
   // Functions
-  const onsubmit: SubmitHandler<VerifyResetFields> = async (values) => {
-    verifyResetCode(values,);
+  const onsubmit: SubmitHandler<VerifyResetFields> = (values) => {
+    verifyResetCode(values, {
+      onSuccess: () => {
+        toast.success(t('verifyPassword.success'));
+        setStep(FORGOT_PASSWORD_STEPS.reset);
+      },
+    });
   };
 
   return (
@@ -75,7 +82,7 @@ export default function VerifyPasswordForm({
             variant="link"
             onClick={() => {
               // TODO set step to forget password
-              setStep('forget-password');
+              setStep(FORGOT_PASSWORD_STEPS.email);
             }}
           >
             {' '}

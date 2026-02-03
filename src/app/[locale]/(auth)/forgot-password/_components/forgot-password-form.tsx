@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useContext } from 'react';
@@ -23,8 +24,12 @@ import { Input } from '@/components/ui/input';
 import { UserEmail } from '@/components/providers/app/forget-password/email-provider';
 import { toast } from 'sonner';
 import { useResendTimer } from '../_hooks/use-resend-timer';
+import { FORGOT_PASSWORD_STEPS } from '@/lib/constants/auth.constant';
+import { ForgotPasswordFormProps } from '@/lib/types/auth/verify';
 
-export default function ForgotPasswordForm() {
+export default function ForgotPasswordForm({
+  setStep,
+}: ForgotPasswordFormProps){
   // Translation
   const t = useTranslations('auth');
 
@@ -56,6 +61,7 @@ const onsubmit: SubmitHandler<ForgotPasswordFormFields> = (data) => {
       }
 
       toast.success(t('forget-password.forget-message'));
+       setStep(FORGOT_PASSWORD_STEPS.verify)
     },
   });
 };
@@ -119,4 +125,5 @@ const onsubmit: SubmitHandler<ForgotPasswordFormFields> = (data) => {
       </Form>
     </section>
   );
+
 }

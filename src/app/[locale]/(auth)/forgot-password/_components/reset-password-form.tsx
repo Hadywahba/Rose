@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useContext, useState } from 'react';
@@ -26,8 +27,13 @@ import { Button } from '@/components/ui/button';
 import { useLocale } from 'next-intl';
 import { cn } from '@/lib/utility/tailwind-merge';
 import { UserEmail } from '@/components/providers/app/forget-password/email-provider';
+import { ForgotPasswordFormProps } from '@/lib/types/auth/verify';
+import { FORGOT_PASSWORD_STEPS } from '@/lib/constants/auth.constant';
+import { toast } from 'sonner';
 
-export default function ResetPasswordForm() {
+export default function ResetPasswordForm({
+  setStep,
+}: ForgotPasswordFormProps) {
   // Translation
   const t = useTranslations('auth');
 
@@ -53,14 +59,23 @@ export default function ResetPasswordForm() {
   });
 
   // Function
-  const onsubmit: SubmitHandler<ResetPasswordFormFields> = (data) => {
-    const payload: ResetPasswordPayload = {
-      email: email!,
-      newPassword: data.newPassword,
-    };
+const onsubmit: SubmitHandler<ResetPasswordFormFields> = (data) => {
+  if (!email) return;
 
-    resetpassword(payload);
+  const payload: ResetPasswordPayload = {
+    email,
+    newPassword: data.newPassword,
   };
+
+  resetpassword(payload, {
+    onSuccess: () => {
+      toast.success(t('reset-password.success'));
+      setStep(FORGOT_PASSWORD_STEPS.email);
+    },
+  });
+};
+
+
 
   return (
     <section className="lg:max-w-auth mx-auto flex min-h-screen w-full max-w-[25.375rem] flex-col justify-center gap-6 px-6 sm:w-[70%] lg:px-0">
@@ -182,4 +197,5 @@ export default function ResetPasswordForm() {
       </Form>
     </section>
   );
+
 }
