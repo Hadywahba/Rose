@@ -1,3 +1,4 @@
+import Providers from '@/components/providers';
 import { routing } from '@/i18n/routing';
 import { hasLocale } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -42,28 +43,19 @@ export async function generateMetadata({
     },
   };
 }
-// Generate static parameters for all supported locales, enabling pre-rendering for each language version
+
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export default async function LocaleLayout({
+export default function LocaleLayout({
   children,
-  params: { locale }
-}: {
-  children: React.ReactNode;
-  params: { locale: string };
-}) {
-
-
+  params: { locale },
+}: LayoutProps) {
   if (!hasLocale(routing.locales, locale)) {
     notFound();
-  }
-
-  // Static rendering
+  } // Enable static rendering
   setRequestLocale(locale);
-
-  const messages = await getMessages();
 
   return (
     <html lang={locale} className="dark" dir={locale === 'ar' ? 'rtl' : 'ltr'}>

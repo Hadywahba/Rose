@@ -1,34 +1,16 @@
-import { getToken } from "next-auth/jwt";
-import { NextRequest, NextResponse } from "next/server";
+import createMiddleware from 'next-intl/middleware';
+import { routing } from './i18n/routing';
+import { NextRequest } from 'next/server';
 
-
-// Constants
-const authPages = new Set(['/login', '/register', '/forgot-password'])
-// Middleware
-export default async function middleware(req: NextRequest) {
-    const { pathname } = req.nextUrl;
-    // Auth
-    const token = await getToken({ req });
-    const purePathname = pathname.replace(/^\/(en|ar)/, '') || '/';
-    const isAuthPage = authPages.has(purePathname);
-    // Protected Pages Logic
-    if (!isAuthPage) {
-        if (token) return NextResponse.next();
-        // Redirect unauthenticated users to login
-        const locale = pathname.split('/')[1] || 'en';
-        const redirectUrl = new URL(`/${locale}/login`, req.nextUrl.origin);
-        redirectUrl.searchParams.set('callbackUrl', pathname);
-        return NextResponse.redirect(redirectUrl);
-    }
-    // Redirect authenticated users away from auth pages
-    if (token) {
-        const locale = pathname.split('/')[1] || 'en';
-        return NextResponse.redirect(new URL(`/${locale}`, req.nextUrl.origin));
-    }
-
-    return NextResponse.next();
+export default async function middleware(request: NextRequest) {
+  // your logic
+  const response = createMiddleware(routing)(request);
+  return response;
 }
 
 export const config = {
-    matcher: ['/((?!api|_next|.*\\..*).*)'],
-}
+  // Match all pathnames except for
+  // - … if they start with `/api`, `/trpc`, `/_next` or `/_vercel`
+  // - … the ones containing a dot (e.g. `favicon.ico`)
+  matcher: '/((?!api|trpc|_next|_vercel|.*\\..*).*)',
+};

@@ -4,15 +4,9 @@ import * as React from "react"
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react"
-<<<<<<< HEAD
-import { ChevronLeft, ChevronRight } from "lucide-react";
-
-import { cn } from "@/lib/utility/cn.util"
-=======
 import { ArrowLeft, ArrowRight } from "lucide-react"
 
 import { cn } from "@/lib/utility/tailwind-merge"
->>>>>>> 436290dfbab3383191171ad2cd5f649972267e00
 import { Button } from "@/components/ui/button"
 
 type CarouselApi = UseEmblaCarouselType[1]
@@ -222,11 +216,7 @@ const CarouselPrevious = React.forwardRef<
       onClick={scrollPrev}
       {...props}
     >
-<<<<<<< HEAD
-      <ChevronLeft className="h-4 w-4" />
-=======
       <ArrowLeft className="h-4 w-4" />
->>>>>>> 436290dfbab3383191171ad2cd5f649972267e00
       <span className="sr-only">Previous slide</span>
     </Button>
   )
@@ -242,11 +232,7 @@ const CarouselNext = React.forwardRef<
   return (
     <Button
       ref={ref}
-<<<<<<< HEAD
-      variant="default"
-=======
       variant={variant}
->>>>>>> 436290dfbab3383191171ad2cd5f649972267e00
       size={size}
       className={cn(
         "absolute h-8 w-8 rounded-full",
@@ -259,11 +245,7 @@ const CarouselNext = React.forwardRef<
       onClick={scrollNext}
       {...props}
     >
-<<<<<<< HEAD
-      <ChevronRight className="h-4 w-4" />
-=======
       <ArrowRight className="h-4 w-4" />
->>>>>>> 436290dfbab3383191171ad2cd5f649972267e00
       <span className="sr-only">Next slide</span>
     </Button>
   )

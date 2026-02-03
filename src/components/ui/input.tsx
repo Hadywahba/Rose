@@ -21,9 +21,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, variant = 'text', error, disabled, ...props }, ref) => {
     return (
       <div className="relative">
-        <InputField
-          className="pe-12"
-          {...props}
+        <input
           ref={ref}
           type={type ?? variant}
           data-error={error ? 'true' : 'false'}

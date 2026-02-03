@@ -1,22 +1,6 @@
-import z from "zod";
-import { loginSchema } from "../schemes/auth.schema";
+export type RegisterResponse = {
+  token: string;
+  user: User['user'];
+};
 
-export interface LoginResponse {
-   
-        token: string;
-        user: {
-            _id: string;
-            firstName: string;
-            lastName: string;
-            email: string;
-            gender: string;
-            phone: string;
-            photo: string;
-            role: string;
-            wishlist: string[];
-            addresses: string;
-            createdAt: string;
-        };
-    };
-
-    export type LoginFields = z.infer <typeof loginSchema>
+export type RegisterFields = z.infer<typeof registerSchema>;
