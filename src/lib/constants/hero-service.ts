@@ -1,5 +1,5 @@
 import { Headset, RefreshCw, ShieldCheck, Truck } from 'lucide-react';
-import { HeroService } from '../types/hero-service';
+import { HeroService } from '../types/home/hero-service';
 
 export const heroService: HeroService[] = [
   {
