@@ -24,11 +24,9 @@ import { Input } from '@/components/ui/input';
 import { UserEmail } from '@/components/providers/app/forget-password/email-provider';
 import { toast } from 'sonner';
 import { useResendTimer } from '../_hooks/use-resend-timer';
-import { ForgotPasswordStep } from '@/lib/types/auth';
 import { FORGOT_PASSWORD_STEPS } from '@/lib/constants/auth.constant';
-interface ForgotPasswordFormProps {
-  setStep: React.Dispatch<React.SetStateAction<ForgotPasswordStep>>;
-}
+import { ForgotPasswordFormProps } from '@/lib/types/auth/verify';
+
 export default function ForgotPasswordForm({
   setStep,
 }: ForgotPasswordFormProps){
