@@ -14,13 +14,13 @@ export default function ForgotPasswordLayout() {
   // steps to tender components
   const steps = {
     [FORGOT_PASSWORD_STEPS.email]: {
-      form: <ForgotPasswordForm />,
+      form: <ForgotPasswordForm setStep={setStep} />,
     },
     [FORGOT_PASSWORD_STEPS.verify]: {
-      form: <VerifyPasswordForm />,
+      form: <VerifyPasswordForm setStep={setStep} />,
     },
     [FORGOT_PASSWORD_STEPS.reset]: {
-      form: <ResetPasswordForm />,
+      form: <ResetPasswordForm setStep={setStep} />,
     },
   };
 
