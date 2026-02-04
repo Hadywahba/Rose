@@ -23,3 +23,10 @@ export interface Product {
   imgCover: string
   id: string
 }
+
+export interface User {
+  _id: string
+  firstName: string
+  lastName: string
+  photo: string
+}
