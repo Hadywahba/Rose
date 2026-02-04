@@ -80,8 +80,7 @@ if (!fetchedReviews || fetchedReviews.length === 0) {
             ))}
           </div>
 
-
-          <ReviewForm/>
+          <ReviewForm productId={productId} />
         </div>
       </div>
     </section>

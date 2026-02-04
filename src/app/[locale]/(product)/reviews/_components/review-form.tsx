@@ -8,25 +8,31 @@ import { Textarea } from '@/components/ui/textarea';
 import { ratingFormSchema, RatingFormSchema } from '@/lib/schemas/add-review';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
-import { toast } from 'sonner';
+import { useAddReview } from '../_hooks/use-add-review';
 
+interface ReviewFormProps {
+  productId: string;
+}
 
+export default function ReviewForm({ productId }: ReviewFormProps) {
+  // Hook
+  const { isPending, addReview } = useAddReview();
 
-export default function ReviewForm() {
+  // Hook Form
   const form = useForm<RatingFormSchema>({
     resolver: zodResolver(ratingFormSchema),
     defaultValues: {
+      product: productId,
       rating: 0,
       title: '',
       comment: '',
     },
   });
 
+  // Function
   function onSubmit(values: RatingFormSchema) {
     console.log(values);
-    toast.success(
-      'Thank you for your review! It has been submitted successfully.',
-    );
+    addReview(values);
   }
 
   return (
@@ -36,26 +42,28 @@ export default function ReviewForm() {
           onSubmit={form.handleSubmit(onSubmit)}
           className="max-w-xl space-y-4"
         >
-          <div className="flex items-center gap-4">
-            <FieldLabel >Your Rating:</FieldLabel>
-            <Controller
-              name="rating"
-              control={form.control}
-              render={({ field }) => (
-                <InteractiveRating
-                  rating={field.value}
-                  onRatingChange={field.onChange}
-                  className="[&_svg]:size-6"
-                />
-              )}
-            />
+          <div className="space-y-1">
+            <div className="flex items-center gap-4">
+              <FieldLabel>Your Rating:</FieldLabel>
+              <Controller
+                name="rating"
+                control={form.control}
+                render={({ field }) => (
+                  <InteractiveRating
+                    rating={field.value}
+                    onRatingChange={field.onChange}
+                    className="[&_svg]:size-6"
+                  />
+                )}
+              />
+            </div>
+            <FieldError>{form.formState.errors.rating?.message}</FieldError>
           </div>
-          <FieldError>{form.formState.errors.rating?.message}</FieldError>
 
           <Field>
             <FieldLabel htmlFor="Title">Title</FieldLabel>
             <Input
-              className="w-full"
+              className='w-full'
               id="Title"
               placeholder="Enter review title"
               {...form.register('title')}
@@ -74,8 +82,8 @@ export default function ReviewForm() {
             <FieldError>{form.formState.errors.comment?.message}</FieldError>
           </Field>
 
-          <Button className="w-full" type="submit">
-            Add Review
+          <Button disabled={isPending} className="w-full" type="submit">
+            {isPending ? 'Reviewing...' : 'Add Review'}
           </Button>
         </form>
       </Form>
