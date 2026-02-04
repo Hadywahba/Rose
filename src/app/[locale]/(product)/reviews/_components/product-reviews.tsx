@@ -52,7 +52,7 @@ if (!fetchedReviews || fetchedReviews.length === 0) {
 
   return (
     <section className={cn('py-16 md:py-24', className)}>
-      <div className="container w-full">
+      <div className="container px-10">
         {/* Header */}
         <div className="mb-8">
           <h2 className="text-xl font-semibold tracking-tight text-zinc-800 md:text-2xl">
@@ -69,7 +69,7 @@ if (!fetchedReviews || fetchedReviews.length === 0) {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 border-t">
+        <div className="grid grid-cols-2 gap-2 border-t py-5">
           {/* Reviews List */}
           <div className="space-y-0">
             {fetchedReviews.map((review, index) => (

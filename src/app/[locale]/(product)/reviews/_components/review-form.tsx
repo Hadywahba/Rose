@@ -1,77 +1,84 @@
 'use client';
 import { Button } from '@/components/ui/button';
-import {
-  Field,
-  FieldError,
-  FieldLabel
-} from '@/components/ui/field';
+import { Field, FieldError, FieldLabel } from '@/components/ui/field';
 import { Form } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { InteractiveRating } from '@/components/ui/InteractiveRating';
 import { Textarea } from '@/components/ui/textarea';
+import { ratingFormSchema, RatingFormSchema } from '@/lib/schemas/add-review';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
-import { z } from 'zod';
 
-const formSchema = z.object({
-  rating: z.number().min(1),
-  Title: z.string().min(1).min(0).max(25),
-  Review: z.string().max(250),
-});
+
 
 export default function ReviewForm() {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<RatingFormSchema>({
+    resolver: zodResolver(ratingFormSchema),
+    defaultValues: {
+      rating: 0,
+      title: '',
+      comment: '',
+    },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    try {
-      console.log(values);
-      toast(
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(values, null, 2)}</code>
-        </pre>,
-      );
-    } catch (error) {
-      console.error('Form submission error', error);
-      toast.error('Failed to submit the form. Please try again.');
-    }
+  function onSubmit(values: RatingFormSchema) {
+    console.log(values);
+    toast.success(
+      'Thank you for your review! It has been submitted successfully.',
+    );
   }
 
   return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="mx-auto max-w-3xl space-y-8 py-10"
-      >
-        <Field>
-          <FieldLabel htmlFor="rating">your Rating:</FieldLabel>
-          <Input id="rating" placeholder="" {...form.register('rating')} />
-
+    <div className="col-span-1 border-l pl-4">
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="max-w-xl space-y-4"
+        >
+          <div className="flex items-center gap-4">
+            <FieldLabel >Your Rating:</FieldLabel>
+            <Controller
+              name="rating"
+              control={form.control}
+              render={({ field }) => (
+                <InteractiveRating
+                  rating={field.value}
+                  onRatingChange={field.onChange}
+                  className="[&_svg]:size-6"
+                />
+              )}
+            />
+          </div>
           <FieldError>{form.formState.errors.rating?.message}</FieldError>
-        </Field>
-        <Field>
-          <FieldLabel htmlFor="Title">Title</FieldLabel>
-          <Input
-            id="Title"
-            placeholder="enter review title"
-            {...form.register('Title')}
-          />
 
-          <FieldError>{form.formState.errors.Title?.message}</FieldError>
-        </Field>
-        <Field>
-          <FieldLabel htmlFor="Review">Review</FieldLabel>
-          <Textarea
-            id="Review"
-            placeholder="What do you think of this product?"
-            {...form.register('Review')}
-          />
+          <Field>
+            <FieldLabel htmlFor="Title">Title</FieldLabel>
+            <Input
+              className="w-full"
+              id="Title"
+              placeholder="Enter review title"
+              {...form.register('title')}
+            />
+            <FieldError>{form.formState.errors.title?.message}</FieldError>
+          </Field>
 
-          <FieldError>{form.formState.errors.Review?.message}</FieldError>
-        </Field>
-        <Button type="submit">Submit</Button>
-      </form>
-    </Form>
+          <Field>
+            <FieldLabel htmlFor="Review">Review</FieldLabel>
+            <Textarea
+              className="min-h-36"
+              id="Review"
+              placeholder="What do you think of this product?"
+              {...form.register('comment')}
+            />
+            <FieldError>{form.formState.errors.comment?.message}</FieldError>
+          </Field>
+
+          <Button className="w-full" type="submit">
+            Add Review
+          </Button>
+        </form>
+      </Form>
+    </div>
   );
 }

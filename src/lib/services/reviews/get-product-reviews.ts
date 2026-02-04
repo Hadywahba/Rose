@@ -10,8 +10,6 @@ export const getReviews = async (productId: string) => {
     },
   );
   const payload: ReviewsResponse = await response.json();
-  console.log('Reviews Payload:', payload);
-  console.log('Reviews:', payload?.reviews);
-
+  
   return payload.reviews;
 };
