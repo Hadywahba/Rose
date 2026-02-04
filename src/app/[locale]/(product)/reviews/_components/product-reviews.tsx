@@ -6,6 +6,7 @@ import { Review } from '@/lib/types/products/reviews/reviews-response';
 import { Star } from 'lucide-react';
 import { useProductReviews } from '../_hooks/use-product-reviews';
 import ReviewItem from './review-item';
+import ReviewForm from './review-form';
 
 
 interface ProductsReviewsProps {
@@ -51,7 +52,7 @@ if (!fetchedReviews || fetchedReviews.length === 0) {
 
   return (
     <section className={cn('py-16 md:py-24', className)}>
-      <div className="container max-w-3xl">
+      <div className="container w-full">
         {/* Header */}
         <div className="mb-8">
           <h2 className="text-xl font-semibold tracking-tight text-zinc-800 md:text-2xl">
@@ -68,14 +69,19 @@ if (!fetchedReviews || fetchedReviews.length === 0) {
           </div>
         </div>
 
-        {/* Reviews List */}
-        <div className="space-y-0">
-          {fetchedReviews.map((review, index) => (
-            <div key={review._id}>
-              {index > 0 && <Separator className="my-6" />}
-            <ReviewItem review={review} />
-            </div>
-          ))}
+        <div className="grid grid-cols-2 border-t">
+          {/* Reviews List */}
+          <div className="space-y-0">
+            {fetchedReviews.map((review, index) => (
+              <div key={review._id}>
+                {index > 0 && <Separator className="my-6" />}
+                <ReviewItem review={review} />
+              </div>
+            ))}
+          </div>
+
+
+          <ReviewForm/>
         </div>
       </div>
     </section>
