@@ -16,7 +16,7 @@ import {
   InputOTPSlot,
 } from '@/components/ui/input-otp';
 import { verifySchema } from '@/lib/schemas/verify-password';
-import { VerifyResetFields } from '@/lib/types/auth/verify';
+import { VerifyResetFields } from '@/lib/types/auth/forget-password/verify';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useLocale, useTranslations } from 'next-intl';
 import { Dispatch, SetStateAction } from 'react';
@@ -30,7 +30,8 @@ type VerifyPasswordProps = {
   email: string;
   // TODO set step to forget password
   setStep: Dispatch<
-SetStateAction<'forget-password' | 'verify-password' | 'reset-password'>>;
+    SetStateAction<'forget-password' | 'verify-password' | 'reset-password'>
+  >;
 };
 
 export default function VerifyPasswordForm({
@@ -43,7 +44,6 @@ export default function VerifyPasswordForm({
   // Translations
   const t = useTranslations('auth');
   const locale = useLocale();
-
 
   // Hooks
   const { isPending, error, verifyResetCode } = useVerifyPassword();
@@ -58,7 +58,7 @@ export default function VerifyPasswordForm({
 
   // Functions
   const onsubmit: SubmitHandler<VerifyResetFields> = async (values) => {
-    verifyResetCode(values,);
+    verifyResetCode(values);
   };
 
   return (
