@@ -47,6 +47,7 @@ export default function ReviewForm({ productId }: ReviewFormProps) {
         >
           <div className="space-y-1">
             <div className="flex items-center gap-4">
+              {/* Rating */}
               <FieldLabel>{t('yourRating')}</FieldLabel>
               <Controller
                 name="rating"
@@ -63,6 +64,7 @@ export default function ReviewForm({ productId }: ReviewFormProps) {
             <FieldError>{form.formState.errors.rating?.message}</FieldError>
           </div>
 
+          {/* Title */}
           <Field>
             <FieldLabel htmlFor="title">{t('titleLabel')}</FieldLabel>
             <Input
@@ -74,6 +76,7 @@ export default function ReviewForm({ productId }: ReviewFormProps) {
             <FieldError>{form.formState.errors.title?.message}</FieldError>
           </Field>
 
+          {/* Comment */}
           <Field>
             <FieldLabel htmlFor="comment">{t('reviewLabel')}</FieldLabel>
             <Textarea
@@ -85,6 +88,7 @@ export default function ReviewForm({ productId }: ReviewFormProps) {
             <FieldError>{form.formState.errors.comment?.message}</FieldError>
           </Field>
 
+          {/* Submit Button */}
           <Button disabled={isPending} className="w-full" type="submit">
             {isPending ? t('submitting') : t('submitButton')}
           </Button>

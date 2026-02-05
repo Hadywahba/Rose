@@ -15,15 +15,15 @@ import { useState } from 'react';
 import { useRelatedProducts } from '../_hooks/use-related-products';
 
 export default function RelatedProducts({ productId }: { productId: string }) {
-  // i18n
+  // Translations
   const t = useTranslations('reviews');
   const locale = useLocale();
   const isRTL = locale === 'ar';
 
-  // Embla API
+  // Embla API state
   const [api, setApi] = useState<CarouselApi | null>(null);
 
-  // Data
+  // Hooks
   const { data: fetchedRelatedProducts } = useRelatedProducts(productId);
 
   if (!fetchedRelatedProducts || fetchedRelatedProducts.length === 0) {
