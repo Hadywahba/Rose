@@ -4,16 +4,26 @@ import MainHeading from '@/app/[locale]/(home)/_components/main-heading';
 import ProductItem from '@/components/features/products/product-item';
 import {
   Carousel,
+  CarouselApi,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from '@/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useLocale, useTranslations } from 'next-intl';
+import { useState } from 'react';
 import { useRelatedProducts } from '../_hooks/use-related-products';
 
 export default function RelatedProducts({ productId }: { productId: string }) {
-  // Hooks
+  // i18n
+  const t = useTranslations('reviews');
+  const locale = useLocale();
+  const isRTL = locale === 'ar';
+
+  // Embla API
+  const [api, setApi] = useState<CarouselApi | null>(null);
+
+  // Data
   const { data: fetchedRelatedProducts } = useRelatedProducts(productId);
 
   if (!fetchedRelatedProducts || fetchedRelatedProducts.length === 0) {
@@ -24,14 +34,20 @@ export default function RelatedProducts({ productId }: { productId: string }) {
     <div className="container p-8">
       {/* Title */}
       <MainHeading
-        className="mb-5 items-start text-left"
-        paragraph="Related Products"
+        className="mb-5 items-start text-start"
+        paragraph={t('relatedProducts')}
       />
 
       <Carousel
+        setApi={setApi}
         plugins={[Autoplay({ delay: 2000 })]}
-        opts={{ align: 'start', loop: true }}
-        className="w-full"
+        opts={{
+          align: 'start',
+          loop: true,
+          direction: isRTL ? 'rtl' : 'ltr',
+          dragFree: true,
+        }}
+        className="relative w-full"
       >
         <CarouselContent>
           {fetchedRelatedProducts.map((product) => (
@@ -43,8 +59,40 @@ export default function RelatedProducts({ productId }: { productId: string }) {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="absolute left-[-15px] top-1/2 z-10 -translate-y-1/2 rounded-full bg-maroon-600 text-white shadow-lg transition-all hover:bg-white hover:text-maroon-600" />
-        <CarouselNext className="absolute right-[-15px] top-1/2 z-10 -translate-y-1/2 rounded-full bg-maroon-600 text-white shadow-lg transition-all hover:bg-white hover:text-maroon-600" />
+
+        {/* LEFT BUTTON */}
+        <button
+          type="button"
+          aria-label="Previous"
+          onClick={() => {
+            if (!api) return;
+            if (isRTL) {
+              api.scrollNext();
+            } else {
+              api.scrollPrev();
+            }
+          }}
+          className="absolute -left-1 top-1/2 z-10 flex size-8 -translate-y-1/2 items-center justify-center rounded-full bg-maroon-600 text-white transition-all hover:bg-white hover:text-maroon-600"
+        >
+          <ChevronLeft size={20} />
+        </button>
+
+        {/* RIGHT BUTTON */}
+        <button
+          type="button"
+          aria-label="Next"
+          onClick={() => {
+            if (!api) return;
+            if (isRTL) {
+              api.scrollPrev();
+            } else {
+              api.scrollNext();
+            }
+          }}
+          className="absolute -right-1 top-1/2 z-10 flex size-8 -translate-y-1/2 items-center justify-center rounded-full bg-maroon-600 text-white transition-all hover:bg-white hover:text-maroon-600"
+        >
+          <ChevronRight size={20} />
+        </button>
       </Carousel>
     </div>
   );

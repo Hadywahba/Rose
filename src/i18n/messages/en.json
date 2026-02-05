@@ -171,7 +171,8 @@
     "generalRating": "General rating:",
     "ratingsCount": "ratings",
     "noReviews": "No reviews yet. Be the first to review!",
-    "errorLoading": "Failed to load reviews."
+    "errorLoading": "Failed to load reviews.",
+    "relatedProducts": "Related Products"
   
 },
   "reviewForm": {

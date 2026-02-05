@@ -166,7 +166,8 @@
     "generalRating": "التقييم العام:",
     "ratingsCount": "تقييم",
     "noReviews": "لا توجد تقييمات بعد. كن أول من يقيّم!",
-    "errorLoading": "فشل تحميل التقييمات."
+    "errorLoading": "فشل تحميل التقييمات.",
+    "relatedProducts": "منتجات ذات صلة"
   },
 
   "reviewForm": {

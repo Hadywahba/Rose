@@ -66,6 +66,7 @@ export default function ReviewForm({ productId }: ReviewFormProps) {
           <Field>
             <FieldLabel htmlFor="title">{t('titleLabel')}</FieldLabel>
             <Input
+              className='w-full'
               id="title"
               placeholder={t('titlePlaceholder')}
               {...form.register('title')}
