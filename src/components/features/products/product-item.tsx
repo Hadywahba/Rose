@@ -26,7 +26,7 @@ export default function ProductItem({ key, product }: ProductItemProps) {
         />
         <Image
           className="object-cover"
-          src="/images/galleryGrid2.svg"
+          src={product.imgCover}
           alt={product.title}
           fill
         />

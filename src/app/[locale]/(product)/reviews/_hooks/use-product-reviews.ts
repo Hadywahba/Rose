@@ -5,6 +5,5 @@ export function useProductReviews(productId: string) {
   return useQuery({
     queryKey: ['productReviews', productId],
     queryFn: () => getReviews(productId),
-    // initialData,
   });
 }

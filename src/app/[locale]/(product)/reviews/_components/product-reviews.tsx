@@ -7,12 +7,10 @@ import ReviewForm from './review-form';
 import ReviewItem from './review-item';
 
 
-const productId = '673e2e1f1159920171828153';
 
-export function ProductsReviews() {
+export function ProductsReviews({ productId }: { productId: string }) {
   const {
     data: fetchedReviews,
-    isLoading,
     isError,
   } = useProductReviews(productId);
 
@@ -22,8 +20,6 @@ export function ProductsReviews() {
         fetchedReviews.length
       : 0;
 
-  if (isLoading) return <p className="py-8 text-center">Loading reviews...</p>;
-
   if (isError)
     return (
       <p className="py-8 text-center text-red-500">Failed to load reviews.</p>
@@ -32,6 +28,7 @@ export function ProductsReviews() {
   return (
     <section className="p-5">
       <div className="container px-10">
+        {/* Title */}
         <MainHeading
           className="mb-2 items-start text-left"
           paragraph="Product Reviews"
