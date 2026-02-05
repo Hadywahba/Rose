@@ -1,19 +1,15 @@
-import { cn } from '@/lib/utility/tailwind-merge';
+import MainHeading from '@/app/[locale]/(home)/_components/main-heading';
 import { Rating } from '@/components/ui/rating';
 import { Separator } from '@/components/ui/separator';
 import { Star } from 'lucide-react';
-import MainHeading from '@/app/[locale]/(home)/_components/main-heading';
 import { useProductReviews } from '../_hooks/use-product-reviews';
-import ReviewItem from './review-item';
 import ReviewForm from './review-form';
+import ReviewItem from './review-item';
 
-interface ProductsReviewsProps {
-  className?: string;
-}
 
 const productId = '673e2e1f1159920171828153';
 
-export function ProductsReviews({ className }: ProductsReviewsProps) {
+export function ProductsReviews() {
   const {
     data: fetchedReviews,
     isLoading,
@@ -34,7 +30,7 @@ export function ProductsReviews({ className }: ProductsReviewsProps) {
     );
 
   return (
-    <section className={cn('py-16 md:py-24', className)}>
+    <section className="p-5">
       <div className="container px-10">
         <MainHeading
           className="mb-2 items-start text-left"
