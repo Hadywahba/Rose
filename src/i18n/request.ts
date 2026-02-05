@@ -12,6 +12,61 @@ export default getRequestConfig(async ({ requestLocale }) => {
   return {
     locale,
     messages: (await import(`./messages/${locale}.json`)).default,
-    // ...
+    
+ formats: {
+      dateTime: {
+        "date-base": {
+          year: "numeric",
+          month: "long",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          numberingSystem: locale === "ar" ? "arab" : "latn",
+        },
+        "date-only": {
+          year: "numeric",
+          month: "long",
+          day: "2-digit",
+          numberingSystem: locale === "ar" ? "arab" : "latn",
+        },
+      },
+
+      number: {
+        "currancy-base": {
+          numberingSystem: locale === "ar" ? "arab" : "latn",
+          currency: "EGP",
+          style: "currency",
+          maximumFractionDigits: 0,
+        },
+        "price-base": {
+          numberingSystem: locale === "ar" ? "arab" : "latn",
+          style: "decimal",
+          maximumFractionDigits: 0,
+        },
+        "currency-egp": {
+          numberingSystem: locale === "ar" ? "arab" : "latn",
+          currency: "EGP",
+          style: "currency",
+          maximumFractionDigits: 0,
+        },
+        "currancy-format": {
+          numberingSystem: locale === "ar" ? "arab" : "latn",
+          style: "decimal",
+          maximumFractionDigits: 0,
+        },
+        "currancy-full": {
+          numberingSystem: locale === "ar" ? "arab" : "latn",
+          currency: "EGP",
+          style: "currency",
+        },
+
+
+      }}
+
+
+
+
+
+    
   };
 });

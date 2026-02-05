@@ -1,6 +1,6 @@
 
 import { RateStarsProps } from "@/lib/types/components/products";
-import { cn } from "@/lib/utility/cn.util";
+import { cn } from "@/lib/utility/tailwind-merge";
 import { Star, StarHalf } from "lucide-react";
 
 export default function RateStars({ rateCount }: RateStarsProps) {

@@ -9,7 +9,6 @@
     "email": "Email",
     "submit": "Login"
   },
-
   "testimonials": {
     "heading": "What Our Customers Say",
     "customer": "Customer",
@@ -36,11 +35,9 @@
       }
     ]
   },
-
   "companies": {
     "trustedBy": "Trusted by over <span></span> companies"
   },
-
   "auth": {
     "forget-password": {
       "forgot-password": "forgot password?",
@@ -172,5 +169,18 @@
         "error": "Failed to create account"
       }
     }
-  }
+  },
+  "no-products-found-for-this-page": "No products found for this page",
+  "products-filter-not-found": "The selected filters didn’t match any products. You can adjust your filters or explore all available items.",
+  "view-all-products": "View all products",
+  "price-number-currancy-base-0": "  {price,number,currancy-base}\n",
+  "hot": "Hot",
+  "hot-0": "Hot",
+  "add-to-wishlist": "Add to Whishlist",
+  "add-to-whishlist": "Add to Whishlist",
+  "remove-from-whishlist": "Remove from Whishlist",
+  "product-added-to-whishlist-successfully": "product added to whishlist successfully",
+  "product-removed-successfully": "Product Removed Successfully",
+  "product-added-successfully": "Product Added Successfully",
+  "product-removed-successfully-0": "Product removed successfully"
 }
