@@ -7,6 +7,7 @@ import { InteractiveRating } from '@/components/ui/InteractiveRating';
 import { Textarea } from '@/components/ui/textarea';
 import { ratingFormSchema, RatingFormSchema } from '@/lib/schemas/add-review';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useTranslations } from 'next-intl';
 import { Controller, useForm } from 'react-hook-form';
 import { useAddReview } from '../_hooks/use-add-review';
 
@@ -15,6 +16,9 @@ interface ReviewFormProps {
 }
 
 export default function ReviewForm({ productId }: ReviewFormProps) {
+  // Translations
+  const t = useTranslations('reviewForm');
+
   // Hook
   const { isPending, addReview } = useAddReview();
 
@@ -31,12 +35,11 @@ export default function ReviewForm({ productId }: ReviewFormProps) {
 
   // Function
   function onSubmit(values: RatingFormSchema) {
-    console.log(values);
     addReview(values);
   }
 
   return (
-    <div className="col-span-1 border-l pl-4">
+    <div className="col-span-1 border-s ps-4">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -44,7 +47,7 @@ export default function ReviewForm({ productId }: ReviewFormProps) {
         >
           <div className="space-y-1">
             <div className="flex items-center gap-4">
-              <FieldLabel>Your Rating:</FieldLabel>
+              <FieldLabel>{t('yourRating')}</FieldLabel>
               <Controller
                 name="rating"
                 control={form.control}
@@ -61,29 +64,28 @@ export default function ReviewForm({ productId }: ReviewFormProps) {
           </div>
 
           <Field>
-            <FieldLabel htmlFor="Title">Title</FieldLabel>
+            <FieldLabel htmlFor="title">{t('titleLabel')}</FieldLabel>
             <Input
-              className='w-full'
-              id="Title"
-              placeholder="Enter review title"
+              id="title"
+              placeholder={t('titlePlaceholder')}
               {...form.register('title')}
             />
             <FieldError>{form.formState.errors.title?.message}</FieldError>
           </Field>
 
           <Field>
-            <FieldLabel htmlFor="Review">Review</FieldLabel>
+            <FieldLabel htmlFor="comment">{t('reviewLabel')}</FieldLabel>
             <Textarea
               className="min-h-36"
-              id="Review"
-              placeholder="What do you think of this product?"
+              id="comment"
+              placeholder={t('reviewPlaceholder')}
               {...form.register('comment')}
             />
             <FieldError>{form.formState.errors.comment?.message}</FieldError>
           </Field>
 
           <Button disabled={isPending} className="w-full" type="submit">
-            {isPending ? 'Reviewing...' : 'Add Review'}
+            {isPending ? t('submitting') : t('submitButton')}
           </Button>
         </form>
       </Form>

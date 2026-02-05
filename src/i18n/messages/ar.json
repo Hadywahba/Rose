@@ -95,7 +95,7 @@
       }
     ]
   },
-  
+
   "companies": {
     "trustedBy": "موثوق به من قبل أكثر من <span></span> شركة"
   },
@@ -159,5 +159,25 @@
       "reset-text": "قم بتعيين كلمة مرور قوية لتأمين حسابك.",
       "reset-message": "تم تحديث كلمة المرور الخاصة بك بنجاح"
     }
+  },
+
+  "reviews": {
+    "title": "تقييمات المنتج",
+    "generalRating": "التقييم العام:",
+    "ratingsCount": "تقييم",
+    "noReviews": "لا توجد تقييمات بعد. كن أول من يقيّم!",
+    "errorLoading": "فشل تحميل التقييمات."
+  },
+
+  "reviewForm": {
+    "yourRating": "تقييمك:",
+    "titleLabel": "عنوان التقييم",
+    "titlePlaceholder": "أدخل عنوان التقييم",
+    "reviewLabel": "المراجعة",
+    "reviewPlaceholder": "ما رأيك في هذا المنتج؟",
+    "submitButton": "إضافة تقييم",
+    "submitting": "جاري الإرسال...",
+    "successMessage": "شكراً لك على تقييمك! تم إرساله بنجاح.",
+    "errorMessage": "فشل إرسال التقييم: {message}"
   }
 }

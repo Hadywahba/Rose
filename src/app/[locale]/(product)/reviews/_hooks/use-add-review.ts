@@ -2,9 +2,14 @@ import { toast } from "sonner";
 import { AddReviewAction } from "../_actions/add-review.action";
 import { RatingFormSchema } from "@/lib/schemas/add-review";
 import { useMutation } from "@tanstack/react-query";
+import { useTranslations } from "next-intl";
 
 
 export const useAddReview = () => {
+  // Translations
+  const t = useTranslations('reviewForm');
+  
+  // Mutation
   const { isPending, error, mutate } = useMutation({
     mutationFn: async (data: RatingFormSchema) => {
       const res = await AddReviewAction(data);
@@ -15,12 +20,10 @@ export const useAddReview = () => {
     },
 
     onSuccess: () => {
-      toast.success(
-        'Thank you for your review! It has been submitted successfully.',
-      );
+      toast.success(t('successMessage'));
     },
     onError: (error: Error) => {
-      toast.error(`Failed to submit review: ${error.message}`);
+      toast.error(t('errorMessage', { message: error.message }));
     }
   });
 

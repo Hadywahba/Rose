@@ -164,5 +164,26 @@
       },
       "reset-message": " Your password has been successfully updated"
     }
+  },
+
+  "reviews": {
+    "title": "Product Reviews",
+    "generalRating": "General rating:",
+    "ratingsCount": "ratings",
+    "noReviews": "No reviews yet. Be the first to review!",
+    "errorLoading": "Failed to load reviews."
+  
+},
+  "reviewForm": {
+    "yourRating": "Your Rating:",
+    "titleLabel": "Title",
+    "titlePlaceholder": "Enter review title",
+    "reviewLabel": "Review",
+    "reviewPlaceholder": "What do you think of this product?",
+    "submitButton": "Add Review",
+    "submitting": "Submitting...",
+    "successMessage": "Thank you for your review! It has been submitted successfully.",
+    "errorMessage": "Failed to submit review: {message}"
   }
+
 }
