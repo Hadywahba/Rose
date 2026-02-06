@@ -105,6 +105,31 @@
     "trustedBy": "Trusted by over <span></span> companies"
   },
 
+  "product": {
+    "currency": "EGP",
+    "inStock": "{count} left in stock",
+    "inStockUnlimited": "In stock",
+    "outOfStock": "Out of stock",
+    "ratingLine": "Rating: {value}/5 ({count} ratings)",
+    "addToCart": "Add to Cart",
+    "addToCartLoading": "Adding...",
+    "wishlistAdd": "Add to wishlist",
+    "wishlistRemove": "Remove from wishlist",
+    "fetchError": "Failed to load product details",
+    "retry": "Try again",
+    "noImage": "No image available",
+    "noThumbnails": "No thumbnails available",
+    "zoomImage": "Zoom image",
+    "zoomHint": "Click outside to close",
+    "selectImage": "Select image {index}",
+    "notifyHint": "This item is currently unavailable.",
+    "toast": {
+      "adding": "Adding to cart...",
+      "added": "Added to cart",
+      "error": "Something went wrong"
+    }
+  },
+
   "auth": {
     "forget-password": {
       "forgot-password": "forgot password?",

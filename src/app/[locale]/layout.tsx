@@ -1,3 +1,5 @@
+import Footer from '@/components/layout/app/footer';
+import Header from '@/components/layout/app/header';
 import Providers from '@/components/providers';
 import { routing } from '@/i18n/routing';
 import { hasLocale } from 'next-intl';
@@ -54,7 +56,7 @@ export default function LocaleLayout({
 }: LayoutProps) {
   if (!hasLocale(routing.locales, locale)) {
     notFound();
-  } // Enable static rendering
+  }
   setRequestLocale(locale);
 
   return (
@@ -62,7 +64,11 @@ export default function LocaleLayout({
       <body
         className={`${locale === 'ar' ? tajawal.className : sarabun.className} ${sarabun.variable} ${tajawal.variable} ${zain.variable} antialiased [@media(min-width:1920px)]:container dark:bg-zinc-800 [@media(min-width:1920px)]:mx-auto`}
       >
-        <Providers>{children}</Providers>
+        <Providers locale={locale}>
+          <Header />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
