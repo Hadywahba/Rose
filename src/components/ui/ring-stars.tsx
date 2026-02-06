@@ -1,7 +1,7 @@
 "use client";
 
 import { Star } from "lucide-react";
-import { cn } from "@/lib/utils/cn.util";
+import { cn } from "@/lib/utility/tailwind-merge";
 
 type RatingStarsProps = {
   /** Average rating value (supports fractions like 3.5) */

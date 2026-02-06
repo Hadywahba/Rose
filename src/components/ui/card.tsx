@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { cn } from "@/lib/utility/cn.util"
+import { cn } from "@/lib/utility/tailwind-merge"
 
 const Card = React.forwardRef<
   HTMLDivElement,
