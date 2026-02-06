@@ -10,11 +10,17 @@ import { useAddToCart } from '../_hooks/use-add-to-cart';
 import { FaSpinner } from 'react-icons/fa';
 
 export default function ProductDetailsUpper({ product }: { product: Product }) {
+  // Translation
   const t = useTranslations('product');
+
+  // State
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isWishlisted, setIsWishlisted] = useState(product.isInWishlist);
+
+  // Hooks
   const { addToCart, isPending: isAddingToCart } = useAddToCart();
 
+  // Variables => This is a flexible choice
   const gallery = [product.imgCover, ...product.images].filter(Boolean);
   const inStock = product.quantity !== 0;
 
