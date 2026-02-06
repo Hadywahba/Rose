@@ -53,8 +53,8 @@ export function ProductsReviews({ productId }: { productId: string }) {
 
             {/* Reviews Grid */}
             <div className="grid grid-cols-1 gap-8 border-t pt-4 lg:grid-cols-2">
-              {/* Reviews List */}
-              <div className="space-y-2">
+              {/* Reviews List - Scrollable */}
+              <div className="max-h-96 space-y-2 overflow-y-auto pe-4">
                 {fetchedReviews.map((review, index) => (
                   <div key={review._id}>
                     {index > 0 && <Separator className="mb-6" />}
