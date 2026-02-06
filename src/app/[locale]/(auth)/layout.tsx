@@ -7,12 +7,11 @@ export default async function AuthLayout({
 }: {
   children: React.ReactNode;
 }) {
-
   return (
-    <div className="flex min-h-screen w-full ">
+    <div className="flex min-h-screen w-full">
       {/* Left Side - Auth Forms */}
       <div className="flex w-full items-center justify-center lg:w-1/2">
-        <div className="w-full max-w-lg py-12 overflow-hidden">
+        <div className="w-full max-w-lg overflow-hidden py-12">
           {/* Language Toggle */}
           <div className={`mb-10 flex justify-end`}>
             <AuthLocaleToggle />
@@ -20,7 +19,9 @@ export default async function AuthLayout({
 
           {/* Content */}
           <DecorativeOrnament position="top" />
-          {children}
+          <div className="min-h-80">
+            {children}
+          </div>
           <DecorativeOrnament position="bottom" />
         </div>
       </div>

@@ -6,11 +6,14 @@ import { ShoppingCart, Star, Package, HeartPlus } from 'lucide-react';
 import type { Product } from '@/lib/types/product';
 import { cn } from '@/lib/utility/tailwind-merge';
 import { Button } from '@/components/ui/button';
+import { useAddToCart } from '../_hooks/use-add-to-cart';
+import { FaSpinner } from 'react-icons/fa';
 
 export default function ProductDetailsUpper({ product }: { product: Product }) {
   const t = useTranslations('product');
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isWishlisted, setIsWishlisted] = useState(product.isInWishlist);
+  const { addToCart, isPending: isAddingToCart } = useAddToCart();
 
   const gallery = [product.imgCover, ...product.images].filter(Boolean);
   const inStock = product.quantity !== 0;
@@ -25,7 +28,8 @@ export default function ProductDetailsUpper({ product }: { product: Product }) {
             src={gallery[selectedIndex]}
             alt={product.title}
             fill
-            className="object-cover"
+            // Use contain to ensure the entire image is visible without cropping ✅
+            className="object-contain"
             priority
           />
         </div>
@@ -37,9 +41,9 @@ export default function ProductDetailsUpper({ product }: { product: Product }) {
               key={idx}
               onClick={() => setSelectedIndex(idx)}
               className={cn(
-                'relative size-20 flex-shrink-0 overflow-hidden rounded-xl border-2 transition-all',
+                'relative size-20 flex-shrink-0 overflow-hidden rounded-xl border-2 opacity-80 transition-all duration-300 hover:opacity-100',
                 idx === selectedIndex
-                  ? 'border-maroon-600 dark:border-softpink-300'
+                  ? 'border-maroon-600 opacity-100 dark:border-softpink-300'
                   : 'border-zinc-200 hover:border-maroon-400 dark:border-zinc-700',
               )}
             >
@@ -121,13 +125,20 @@ export default function ProductDetailsUpper({ product }: { product: Product }) {
           <Button
             variant="primary"
             className="h-12 flex-1 bg-maroon-600 transition-colors hover:bg-maroon-700 disabled:cursor-not-allowed disabled:bg-zinc-300 disabled:text-zinc-500 dark:bg-softpink-300 dark:hover:bg-softpink-400"
-            disabled={!inStock}
+            disabled={!inStock || isAddingToCart}
+            onClick={() => addToCart({ product: product._id, quantity: 1 })}
           >
-            <ShoppingCart className="size-6" />
-            {t('addToCart')}
+            {isAddingToCart ? (
+              <FaSpinner className="size-6 animate-spin" />
+            ) : (
+              <span className="flex items-center gap-2">
+                <ShoppingCart className="size-6" />
+                {t('addToCart')}
+              </span>
+            )}
           </Button>
         </div>
       </div>
     </div>
-  )
+  );
 }

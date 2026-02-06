@@ -23,11 +23,11 @@ import Link from 'next/link';
 import { Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
 import { PhoneInput } from '@/components/ui/phone-input';
-import { getRegisterSchema } from '@/lib/schema/auth.schema';
 import { RegisterFields } from '@/lib/types/auth';
 import { cn } from '@/lib/utility/tailwind-merge';
 import { ErrorMessage } from '@/components/ui/error-message';
 import { useTranslations } from 'next-intl';
+import { getRegisterSchema } from '@/lib/schemas/register';
 
 export function RegisterForm() {
   // Translation

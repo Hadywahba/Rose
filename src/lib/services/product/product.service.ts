@@ -1,3 +1,5 @@
+import { JSON_HEADER } from '@/lib/constants/api.constant';
+import type { AddToCartPayload, AddToCartResponse } from '@/lib/types/cart';
 import { Product } from '@/lib/types/product';
 
 export async function getProductById(productId: string) {
@@ -13,3 +15,20 @@ export async function getProductById(productId: string) {
 
   return payload as ApiResponse<{ product: Product }>;
 }
+
+export const addToCart = async (
+  data: AddToCartPayload,
+  token?: string | null,
+) => {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API!}/cart`, {
+    method: 'POST',
+    headers: {
+      ...JSON_HEADER,
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    },
+    body: JSON.stringify(data),
+  });
+
+  const payload: ApiResponse<AddToCartResponse> = await response.json();
+  return payload;
+};

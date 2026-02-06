@@ -126,7 +126,9 @@
     "toast": {
       "adding": "Adding to cart...",
       "added": "Added to cart",
-      "error": "Something went wrong"
+      "error": "Something went wrong",
+      "notFound": "Product not found",
+      "soldOut": "This product is sold out"
     }
   },
 
