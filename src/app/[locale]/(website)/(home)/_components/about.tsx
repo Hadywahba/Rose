@@ -1,11 +1,11 @@
 'use client';
 
 import Image from 'next/image';
-import React from 'react';
-import { Button } from '../../../../components/ui/button';
+import React, { ReactNode } from 'react';
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
+import { Button } from '@/components/ui/button';
 
 export default function About() {
   // Translation
@@ -59,7 +59,7 @@ export default function About() {
 
           <h3 className="mb-1 text-3xl font-bold text-maroon-700 dark:text-softpink-200">
             {t.rich('heading', {
-              span: (chunks) => (
+              span: (chunks: ReactNode) => (
                 <span className="text-softpink-500 dark:text-maroon-400">{chunks}</span>
               ),
             })}

@@ -1,4 +1,4 @@
-import MainHeading from '@/app/[locale]/(home)/_components/main-heading';
+import MainHeading from '../../../(home)/_components/main-heading';
 import { Rating } from '@/components/ui/rating';
 import { Separator } from '@/components/ui/separator';
 import { Star } from 'lucide-react';

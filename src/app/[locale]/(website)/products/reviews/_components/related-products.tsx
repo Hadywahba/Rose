@@ -1,6 +1,5 @@
 'use client';
 
-import MainHeading from '@/app/[locale]/(home)/_components/main-heading';
 import ProductItem from '@/components/features/products/product-item';
 import {
   Carousel,
@@ -13,6 +12,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { useRelatedProducts } from '../_hooks/use-related-products';
+import MainHeading from '../../../(home)/_components/main-heading';
 
 export default function RelatedProducts({ productId }: { productId: string }) {
   // Translations
