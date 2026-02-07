@@ -1,9 +1,25 @@
-import React from 'react';
 
-export default function page() {
+import ProductListing from "@/components/features/products/product-listing";
+import CategoriesFilter from "./_components/categories/categories-filter";
+import RatingFilter from "./_components/rating/rating-filter";
+import ResetAll from "./_components/reset/reset-all";
+
+
+export default async function ProductsPage() {
   return (
-    <div className="bg-red-200">
-      <h1>product</h1>
+    <div className="flex flex-row items-start gap-6 p-6">
+      <main className="w-[280px] rounded-2xl bg-white p-4 shadow-sm space-y-6">
+        <CategoriesFilter />
+        <RatingFilter />
+        <ResetAll />
+      </main>
+
+
+      <section className="flex-1">
+        <ProductListing/>
+
+      </section>
     </div>
+
   );
 }
