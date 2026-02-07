@@ -6,21 +6,21 @@
       "button": "اشتري الان"
     },
     "special-gift": "هدايا خاصة للأشخاص الذين تحبهم",
-    "gift-price": "يبدأ من 10.99 ج.م",
+    "gift-price": "يبدأ من {price}",
     "carousel-title": "عبّر عن مشاعرك بالزهور",
     "carousel-button": "أنا أشتري!",
     "carousel-subtitle": "هدايا أنيقة لكل لحظة خاصة.",
     "free-delivery": {
       "title": "توصيل مجاني",
-      "text": "للطلبات التي تزيد عن 120 جنيه"
+      "text": "للطلبات التي تزيد عن  {price}"
     },
     "refund": {
       "title": "استرجاع الأموال",
-      "text": "إمكانية الاسترجاع خلال 30 يوم"
+      "text": "إمكانية الاسترجاع خلال {number} يوم"
     },
     "secure-payment": {
       "title": "دفع آمن",
-      "text": "دفع آمن 100%"
+      "text": "دفع آمن {percentage}"
     },
     "support": {
       "title": "دعم على مدار الساعة",
@@ -95,7 +95,7 @@
       }
     ]
   },
-  
+
   "companies": {
     "trustedBy": "موثوق به من قبل أكثر من <span></span> شركة"
   },
@@ -119,7 +119,8 @@
           "email-invalid": "بريد إلكتروني غير صالح"
         }
       },
-      "forget-message": "تم إرسال رمز التحقق (OTP) إلى بريدك الإلكتروني"
+      "forget-message": "تم إرسال رمز التحقق (OTP) إلى بريدك الإلكتروني",
+      "forget-error": "حدث خطأ أثناء إرسال رمز التحقق. حاول مرة أخرى."
     },
     "verifyPassword": {
       "title": "أدخل رمز التحقق",
@@ -157,7 +158,74 @@
       },
       "create-new-password": "إنشاء كلمة مرور جديدة",
       "reset-text": "قم بتعيين كلمة مرور قوية لتأمين حسابك.",
-      "reset-message": "تم تحديث كلمة المرور الخاصة بك بنجاح"
+      "reset-message": "تم تحديث كلمة المرور الخاصة بك بنجاح",
+      "reset-error": "حدث خطأ ما. من فضلك حاول مرة أخرى."
+    },
+    "register": {
+      "title": "كن جزءاً من عائلتنا!",
+      "firstName": "الاسم الأول",
+      "firstNamePlaceholder": "اسم المستخدم",
+      "lastName": " العائلة",
+      "lastNamePlaceholder": "اسم العائلة",
+      "email": "البريد الإلكتروني",
+      "emailPlaceholder": "user@example.com",
+      "phone": "رقم الهاتف",
+      "phonePlaceholder": "1012345678",
+      "gender": "الجنس",
+      "genderPlaceholder": "اختر الجنس",
+      "genderMale": "ذكر",
+      "genderFemale": "أنثى",
+      "password": "كلمة المرور",
+      "passwordPlaceholder": "••••••••",
+      "confirmPassword": "تأكيد كلمة المرور",
+      "confirmPasswordPlaceholder": "••••••••",
+      "createAccount": "إنشاء حساب",
+      "creatingAccount": "جاري إنشاء الحساب...",
+      "alreadyHaveAccount": "هل لديك حساب بالفعل؟ <span> تسجيل الدخول </span>",
+      "login": "تسجيل الدخول",
+      "schema": {
+          "password-required": "كلمة المرور الخاصة بك مطلوبة",
+          "password-match": "كلمات المرور غير متطابقة",
+          "confirmpassword-required": "تأكيد كلمة المرور الخاصة بك مطلوب",
+          "password-character": "يجب أن تحتوي كلمة المرور على حرف خاص واحد على الأقل.",
+          "password-number": "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل.",
+          "password-min": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل.",
+          "password-uppercase": "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل.",
+          "password-lowercase": "يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل."
+        },
+      "validation": {
+        "firstNameRequired": "الاسم الأول مطلوب",
+        "lastNameRequired": "اسم العائلة مطلوب",
+        "emailRequired": "البريد الإلكتروني مطلوب",
+        "emailInvalid": "يرجى إدخال بريد إلكتروني صحيح",
+        "phoneRequired": "رقم الهاتف مطلوب",
+        "phoneInvalid": "رقم الهاتف يجب أن يكون 10 أرقام على الأقل",
+        "genderRequired": "يرجى اختيار الجنس",
+        "passwordRequired": "كلمة المرور مطلوبة",
+        "passwordMinLength": "كلمة المرور يجب أن تكون 8 أحرف على الأقل",
+        "passwordPattern": "كلمة المرور يجب أن تحتوي على حرف كبير وصغير ورقم ورمز خاص",
+        "confirmPasswordRequired": "تأكيد كلمة المرور مطلوب",
+        "passwordsNotMatch": "كلمات المرور غير متطابقة"
+      },
+      "toast": {
+        "loading": "جاري إنشاء الحساب...",
+        "success": "تم إنشاء الحساب بنجاح",
+        "error": "فشل إنشاء الحساب"
+      }
+    },
+    "login": {
+      "title": "مرحباً بعودتك!",
+      "noAccount": "ليس لديك حساب بعد؟",
+      "createNow": "أنشئ واحداً الآن!",
+      "forget-password": "نسيت رقمك السري؟",
+      "submit": "دخول",
+      "password": "كلمة المرور",
+      "email": "البريد الالكتروني"
     }
+  },
+  "not-found": {
+    "title": "لا توجد صفحة",
+    "description": "عذرًا! الصفحة التي تبحث عنها غير موجودة.",
+    "button": "العودة إلى الصفحة الرئيسية"
   }
 }

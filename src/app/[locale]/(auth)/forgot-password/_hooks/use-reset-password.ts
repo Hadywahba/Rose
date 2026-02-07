@@ -28,6 +28,10 @@ export const useResetPassword = () => {
       return payload;
     },
 
+    onError: () => {
+      toast.error(t('reset-password.reset-error'));
+    },
+
     onSuccess: () => {
       toast.success(t('reset-password.reset-message'));
       router.push('/login');

@@ -1,18 +1,9 @@
-import React, { Suspense } from 'react';
+import ForgotPasswordLayout from './_components/forgort-password-layout';
 
-import ResetPasswordForm from './_components/reset-password-form';
-import VerifyPasswordForm from './_components/verify-password-form';
-import ForgotPasswordForm from './_components/forgot-password-form';
-
-export default function page() {
+export default function Page() {
   return (
-    <>
-      <ForgotPasswordForm />
-    <VerifyPasswordForm/>
-      <Suspense fallback={<p>Loading...</p>}>
-        <ResetPasswordForm />
-      </Suspense>
-    </>
+    <main>
+      <ForgotPasswordLayout />
+    </main>
   );
 }
-

@@ -6,7 +6,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import {
   ForgotPasswordFormFields,
   forgotSchema,
-} from '@/lib/schemas/forgot-password';
+} from '@/lib/schema/forgot-password';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import SubmitButton from '@/components/features/auth/submit-button';
@@ -23,8 +23,12 @@ import { Input } from '@/components/ui/input';
 import { UserEmail } from '@/components/providers/app/forget-password/email-provider';
 import { toast } from 'sonner';
 import { useResendTimer } from '../_hooks/use-resend-timer';
+import { FORGOT_PASSWORD_STEPS } from '@/lib/constants/auth.constant';
+import { ForgotPasswordFormProps } from '@/lib/types/auth/verify';
 
-export default function ForgotPasswordForm() {
+export default function ForgotPasswordForm({
+  setStep,
+}: ForgotPasswordFormProps) {
   // Translation
   const t = useTranslations('auth');
 
@@ -33,8 +37,7 @@ export default function ForgotPasswordForm() {
 
   // Hook
   const { error, forgot, isPending } = useForgot();
-    const { timeLeft, startTimer } = useResendTimer();
-
+  const { timeLeft, startTimer } = useResendTimer();
 
   // Form
   const form = useForm<ForgotPasswordFormFields>({
@@ -46,27 +49,25 @@ export default function ForgotPasswordForm() {
   });
 
   // Function
-const onsubmit: SubmitHandler<ForgotPasswordFormFields> = (data) => {
-  emailState(data.email);
+  const onsubmit: SubmitHandler<ForgotPasswordFormFields> = (data) => {
+    emailState(data.email);
 
-  forgot(data, {
-    onSuccess: () => {
-      if (timeLeft === 0) {
-        startTimer();
-      }
+    forgot(data, {
+      onSuccess: () => {
+        if (timeLeft === 0) {
+          startTimer();
+        }
 
-      toast.success(t('forget-password.forget-message'));
-    },
-  });
-};
-
-
-
+        toast.success(t('forget-password.forget-message'));
+        setStep(FORGOT_PASSWORD_STEPS.verify);
+      },
+    });
+  };
 
   return (
-    <section className="lg:max-w-auth mx-auto flex min-h-screen w-full max-w-[25.375rem] flex-col justify-center gap-6 px-6 sm:w-[70%] lg:px-0">
+    <section className="flex w-full flex-1 flex-col justify-center gap-6">
       {/* Title Part */}
-      <div className="flex flex-col border-b-[.0625rem] border-zinc-200">
+      <div className="flex flex-col border-b-2 border-zinc-200 dark:border-zinc-600">
         <h1 className="text-xl font-semibold capitalize text-zinc-800 dark:text-zinc-50 sm:text-2xl">
           {t('forget-password.forgot-password')}
         </h1>
@@ -87,7 +88,9 @@ const onsubmit: SubmitHandler<ForgotPasswordFormFields> = (data) => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{t('forget-password.form.email.label')}</FormLabel>
+                <FormLabel className="text-zinc-800 dark:text-zinc-50">
+                  {t('forget-password.form.email.label')}
+                </FormLabel>
 
                 {/* Field */}
                 <FormControl>

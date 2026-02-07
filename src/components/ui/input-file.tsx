@@ -1,43 +1,39 @@
-"use client"
+'use client';
 
-import { useRef, useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Upload } from "lucide-react"
+import { useRef, useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Upload } from 'lucide-react';
 
 export default function FileUpload() {
-  const fileInputRef = useRef<HTMLInputElement>(null)
-  const [fileName, setFileName] = useState<string>("")
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [fileName, setFileName] = useState<string>('');
 
   return (
     <div className="flex items-center gap-3">
-   
       <input
         type="file"
         ref={fileInputRef}
-        className="hidden "
+        className="hidden"
         onChange={(e) => {
           if (e.target.files && e.target.files.length > 0) {
-            setFileName(e.target.files[0].name)
+            setFileName(e.target.files[0].name);
           }
         }}
       />
- 
-      
-      <Button variant="Subtle"
-      className="bg-transparent !text-end ps-48 !pe-0  relative text-maroon-600  h-12 w-80 rounded-lg  border-2    text-base transition-colors md:text-sm dark:bg-zinc-700 dark:border-zinc-600 dark:hover:border-zinc-500 dark:text-zinc-400 dark:focus:border-softpink-400"
+
+      <Button
+        variant="Subtle"
+        className="relative h-12 w-80 rounded-lg border-2 bg-transparent !pe-0 ps-48 !text-end text-base text-maroon-600 transition-colors dark:border-zinc-600 dark:bg-zinc-700 dark:text-zinc-400 dark:hover:border-zinc-500 dark:focus:border-softpink-400 md:text-sm"
         type="button"
         onClick={() => fileInputRef.current?.click()}
       >
-         {fileName && (
-        <span className="text-sm text-muted-foreground w-10 absolute start-0">
-          {fileName}
-        </span>
-      )}
-       <Upload/> Upload file
+        {fileName && (
+          <span className="absolute start-0 w-10 text-sm text-muted-foreground">
+            {fileName}
+          </span>
+        )}
+        <Upload /> Upload file
       </Button>
-
-   
-    
     </div>
-  )
+  );
 }

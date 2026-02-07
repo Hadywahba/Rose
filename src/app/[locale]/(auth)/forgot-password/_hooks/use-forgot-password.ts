@@ -1,8 +1,13 @@
-import { ForgotPasswordFormFields } from '@/lib/schemas/forgot-password';
+import { ForgotPasswordFormFields } from '@/lib/schema/forgot-password';
 import { forgetPassword } from '@/lib/services/auth/forget-password.service';
 import { useMutation } from '@tanstack/react-query';
+import { useTranslations } from 'next-intl';
+import { toast } from 'sonner';
 
 export const useForgot = () => {
+    // Translation
+    const t = useTranslations('auth');
+
   // Mutation
   const {
     mutate: forgot,
@@ -17,6 +22,9 @@ export const useForgot = () => {
       }
 
       return payload;
+    },
+    onError: () => {
+      toast.error(t('forget-password.forget-error'));
     },
   });
 

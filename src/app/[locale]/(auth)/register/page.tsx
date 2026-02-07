@@ -1,5 +1,9 @@
-import React from 'react';
+import { RegisterForm } from './_components/register-form';
 
-export default function page() {
-  return <div></div>;
+export default function RegisterPage() {
+  return (
+    <main className="flex w-full flex-col items-center justify-center">
+      <RegisterForm />
+    </main>
+  );
 }

@@ -26,6 +26,8 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import ThemeToggleIcon from './theme-toggle';
+import ToggleLocale from '@/components/shared/ToggleLocale';
 
 const NAV_LINKS = [
   { label: 'Home', href: '/', icon: Home },
@@ -110,12 +112,8 @@ const Header = () => {
               </Badge>
             </button>
           </div>
-
-          <div className="mx-2 h-8 w-[1px] bg-gray-200" />
-
-          <button className="text-sm font-medium hover:text-red-800">
-            العربية
-          </button>
+          <ThemeToggleIcon />
+          <ToggleLocale />
         </div>
       </div>
 

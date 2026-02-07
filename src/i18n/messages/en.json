@@ -1,26 +1,53 @@
 {
   "title": "Rose App",
 
+  "testimonials": {
+    "heading": "What Our Customers Say",
+    "customer": "Customer",
+    "reviews": [
+      {
+        "name": "Jake Miller",
+        "review": "I've been ordering from this flower shop for years and they never disappoint. The quality and service are exceptional!",
+        "date": "January 12, 2025"
+      },
+      {
+        "name": "Tyler Brooks",
+        "review": "Customer service is top-notch and the flowers last longer than any others I've bought. Highly recommend!",
+        "date": "January 12, 2025"
+      },
+      {
+        "name": "Max Turner",
+        "review": "The team truly cares about every order. I always feel confident when I buy flowers from here. The checkout process was sup...",
+        "date": "January 12, 2025"
+      },
+      {
+        "name": "Lisa Anderson",
+        "review": "Amazing quality and beautiful presentation! Every bouquet I receive is absolutely stunning. The delivery is always on time and the flowers stay fresh for so long!",
+        "date": "January 10, 2025"
+      }
+    ]
+  },
+
   "hero": {
     "static-image": {
       "button": " shop now"
     },
     "special-gift": "special gifts for the people you love",
-    "gift-price": "Staring from 10.99 EGP",
+    "gift-price": "Staring from {price}",
     "carousel-button": "I’m buying!",
     "carousel-subtitle": "Elegant gifts for every special moment.",
     "carousel-title": "say it with flowers",
     "free-delivery": {
       "title": "Free delivery",
-      "text": "For orders above 120 EGP"
+      "text": "For orders above {price} "
     },
     "refund": {
       "title": "Get refund",
-      "text": "Refunds within 30 days"
+      "text": "Refunds within {number} days"
     },
     "secure-payment": {
       "title": "Safe payment",
-      "text": "100% Secure Payment"
+      "text": "{percentage} Secure Payment"
     },
     "support": {
       "title": "24/7 support",
@@ -74,33 +101,6 @@
     }
   },
 
-  "testimonials": {
-    "heading": "What Our Customers Say",
-    "customer": "Customer",
-    "reviews": [
-      {
-        "name": "Jake Miller",
-        "review": "I've been ordering from this flower shop for years and they never disappoint. The quality and service are exceptional!",
-        "date": "January 12, 2025"
-      },
-      {
-        "name": "Tyler Brooks",
-        "review": "Customer service is top-notch and the flowers last longer than any others I've bought. Highly recommend!",
-        "date": "January 12, 2025"
-      },
-      {
-        "name": "Max Turner",
-        "review": "The team truly cares about every order. I always feel confident when I buy flowers from here. The checkout process was sup...",
-        "date": "January 12, 2025"
-      },
-      {
-        "name": "Lisa Anderson",
-        "review": "Amazing quality and beautiful presentation! Every bouquet I receive is absolutely stunning. The delivery is always on time and the flowers stay fresh for so long!",
-        "date": "January 10, 2025"
-      }
-    ]
-  },
-  
   "companies": {
     "trustedBy": "Trusted by over <span></span> companies"
   },
@@ -124,7 +124,8 @@
           "email-invalid": "Invalid email"
         }
       },
-      "forget-message": " OTP sent to your email"
+      "forget-message": " OTP sent to your email",
+      "forget-error": "An error occurred while sending the OTP code."
     },
     "verifyPassword": {
       "title": "Enter the OTP Code",
@@ -162,7 +163,76 @@
           "password-match": "Passwords do not match"
         }
       },
-      "reset-message": " Your password has been successfully updated"
+      "reset-message": " Your password has been successfully updated",
+      "reset-error": "Something went wrong. Please try again."
+    },
+    "login": {
+      "title": "Welcome Back!",
+      "noAccount": "Don’t have an account yet?",
+      "createNow": "Create one now!",
+      "forget-password": "Forgot your password?",
+      "password": "Password",
+      "email": "Email",
+      "submit": "Login"
+    },
+
+    "register": {
+      "title": "Become part of our family!",
+      "firstName": "First name",
+      "firstNamePlaceholder": "User Name",
+      "lastName": "Last name",
+      "lastNamePlaceholder": "Last Name",
+      "email": "Email",
+      "emailPlaceholder": "user@example.com",
+      "phone": "Phone",
+      "phonePlaceholder": "1012345678",
+      "gender": "Gender",
+      "genderPlaceholder": "Select gender",
+      "genderMale": "Male",
+      "genderFemale": "Female",
+      "password": "Password",
+      "passwordPlaceholder": "••••••••",
+      "confirmPassword": "Confirm Password",
+      "confirmPasswordPlaceholder": "••••••••",
+      "createAccount": "Create Account",
+      "creatingAccount": "Creating Account...",
+      "alreadyHaveAccount": "Already have an account?  <span> Login </span>",
+      "login": "Login",
+      "schema": {
+        "password-required": "your password is required",
+        "password-min": "Password must be at least 8 characters long.",
+        "password-uppercase": "Password must contain at least one uppercase letter.",
+        "password-lowercase": "Password must contain at least one lowercase letter.",
+        "password-number": "Password must contain at least one number.",
+        "password-character": "Password must contain at least one special character.",
+        "confirmpassword-required": "your Confirm Password is required",
+        "password-match": "Passwords do not match"
+      },
+      "validation": {
+        "firstNameRequired": "First name is required",
+        "lastNameRequired": "Last name is required",
+        "emailRequired": "Email is required",
+        "emailInvalid": "Please enter a valid email address",
+        "phoneRequired": "Phone number is required",
+        "phoneInvalid": "Phone number must be at least 10 digits",
+        "genderRequired": "Please select your gender",
+        "passwordRequired": "Password is required",
+        "passwordMinLength": "Password must be at least 8 characters",
+        "passwordPattern": "Password must contain uppercase, lowercase, number, and special character",
+        "confirmPasswordRequired": "Confirm password is required",
+        "passwordsNotMatch": "Passwords don't match"
+      },
+      "toast": {
+        "loading": "Creating your account...",
+        "success": "Account created successfully",
+        "error": "Failed to create account"
+      }
     }
+  },
+
+  "not-found": {
+    "title": "Page not found",
+    "description": "Oops! The page you are looking for does not exist.",
+    "button": "Go back home"
   }
 }

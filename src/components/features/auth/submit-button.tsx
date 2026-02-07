@@ -28,13 +28,13 @@ export default function SubmitButton({
   const t = useTranslations('auth');
 
   return (
-    <div className="flex flex-col gap-6 pt-9">
+    <div className="flex flex-col gap-6 pt-9 mt-0">
       {/* Button */}
       <div className="">
         <Button
           variant={'primary'}
           disabled={isPending || (!isValid && isSubmitting)}
-          className="w-full rounded-xl py-5 text-base"
+          className="w-full rounded-xl py-6 text-base"
         >
           {isPending ? t(loading) : t(text)}
         </Button>
@@ -42,7 +42,7 @@ export default function SubmitButton({
         {/* Optional Title */}
         {title && (
           <div className="mt-9 text-center">
-            <p className="border-t-[.0625rem] border-zinc-200 pt-5 text-center text-sm font-medium text-zinc-800 first-letter:capitalize dark:text-zinc-50">
+            <p className="border-t-2 border-zinc-200 py-4 dark:border-zinc-600 pt-5 text-center text-sm font-medium text-zinc-800 first-letter:capitalize dark:text-zinc-50">
               {t.rich(title, {
                 span: (chunk: React.ReactNode) =>
                   link ? (

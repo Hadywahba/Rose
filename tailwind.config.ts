@@ -80,8 +80,12 @@ const config: Config = {
         },
       },
       fontFamily: {
-        tajawal: ['var(--font-tajawal)'],
-         sarabun: ['var(--font-sarabun)'],
+        tajawal: ['var(--font-tajawal)', 'sans-serif'],
+        sarabun: ['var(--font-sarabun)', 'sans-serif'],
+        zain: ['var(--font-zain)', 'sans-serif'],
+        sans: ['var(--font-sarabun)', 'sans-serif'],
+        inter: ['var(--font-inter)'],
+        edwardian: ['"Edwardian Script ITC"', 'cursive'],
       },
       borderRadius: {
         lg: 'var(--radius)',

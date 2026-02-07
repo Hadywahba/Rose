@@ -1,5 +1,9 @@
-import React from 'react';
+import LoginForm from './_components/login-form';
 
-export default function page() {
-  return <div></div>;
+export default async function Page() {
+  return (
+    <main className="flex flex-col justify-center items-center w-full">
+      <LoginForm />
+    </main>
+  );
 }

@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -38,6 +40,7 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -66,13 +69,19 @@
   }
 }
 
-
-
 @layer base {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@font-face {
+  font-family: 'Edwardian Script ITC';
+  src: url('/fonts/EdwardianScriptITC.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }

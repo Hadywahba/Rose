@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useContext, useState } from 'react';
@@ -8,7 +9,7 @@ import SubmitButton from '@/components/features/auth/submit-button';
 import {
   ResetPasswordFormFields,
   resetSchema,
-} from '@/lib/schemas/reset-password';
+} from '@/lib/schema/reset-password';
 import { ResetPasswordPayload } from '@/lib/types/auth/forget-password/reset';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useResetPassword } from '../_hooks/use-reset-password';
@@ -26,8 +27,13 @@ import { Button } from '@/components/ui/button';
 import { useLocale } from 'next-intl';
 import { cn } from '@/lib/utility/tailwind-merge';
 import { UserEmail } from '@/components/providers/app/forget-password/email-provider';
+import { ForgotPasswordFormProps } from '@/lib/types/auth/verify';
+import { FORGOT_PASSWORD_STEPS } from '@/lib/constants/auth.constant';
 
-export default function ResetPasswordForm() {
+
+export default function ResetPasswordForm({
+  setStep,
+}: ForgotPasswordFormProps) {
   // Translation
   const t = useTranslations('auth');
 
@@ -53,17 +59,25 @@ export default function ResetPasswordForm() {
   });
 
   // Function
-  const onsubmit: SubmitHandler<ResetPasswordFormFields> = (data) => {
-    const payload: ResetPasswordPayload = {
-      email: email!,
-      newPassword: data.newPassword,
-    };
+const onsubmit: SubmitHandler<ResetPasswordFormFields> = (data) => {
+  if (!email) return;
 
-    resetpassword(payload);
+  const payload: ResetPasswordPayload = {
+    email,
+    newPassword: data.newPassword,
   };
 
+  resetpassword(payload, {
+    onSuccess: () => {
+      setStep(FORGOT_PASSWORD_STEPS.email);
+    },
+  });
+};
+
+
+
   return (
-    <section className="lg:max-w-auth mx-auto flex min-h-screen w-full max-w-[25.375rem] flex-col justify-center gap-6 px-6 sm:w-[70%] lg:px-0">
+    <section className="flex w-full flex-1 flex-col justify-center gap-6">
       {/* Title Part */}
       <div className="flex flex-col border-b-[.0625rem] border-zinc-200">
         <h1 className="text-xl font-semibold text-zinc-800 first-letter:uppercase dark:text-zinc-50 sm:text-2xl">
@@ -84,7 +98,7 @@ export default function ResetPasswordForm() {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>
+                  <FormLabel className="text-zinc-800 dark:text-zinc-50">
                     {t('reset-password.form.password.old-password')}
                   </FormLabel>
                   {/* Field */}
@@ -122,12 +136,14 @@ export default function ResetPasswordForm() {
                 </FormItem>
               )}
             />
+
+            {/* New Password Field */}
             <FormField
               name="newPassword"
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>
+                  <FormLabel className="text-zinc-800 dark:text-zinc-50">
                     {t('reset-password.form.password.new-password')}
                   </FormLabel>
                   {/* Field */}
@@ -182,4 +198,5 @@ export default function ResetPasswordForm() {
       </Form>
     </section>
   );
+
 }
