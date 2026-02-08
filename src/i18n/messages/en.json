@@ -173,7 +173,8 @@
       "forget-password": "Forgot your password?",
       "password": "Password",
       "email": "Email",
-      "submit": "Login"
+      "submit": "Login",
+      "remember me": "Remember me"
     },
 
     "register": {
@@ -234,5 +235,38 @@
     "title": "Page not found",
     "description": "Oops! The page you are looking for does not exist.",
     "button": "Go back home"
+  },
+  "header": {
+    "home": "Home",
+    "products": "Products",
+    "categories": "Categories",
+    "occasion": "Occasions",
+    "contact": "Contact",
+    "about": "About",
+    "login": "Login",
+    "register": "Register",
+    "deliver to": "Deliver to",
+    "search": "What awesome gift are you looking for?"
+  },
+  "footer": {
+    "title": "Rose E-Commerce App",
+    "discover":"Discover our website",
+    "home": "Home",
+    "products": "Products",
+    "categories": "Categories",
+    "occasion": "Occasions",
+    "about": "About",
+    "contact": "Contact",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy",
+    "faqs": "FAQs",
+    "copyright": "All rights reserved | 2025",
+    "get":"Get",
+    "discount":"20%",
+    "getDiscount":"Off Discount Coupon",
+    "subscribingWay":"By subscribing to our newsletter",
+    "emailPlaceholder":"Enter your email",
+    "subscribe":"Subscribe"
+
   }
 }
