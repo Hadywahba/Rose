@@ -1,7 +1,26 @@
-import createNextIntlPlugin from 'next-intl/plugin';
+import createNextIntlPlugin from "next-intl/plugin";
 
- /** @type {import('next').NextConfig} */
-const nextConfig = {};
- 
-const withNextIntl = createNextIntlPlugin();
+const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+    // remote images source
+    images: {
+        remotePatterns: [
+            {
+                protocol: "https",
+                hostname: "flower.elevateegy.com",
+                port: "",
+                pathname: "/**",
+            },
+            {
+                protocol: "https",
+                hostname: "via.placeholder.com",
+                port: "",
+                pathname: "/**",
+            },
+        ],
+    },
+};
+
 export default withNextIntl(nextConfig);
