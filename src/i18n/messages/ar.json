@@ -163,22 +163,22 @@
 
   "reviews": {
     "title": "تقييمات المنتج",
-    "generalRating": "التقييم العام:",
-    "ratingsCount": "تقييم",
-    "noReviews": "لا توجد تقييمات بعد. كن أول من يقيّم!",
-    "errorLoading": "فشل تحميل التقييمات.",
-    "relatedProducts": "منتجات ذات صلة"
+    "general-rating": "التقييم العام:",
+    "ratings-count": "تقييم",
+    "no-reviews": "لا توجد تقييمات بعد. كن أول من يقيّم!",
+    "error-loading": "فشل تحميل التقييمات.",
+    "related-products": "منتجات ذات صلة"
   },
 
-  "reviewForm": {
-    "yourRating": "تقييمك:",
-    "titleLabel": "عنوان التقييم",
-    "titlePlaceholder": "أدخل عنوان التقييم",
-    "reviewLabel": "المراجعة",
-    "reviewPlaceholder": "ما رأيك في هذا المنتج؟",
-    "submitButton": "إضافة تقييم",
+  "review-form": {
+    "your-rating": "تقييمك:",
+    "title-label": "عنوان التقييم",
+    "title-placeholder": "أدخل عنوان التقييم",
+    "review-label": "المراجعة",
+    "review-placeholder": "ما رأيك في هذا المنتج؟",
+    "submit-button": "إضافة تقييم",
     "submitting": "جاري الإرسال...",
-    "successMessage": "شكراً لك على تقييمك! تم إرساله بنجاح.",
-    "errorMessage": "فشل إرسال التقييم: {message}"
+    "success-message": "شكراً لك على تقييمك! تم إرساله بنجاح.",
+    "error-message": "فشل إرسال التقييم: {message}"
   }
 }

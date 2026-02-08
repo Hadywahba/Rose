@@ -168,23 +168,23 @@
 
   "reviews": {
     "title": "Product Reviews",
-    "generalRating": "General rating:",
-    "ratingsCount": "ratings",
+    "general-rating": "General rating:",
+    "ratings-count": "ratings",
     "noReviews": "No reviews yet. Be the first to review!",
-    "errorLoading": "Failed to load reviews.",
-    "relatedProducts": "Related Products"
+    "error-loading": "Failed to load reviews.",
+    "related-products": "Related Products"
   
 },
-  "reviewForm": {
-    "yourRating": "Your Rating:",
-    "titleLabel": "Title",
-    "titlePlaceholder": "Enter review title",
-    "reviewLabel": "Review",
-    "reviewPlaceholder": "What do you think of this product?",
-    "submitButton": "Add Review",
+  "review-form": {
+    "your-rating": "Your Rating:",
+    "title-label": "Title",
+    "title-placeholder": "Enter review title",
+    "review-label": "Review",
+    "review-placeholder": "What do you think of this product?",
+    "submit-button": "Add Review",
     "submitting": "Submitting...",
-    "successMessage": "Thank you for your review! It has been submitted successfully.",
-    "errorMessage": "Failed to submit review: {message}"
+    "success-message": "Thank you for your review! It has been submitted successfully.",
+    "error-message": "Failed to submit review: {message}"
   }
 
 }

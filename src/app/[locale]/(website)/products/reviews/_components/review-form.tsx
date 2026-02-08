@@ -17,7 +17,7 @@ interface ReviewFormProps {
 
 export default function ReviewForm({ productId }: ReviewFormProps) {
   // Translations
-  const t = useTranslations('reviewForm');
+  const t = useTranslations('review-form');
 
   // Hook
   const { isPending, addReview } = useAddReview();
@@ -48,7 +48,7 @@ export default function ReviewForm({ productId }: ReviewFormProps) {
           <div className="space-y-1">
             <div className="flex items-center gap-4">
               {/* Rating */}
-              <FieldLabel>{t('yourRating')}</FieldLabel>
+              <FieldLabel>{t('your-rating')}</FieldLabel>
               <Controller
                 name="rating"
                 control={form.control}
@@ -66,11 +66,11 @@ export default function ReviewForm({ productId }: ReviewFormProps) {
 
           {/* Title */}
           <Field>
-            <FieldLabel htmlFor="title">{t('titleLabel')}</FieldLabel>
+            <FieldLabel htmlFor="title">{t('title-label')}</FieldLabel>
             <Input
               className='w-full'
               id="title"
-              placeholder={t('titlePlaceholder')}
+              placeholder={t('title-placeholder')}
               {...form.register('title')}
             />
             <FieldError>{form.formState.errors.title?.message}</FieldError>
@@ -78,11 +78,11 @@ export default function ReviewForm({ productId }: ReviewFormProps) {
 
           {/* Comment */}
           <Field>
-            <FieldLabel htmlFor="comment">{t('reviewLabel')}</FieldLabel>
+            <FieldLabel htmlFor="comment">{t('review-label')}</FieldLabel>
             <Textarea
               className="min-h-36"
               id="comment"
-              placeholder={t('reviewPlaceholder')}
+              placeholder={t('review-placeholder')}
               {...form.register('comment')}
             />
             <FieldError>{form.formState.errors.comment?.message}</FieldError>
@@ -90,7 +90,7 @@ export default function ReviewForm({ productId }: ReviewFormProps) {
 
           {/* Submit Button */}
           <Button disabled={isPending} className="w-full" type="submit">
-            {isPending ? t('submitting') : t('submitButton')}
+            {isPending ? t('submitting') : t('submit-button')}
           </Button>
         </form>
       </Form>

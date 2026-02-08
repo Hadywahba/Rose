@@ -35,7 +35,7 @@ export default function RelatedProducts({ productId }: { productId: string }) {
       {/* Title */}
       <MainHeading
         className="mb-5 items-start text-start"
-        paragraph={t('relatedProducts')}
+        paragraph={t('related-products')}
       />
 
       <Carousel

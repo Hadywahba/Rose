@@ -20,10 +20,10 @@ export const useAddReview = () => {
     },
 
     onSuccess: () => {
-      toast.success(t('successMessage'));
+      toast.success(t('success-message'));
     },
     onError: (error: Error) => {
-      toast.error(t('errorMessage', { message: error.message }));
+      toast.error(t('error-message', { message: error.message }));
     }
   });
 
