@@ -2,7 +2,7 @@
 
 import useInfiniteScroll from "react-infinite-scroll-hook";
 import { useSearchParams } from "next/navigation";
-import CategoryItem from "./components/categories-item";
+import CategoryItem from "./categories-item";
 import Loading from "@/components/shared/loading";
 import ResetButton from "../reset/reset-button";
 import { useInfiniteCategories } from "../../_hooks/use-categories";

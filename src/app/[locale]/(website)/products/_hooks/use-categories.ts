@@ -1,16 +1,14 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { CategoriesResponse } from "../_types/categories";
+import { fetchCategoriesAction } from "../_actions/categories"; // استيراد الـ Action
 
 export function useInfiniteCategories() {
   return useInfiniteQuery<CategoriesResponse>({
     queryKey: ["categories"],
-    queryFn: async ({ pageParam = 1 }) => {
-      const res = await fetch(`/api/categories?page=${pageParam}&limit=7`);
-      if (!res.ok) throw new Error("Failed to fetch categories");
-      return res.json();
-    },
-    initialPageParam: 1, 
+    // التعديل هنا: الـ Hook الآن ينادي على الدالة فقط
+    queryFn: ({ pageParam = 1 }) => fetchCategoriesAction(pageParam as number),
     
+    initialPageParam: 1, 
     getNextPageParam: (lastPage) => {
       const { currentPage, totalPages } = lastPage.metadata;
       return currentPage < totalPages ? currentPage + 1 : undefined;

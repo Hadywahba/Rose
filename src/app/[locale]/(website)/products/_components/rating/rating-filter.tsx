@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import ResetButton from "../reset/reset-button";
-import StarItem from "./components/star-item";
+import StarItem from "./star-item";
 
 export default function RatingFilter() {
     // Next.js navigation hooks

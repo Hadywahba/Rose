@@ -14,12 +14,12 @@ export default function CategoryItem({ label, active, onClick, image }: Category
     <button
       onClick={onClick}
       className={`flex h-7 w-full items-center gap-2 rounded-md text-zinc-800 transition-colors ${
-        active ? "bg-[#FBEAEA] hover:bg-[#FADADA]" : "bg-zinc-200 hover:bg-zinc-300"
+        active ? "bg-maroon-50 hover:bg-maroon-100" : "bg-zinc-200 hover:bg-zinc-300"
       }`}
     >
       <div
         className={`flex h-full w-9 items-center justify-center  text-white transition-colors ${
-          active ? "bg-[#A6252A]" : "bg-zinc-500"
+          active ? "bg-maroon-600" : "bg-zinc-500"
         }`}
       >
         <Image
