@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react';
 
 export function useNotifications() {
   // Session state from NextAuth 
-  const { status, data: session } = useSession();
+  const { status,} = useSession();
 
   
   // { This prevents 401 Unauthorized requests }

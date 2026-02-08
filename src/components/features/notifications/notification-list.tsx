@@ -15,6 +15,7 @@ import { cn } from "@/lib/utility/tailwind-merge";
 import { useNotifications } from "@/lib/hooks/notifications/use-notifications";
 import EmptyNotifications from "./empty-notification";
 import GeneralNotificationsButtons from "./general-notifications-button";
+import { useSession } from "next-auth/react";
 
 export default function NotificationsList() {
   // Translation
@@ -24,7 +25,7 @@ export default function NotificationsList() {
     useNotifications();
 
     // ToDo
-//   const { status } = useSession();
+  const { status } = useSession();
 
   // Variables
   const pages = data?.pages ?? [];

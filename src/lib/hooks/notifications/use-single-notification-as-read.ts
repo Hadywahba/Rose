@@ -12,7 +12,7 @@ export function useSingleNotificationAsRead() {
     isPending,
   } = useMutation({
     mutationFn: async (notificationId: string) => {
-      const payload: APIResponse<MarkNotificationAsReadResponse> =
+      const payload: ApiResponse<MarkNotificationAsReadResponse> =
         await markSingleNotificationsAsReadAction(notificationId);
 
       // check-error
