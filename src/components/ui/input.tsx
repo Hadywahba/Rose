@@ -1,4 +1,5 @@
 'use client';
+
 import * as React from 'react';
 import { cn } from '@/lib/utility/tailwind-merge';
 import { Eye, EyeOff, Search } from 'lucide-react';
@@ -16,10 +17,19 @@ type InputVariant =
 interface InputProps extends React.ComponentProps<'input'> {
   variant?: InputVariant;
   error?: boolean;
+
+  /**
+   * When true, renders the native <input /> directly without the outer wrapper.
+   * Useful when the parent component provides its own layout (e.g. PhoneInput).
+   */
+  noWrapper?: boolean;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, variant = 'text', error, disabled, ...props }, ref) => {
+  (
+    { className, type, variant = 'text', error, disabled, noWrapper, ...props },
+    ref,
+  ) => {
     // States
     const [showPassword, setShowPassword] = React.useState(false);
 
@@ -33,6 +43,42 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     // Password-input
     if (isPassword) {
+      if (noWrapper) {
+        return (
+          <input
+            ref={ref}
+            type={showPassword ? 'text' : 'password'}
+            data-error={error ? 'true' : 'false'}
+            disabled={disabled}
+            className={cn(
+              /* ================= Base ================= */
+              'flex h-full w-full rounded-lg border border-zinc-300 bg-transparent p-4 pe-10 text-base text-zinc-400 transition-colors dark:border-zinc-600 dark:bg-zinc-700 dark:text-zinc-400 dark:hover:border-zinc-500 dark:focus:border-softpink-400 md:text-sm',
+
+              /* ================= Default ================= */
+              'border-zinc-300 placeholder:text-muted-foreground',
+
+              /* ================= Hover ================= */
+              'hover:border-zinc-400',
+
+              /* ================= Focus ================= */
+              'focus:border-maroon-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-maroon-600',
+
+              /* ================= Error (highest priority) ================= */
+              'data-[error=true]:border-red-600',
+              'data-[error=true]:focus:border-red-600',
+              'data-[error=true]:focus-visible:ring-red-600',
+
+              /* ================= Disabled ================= */
+              'disabled:cursor-not-allowed disabled:border-0 disabled:bg-zinc-100 disabled:opacity-50',
+
+              className,
+            )}
+            {...props}
+            placeholder="***********"
+          />
+        );
+      }
+
       return (
         <div className="relative h-12 rounded-lg">
           <input
@@ -60,6 +106,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
               /* ================= Disabled ================= */
               'disabled:cursor-not-allowed disabled:border-0 disabled:bg-zinc-100 disabled:opacity-50',
+
               className,
             )}
             {...props}
@@ -69,10 +116,66 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           <button
             className="absolute end-4 top-[50%] flex h-full -translate-y-[50%] items-center justify-center"
             onClick={handleTogglePassword}
+            type="button"
           >
             {!showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
           </button>
         </div>
+      );
+    }
+
+    if (noWrapper) {
+      return (
+        <input
+          ref={ref}
+          type={type ?? variant}
+          data-error={error ? 'true' : 'false'}
+          disabled={disabled}
+          className={cn(
+            /* ================= Base ================= */
+            'flex h-12 w-80 rounded-lg border border-zinc-300 bg-transparent p-4 text-base text-zinc-800 transition-colors dark:border-zinc-600 dark:bg-zinc-700 dark:text-zinc-400 dark:hover:border-zinc-500 dark:focus:border-softpink-400 md:text-sm',
+
+            /* ================= Default ================= */
+            'border-zinc-300 placeholder:text-muted-foreground',
+
+            /* ================= Hover ================= */
+            'hover:border-zinc-400',
+
+            /* ================= Focus ================= */
+            'focus:border-maroon-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-maroon-600',
+
+            /* ================= Error (highest priority) ================= */
+            'data-[error=true]:border-red-600',
+            'data-[error=true]:focus:border-red-600',
+            'data-[error=true]:focus-visible:ring-red-600',
+
+            /* ================= Disabled ================= */
+            'disabled:cursor-not-allowed disabled:border-0 disabled:bg-zinc-100 disabled:opacity-50',
+
+            /* ================= Variants ================= */
+
+            // Text / Email / URL / Tel
+            (variant === 'text' ||
+              variant === 'email' ||
+              variant === 'url' ||
+              variant === 'tel') &&
+              'text-zinc-500',
+
+            // Number
+            variant === 'number' && 'appearance-none',
+
+            // Search (padding only; icon is rendered in wrapper mode)
+            variant === 'search' && 'pl-10',
+
+            // File
+            variant === 'file' &&
+              'file file:cursor-pointer file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-maroon-500',
+
+            className,
+          )}
+          {...props}
+          placeholder="text"
+        />
       );
     }
 
