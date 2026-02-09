@@ -7,7 +7,6 @@ import {
   CarouselItem,
 } from '@/components/ui/carousel';
 import { RelatedProduct } from '@/lib/types/products/reviews/related-products';
-import Autoplay from 'embla-carousel-autoplay';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import { useState } from 'react';
@@ -30,7 +29,7 @@ export default function ProductsCarousel({
     <>
       <Carousel
         setApi={setApi}
-        plugins={[Autoplay({ delay: 2000, stopOnInteraction: false })]}
+        // plugins={[Autoplay({ delay: 2000, stopOnInteraction: false })]}
         opts={{
           align: 'start',
           loop: true,
