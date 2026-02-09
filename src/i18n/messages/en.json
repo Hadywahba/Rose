@@ -1,6 +1,5 @@
 {
   "title": "Rose App",
-
   "hero": {
     "static-image": {
       "button": " shop now"
@@ -41,7 +40,6 @@
       }
     }
   },
-
   "about": {
     "title": "About",
     "heading": "Delivering the <span>Finest</span> Gift Boxes for Your <span>Special</span> Moments",
@@ -60,7 +58,6 @@
       "Fast & Reliable Delivery"
     ]
   },
-
   "gallery": {
     "heading": "Gallery",
     "paragraph": "Check Out our Wonderful Gallery",
@@ -73,7 +70,6 @@
       "galleryGrid6": "Engagement ring with white engagement card gift"
     }
   },
-
   "testimonials": {
     "heading": "What Our Customers Say",
     "customer": "Customer",
@@ -100,11 +96,9 @@
       }
     ]
   },
-  
   "companies": {
     "trustedBy": "Trusted by over <span></span> companies"
   },
-
   "auth": {
     "forget-password": {
       "forgot-password": "forgot password?",
@@ -165,7 +159,6 @@
       "reset-message": " Your password has been successfully updated"
     }
   },
-
   "reviews": {
     "title": "Product Reviews",
     "general-rating": "General rating:",
@@ -173,8 +166,7 @@
     "noReviews": "No reviews yet. Be the first to review!",
     "error-loading": "Failed to load reviews.",
     "related-products": "Related Products"
-  
-},
+  },
   "review-form": {
     "your-rating": "Your Rating:",
     "title-label": "Title",
@@ -184,7 +176,7 @@
     "submit-button": "Add Review",
     "submitting": "Submitting...",
     "success-message": "Thank you for your review! It has been submitted successfully.",
-    "error-message": "Failed to submit review: {message}"
+    "error-message": "Failed to submit review: {message}",
+    "login-to-review": "Please login to be able to review the product"
   }
-
 }

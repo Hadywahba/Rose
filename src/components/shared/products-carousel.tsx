@@ -30,7 +30,7 @@ export default function ProductsCarousel({
     <>
       <Carousel
         setApi={setApi}
-        plugins={[Autoplay({ delay: 2000 })]}
+        plugins={[Autoplay({ delay: 2000, stopOnInteraction: false })]}
         opts={{
           align: 'start',
           loop: true,

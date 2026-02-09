@@ -21,6 +21,8 @@ export default function ReviewForm({ productId }: ReviewFormProps) {
 
   // Hook
   const { isPending, addReview } = useAddReview();
+  // Todo: Uncomment when auth is implemented
+  // const { status } = useSession();
 
   // Hook Form
   const form = useForm<RatingFormSchema>({
@@ -38,62 +40,78 @@ export default function ReviewForm({ productId }: ReviewFormProps) {
     addReview(values);
   }
 
+  const isDisabled = status !== 'authenticated';
+
   return (
-    <div className="col-span-1 border-s ps-4">
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="max-w-xl space-y-4"
-        >
-          <div className="space-y-1">
-            <div className="flex items-center gap-4">
-              {/* Rating */}
-              <FieldLabel>{t('your-rating')}</FieldLabel>
-              <Controller
-                name="rating"
-                control={form.control}
-                render={({ field }) => (
-                  <InteractiveRating
-                    rating={field.value}
-                    onRatingChange={field.onChange}
-                    className="[&_svg]:size-6"
-                  />
-                )}
-              />
+    <div className="relative col-span-1 border-s ps-4">
+      {/* Optional overlay message */}
+      {isDisabled && (
+        <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center font-semibold text-zinc-800">
+          {t('login-to-review')}
+        </div>
+      )}
+
+      {/* Form container */}
+      <div className={isDisabled ? 'pointer-events-none blur-sm ' : ''}>
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="max-w-xl space-y-4"
+          >
+            {/* Rating */}
+            <div className="space-y-1">
+              <div className="flex items-center gap-4">
+                <FieldLabel>{t('your-rating')}</FieldLabel>
+                <Controller
+                  name="rating"
+                  control={form.control}
+                  render={({ field }) => (
+                    <InteractiveRating
+                      rating={field.value}
+                      onRatingChange={field.onChange}
+                      className="[&_svg]:size-6"
+                    />
+                  )}
+                />
+              </div>
+              <FieldError>{form.formState.errors.rating?.message}</FieldError>
             </div>
-            <FieldError>{form.formState.errors.rating?.message}</FieldError>
-          </div>
 
-          {/* Title */}
-          <Field>
-            <FieldLabel htmlFor="title">{t('title-label')}</FieldLabel>
-            <Input
-              className='w-full'
-              id="title"
-              placeholder={t('title-placeholder')}
-              {...form.register('title')}
-            />
-            <FieldError>{form.formState.errors.title?.message}</FieldError>
-          </Field>
+            {/* Title */}
+            <Field>
+              <FieldLabel htmlFor="title">{t('title-label')}</FieldLabel>
+              <Input
+                className="w-full"
+                id="title"
+                placeholder={t('title-placeholder')}
+                {...form.register('title')}
+              />
+              <FieldError>{form.formState.errors.title?.message}</FieldError>
+            </Field>
 
-          {/* Comment */}
-          <Field>
-            <FieldLabel htmlFor="comment">{t('review-label')}</FieldLabel>
-            <Textarea
-              className="min-h-36"
-              id="comment"
-              placeholder={t('review-placeholder')}
-              {...form.register('comment')}
-            />
-            <FieldError>{form.formState.errors.comment?.message}</FieldError>
-          </Field>
+            {/* Comment */}
+            <Field>
+              <FieldLabel htmlFor="comment">{t('review-label')}</FieldLabel>
+              <Textarea
+                className="min-h-36"
+                id="comment"
+                placeholder={t('review-placeholder')}
+                {...form.register('comment')}
+              />
+              <FieldError>{form.formState.errors.comment?.message}</FieldError>
+            </Field>
 
-          {/* Submit Button */}
-          <Button disabled={isPending} className="w-full" type="submit">
-            {isPending ? t('submitting') : t('submit-button')}
-          </Button>
-        </form>
-      </Form>
+            {/* Submit */}
+            <Button
+              disabled={isPending}
+              className="w-full"
+              type="submit"
+            >
+              {isPending ? t('submitting') : t('submit-button')}
+            </Button>
+          </form>
+        </Form>
+      </div>
     </div>
   );
 }
