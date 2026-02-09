@@ -230,8 +230,11 @@
   },
   "product-filter": {
     "occasion": "المناسبة",
+    "occasion-error": "لا توجد مناسبات أخرى",
+    "occasion-loading": "جارٍ التحميل...",
     "price": "السعر",
     "price-from": "من",
-    "price-to": "إلى"
+    "price-to": "إلى",
+    "reset": "إعادة ضبط"
   }
 }

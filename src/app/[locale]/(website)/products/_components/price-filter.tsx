@@ -22,9 +22,9 @@ export default function PriceFilter() {
 
   //  Functions
   const handleResetPrice = () => {
+    setResetFlag(true);
     resetFilter('price[gte]');
     resetFilter('price[lte]');
-    setResetFlag(true);
   };
 
   const handleReset = () => {
@@ -32,7 +32,7 @@ export default function PriceFilter() {
   };
 
   return (
-    <section className="mb-8 w-full border-b-2 border-zinc-100 lg:w-[18.875rem]">
+    <section className="mb-8 w-full border-b-2 border-zinc-100 dark:border-zinc-600 lg:w-[18.875rem]">
       <div className="flex w-full items-center justify-between pt-3">
         {/* Title */}
         <h2 className="text-lg font-semibold capitalize text-zinc-800 dark:text-zinc-50">
@@ -48,7 +48,7 @@ export default function PriceFilter() {
             className="w-fit gap-1 bg-transparent px-0 capitalize text-red-600 hover:bg-transparent dark:bg-transparent dark:text-red-500 dark:hover:bg-transparent"
           >
             <X className="text-red-600 dark:text-red-500" />
-            reset
+            {t('reset')}
           </Button>
         )}
       </div>

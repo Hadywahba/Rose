@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import { useOccasion } from '../../occasions/_hooks/use-occasion';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Image from 'next/image';
@@ -9,54 +9,59 @@ import { cn } from '@/lib/utility/tailwind-merge';
 import { useFilters } from '../_hooks/use-filter';
 import ListError from '@/components/error/list-error';
 import OccasionFilterSkeleton from './occasion-filter-skeleton';
+import { useTranslations } from 'use-intl';
 
 const OCCASIONS_PER_PAGE = 6;
 
 export default function OccasionFilterList() {
-  // State
-  const [showScrollbar, setShowscrollbar] = useState<boolean>(false);
-
-  // Ref
-  const scrollableDivRef = useRef<HTMLDivElement>(null);
+  // Translations
+  const t = useTranslations('product-filter');
 
   // Hook
   const { occasion, hasNextPage, fetchNextPage, isLoading, error } =
     useOccasion();
+
   const { setFilter, filters } = useFilters({
     occasion: null,
   });
 
   // Variable
   const occasionItems = occasion?.pages.flatMap((page) => page.occasions) || [];
+
   const active = filters.occasion;
+
   return (
     <ListError errors={error}>
       <div
-        ref={scrollableDivRef}
         id="occasion-scrollable"
-        className={cn(
-          'scrollbar-thin w max-h-[14.875rem] w-full overflow-y-auto transition-all duration-300',
-          showScrollbar
-            ? 'scrollbar-thumb-gray-400'
-            : 'scrollbar-thumb-transparent',
-        )}
-        onMouseEnter={() => setShowscrollbar(true)}
-        onMouseLeave={() => setShowscrollbar(false)}
-        style={{ scrollbarGutter: 'stable' }}
+        className="max-h-[15.125rem] w-full overflow-y-auto py-2 transition-all duration-300 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-transparent hover:[&::-webkit-scrollbar-thumb]:bg-gray-200/80 dark:hover:[&::-webkit-scrollbar-thumb]:bg-gray-600/80 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar]:w-1.5"
+        style={{
+          scrollbarWidth: 'thin',
+          scrollbarColor: 'transparent transparent',
+        }}
+        onMouseEnter={(e) => {
+          const isDark = document.documentElement.classList.contains('dark');
+          e.currentTarget.style.scrollbarColor = isDark
+            ? 'rgba(75, 85, 99, 0.8) transparent'
+            : 'rgba(156, 163, 175, 0.4) transparent';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.scrollbarColor = 'transparent transparent';
+        }}
       >
         <InfiniteScroll
           dataLength={occasionItems.length}
           hasMore={hasNextPage ?? false}
           next={fetchNextPage}
           loader={
-            showScrollbar && (
-              <div className="py-2 text-center text-gray-500">Loading...</div>
-            )
+            <div className="py-2 text-center text-gray-500 dark:text-zinc-50">
+              {t('occasion-loading')}
+            </div>
           }
           endMessage={
             !error && (
               <div className="py-4 text-center text-gray-500">
-                No more Occasions
+                {t('occasion-error')}
               </div>
             )
           }

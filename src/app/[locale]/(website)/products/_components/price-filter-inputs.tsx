@@ -34,21 +34,23 @@ export default function PriceFilterInputs({
 
   // Effect
   useEffect(() => {
-    setFilter('price[gte]', debouncedFrom || null);
-  }, [debouncedFrom, setFilter]);
+    if (!resetFlag && debouncedFrom !== (filters['price[gte]'] || '')) {
+      setFilter('price[gte]', debouncedFrom || null);
+    }
+  }, [debouncedFrom, setFilter, resetFlag, filters]);
 
   useEffect(() => {
-    setFilter('price[lte]', debouncedTo || null);
-  }, [debouncedTo, setFilter]);
+    if (!resetFlag && debouncedTo !== (filters['price[lte]'] || '')) {
+      setFilter('price[lte]', debouncedTo || null);
+    }
+  }, [debouncedTo, setFilter, resetFlag, filters]);
 
   useEffect(() => {
-    setTimeout(() => {
-      if (resetFlag) {
-        setFrom('');
-        setTo('');
-        handleReset();
-      }
-    }, DEBOUNCE_TIME);
+    if (resetFlag) {
+      setFrom('');
+      setTo('');
+      handleReset();
+    }
   }, [resetFlag, handleReset]);
 
   return (

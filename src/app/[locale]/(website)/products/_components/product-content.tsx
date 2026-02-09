@@ -22,7 +22,7 @@ export default function ProductContent() {
       {/* Product List */}
       <section
         className={cn(
-          'w-full border-zinc-100 lg:max-w-[61.625rem]',
+          'w-full border-zinc-100 dark:border-zinc-600 lg:max-w-[61.625rem]',
           locale === 'ar' ? 'border-r-2 pl-2' : 'border-l-2',
         )}
       >

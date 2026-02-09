@@ -237,8 +237,11 @@
   },
    "product-filter": {
     "occasion": "occasion",
+     "occasion-loading": "Loading...",
+    "occasion-error":" No more Occasions",
     "price": "price",
     "price-from":"from",
-    "price-to":"to"
+    "price-to":"to",
+    "reset":"reset"
   }
 }
