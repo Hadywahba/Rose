@@ -25,11 +25,8 @@ export function useNotifications() {
 
         // { Handle API error responses }
         if ("error" in payload ) {
-          const errorMessage =
-            payload.error ||
-            payload.message ||
-            "error during fetch notifications";
-          throw new Error(errorMessage);
+          
+          throw new Error(payload.message);
         }
 
         // { Return successful page response }
