@@ -1,4 +1,3 @@
-"use client";
 import { ProductsReviews } from './product-reviews';
 import RelatedProducts from './related-products';
 

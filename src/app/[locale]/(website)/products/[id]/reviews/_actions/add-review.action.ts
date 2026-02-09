@@ -7,6 +7,7 @@ export const AddReviewAction = async (data: RatingFormSchema) => {
   const response = await fetch(`${process.env.API_URL}/reviews`, {
     method: 'POST',
     headers: {
+      // Todo get token
       Authorization: `Bearer ${process.env.API_TOKEN}`,
       ...JSON_HEADER,
     },

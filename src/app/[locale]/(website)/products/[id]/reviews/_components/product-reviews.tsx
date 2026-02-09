@@ -1,19 +1,20 @@
-import MainHeading from '../../../(home)/_components/main-heading';
 import { Rating } from '@/components/ui/rating';
 import { Separator } from '@/components/ui/separator';
 import { Star } from 'lucide-react';
-import { useLocale, useTranslations } from 'next-intl';
-import { useProductReviews } from '../_hooks/use-product-reviews';
+
 import ReviewForm from './review-form';
 import ReviewItem from './review-item';
+import { getLocale, getTranslations } from 'next-intl/server';
+import { getReviews } from '@/lib/services/reviews/get-product-reviews';
+import MainHeading from '@/app/[locale]/(website)/(home)/_components/main-heading';
 
-export function ProductsReviews({ productId }: { productId: string }) {
+export async function ProductsReviews({ productId }: { productId: string }) {
   // Translations
-  const t = useTranslations('reviews');
-  const locale = useLocale();
+  const t = await getTranslations('reviews');
+  const locale = await getLocale();
 
-  // Hooks
-  const { data: fetchedReviews, isError } = useProductReviews(productId);
+  
+  const fetchedReviews = await getReviews(productId);
 
   const averageRating =
     fetchedReviews && fetchedReviews.length > 0
@@ -30,12 +31,17 @@ export function ProductsReviews({ productId }: { productId: string }) {
   };
 
   const formatCount = (count: number) => {
-    return new Intl.NumberFormat(locale === 'ar' ? 'ar-EG' : 'en-US').format(count);
+    return new Intl.NumberFormat(locale === 'ar' ? 'ar-EG' : 'en-US').format(
+      count,
+    );
   };
 
   // Error
-  if (isError)
-    return <p className="py-8 text-center text-red-500">{t('error-loading')}</p>;
+  if (fetchedReviews === null || fetchedReviews === undefined) {
+    return (
+      <p className="py-8 text-center text-red-500">{t('error-loading')}</p>
+    );
+  }
 
   return (
     <section className="p-5">
