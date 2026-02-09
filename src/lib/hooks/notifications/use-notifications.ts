@@ -26,7 +26,7 @@ export function useNotifications() {
         // { Handle API error responses }
         if ("error" in payload ) {
           
-          throw new Error(payload.message);
+          throw new Error(payload.error);
         }
 
         // { Return successful page response }
