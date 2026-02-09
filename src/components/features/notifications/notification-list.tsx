@@ -1,21 +1,20 @@
-"use client";
-import { useMemo } from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { BellRing, Loader } from "lucide-react";
+'use client';
+import { useMemo } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { BellRing, Loader } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from '@/components/ui/dropdown-menu';
 
-
-import NotificationItem from "./notification-item";
-import { cn } from "@/lib/utility/tailwind-merge";
-import { useNotifications } from "@/lib/hooks/notifications/use-notifications";
-import EmptyNotifications from "./empty-notification";
-import GeneralNotificationsButtons from "./general-notifications-button";
-import { useSession } from "next-auth/react";
+import NotificationItem from './notification-item';
+import { cn } from '@/lib/utility/tailwind-merge';
+import { useNotifications } from '@/lib/hooks/notifications/use-notifications';
+import EmptyNotifications from './empty-notification';
+import GeneralNotificationsButtons from './general-notifications-button';
+import { useSession } from 'next-auth/react';
 
 export default function NotificationsList() {
   // Translation
@@ -24,15 +23,15 @@ export default function NotificationsList() {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
     useNotifications();
 
-    // ToDo
+  // ToDo
   const { status } = useSession();
 
   // Variables
   const pages = data?.pages ?? [];
   const notifications = pages.flatMap((page) => page.notifications);
-//   ToDo
-  const isAuthed = status === "authenticated";
-  const isSessionLoading = status === "loading";
+  //   ToDo
+  const isAuthed = status === 'authenticated';
+  const isSessionLoading = status === 'loading';
   const isEmpty = useMemo(() => notifications.length === 0, [notifications]);
   const unreadNotificationsCount = useMemo(() => {
     return notifications.filter((noti) => !noti.isRead).length;
@@ -45,24 +44,18 @@ export default function NotificationsList() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger
-        asChild
-        // ToDo
-        className={cn(!isAuthed && "opacity-50 cursor-not-allowed", "relative")}
-      >
+      <DropdownMenuTrigger asChild className={cn('relative')}>
         {/* ✅ semantic + a11y: make trigger a real button */}
         <button
           type="button"
           aria-label={`Open notifications (${notifications.length})`}
-        //   ToDo
-          disabled={!isAuthed}
         >
           <BellRing aria-hidden="true" focusable="false" />
 
           {isAuthed && isSessionLoading && (
             <span
               aria-hidden="true"
-              className=" absolute -top-1 -right-1 min-w-[1.125rem] h-[1.125rem] rounded-full bg-red-600 text-white text-[.625rem] font-bold flex items-center justify-center leading-none"
+              className="absolute -right-1 -top-1 flex h-[1.125rem] min-w-[1.125rem] items-center justify-center rounded-full bg-red-600 text-[.625rem] font-bold leading-none text-white"
             >
               <Loader size={12} className="animate-spin" />
             </span>
@@ -71,17 +64,16 @@ export default function NotificationsList() {
           {isAuthed && !isSessionLoading && (
             <span
               aria-hidden="true"
-              className=" absolute -top-1 -right-1 min-w-[1.125rem] h-[1.125rem] rounded-full bg-red-600 text-white text-[.625rem] font-bold flex items-center justify-center leading-none"
+              className="absolute -right-1 -top-1 flex h-[1.125rem] min-w-[1.125rem] items-center justify-center rounded-full bg-red-600 text-[.625rem] font-bold leading-none text-white"
             >
               {unreadNotificationsCount}
             </span>
           )}
         </button>
       </DropdownMenuTrigger>
-{/* ToDo */}
       {isAuthed && (
         <DropdownMenuContent className="p-0" aria-label="Notifications menu">
-          <DropdownMenuLabel className="bg-maroon-700 dark:bg-soft-pink-200 text-white dark:text-black font-bold text-xl">
+          <DropdownMenuLabel className="dark:bg-soft-pink-200 bg-maroon-700 text-xl font-bold text-white dark:text-black">
             {/* ✅ semantic heading inside label */}
             <h2 className="text-inherit">
               Notifications <span>({notifications.length})</span>
