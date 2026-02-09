@@ -1,7 +1,6 @@
-
 'use client';
 
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslations } from 'next-intl';
 import SubmitButton from '@/components/features/auth/submit-button';
@@ -22,14 +21,9 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Eye, EyeOff } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { useLocale } from 'next-intl';
-import { cn } from '@/lib/utility/tailwind-merge';
 import { UserEmail } from '@/components/providers/app/forget-password/email-provider';
 import { ForgotPasswordFormProps } from '@/lib/types/auth/verify';
 import { FORGOT_PASSWORD_STEPS } from '@/lib/constants/auth.constant';
-
 
 export default function ResetPasswordForm({
   setStep,
@@ -41,12 +35,7 @@ export default function ResetPasswordForm({
   const { email } = useContext(UserEmail)!;
 
   // Hook
-  const locale = useLocale();
   const { error, isPending, resetpassword } = useResetPassword();
-
-  // State
-  const [showOldPassword, setShowOldPassword] = useState(false);
-  const [showNewPassword, setShowNewPassword] = useState(false);
 
   // Form
   const form = useForm({
@@ -59,22 +48,20 @@ export default function ResetPasswordForm({
   });
 
   // Function
-const onsubmit: SubmitHandler<ResetPasswordFormFields> = (data) => {
-  if (!email) return;
+  const onsubmit: SubmitHandler<ResetPasswordFormFields> = (data) => {
+    if (!email) return;
 
-  const payload: ResetPasswordPayload = {
-    email,
-    newPassword: data.newPassword,
+    const payload: ResetPasswordPayload = {
+      email,
+      newPassword: data.newPassword,
+    };
+
+    resetpassword(payload, {
+      onSuccess: () => {
+        setStep(FORGOT_PASSWORD_STEPS.email);
+      },
+    });
   };
-
-  resetpassword(payload, {
-    onSuccess: () => {
-      setStep(FORGOT_PASSWORD_STEPS.email);
-    },
-  });
-};
-
-
 
   return (
     <section className="flex w-full flex-1 flex-col justify-center gap-6">
@@ -103,32 +90,13 @@ const onsubmit: SubmitHandler<ResetPasswordFormFields> = (data) => {
                   </FormLabel>
                   {/* Field */}
                   <FormControl>
-                    <div className="relative">
-                      {/* Input */}
-                      <Input
-                        {...field}
-                        placeholder={'********'}
-                        className="w-full text-black placeholder:text-zinc-400 dark:text-zinc-50"
-                        type={cn(showOldPassword ? 'password' : 'text')}
-                      />
-                      <div>
-                        <Button
-                          variant={'carousel'}
-                          onClick={() => setShowOldPassword((prev) => !prev)}
-                          type="button"
-                          className={cn(
-                            'absolute top-1/2 size-5 -translate-y-1/2',
-                            locale === 'ar' ? 'left-0' : 'right-0',
-                          )}
-                        >
-                          {showOldPassword ? (
-                            <EyeOff className="size-5 text-zinc-400 dark:text-zinc-500" />
-                          ) : (
-                            <Eye className="size-5 text-zinc-400 dark:text-zinc-500" />
-                          )}
-                        </Button>
-                      </div>
-                    </div>
+                    {/* Input */}
+                    <Input
+                      {...field}
+                      type="password"
+                      placeholder={'********'}
+                      className="w-full text-black placeholder:text-zinc-400 dark:text-zinc-50"
+                    />
                   </FormControl>
 
                   {/* Feedback */}
@@ -149,31 +117,13 @@ const onsubmit: SubmitHandler<ResetPasswordFormFields> = (data) => {
                   {/* Field */}
                   <FormControl>
                     {/* Input */}
-                    <div className="relative">
-                      <Input
-                        {...field}
-                        placeholder={'********'}
-                        className="w-full text-black placeholder:text-zinc-400 dark:text-zinc-50"
-                        type={cn(showNewPassword ? 'password' : 'text')}
-                      />
-                      <div>
-                        <Button
-                          variant={'carousel'}
-                          onClick={() => setShowNewPassword((prev) => !prev)}
-                          type="button"
-                          className={cn(
-                            'absolute top-1/2 size-5 -translate-y-1/2',
-                            locale === 'ar' ? 'left-0' : 'right-0',
-                          )}
-                        >
-                          {showNewPassword ? (
-                            <EyeOff className="size-5 text-zinc-400 dark:text-zinc-500" />
-                          ) : (
-                            <Eye className="size-5 text-zinc-400 dark:text-zinc-500" />
-                          )}
-                        </Button>
-                      </div>
-                    </div>
+
+                    <Input
+                      {...field}
+                      type="password"
+                      placeholder={'********'}
+                      className="w-full text-black placeholder:text-zinc-400 dark:text-zinc-50"
+                    />
 
                     {/* Toggle Password Button */}
                   </FormControl>
@@ -198,5 +148,4 @@ const onsubmit: SubmitHandler<ResetPasswordFormFields> = (data) => {
       </Form>
     </section>
   );
-
 }

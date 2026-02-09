@@ -3,6 +3,8 @@
 import * as React from 'react';
 import { cn } from '@/lib/utility/tailwind-merge';
 import { Eye, EyeOff, Search } from 'lucide-react';
+import { Button } from './button';
+import { useLocale } from 'next-intl';
 
 type InputVariant =
   | 'text'
@@ -32,6 +34,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ) => {
     // States
     const [showPassword, setShowPassword] = React.useState(false);
+
+    // Hook
+    const locale = useLocale();
 
     // Variables
     const isPassword = type === 'password' || variant === 'password';
@@ -80,7 +85,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       }
 
       return (
-        <div className="relative h-12 rounded-lg">
+        <div className="relative h-11 rounded-lg">
           <input
             ref={ref}
             type={showPassword ? 'text' : 'password'}
@@ -113,13 +118,21 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             placeholder="***********"
           />
           {/* Toggle-button */}
-          <button
-            className="absolute end-4 top-[50%] flex h-full -translate-y-[50%] items-center justify-center"
+          <Button
+            variant={'carousel'}
+            className={cn(
+              'absolute top-1/2 size-5 -translate-y-1/2',
+              locale === 'ar' ? 'left-0' : 'right-0',
+            )}
             onClick={handleTogglePassword}
             type="button"
           >
-            {!showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-          </button>
+            {showPassword ? (
+              <Eye className="size-5 text-zinc-400 dark:text-zinc-500" />
+            ) : (
+              <EyeOff className="size-5 text-zinc-400 dark:text-zinc-500" />
+            )}
+          </Button>
         </div>
       );
     }
@@ -174,7 +187,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             className,
           )}
           {...props}
-          placeholder="text"
         />
       );
     }
@@ -230,7 +242,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             className,
           )}
           {...props}
-          placeholder="text"
         />
         {variant === 'search' && (
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 transform text-zinc-400" />

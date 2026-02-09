@@ -18,8 +18,6 @@ import {
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import useRegister from '../_hooks/use-register';
-import { Eye, EyeOff } from 'lucide-react';
-import { useState } from 'react';
 import { PhoneInput } from '@/components/ui/phone-input';
 import { cn } from '@/lib/utility/tailwind-merge';
 import { useTranslations } from 'next-intl';
@@ -32,10 +30,6 @@ import SubmitButton from '@/components/features/auth/submit-button';
 export function RegisterForm() {
   // Translation
   const t = useTranslations();
-
-  // State
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   // Mutations
   const { isPending, error, register } = useRegister();
@@ -52,6 +46,7 @@ export function RegisterForm() {
       rePassword: '',
     },
     resolver: zodResolver(getRegisterSchema(t)),
+    mode: 'all',
   });
 
   // Functions
@@ -64,19 +59,14 @@ export function RegisterForm() {
       {/* Form */}
       <div className="w-full">
         {/* Change Font Family => Edwardian Script ITC */}
-        <h2 className="mb-8 text-center font-edwardian text-maroon-700 dark:text-softpink-300 sm:text-xl md:text-3xl lg:text-5xl">
+        <h2 className="mb-8 text-center font-edwardian text-4xl text-maroon-700 dark:text-softpink-300 lg:text-5xl">
           {t('auth.register.title')}
         </h2>
 
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className={cn(
-              'border-t-2 border-zinc-200 pt-4 dark:border-zinc-600',
-              Object.keys(form.formState.errors).length >= 5
-                ? 'space-y-2'
-                : 'space-y-4',
-            )}
+            className="space-y-4 border-t-2 border-zinc-200 pt-4 dark:border-zinc-600"
           >
             {/* First Name & Last Name */}
             <div className="grid grid-cols-2 gap-3">
@@ -225,27 +215,14 @@ export function RegisterForm() {
                     {t('auth.register.password')}
                   </FormLabel>
                   <FormControl>
-                    <div className="relative">
-                      <Input
-                        {...field}
-                        type={showPassword ? 'text' : 'password'}
-                        placeholder={t('auth.register.passwordPlaceholder')}
-                        className={cn(
-                          'h-11 w-full border-zinc-300 pr-10 text-black placeholder:text-start placeholder:text-zinc-400 focus:border-gray-300 focus:outline-none focus:ring-0 dark:border-zinc-600 dark:text-zinc-50',
-                        )}
-                      />
-                      <button
-                        type="button"
-                        onClick={() => setShowPassword(!showPassword)}
-                        className="absolute end-2 top-1/2 -translate-y-1/2 text-gray-400"
-                      >
-                        {showPassword ? (
-                          <EyeOff className="size-5" />
-                        ) : (
-                          <Eye className="size-5" />
-                        )}
-                      </button>
-                    </div>
+                    <Input
+                      {...field}
+                      type="password"
+                      placeholder={t('auth.register.passwordPlaceholder')}
+                      className={cn(
+                        'h-11 w-full border-zinc-300 pr-10 text-black placeholder:text-start placeholder:text-zinc-400 focus:border-gray-300 focus:outline-none focus:ring-0 dark:border-zinc-600 dark:text-zinc-50',
+                      )}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -265,7 +242,7 @@ export function RegisterForm() {
                     <div className="relative">
                       <Input
                         {...field}
-                        type={showConfirmPassword ? 'text' : 'password'}
+                        type="password"
                         placeholder={t(
                           'auth.register.confirmPasswordPlaceholder',
                         )}
@@ -273,19 +250,6 @@ export function RegisterForm() {
                           'h-11 w-full border-zinc-300 pr-10 text-black placeholder:text-start placeholder:text-zinc-400 focus:border-gray-300 focus:outline-none focus:ring-0 dark:border-zinc-600 dark:text-zinc-50',
                         )}
                       />
-                      <button
-                        type="button"
-                        onClick={() =>
-                          setShowConfirmPassword(!showConfirmPassword)
-                        }
-                        className="absolute end-3 top-1/2 -translate-y-1/2 text-gray-400"
-                      >
-                        {showConfirmPassword ? (
-                          <EyeOff className="size-5" />
-                        ) : (
-                          <Eye className="size-5" />
-                        )}
-                      </button>
                     </div>
                   </FormControl>
                   <FormMessage />

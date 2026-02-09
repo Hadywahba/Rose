@@ -3,8 +3,13 @@
 import { LoginFormFields } from '@/lib/schema/login.schema';
 import { useMutation } from '@tanstack/react-query';
 import { signIn } from 'next-auth/react';
+import { useTranslations } from 'next-intl';
+import { toast } from 'sonner';
 
 export default function useLogin() {
+    // Translation
+      const t = useTranslations('auth');
+
   //mutation
   const { isPending, error, mutate } = useMutation({
     mutationFn: async (credentials: LoginFormFields) => {
@@ -24,6 +29,9 @@ export default function useLogin() {
       }
       return response;
     },
+    onError:()=>{
+   toast.error(t('login.login-error'));
+    }
   });
   return { isPending, error, login: mutate };
 }

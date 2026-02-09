@@ -2,32 +2,36 @@ import AuthAside from '@/components/layout/auth/auth-aside';
 import AuthLocaleToggle from '@/components/layout/auth/auth-locale-toggle';
 import DecorativeOrnament from '@/components/shared/home/decorative-ornament';
 
+
 export default async function AuthLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 w-full min-h-screen">
+    <div className="grid min-h-screen w-full grid-cols-1 lg:grid-cols-2">
       {/* Left Side - Auth Forms */}
-      <div className="w-full justify-center flex flex-col px-4 py-8 lg:py-0 b">
-        <div className="w-full max-w-[25.375rem] mx-auto ">
+      <div className="flex w-full flex-col justify-center px-4 py-8 lg:py-12">
+        <div className="mx-auto w-full max-w-[25.375rem]">
           {/* Language Toggle */}
-          <div className={`mb-8 flex justify-end`}>
+          <div className="mb-8 flex justify-end">
             <AuthLocaleToggle />
           </div>
 
-          {/* Content */}
+          {/* Top Decorative Ornament */}
           <DecorativeOrnament position="top" />
+
+          {/* Children (Auth Form) */}
           {children}
+
+          {/* Bottom Decorative Ornament */}
           <DecorativeOrnament position="bottom" />
         </div>
       </div>
 
-      {/* Right Side - Decorative Image */}
-      <div className="overflow-hidden hidden lg:flex lg:items-center lg:justify-center">
-        <AuthAside />
+      {/* Right Side - Image */}
+      <div className="relative hidden lg:block">
+       <AuthAside/>
       </div>
     </div>
   );

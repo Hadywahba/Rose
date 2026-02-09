@@ -173,7 +173,8 @@
       "forget-password": "Forgot your password?",
       "password": "Password",
       "email": "Email",
-      "submit": "Login"
+      "submit": "Login",
+      "login-error": "An error occurred during login. Please try again."
     },
 
     "register": {
