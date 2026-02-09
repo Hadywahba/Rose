@@ -24,7 +24,7 @@ export function useNotifications() {
           await fetchNotificationsAction(pageParam, 6);
 
         // { Handle API error responses }
-        if ("error" in payload || payload.message !== "success") {
+        if ("error" in payload ) {
           const errorMessage =
             payload.error ||
             payload.message ||
