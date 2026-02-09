@@ -16,7 +16,7 @@ export default async function ProductsPage() {
 
 
       <section className="flex-1">
-        <ProductListing/>
+        <ProductListing />
 
       </section>
     </div>

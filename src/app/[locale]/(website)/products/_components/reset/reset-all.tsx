@@ -15,7 +15,8 @@ export default function ResetAll() {
     return (
         <button
             onClick={handleResetAll}
-            className="flex items-center justify-center gap-0.5 text-[#A6252A] text-sm bg-[#FBEAEA] px-4 py-2.5 rounded-md h-10 hover:bg-[#FADADA] transition-colors w-full"
+            className="flex items-center justify-center gap-0.5 text-maroon-600 text-sm bg-maroon-50 hover:bg-maroon-100 px-4 py-2.5 h-10 w-full rounded-md transition-colors
+"
         >
             <RotateCcw size={18} />
             <span>Reset All</span>

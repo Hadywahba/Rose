@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+/*import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
     try {
@@ -32,4 +32,4 @@ export async function GET(request: NextRequest) {
             { status: 500 }
         );
     }
-}
+}*/

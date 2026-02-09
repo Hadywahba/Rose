@@ -73,7 +73,7 @@ export default function CategoriesFilters() {
                     <div className="flex h-48 items-center justify-center">
                         <Loading label="Loading categories..." />
                     </div>
-            ) : isError ? (
+                ) : isError ? (
                     // Show error message if fetching fails.
                     <p className="text-sm text-red-500">Failed to load categories.</p>
                 ) : (

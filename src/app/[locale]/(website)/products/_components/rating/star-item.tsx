@@ -21,9 +21,8 @@ export default function StarItem({ active, hoverActive, onMouseEnter, onMouseLea
         >
             <Star
                 size={25}
-                className={`stroke-yellow-500 transition-colors ${
-                    hoverActive || active ? "fill-yellow-500" : "fill-none hover:fill-yellow-500 hover:stroke-yellow-500"
-                }`}
+                className={`stroke-yellow-500 transition-colors ${hoverActive || active ? "fill-yellow-500" : "fill-none hover:fill-yellow-500 hover:stroke-yellow-500"
+                    }`}
             />
         </button>
     );
