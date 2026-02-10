@@ -46,6 +46,12 @@ export default getRequestConfig(async ({ requestLocale }) => {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2,
         },
+        'currancy-base': {
+          numberingSystem: locale === 'ar' ? 'arab' : 'latn',
+          currency: 'EGP',
+          style: 'currency',
+          maximumFractionDigits: 0,
+        },
       },
       dateTime: {
         'date-max': {

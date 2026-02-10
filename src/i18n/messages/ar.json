@@ -40,7 +40,6 @@
       }
     }
   },
-
   "about": {
     "title": "من نحن",
     "heading": "نقدّم <span>أجود</span> علب الهدايا من أجل <span>مناسباتك</span> المميزة",
@@ -54,7 +53,6 @@
       "توصيل سريع وموثوق"
     ]
   },
-
   "gallery": {
     "heading": "المعرض",
     "paragraph": "تفقد معرضنا الرائع",
@@ -67,7 +65,6 @@
       "galleryGrid6": "خاتم خطوبة مع بطاقة هدية بيضاء"
     }
   },
-
   "testimonials": {
     "heading": "ماذا يقول عملاؤنا",
     "customer": "عميل",
@@ -94,11 +91,9 @@
       }
     ]
   },
-
   "companies": {
     "trustedBy": "موثوق به من قبل أكثر من <span></span> شركة"
   },
-
   "auth": {
     "forget-password": {
       "forgot-password": "هل نسيت كلمة المرور؟",
@@ -223,7 +218,6 @@
       "login-error": "حدث خطأ أثناء تسجيل الدخول . حاول مرة أخرى."
     }
   },
-
   "reviews": {
     "title": "تقييمات المنتج",
     "general-rating": "التقييم العام:",
@@ -232,7 +226,6 @@
     "error-loading": "فشل تحميل التقييمات.",
     "related-products": "منتجات ذات صلة"
   },
-
   "review-form": {
     "your-rating": "تقييمك:",
     "title-label": "عنوان التقييم",
@@ -245,10 +238,15 @@
     "error-message": "فشل إرسال التقييم: {message}",
     "login-to-review": "الرجاء تسجيل الدخول لتتمكن من تقيم المنتج"
   },
-  
   "not-found": {
     "title": "لا توجد صفحة",
     "description": "عذرًا! الصفحة التي تبحث عنها غير موجودة.",
     "button": "العودة إلى الصفحة الرئيسية"
-  }
+  },
+  "price-number-currancy-base-0": "{price,number,currancy-base}",
+  "hot-0": "تريند",
+  "product-removed-successfully-0": "تمت إزالة المنتج بنجاح",
+  "remove-from-whishlist": "إزالة من قائمة المفضلة",
+  "product-added-successfully": "تمت إضافة المنتج بنجاح",
+  "add-to-wishlist": "أضف إلى قائمة المفضلة"
 }

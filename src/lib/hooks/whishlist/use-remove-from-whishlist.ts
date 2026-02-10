@@ -1,16 +1,13 @@
-"use client";
+'use client';
 
-import { removeFromWhishlistAction } from "@/lib/actions/whishlist/remove-from-whishlist.action";
-import { WhishlistCheck } from "@/lib/types/whishlist";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useTranslations } from "next-intl";
-import { toast } from "sonner";
+import { removeFromWhishlistAction } from '@/lib/actions/whishlist/remove-from-whishlist.action';
+import { WhishlistCheck } from '@/lib/types/whishlist';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { toast } from 'sonner';
 
-type WishlistCheckCache = Pick<WhishlistCheck, "message" | "isInWishlist">;
+type WishlistCheckCache = Pick<WhishlistCheck, 'message' | 'isInWishlist'>;
 
 export function useRemoveFromWhishlist(productId: string) {
-  // Translations
-  const t = useTranslations();
   // Query
   const queryClient = useQueryClient();
 
@@ -19,9 +16,9 @@ export function useRemoveFromWhishlist(productId: string) {
       mutationFn: async () => {
         const payload = await removeFromWhishlistAction(productId);
 
-        if ("error" in payload) {
+        if ('error' in payload) {
           throw new Error(
-            payload.error || "error during remove product from whishlist!",
+            payload.error || 'error during remove product from whishlist!',
           );
         }
 
@@ -33,13 +30,13 @@ export function useRemoveFromWhishlist(productId: string) {
         // We are about to change the cache manually (optimistic update),
         // so we must prevent background refetches from overwriting it.
         await queryClient.cancelQueries({
-          queryKey: ["wishlist-check", productId],
+          queryKey: ['wishlist-check', productId],
         });
 
         // 2️⃣ Save the current cache state BEFORE changing it.
         // This snapshot is critical for rollback if the server request fails.
         const previous = queryClient.getQueryData<WishlistCheckCache>([
-          "wishlist-check",
+          'wishlist-check',
           productId,
         ]);
 
@@ -47,9 +44,9 @@ export function useRemoveFromWhishlist(productId: string) {
         // Immediately update the cache to the expected final state.
         // The UI reacts instantly (heart icon switches without waiting).
         queryClient.setQueryData<WishlistCheckCache>(
-          ["wishlist-check", productId],
+          ['wishlist-check', productId],
           {
-            message: "success",
+            message: 'success',
             isInWishlist: false,
           },
         );
@@ -65,7 +62,7 @@ export function useRemoveFromWhishlist(productId: string) {
         // This reverts the UI back to the original value.
         if (context?.previous) {
           queryClient.setQueryData(
-            ["wishlist-check", productId],
+            ['wishlist-check', productId],
             context.previous,
           );
         }
@@ -73,7 +70,7 @@ export function useRemoveFromWhishlist(productId: string) {
       },
 
       onSuccess: () => {
-        toast.success(t('product-removed-successfully'));
+        toast.success('product removed from wishlist successfully');
       },
 
       onSettled: async () => {
@@ -81,12 +78,12 @@ export function useRemoveFromWhishlist(productId: string) {
         // Ensure the cache is fully aligned with the server state.
         // Revalidate the wishlist status for this product
         await queryClient.invalidateQueries({
-          queryKey: ["wishlist-check", productId],
+          queryKey: ['wishlist-check', productId],
         });
 
         // Revalidate the wishlist items list
         await queryClient.invalidateQueries({
-          queryKey: ["wishlist-items"],
+          queryKey: ['wishlist-items'],
         });
       },
     });

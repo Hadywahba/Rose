@@ -1,28 +1,26 @@
-"use server";
+'use server';
 
-import { JSON_HEADER } from "@/lib/constants/shared.constants";
+import { JSON_HEADER } from '@/lib/constants/api.constant';
+import { getToken } from '@/lib/utility/manage-token';
 // import { getToken } from "@/lib/utility/manage-token";
-import { revalidateTag } from "next/cache";
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjk0MDI2YWRlMzY0ZWY2MTQwNDIzZGVlIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NjkwNjI0Mjl9.k5_hNfTJrIkfJzCSPYoSu1on-Jkqv2nAToOGL0LavUw"
-const API ="/wishlist" 
+import { revalidateTag } from 'next/cache';
+const API = '/wishlist';
 
 export async function addToWhishlistAction(productId: string) {
-  // get-token
-
-  // ToDo
-  // const token = await getToken();
+  // Token
+  const token = await getToken();
 
   // guard-class
 
   if (!token) {
-    throw new Error("you must login first");
+    throw new Error('you must login first');
   }
 
-  const resp = await fetch(`${process.env.NEXT_PUBLIC_API}${API}`, {
-    method: "POST",
+  const resp = await fetch(`${process.env.API_URL}${API}`, {
+    method: 'POST',
     headers: {
       ...JSON_HEADER,
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token.accessToken}`,
     },
     body: JSON.stringify({ productId }),
   });
@@ -30,7 +28,7 @@ export async function addToWhishlistAction(productId: string) {
   const payload = await resp.json();
 
   //To refetch Check Product Function Again
-  revalidateTag("check-whishlist");
+  revalidateTag('check-whishlist');
 
   return payload;
 }

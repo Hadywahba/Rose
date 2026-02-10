@@ -40,7 +40,6 @@
       }
     }
   },
-
   "about": {
     "title": "About",
     "heading": "Delivering the <span>Finest</span> Gift Boxes for Your <span>Special</span> Moments",
@@ -59,7 +58,6 @@
       "Fast & Reliable Delivery"
     ]
   },
-
   "gallery": {
     "heading": "Gallery",
     "paragraph": "Check Out our Wonderful Gallery",
@@ -72,7 +70,6 @@
       "galleryGrid6": "Engagement ring with white engagement card gift"
     }
   },
-
   "testimonials": {
     "heading": "What Our Customers Say",
     "customer": "Customer",
@@ -99,11 +96,9 @@
       }
     ]
   },
-
   "companies": {
     "trustedBy": "Trusted by over <span></span> companies"
   },
-
   "auth": {
     "forget-password": {
       "forgot-password": "forgot password?",
@@ -175,7 +170,6 @@
       "submit": "Login",
       "login-error": "An error occurred during login. Please try again."
     },
-
     "register": {
       "title": "Become part of our family!",
       "firstName": "First name",
@@ -229,7 +223,6 @@
       }
     }
   },
-
   "reviews": {
     "title": "Product Reviews",
     "general-rating": "General rating:",
@@ -238,7 +231,6 @@
     "error-loading": "Failed to load reviews.",
     "related-products": "Related Products"
   },
-
   "review-form": {
     "your-rating": "Your Rating:",
     "title-label": "Title",
@@ -251,10 +243,15 @@
     "error-message": "Failed to submit review: {message}",
     "login-to-review": "Please login to be able to review the product"
   },
-  
   "not-found": {
     "title": "Page not found",
     "description": "Oops! The page you are looking for does not exist.",
     "button": "Go back home"
-  }
+  },
+  "price-number-currancy-base-0": "{price,number,currancy-base}",
+  "hot-0": "HOT",
+  "product-removed-successfully-0": "Product Removed Successfully",
+  "remove-from-whishlist": "Remove From Whishlist",
+  "product-added-successfully": "Product Added successfully",
+  "add-to-wishlist": "Add to Whishlist"
 }

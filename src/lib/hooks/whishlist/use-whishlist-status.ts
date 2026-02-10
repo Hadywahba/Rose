@@ -8,7 +8,7 @@ export function useWishlistStatus(productId: string) {
   const { data, isLoading, isFetching } = useQuery({
     queryKey: ["wishlist-check", productId],
     queryFn: async () => {
-      const payload: APIResponse<WhishlistCheck> =
+      const payload: ApiResponse<WhishlistCheck> =
         await fetchWishlistStatusAction(productId);
       // check-error
       if ("error" in payload) {

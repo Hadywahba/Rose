@@ -2,14 +2,11 @@ import { Link } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import Image, { StaticImageData } from "next/image";
 import { ShoppingCart } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { RatingStars } from "@/components/ui/ring-stars";
 import { Button } from "@/components/ui/button";
 import ProductCardWhishlistButtons from "./product-card-whishlist-button";
 import { Badge } from "@/components/ui/badge";
-
-
-
+import { cn } from "@/lib/utility/tailwind-merge";
 
 // Types
 type ProductCardProps = {
