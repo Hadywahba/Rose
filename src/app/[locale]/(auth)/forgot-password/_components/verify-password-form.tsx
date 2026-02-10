@@ -15,11 +15,8 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from '@/components/ui/input-otp';
-
-
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useLocale, useTranslations } from 'next-intl';
-// import { Dispatch, SetStateAction } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { useResendTimer } from '../_hooks/use-resend-timer';
@@ -31,12 +28,6 @@ import { UserEmail } from '@/components/providers/app/forget-password/email-prov
 import { useContext } from 'react';
 import { ForgotPasswordFormProps, VerifyResetFields } from '@/lib/types/auth/forget-password/verify';
 
-// type VerifyPasswordProps = {
-//   email: string;
-//   // TODO set step to forget password
-//   setStep: Dispatch<
-// SetStateAction<'forget-password' | 'verify-password' | 'reset-password'>>;
-// };
 
 export default function VerifyPasswordForm({
   setStep,

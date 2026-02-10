@@ -24,7 +24,7 @@ import { UserEmail } from '@/components/providers/app/forget-password/email-prov
 import { toast } from 'sonner';
 import { useResendTimer } from '../_hooks/use-resend-timer';
 import { FORGOT_PASSWORD_STEPS } from '@/lib/constants/auth.constant';
-import { ForgotPasswordFormProps } from '@/lib/types/auth/verify';
+import { ForgotPasswordFormProps } from '@/lib/types/auth/forget-password/verify';
 
 export default function ForgotPasswordForm({
   setStep,

@@ -1,13 +1,13 @@
 import { toast } from "sonner";
 import { AddReviewAction } from "../_actions/add-review.action";
-import { RatingFormSchema } from "@/lib/schemas/add-review";
 import { useMutation } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
+import { RatingFormSchema } from "@/lib/schema/add-review";
 
 
 export const useAddReview = () => {
   // Translations
-  const t = useTranslations('reviewForm');
+  const t = useTranslations('review-form');
   
   // Mutation
   const { isPending, error, mutate } = useMutation({

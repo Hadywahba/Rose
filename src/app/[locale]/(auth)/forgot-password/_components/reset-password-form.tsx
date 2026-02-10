@@ -22,8 +22,8 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { UserEmail } from '@/components/providers/app/forget-password/email-provider';
-import { ForgotPasswordFormProps } from '@/lib/types/auth/verify';
 import { FORGOT_PASSWORD_STEPS } from '@/lib/constants/auth.constant';
+import { ForgotPasswordFormProps } from '@/lib/types/auth/forget-password/verify';
 
 export default function ResetPasswordForm({
   setStep,

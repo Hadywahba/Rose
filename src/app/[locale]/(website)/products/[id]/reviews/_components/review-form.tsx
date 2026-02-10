@@ -5,11 +5,12 @@ import { Form } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { InteractiveRating } from '@/components/ui/InteractiveRating';
 import { Textarea } from '@/components/ui/textarea';
-import { ratingFormSchema, RatingFormSchema } from '@/lib/schemas/add-review';
+import { ratingFormSchema, RatingFormSchema } from '@/lib/schema/add-review';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import { Controller, useForm } from 'react-hook-form';
 import { useAddReview } from '../_hooks/use-add-review';
+import { useSession } from 'next-auth/react';
 
 interface ReviewFormProps {
   productId: string;
@@ -21,8 +22,7 @@ export default function ReviewForm({ productId }: ReviewFormProps) {
 
   // Hook
   const { isPending, addReview } = useAddReview();
-  // Todo: Uncomment when auth is implemented
-  // const { status } = useSession();
+  const { status } = useSession();
 
   // Hook Form
   const form = useForm<RatingFormSchema>({
