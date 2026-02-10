@@ -184,15 +184,15 @@
       "alreadyHaveAccount": "هل لديك حساب بالفعل؟ <span> تسجيل الدخول </span>",
       "login": "تسجيل الدخول",
       "schema": {
-          "password-required": "كلمة المرور الخاصة بك مطلوبة",
-          "password-match": "كلمات المرور غير متطابقة",
-          "confirmpassword-required": "تأكيد كلمة المرور الخاصة بك مطلوب",
-          "password-character": "يجب أن تحتوي كلمة المرور على حرف خاص واحد على الأقل.",
-          "password-number": "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل.",
-          "password-min": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل.",
-          "password-uppercase": "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل.",
-          "password-lowercase": "يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل."
-        },
+        "password-required": "كلمة المرور الخاصة بك مطلوبة",
+        "password-match": "كلمات المرور غير متطابقة",
+        "confirmpassword-required": "تأكيد كلمة المرور الخاصة بك مطلوب",
+        "password-character": "يجب أن تحتوي كلمة المرور على حرف خاص واحد على الأقل.",
+        "password-number": "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل.",
+        "password-min": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل.",
+        "password-uppercase": "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل.",
+        "password-lowercase": "يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل."
+      },
       "validation": {
         "firstNameRequired": "الاسم الأول مطلوب",
         "lastNameRequired": "اسم العائلة مطلوب",
@@ -223,6 +223,31 @@
       "email": "البريد الالكتروني"
     }
   },
+  "products": {
+    "filters": {
+      "category": "الفئة",
+      "rating": "التقييم",
+      "reset": "إعادة تعيين",
+      "resetAll": "إعادة تعيين الكل",
+      "loadingCategories": "جاري تحميل الفئات...",
+      "loadingMore": "جاري تحميل المزيد...",
+      "failedToLoad": "فشل تحميل الفئات.",
+      "noMore": "لا توجد فئات أخرى",
+      "items": {
+        "flowers": "زهور",
+        "gifts": "هدايا",
+        "cards": "بطاقات",
+        "jewellery": "مجوهرات",
+        "perfumes": "عطور",
+        "watches": "ساعات",
+        "chocolate": "شوكولاتة",
+        "cakes": "كيك",
+        "plants": "نباتات",
+        "candles-diffusers": "شموع ومعطرات"
+      }
+    }
+  },
+
   "not-found": {
     "title": "لا توجد صفحة",
     "description": "عذرًا! الصفحة التي تبحث عنها غير موجودة.",

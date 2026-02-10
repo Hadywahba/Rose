@@ -230,6 +230,19 @@
     }
   },
 
+  "products": {
+    "filters": {
+      "category": "Category",
+      "rating": "Rating",
+      "reset": "Reset",
+      "resetAll": "Reset All",
+      "loadingCategories": "Loading categories...",
+      "loadingMore": "Loading more...",
+      "failedToLoad": "Failed to load categories.",
+      "noMore": "No more categories"
+    }
+  },
+
   "not-found": {
     "title": "Page not found",
     "description": "Oops! The page you are looking for does not exist.",

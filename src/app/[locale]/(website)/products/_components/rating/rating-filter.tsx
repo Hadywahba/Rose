@@ -2,10 +2,12 @@
 
 import React, { useState } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import ResetButton from "../reset/reset-button";
 import StarItem from "./star-item";
 
 export default function RatingFilter() {
+    const t = useTranslations("products.filters");
     // Next.js navigation hooks
     const router = useRouter();
     const pathname = usePathname();
@@ -36,7 +38,7 @@ export default function RatingFilter() {
         <div>
             {/* Header with Reset Button */}
             <div className="mb-2 flex items-center justify-between">
-                <h2 className="text-lg font-semibold text-zinc-800">Rating</h2>
+                <h2 className="text-lg font-semibold text-zinc-800">{t("rating")}</h2>
                 {/* ✅ Reusable Reset Button */}
                 <ResetButton onReset={handleRatingReset} />
             </div>

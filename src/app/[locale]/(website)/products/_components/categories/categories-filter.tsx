@@ -1,21 +1,22 @@
 "use client";
 
-import useInfiniteScroll from "react-infinite-scroll-hook";
 import { useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import CategoryItem from "./categories-item";
 import Loading from "@/components/shared/loading";
 import ResetButton from "../reset/reset-button";
 import { useInfiniteCategories } from "../../_hooks/use-categories";
 import { usePathname, useRouter } from "@/i18n/navigation";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 export default function CategoriesFilters() {
-    // Hooks for navigation and reading the current URL.
+    const t = useTranslations("products.filters");
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
 
     // Fetch categories with pagination using React Query's infinite query.
-    const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading, isError } = useInfiniteCategories();
+    const { data, fetchNextPage, hasNextPage, isLoading, isError } = useInfiniteCategories();
 
     // Flatten the paginated data into a single array of categories.
     const categories = data?.pages.flatMap((page) => page.categories) ?? [];
@@ -46,21 +47,11 @@ export default function CategoriesFilters() {
         router.push(`${pathname}?${params.toString()}`);
     };
 
-    // Set up infinite scroll behavior.
-    const [sentryRef] = useInfiniteScroll({
-        loading: isFetchingNextPage,
-        hasNextPage: !!hasNextPage,
-        onLoadMore: fetchNextPage,
-        disabled: isLoading || isError,
-        rootMargin: "0px 0px 400px 0px",
-        delayInMs: 1000,
-    });
-
     return (
         <div>
             {/* ===== Header Section ===== */}
             <div className="mb-2 flex items-center justify-between">
-                <h2 className="text-lg font-semibold text-zinc-800">Category</h2>
+                <h2 className="text-lg font-semibold text-zinc-800">{t("category")}</h2>
 
                 {/* Reset button to clear the selected category */}
                 <ResetButton onReset={handleCategoryReset} />
@@ -71,34 +62,47 @@ export default function CategoriesFilters() {
                 {isLoading ? (
                     // Show loading spinner while categories are being fetched.
                     <div className="flex h-48 items-center justify-center">
-                        <Loading label="Loading categories..." />
+                        <Loading label={t("loadingCategories")} />
                     </div>
                 ) : isError ? (
                     // Show error message if fetching fails.
-                    <p className="text-sm text-red-500">Failed to load categories.</p>
+                    <p className="text-sm text-red-500">{t("failedToLoad")}</p>
                 ) : (
-                    <>
-                        {/* Render all loaded categories */}
-                        {categories.map((cat) => (
-                            <CategoryItem
-                                key={cat._id}
-                                label={cat.name} // Category name
-                                active={activeCategory === cat.slug} // Highlight if selected
-                                image={cat.image} // Category image
-                                onClick={() => handleCategoryClick(cat.slug)} // Handle click
-                            />
-                        ))}
-
-                        {/* Invisible element that triggers fetching next page when in view */}
-                        <div ref={sentryRef} className="h-1" />
-
-                        {/* Show loading spinner while fetching the next page */}
-                        {isFetchingNextPage && (
+                    <InfiniteScroll
+                        dataLength={categories.length}
+                        next={fetchNextPage}
+                        hasMore={!!hasNextPage}
+                        loader={
                             <div className="flex h-16 items-center justify-center">
-                                <Loading label="Loading more..." />
+                                <Loading label={t("loadingMore")} />
                             </div>
-                        )}
-                    </>
+                        }
+                        scrollableTarget="div"
+                        endMessage={
+                            categories.length > 0 && (
+                                <p className="text-center text-xs text-gray-400 py-2">
+                                    {t("noMore")}
+                                </p>
+                            )
+                        }
+                    >
+                        {/* Render all loaded categories */}
+                       {categories.map((cat) => {
+                            const translatedLabel = t.has(`items.${cat.slug}`) 
+                                ? t(`items.${cat.slug}`) 
+                                : cat.name;
+
+                            return (
+                                <CategoryItem
+                                    key={cat._id}
+                                    label={translatedLabel} 
+                                    active={activeCategory === cat.slug}
+                                    image={cat.image}
+                                    onClick={() => handleCategoryClick(cat.slug)}
+                                />
+                            );
+                        })}
+                    </InfiniteScroll>
                 )}
             </div>
         </div>
