@@ -1,7 +1,7 @@
 'use server';
 
 import { JSON_HEADER } from '@/lib/constants/api.constant';
-import { VerifyResetFields } from '@/lib/types/auth/verify';
+import { VerifyResetFields } from '@/lib/types/auth/forget-password/verify';
 
 export async function VerifyPassword(data: VerifyResetFields) {
   const res = await fetch(

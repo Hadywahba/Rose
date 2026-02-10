@@ -11,6 +11,7 @@ export default function FileUpload() {
   return (
     <div className="flex items-center gap-3">
       <input
+        aria-label="Upload a file"
         type="file"
         ref={fileInputRef}
         className="hidden"

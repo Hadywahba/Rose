@@ -1,6 +1,5 @@
 {
   "title": "تطبيق روز",
-
   "hero": {
     "static-image": {
       "button": "اشتري الان"
@@ -224,6 +223,29 @@
       "login-error": "حدث خطأ أثناء تسجيل الدخول . حاول مرة أخرى."
     }
   },
+
+  "reviews": {
+    "title": "تقييمات المنتج",
+    "general-rating": "التقييم العام:",
+    "ratings-count": "تقييم",
+    "no-reviews": "لا توجد تقييمات بعد. كن أول من يقيّم!",
+    "error-loading": "فشل تحميل التقييمات.",
+    "related-products": "منتجات ذات صلة"
+  },
+
+  "review-form": {
+    "your-rating": "تقييمك:",
+    "title-label": "عنوان التقييم",
+    "title-placeholder": "أدخل عنوان التقييم",
+    "review-label": "المراجعة",
+    "review-placeholder": "ما رأيك في هذا المنتج؟",
+    "submit-button": "إضافة تقييم",
+    "submitting": "جاري الإرسال...",
+    "success-message": "شكراً لك على تقييمك! تم إرساله بنجاح.",
+    "error-message": "فشل إرسال التقييم: {message}",
+    "login-to-review": "الرجاء تسجيل الدخول لتتمكن من تقيم المنتج"
+  },
+  
   "not-found": {
     "title": "لا توجد صفحة",
     "description": "عذرًا! الصفحة التي تبحث عنها غير موجودة.",

@@ -30,7 +30,7 @@ export default function SubmitButton({
   return (
     <div className="flex flex-col gap-6 pt-9 mt-0">
       {/* Button */}
-      <div className="">
+      <div >
         <Button
           variant={'primary'}
           disabled={isPending || (!isValid && isSubmitting)}

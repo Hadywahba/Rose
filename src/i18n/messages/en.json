@@ -1,33 +1,5 @@
 {
   "title": "Rose App",
-
-  "testimonials": {
-    "heading": "What Our Customers Say",
-    "customer": "Customer",
-    "reviews": [
-      {
-        "name": "Jake Miller",
-        "review": "I've been ordering from this flower shop for years and they never disappoint. The quality and service are exceptional!",
-        "date": "January 12, 2025"
-      },
-      {
-        "name": "Tyler Brooks",
-        "review": "Customer service is top-notch and the flowers last longer than any others I've bought. Highly recommend!",
-        "date": "January 12, 2025"
-      },
-      {
-        "name": "Max Turner",
-        "review": "The team truly cares about every order. I always feel confident when I buy flowers from here. The checkout process was sup...",
-        "date": "January 12, 2025"
-      },
-      {
-        "name": "Lisa Anderson",
-        "review": "Amazing quality and beautiful presentation! Every bouquet I receive is absolutely stunning. The delivery is always on time and the flowers stay fresh for so long!",
-        "date": "January 10, 2025"
-      }
-    ]
-  },
-
   "hero": {
     "static-image": {
       "button": " shop now"
@@ -99,6 +71,33 @@
       "galleryGrid5": "Engagement ring in middle of bouquet of white flowers",
       "galleryGrid6": "Engagement ring with white engagement card gift"
     }
+  },
+
+  "testimonials": {
+    "heading": "What Our Customers Say",
+    "customer": "Customer",
+    "reviews": [
+      {
+        "name": "Jake Miller",
+        "review": "I've been ordering from this flower shop for years and they never disappoint. The quality and service are exceptional!",
+        "date": "January 12, 2025"
+      },
+      {
+        "name": "Tyler Brooks",
+        "review": "Customer service is top-notch and the flowers last longer than any others I've bought. Highly recommend!",
+        "date": "January 12, 2025"
+      },
+      {
+        "name": "Max Turner",
+        "review": "The team truly cares about every order. I always feel confident when I buy flowers from here. The checkout process was sup...",
+        "date": "January 12, 2025"
+      },
+      {
+        "name": "Lisa Anderson",
+        "review": "Amazing quality and beautiful presentation! Every bouquet I receive is absolutely stunning. The delivery is always on time and the flowers stay fresh for so long!",
+        "date": "January 10, 2025"
+      }
+    ]
   },
 
   "companies": {
@@ -231,6 +230,28 @@
     }
   },
 
+  "reviews": {
+    "title": "Product Reviews",
+    "general-rating": "General rating:",
+    "ratings-count": "ratings",
+    "noReviews": "No reviews yet. Be the first to review!",
+    "error-loading": "Failed to load reviews.",
+    "related-products": "Related Products"
+  },
+
+  "review-form": {
+    "your-rating": "Your Rating:",
+    "title-label": "Title",
+    "title-placeholder": "Enter review title",
+    "review-label": "Review",
+    "review-placeholder": "What do you think of this product?",
+    "submit-button": "Add Review",
+    "submitting": "Submitting...",
+    "success-message": "Thank you for your review! It has been submitted successfully.",
+    "error-message": "Failed to submit review: {message}",
+    "login-to-review": "Please login to be able to review the product"
+  },
+  
   "not-found": {
     "title": "Page not found",
     "description": "Oops! The page you are looking for does not exist.",

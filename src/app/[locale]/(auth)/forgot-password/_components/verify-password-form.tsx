@@ -16,10 +16,7 @@ import {
   InputOTPSlot,
 } from '@/components/ui/input-otp';
 
-import {
-  ForgotPasswordFormProps,
-  VerifyResetFields,
-} from '@/lib/types/auth/verify';
+
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useLocale, useTranslations } from 'next-intl';
 // import { Dispatch, SetStateAction } from 'react';
@@ -32,6 +29,7 @@ import { FORGOT_PASSWORD_STEPS } from '@/lib/constants/auth.constant';
 import { verifySchema } from '@/lib/schema/verify-password';
 import { UserEmail } from '@/components/providers/app/forget-password/email-provider';
 import { useContext } from 'react';
+import { ForgotPasswordFormProps, VerifyResetFields } from '@/lib/types/auth/forget-password/verify';
 
 // type VerifyPasswordProps = {
 //   email: string;
