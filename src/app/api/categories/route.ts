@@ -1,10 +1,12 @@
-/*import { NextRequest, NextResponse } from "next/server";
+export const dynamic = 'force-dynamic';
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
     try {
         const searchParams = request.nextUrl.searchParams;
         const page = searchParams.get("page") || "1";
         const limit = searchParams.get("limit") || "7";
+        
 
         const backendUrl = `${process.env.NEXT_PUBLIC_API}/categories?page=${page}&limit=${limit}`;
 
@@ -32,4 +34,4 @@ export async function GET(request: NextRequest) {
             { status: 500 }
         );
     }
-}*/
+}
