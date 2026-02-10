@@ -1,6 +1,6 @@
 export default async function catchError<T>(
-  callback: () => Promise<APIResponse<T>>
-): Promise<[APIResponse<T> | null, string | null]> {
+  callback: () => Promise<ApiResponse<T>>
+): Promise<[ApiResponse<T> | null, string | null]> {
   try {
     const payload = await callback();
 
