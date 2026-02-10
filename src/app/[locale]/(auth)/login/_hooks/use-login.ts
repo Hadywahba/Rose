@@ -1,5 +1,6 @@
 'use client';
 
+import { useSyncLocalWishlistToServer } from '@/lib/hooks/local-storage/use-sync-local-whishlist-to-server';
 import { LoginFormFields } from '@/lib/schema/login.schema';
 import { useMutation } from '@tanstack/react-query';
 import { signIn } from 'next-auth/react';
@@ -7,8 +8,11 @@ import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 
 export default function useLogin() {
-    // Translation
-      const t = useTranslations('auth');
+  // Translation
+  const t = useTranslations('auth');
+  // Hooks
+  const { sendWhishlistProductsFromStorageToServer } =
+    useSyncLocalWishlistToServer();
 
   //mutation
   const { isPending, error, mutate } = useMutation({
@@ -29,9 +33,13 @@ export default function useLogin() {
       }
       return response;
     },
-    onError:()=>{
-   toast.error(t('login.login-error'));
-    }
+    onSuccess: async () => {
+      // Sync local wishlist to server after successful login
+      await sendWhishlistProductsFromStorageToServer();
+    },
+    onError: () => {
+      toast.error(t('login.login-error'));
+    },
   });
   return { isPending, error, login: mutate };
 }
