@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 
 import { Button } from '@/components/ui/button';
@@ -10,11 +8,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { Plus } from 'lucide-react';
-import { useState } from 'react';
-
-import { RadioGroup } from '@radix-ui/react-radio-group';
-import AddressCard from './address-card';
+import AddressSelector from './address-selector';
+import { getUserAddresses } from '@/lib/services/addresses/get-user-addresses';
 
 export interface Address {
   id: string;
@@ -31,12 +26,8 @@ export interface Address {
 interface AddressBookModalProps {
   addresses?: Address[];
   onAddAddress?: () => void;
-  onEditAddress?: (id: string) => void;
-  onDeleteAddress?: (id: string) => void;
   onSelectAddress?: (id: string) => void;
   selectedAddressId?: string;
-  open?: boolean;
-  onOpenChange?: (open: boolean) => void;
   trigger?: React.ReactNode;
 }
 
@@ -83,95 +74,48 @@ const defaultAddresses: Address[] = [
   },
 ];
 
-export function MyAddresses({
+export async function MyAddresses({
   addresses = defaultAddresses,
   onAddAddress,
-
   onSelectAddress,
   selectedAddressId,
-  open,
-  onOpenChange,
   trigger,
 }: AddressBookModalProps) {
-  const [internalOpen, setInternalOpen] = useState(false);
-  const [selectedId, setSelectedId] = useState(selectedAddressId);
-
-  const isControlled = open !== undefined;
-  const currentOpen = isControlled ? open : internalOpen;
-  const setOpen = isControlled ? onOpenChange! : setInternalOpen;
-
-  const handleSelectAddress = (id: string) => {
-    setSelectedId(id);
-    onSelectAddress?.(id);
-  };
-
-
-
-  const handleAddNew = () => {
-    onAddAddress?.();
-  };
-
-  // Group addresses by category
+  const userAddresses = await getUserAddresses();
+  console.log(userAddresses);
+  
   const groupedAddresses = addresses.reduce(
     (acc, address) => {
       const category = address.category;
-      if (!acc[category]) {
-        acc[category] = [];
-      }
+      if (!acc[category]) acc[category] = [];
       acc[category].push(address);
       return acc;
     },
     {} as Record<string, Address[]>,
   );
 
+
   return (
-    <Dialog open={currentOpen} onOpenChange={setOpen}>
+    <Dialog>
       <DialogTrigger asChild>
         {trigger || <Button variant="outline">Open Address Book</Button>}
       </DialogTrigger>
-      <DialogContent className="max-h-[80vh] max-w-2xl overflow-y-auto">
-        <DialogHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
+      <DialogContent className="max-h-[80vh] max-w-3xl overflow-y-auto">
+        <DialogHeader className="mt-2 flex flex-row items-center justify-between space-y-0 pb-4">
           <DialogTitle className="text-2xl font-bold">My Addresses</DialogTitle>
           <Button
-            onClick={handleAddNew}
-            className="ml-auto bg-red-100 text-red-600 hover:bg-red-200"
+            onClick={onAddAddress}
+            className="ml-auto bg-maroon-50 text-maroon-600 hover:bg-maroon-100"
           >
-            <Plus className="mr-2 h-4 w-4" />
             Add a New Address
           </Button>
         </DialogHeader>
 
-        {/* <div className="space-y-6"> */}
-        <RadioGroup value={selectedId} onValueChange={handleSelectAddress}>
-          {Object.entries(groupedAddresses).map(
-            ([category, categoryAddresses]) => (
-              <div key={category} className="space-y-3">
-                {/* Category Header */}
-                <div className="mb-4 flex items-center gap-3">
-                  <h3
-                    className={`text-lg font-semibold ${addresses.find((a) => a.category === category)?.categoryColor || 'text-red-600'}`}
-                  >
-                    {category}
-                  </h3>
-                </div>
-
-                {/* Address Items */}
-                <div className="space-y-3">
-                  {categoryAddresses.map((address) => (
-
-                      <AddressCard
-                        key={address.id}
-                        address={address}
-                        selected={selectedId === address.id}
-                    />
-                    
-                  ))}
-                </div>
-              </div>
-            ),
-          )}
-        </RadioGroup>
-        {/* </div> */}
+        <AddressSelector
+          groupedAddresses={groupedAddresses}
+          selectedAddressId={selectedAddressId}
+          onSelectAddress={onSelectAddress}
+        />
       </DialogContent>
     </Dialog>
   );

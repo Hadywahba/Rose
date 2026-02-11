@@ -1,7 +1,7 @@
-import React from 'react'
-import { MyAddresses } from './_components/my-addresses'
+import { MyAddresses } from './_components/my-addresses';
 
-export default function page() {
+export default async function page() {
+
   return (
     <div>
       <MyAddresses/>
