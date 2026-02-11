@@ -6,14 +6,13 @@ import { Product, ProductsResponse } from '@/lib/types/end-point-api/products';
 import InvalidProducts from './invalid-products';
 import { fetchAllProductsService } from '@/lib/actions/products/fetch-all-products.service';
 import AppPagination from '@/components/shared/app-pagination';
+import { cn } from '@/lib/utility/tailwind-merge';
 
 type ProductsListProps = {
-  pathName: string;
   searchParams: SearchParams;
 };
 
 export default async function ProductsList({
-  pathName,
   searchParams,
 }: ProductsListProps) {
   // Translation
@@ -23,20 +22,37 @@ export default async function ProductsList({
   const nextParams: SearchParams = {
     ...searchParams,
     page: searchParams.page ?? '1', //default
-    limit: searchParams.limit ?? '6', //default
+    limit: searchParams.limit ?? '10',
   };
 
   const [payload] = await catchError<PaginatedResponse<ProductsResponse>>(() =>
     fetchAllProductsService(nextParams),
   );
+  if (!payload) {
+    return null;
+  }
 
-  const totalPages = payload?.metadata?.totalPages ?? 1;
+  const limit = Number(nextParams.limit);
+
+  const productsCount = payload.products.length;
+  const isLastPage = productsCount < limit;
+
+  const safeTotalPages = isLastPage
+    ? payload.metadata.currentPage
+    : payload.metadata.currentPage + 1;
+
+  const totalPages = safeTotalPages;
 
   const products = payload?.products ?? [];
 
   return (
     <div className="col-span-9">
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      <div
+        className={cn(
+          'grid grid-cols-1 gap-4   lg:border-zinc-100 lg:dark:border-zinc-600  sm:grid-cols-2 lg:grid-cols-3',
+          locale === 'ar' ? ' lg:border-r-2 ' : 'lg:border-l-2 ',
+        )}
+      >
         {products.length > 0 &&
           products.map((product: Product) => (
             <ProductCard
@@ -58,7 +74,7 @@ export default async function ProductsList({
       {totalPages > 1 && (
         <div className="mt-6 flex justify-center">
           <AppPagination
-            pathname={pathName}
+            pathname={'/products'}
             searchParams={searchParams}
             currentPage={payload?.metadata?.currentPage ?? 1}
             totalPages={totalPages}

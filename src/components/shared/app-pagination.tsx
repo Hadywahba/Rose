@@ -87,7 +87,7 @@ function pageBtn(active: boolean) {
     'text-base font-medium',
     'transition-colors',
     active
-      ? 'bg-maroon-700 text-white border-maroon-700 hover:bg-maroon-700 dark:bg-soft-pink-200 dark:text-zinc-700'
+      ? 'bg-maroon-700 text-white border-maroon-700 hover:bg-maroon-700 dark:bg-softpink-200 dark:hover:bg-softpink-300  dark:text-zinc-700'
       : 'bg-white text-zinc-900 border-zinc-200 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100',
   ].join(' ');
 }

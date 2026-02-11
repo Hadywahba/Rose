@@ -248,5 +248,14 @@
   "product-removed-successfully-0": "تمت إزالة المنتج بنجاح",
   "remove-from-whishlist": "إزالة من قائمة المفضلة",
   "product-added-successfully": "تمت إضافة المنتج بنجاح",
-  "add-to-wishlist": "أضف إلى قائمة المفضلة"
+  "add-to-wishlist": "أضف إلى قائمة المفضلة",
+  "product-filter": {
+    "occasion": "المناسبة",
+    "occasion-error": "لا توجد مناسبات أخرى",
+    "occasion-loading": "جارٍ التحميل...",
+    "price": "السعر",
+    "price-from": "من",
+    "price-to": "إلى",
+    "reset": "إعادة ضبط"
+  }
 }

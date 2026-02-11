@@ -56,7 +56,7 @@ export default function ProductCardWhishlistButtons({
               toast.success(t('product-added-successfully'));
             }
           }}
-          className="group absolute start-3 top-3 flex w-8 items-center gap-1 overflow-hidden whitespace-nowrap rounded-full bg-white p-1 text-sm text-maroon-600 transition-[width] duration-300 ease-in-out hover:w-40"
+          className="group absolute start-3 top-3 flex w-7 items-center gap-1 overflow-hidden whitespace-nowrap rounded-full bg-white p-1 text-sm text-maroon-600 transition-[width] duration-300 ease-in-out hover:w-44"
         >
           <HeartPlus size={20} className="shrink-0" />
           <span className="translate-x-2 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100">
@@ -76,7 +76,7 @@ export default function ProductCardWhishlistButtons({
               toast.success(t('product-removed-successfully-0'));
             }
           }}
-          className="group absolute start-3 top-3 flex w-8 items-center gap-1 overflow-hidden whitespace-nowrap rounded-full bg-white p-1 text-sm text-maroon-600 transition-[width] duration-300 ease-in-out hover:w-48"
+          className="group absolute start-3 top-3 flex w-7 items-center gap-1 overflow-hidden whitespace-nowrap rounded-full bg-white p-1 text-sm text-maroon-600 transition-[width] duration-300 ease-in-out hover:w-44"
         >
           <HeartMinus size={20} className="shrink-0" />
           <span className="translate-x-2 opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100">

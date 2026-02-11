@@ -253,5 +253,14 @@
   "product-removed-successfully-0": "Product Removed Successfully",
   "remove-from-whishlist": "Remove From Whishlist",
   "product-added-successfully": "Product Added successfully",
-  "add-to-wishlist": "Add to Whishlist"
+  "add-to-wishlist": "Add to Whishlist",
+  "product-filter": {
+    "occasion": "occasion",
+    "occasion-loading": "Loading...",
+    "occasion-error": " No more Occasions",
+    "price": "price",
+    "price-from": "from",
+    "price-to": "to",
+    "reset": "reset"
+  }
 }
