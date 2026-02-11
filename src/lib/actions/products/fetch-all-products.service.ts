@@ -1,4 +1,3 @@
-'use server';
 import { SearchParams } from '@/lib/types/global';
 import { convertSearchParams } from '@/lib/utility/convert-search-params-to-string';
 

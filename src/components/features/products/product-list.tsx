@@ -26,21 +26,19 @@ export default async function ProductsList({
     limit: searchParams.limit ?? '6', //default
   };
 
-  const [payload, error] = await catchError<
-    PaginatedResponse<ProductsResponse>
-  >(() => fetchAllProductsService(nextParams));
+  const [payload] = await catchError<PaginatedResponse<ProductsResponse>>(() =>
+    fetchAllProductsService(nextParams),
+  );
 
-  if (error || !payload || 'error' in payload) {
-    throw new Error(payload?.message || 'Error During Fetch Products');
-  }
+  const totalPages = payload?.metadata?.totalPages ?? 1;
 
-  const totalPages = payload.metadata?.totalPages ?? 1;
+  const products = payload?.products ?? [];
 
   return (
     <div className="col-span-9">
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {payload.products.length > 0 &&
-          payload.products.map((product:Product) => (
+        {products.length > 0 &&
+          products.map((product: Product) => (
             <ProductCard
               key={product._id}
               priceBeforeSale={product.price}
@@ -55,17 +53,16 @@ export default async function ProductsList({
           ))}
       </div>
 
-      {payload.products.length === 0 && <InvalidProducts />}
+      {products.length === 0 && <InvalidProducts />}
 
       {totalPages > 1 && (
         <div className="mt-6 flex justify-center">
-          {/* pagination */}
           <AppPagination
             pathname={pathName}
             searchParams={searchParams}
-            currentPage={payload.metadata.currentPage}
+            currentPage={payload?.metadata?.currentPage ?? 1}
             totalPages={totalPages}
-            show={payload.products.length > 0}
+            show={products.length > 0}
             locale={locale}
           />
         </div>
