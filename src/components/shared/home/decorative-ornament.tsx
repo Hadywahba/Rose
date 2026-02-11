@@ -8,8 +8,6 @@ type Props = {
 };
 export default function DecorativeOrnament({ position = 'top' }: Props) {
   const { theme } = useTheme();
-  console.log('Current theme in DecorativeOrnament:', theme);
-
   return (
     <Image
       src={
