@@ -51,6 +51,7 @@ export default function AddressForm({ onClose }: AddressFormProps) {
     <div className="space-y-2">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+          <p className='text-maroon-600 font-medium text-2xl'>Enter address details</p>
           <Field>
             <FieldLabel htmlFor="username">{t('category-label')}</FieldLabel>
             <Input
