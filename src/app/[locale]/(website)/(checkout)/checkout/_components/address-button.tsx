@@ -35,7 +35,7 @@ export default function AddressButton() {
       {/* Button */}
       <Button
         variant={'secondary'}
-        className="mb-9 w-full py-5 text-base font-medium dark:bg-softpink-300 dark:text-black dark:hover:bg-softpink-400"
+        className="mb-9 w-full py-6 text-base font-medium rounded-xl dark:bg-softpink-300 dark:text-black dark:hover:bg-softpink-400"
       >
         {t('new-address')}
       </Button>
