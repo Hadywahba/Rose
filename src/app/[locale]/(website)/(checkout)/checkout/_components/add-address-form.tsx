@@ -1,44 +1,59 @@
 'use client';
+
 import { Button } from '@/components/ui/button';
 import { Field, FieldError, FieldLabel } from '@/components/ui/field';
 import { Form } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { InteractiveRating } from '@/components/ui/InteractiveRating';
 import { Textarea } from '@/components/ui/textarea';
-import { ratingFormSchema, RatingFormSchema } from '@/lib/schema/add-review';
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { PhoneInput } from '@/components/ui/phone-input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
-import { Controller, useForm } from 'react-hook-form';
-import { useAddReview } from '../../../products/[id]/reviews/_hooks/use-add-review';
+import { useForm } from 'react-hook-form';
+import { useAddAddress } from '@/hooks/use-add-address';
+import { AddressFormSchema, addressSchema } from '@/lib/schema/address.schema';
+import { cn } from '@/lib/utility/tailwind-merge';
 
-interface ReviewFormProps {
+interface AddressFormProps {
   selectedAddressId?: string;
   onClose?: () => void;
 }
 
-export default function AddressForm({ selectedAddressId }: ReviewFormProps) {
+export default function AddressForm({
+  // selectedAddressId,
+  onClose,
+}: AddressFormProps) {
   // Translations
-  const t = useTranslations('review-form');
+  const t = useTranslations('my-addresses');
 
   // Hook
-  const { isPending, addReview } = useAddReview();
+  const { isPending, addAddress } = useAddAddress();
 
   // Hook Form
-  const form = useForm<RatingFormSchema>({
-    resolver: zodResolver(ratingFormSchema),
+  const form = useForm<AddressFormSchema>({
+    resolver: zodResolver(addressSchema),
     defaultValues: {
-      product: selectedAddressId,
-      rating: 0,
-      title: '',
-      comment: '',
+      category: '',
+      city: '',
+      address: '',
+      phone: '',
     },
   });
 
   // Function
-  function onSubmit(values: RatingFormSchema) {
-    addReview(values);
+  function onSubmit(values: AddressFormSchema) {
+    addAddress(values, {
+      onSuccess: () => {
+        onClose?.();
+      },
+    });
   }
-
 
   return (
     <div className="relative col-span-1 border-s ps-4">
@@ -49,53 +64,80 @@ export default function AddressForm({ selectedAddressId }: ReviewFormProps) {
             onSubmit={form.handleSubmit(onSubmit)}
             className="max-w-xl space-y-4"
           >
-            {/* Rating */}
-            <div className="space-y-1">
-              <div className="flex items-center gap-4">
-                <FieldLabel>{t('your-rating')}</FieldLabel>
-                <Controller
-                  name="rating"
-                  control={form.control}
-                  render={({ field }) => (
-                    <InteractiveRating
-                      rating={field.value}
-                      onRatingChange={field.onChange}
-                      className="[&_svg]:size-6"
-                    />
-                  )}
-                />
-              </div>
-              <FieldError>{form.formState.errors.rating?.message}</FieldError>
-            </div>
-
-            {/* Title */}
+            {/* category */}
             <Field>
-              <FieldLabel htmlFor="title">{t('title-label')}</FieldLabel>
+              <FieldLabel htmlFor="category">{t('category-label')}</FieldLabel>
               <Input
                 className="w-full"
-                id="title"
-                placeholder={t('title-placeholder')}
-                {...form.register('title')}
+                id="category"
+                placeholder={t('category-placeholder')}
+                {...form.register('category')}
               />
-              <FieldError>{form.formState.errors.title?.message}</FieldError>
+              <FieldError>{form.formState.errors.category?.message}</FieldError>
             </Field>
 
-            {/* Comment */}
+            {/* city */}
             <Field>
-              <FieldLabel htmlFor="comment">{t('review-label')}</FieldLabel>
+              <FieldLabel htmlFor="city">{t('city-label')}</FieldLabel>
+              <Input
+                className="w-full"
+                id="city"
+                placeholder={t('city-placeholder')}
+                {...form.register('city')}
+              />
+              <FieldError>{form.formState.errors.city?.message}</FieldError>
+            </Field>
+
+            {/* address */}
+            <Field>
+              <FieldLabel htmlFor="address">{t('address-label')}</FieldLabel>
               <Textarea
                 className="min-h-36"
-                id="comment"
-                placeholder={t('review-placeholder')}
-                {...form.register('comment')}
+                id="address"
+                placeholder={t('address-placeholder')}
+                {...form.register('address')}
               />
-              <FieldError>{form.formState.errors.comment?.message}</FieldError>
+              <FieldError>{form.formState.errors.address?.message}</FieldError>
             </Field>
 
-            {/* Submit */}
-            <Button disabled={isPending} className="w-full" type="submit">
-              {isPending ? t('submitting') : t('submit-button')}
-            </Button>
+            {/* Phone */}
+            <FormField
+              control={form.control}
+              name="phone"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-sm font-normal text-zinc-800 dark:text-zinc-50">
+                    {t('phone-label')}
+                  </FormLabel>
+                  <FormControl>
+                    <PhoneInput
+                      className={cn(
+                        'w-full border-zinc-300 text-black focus:outline-none focus:ring-0 dark:border-zinc-600 dark:text-zinc-50',
+                      )}
+                      defaultCountry="EG"
+                      placeholder={t('phone-placeholder')}
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {/* Buttons */}
+            <div className="flex gap-3">
+              <Button
+                type="button"
+                variant="outline"
+                className="flex-1"
+                onClick={onClose}
+              >
+                {t('cancel-button')}
+              </Button>
+              <Button disabled={isPending} className="flex-1" type="submit">
+                {isPending ? t('submitting') : t('submit-button')}
+              </Button>
+            </div>
           </form>
         </Form>
       </div>
