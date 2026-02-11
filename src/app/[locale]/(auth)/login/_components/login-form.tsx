@@ -48,18 +48,12 @@ export default function LoginForm() {
   });
   // Function
   const onSubmit: SubmitHandler<LoginFormFields> = (values) => {
-    login(values);
-  };
+  login({
+    values,
+    rememberMe,
+  });
+};
 
-  // const handleLogin = async () => {
-  //   await signIn('credentials', {
-  //     email,
-  //     password,
-  //     rememberMe,
-  //     redirect: true,
-  //     callbackUrl: '/dashboard',
-  //   });
-  // };
 
   return (
     <section className="flex w-full flex-1 flex-col justify-center gap-6">

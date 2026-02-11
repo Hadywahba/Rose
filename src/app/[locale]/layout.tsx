@@ -70,7 +70,8 @@ export default function LocaleLayout({
       <body
         className={` ${locale === 'ar' ? tajawal.className : sarabun.className} ${zain.variable} ${inter.variable} antialiased [@media(min-width:1920px)]:container [@media(min-width:1920px)]:mx-auto`}
       >
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}</Providers>
       </body>
     </html>
   );
