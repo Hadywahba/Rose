@@ -2,7 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import CategoryItem from "./categories-item";
+import CategoriesList from "./categories-list";
 import Loading from "@/components/shared/loading";
 import ResetButton from "../reset/reset-button";
 import { useInfiniteCategories } from "../../_hooks/use-categories";
@@ -58,7 +58,7 @@ export default function CategoriesFilters() {
             </div>
 
             {/* ===== Categories List Section ===== */}
-            <div className="scrollbar-thin scrollbar-thumb-[#7b1e24] scrollbar-track-transparent hover:scrollbar-thumb-[#5a1218] flex h-52 flex-col gap-1 overflow-auto  transition-all duration-300">
+            <div id="categories-scroll" className="scrollbar-thin scrollbar-thumb-[#7b1e24] scrollbar-track-transparent hover:scrollbar-thumb-[#5a1218] flex h-52 flex-col gap-1 overflow-auto  transition-all duration-300">
                 {isLoading ? (
                     // Show loading spinner while categories are being fetched.
                     <div className="flex h-48 items-center justify-center">
@@ -77,7 +77,7 @@ export default function CategoriesFilters() {
                                 <Loading label={t("loadingMore")} />
                             </div>
                         }
-                        scrollableTarget="div"
+                        scrollableTarget="categories-scroll"
                         endMessage={
                             categories.length > 0 && (
                                 <p className="text-center text-xs text-gray-400 py-2">
@@ -86,22 +86,13 @@ export default function CategoriesFilters() {
                             )
                         }
                     >
-                        {/* Render all loaded categories */}
-                       {categories.map((cat) => {
-                            const translatedLabel = t.has(`items.${cat.slug}`) 
-                                ? t(`items.${cat.slug}`) 
-                                : cat.name;
-
-                            return (
-                                <CategoryItem
-                                    key={cat._id}
-                                    label={translatedLabel} 
-                                    active={activeCategory === cat.slug}
-                                    image={cat.image}
-                                    onClick={() => handleCategoryClick(cat.slug)}
-                                />
-                            );
-                        })}
+                        {/* Render all loaded categories via `CategoriesList` component */}
+                        <CategoriesList
+                            categories={categories}
+                            t={t}
+                            activeCategory={activeCategory}
+                            onCategoryClick={handleCategoryClick}
+                        />
                     </InfiniteScroll>
                 )}
             </div>
