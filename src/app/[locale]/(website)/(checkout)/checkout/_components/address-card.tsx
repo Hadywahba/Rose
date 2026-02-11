@@ -1,6 +1,6 @@
 import { RadioGroupItem } from '@/components/ui/radio-group';
+import { Address } from '@/lib/types/user-addresses';
 import { MapPin, PencilLine, Phone, Trash2 } from 'lucide-react';
-import { Address } from './my-addresses';
 
 type AddressCardProps = {
   address: Address;
@@ -17,7 +17,7 @@ export default function AddressCard({ address, selected }: AddressCardProps) {
             : 'border-zinc-300 hover:border-maroon-300'
         }`}
       >
-        <RadioGroupItem value={address.id} className="sr-only mt-1" />
+        <RadioGroupItem value={address._id} className="sr-only mt-1" />
 
         <div className="min-w-0 flex-1">
           <div className="mb-2 flex items-center gap-2">
@@ -25,11 +25,11 @@ export default function AddressCard({ address, selected }: AddressCardProps) {
               <MapPin size={20} />
             </div>
             {/* title */}
-            <h4 className="text-xl font-semibold">{address.title}</h4>
+            <h4 className="text-xl font-semibold">{address.city}</h4>
           </div>
 
           {/* fullAddress */}
-          <p className="text-sm text-zinc-800">{address.fullAddress}</p>
+          <p className="text-sm text-zinc-800">{address.street}</p>
         </div>
 
         <div className="flex flex-shrink-0 items-start gap-2">
