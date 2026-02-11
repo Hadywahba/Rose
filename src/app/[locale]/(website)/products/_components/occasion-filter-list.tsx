@@ -8,8 +8,8 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utility/tailwind-merge';
 import { useFilters } from '../_hooks/use-filter';
 import ListError from '@/components/error/list-error';
-import OccasionFilterSkeleton from './occasion-filter-skeleton';
 import { useTranslations } from 'use-intl';
+import OccasionFilterSkeleton from '@/components/skeletons/occasion/occasion-filter-skeleton';
 
 const OCCASIONS_PER_PAGE = 6;
 

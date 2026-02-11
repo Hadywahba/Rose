@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import OccasionFilter from './occasion-filter';
 import PriceFilter from './price-filter';
-
 import { SearchParams } from '@/lib/types/global';
 import ProductsList from '@/components/features/products/product-list';
+import ProductsSkeleton from '@/components/skeletons/product/products-skeleton';
+
+
 
 type ProductsListProps = {
   searchParams: SearchParams;
@@ -25,7 +27,9 @@ export default function ProductContent({ searchParams }: ProductsListProps) {
 
       {/* Product List */}
       <section className="w-full lg:max-w-[61.625rem]">
-        <ProductsList searchParams={searchParams} />
+        <Suspense fallback={<ProductsSkeleton />}>
+          <ProductsList searchParams={searchParams} />
+        </Suspense>
       </section>
     </div>
   );
