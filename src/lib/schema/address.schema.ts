@@ -1,10 +1,12 @@
 import { z } from 'zod';
 
 export const addressSchema = z.object({
-  category: z.string().min(1, { message: 'Category is required' }),
+  username: z.string().min(1, { message: 'Category is required' }),
   city: z.string().min(1, { message: 'City is required' }),
-  address: z.string().min(10, { message: 'Address must be at least 10 characters' }),
+  street: z.string().min(10, { message: 'Address must be at least 10 characters' }),
   phone: z.string().min(10, { message: 'Valid phone number is required' }),
+  lat: z.string().optional(),
+  long: z.string().optional(),
 });
 
 export type AddressFormSchema = z.infer<typeof addressSchema>;

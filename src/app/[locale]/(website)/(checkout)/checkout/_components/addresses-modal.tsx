@@ -12,6 +12,7 @@ import {
 import { Address } from '@/lib/types/user-addresses';
 import AddressForm from './add-address-form';
 import AddressSelector from './address-selector';
+import { cn } from '@/lib/utility/tailwind-merge';
 
 interface AddressesModalProps {
   userAddresses: Address[];
@@ -41,7 +42,12 @@ export function AddressesModal({
       <DialogTrigger asChild>
         {trigger || <Button variant="outline">Open Address Book</Button>}
       </DialogTrigger>
-      <DialogContent className="max-h-[80vh] max-w-3xl overflow-y-auto">
+      <DialogContent
+        className={cn(
+          'max-h-[85vh] max-w-3xl overflow-y-auto',
+          showAddressForm && 'max-h-[85vh] max-w-3xl py-5 overflow-hidden',
+        )}
+      >
         <DialogHeader className="mt-2 flex flex-row items-center justify-between space-y-0 pb-4">
           <DialogTitle className="text-2xl font-bold">My Addresses</DialogTitle>
           <Button
