@@ -8,9 +8,9 @@ export default function layout({
   summary: React.ReactNode;
 }>) {
   return (
-    <main className="grid w-full grid-cols-1 gap-10 pt-16 lg:grid-cols-12 lg:px-20 min-h-screen">
+    <main className="grid w-full grid-cols-1 gap-10 pt-16 lg:grid-cols-12 lg:px-20 min-h-screen px-4 md:px-0">
       {/* Children */}
-      <section className="mx-auto w-full lg:col-span-7 lg:max-w-[48.875rem] xl:max-w-none">
+      <section className="mx-auto w-full lg:col-span-7 lg:max-w-[48.875rem] xl:max-w-none ">
         {children}
       </section>
 

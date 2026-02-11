@@ -276,6 +276,8 @@
     "shipping-address": "shipping address",
     "next-step": " Next",
     "new-address": "  Add a New Address",
+    "adresses-loading": "Loading...",
+     "addresses-error": " No more Addresses",
     "or": "or"
   }
 }

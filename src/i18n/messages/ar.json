@@ -271,6 +271,8 @@
     "shipping-address": "عنوان الشحن",
     "next-step": "التالي",
     "new-address": "إضافة عنوان جديد",
+    "adresses-loading": "جارٍ التحميل...",
+    "addresses-error": "لا يوجد عناوين",
     "or": "أو"
   }
 }
