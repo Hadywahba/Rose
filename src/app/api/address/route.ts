@@ -11,8 +11,7 @@ export async function GET(req: NextRequest) {
     }
     const { searchParams } = new URL(req.url);
     const limit = searchParams.get('limit');
-    const page = searchParams.get('page') || '1';
-    const API_URL = `https://flower.elevateegy.com/api/v1/addresses?limit=${limit}&page=${page}`;
+    const API_URL = `https://flower.elevateegy.com/api/v1/addresses?limit=${limit}`;
     const response = await fetch(API_URL, {
       headers: {
         ...JSON_HEADER,

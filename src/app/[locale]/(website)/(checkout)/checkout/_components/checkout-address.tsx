@@ -4,30 +4,24 @@ import { Phone } from 'lucide-react';
 import React from 'react';
 import { useAddress } from '../_hooks/use-checkout';
 import ListError from '@/components/error/list-error';
-import InfiniteScroll from 'react-infinite-scroll-component';
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import AddressSkeleton from '@/components/skeletons/address/address-skeleton';
 import { formatPhoneNumberToArabic } from '@/lib/utility/convert-numbers';
 
 const ADDRESSES_PER_PAGE = 3;
 export default function CheckoutAddress() {
-  const { addresses, error, hasNextPage, fetchNextPage, isLoading } =
-    useAddress();
-
-  // Translation
-  const t = useTranslations('checkout');
+  const { addresses, error, isLoading } = useAddress();
 
   // Hook
   const locale = useLocale();
 
-  // Variable
-  const addressItems = addresses?.pages.flatMap((page) => page.addresses) || [];
+  console.log(addresses);
 
   return (
     <ListError errors={error}>
       <section
         id="address-scrollable"
-        className="flex max-h-[19.79rem] flex-col gap-3 overflow-y-auto transition-all duration-300 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-transparent hover:[&::-webkit-scrollbar-thumb]:bg-gray-200/80 dark:hover:[&::-webkit-scrollbar-thumb]:bg-gray-600/80 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar]:w-1.5"
+        className="flex max-h-[20.50.2rem] flex-col gap-3 overflow-y-auto transition-all duration-300 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-transparent hover:[&::-webkit-scrollbar-thumb]:bg-gray-200/80 dark:hover:[&::-webkit-scrollbar-thumb]:bg-gray-600/80 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar]:w-1.5"
         style={{
           scrollbarWidth: 'thin',
           scrollbarColor: 'transparent transparent',
@@ -42,54 +36,42 @@ export default function CheckoutAddress() {
           e.currentTarget.style.scrollbarColor = 'transparent transparent';
         }}
       >
-        <InfiniteScroll
-          dataLength={addressItems.length}
-          hasMore={hasNextPage ?? false}
-          next={fetchNextPage}
-          loader={
-            <div className="py-2 text-center text-gray-500 dark:text-zinc-50">
-              {t('adresses-loading')}
-            </div>
-          }
-          scrollableTarget="address-scrollable"
-        >
-          {isLoading ? (
-            <div className="mb-3 flex w-full flex-col rounded-2xl px-4">
-              {Array.from({ length: ADDRESSES_PER_PAGE }).map((_, index) => (
-                <AddressSkeleton key={index} />
-              ))}
-            </div>
-          ) : (
-            addressItems.map((address) => (
-              <div
-                key={address._id}
-                className="mb-3 flex w-full flex-col rounded-2xl border-[.0625rem] border-zinc-300 px-4"
-              >
-                <div className="mt-4 flex items-center justify-between">
-                  {/* Location */}
-                  <h2 className="text-2xl font-semibold capitalize">
-                    {address.city}
-                  </h2>
+        {isLoading ? (
+          <div className="mb-3 flex w-full flex-col rounded-2xl px-4">
+            {Array.from({ length: ADDRESSES_PER_PAGE }).map((_, index) => (
+              <AddressSkeleton key={index} />
+            ))}
+          </div>
+        ) : (
+          addresses?.addresses.map((address) => (
+            <div
+              key={address._id}
+              className="mb-3 flex w-full flex-col rounded-2xl border-[.0625rem] border-zinc-300 px-4"
+            >
+              <div className="mt-4 flex items-center justify-between">
+                {/* Location */}
+                <h2 className="text-2xl font-semibold capitalize">
+                  {address.city}
+                </h2>
 
-                  {/* Phone */}
-                  <div className="flex items-center justify-between gap-2">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-maroon-600">
-                      <Phone className="h-5 w-5 text-white" />
-                    </div>
-                    <p className="text-zinc-500 dark:text-zinc-50">
-                      {formatPhoneNumberToArabic(address.phone, locale)}
-                    </p>
+                {/* Phone */}
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-maroon-600">
+                    <Phone className="h-5 w-5 text-white" />
                   </div>
+                  <p className="text-zinc-500 dark:text-zinc-50">
+                    {formatPhoneNumberToArabic(address.phone, locale)}
+                  </p>
                 </div>
-
-                {/* Address */}
-                <p className="mb-4 w-fit rounded-full bg-zinc-100 px-3 dark:bg-zinc-600">
-                  {address.street}
-                </p>
               </div>
-            ))
-          )}
-        </InfiniteScroll>
+
+              {/* Address */}
+              <p className="mb-4 w-fit rounded-full bg-zinc-100 px-3 dark:bg-zinc-600">
+                {address.street}
+              </p>
+            </div>
+          ))
+        )}
       </section>
     </ListError>
   );

@@ -1,7 +1,7 @@
 import { AddressesResponse } from '@/lib/types/address/address';
 
-export const getAddress = async (limit: number, page: number) => {
-  const response = await fetch(`/api/address?limit=${limit}&page=${page}`, {
+export const getAddress = async (limit: number) => {
+  const response = await fetch(`/api/address?limit=${limit}`, {
     cache: 'no-store',
   });
   if (!response.ok) {
