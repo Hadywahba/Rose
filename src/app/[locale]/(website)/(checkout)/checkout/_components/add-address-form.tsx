@@ -18,40 +18,68 @@ import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 import { AddressFormSchema, addressSchema } from '@/lib/schema/address.schema';
 import { cn } from '@/lib/utility/tailwind-merge';
-import { useAddAddress } from '../_hooks/use-address';
+import { useEffect } from 'react';
+import { ArrowLeft } from 'lucide-react';
 
 interface AddressFormProps {
-  selectedAddressId?: string;
+  data?: Partial<AddressFormSchema>;
   onClose?: () => void;
+  onFormComplete?: (data: Omit<AddressFormSchema, 'lat' | 'long'>) => void;
 }
 
-export default function AddressForm({ onClose }: AddressFormProps) {
+export default function AddressForm({
+  onClose,
+  data,
+  onFormComplete,
+}: AddressFormProps) {
   const t = useTranslations('my-addresses');
-  const { isPending, addAddress } = useAddAddress();
 
-  const form = useForm<AddressFormSchema>({
-    resolver: zodResolver(addressSchema),
+  const form = useForm<Omit<AddressFormSchema, 'lat' | 'long'>>({
+    resolver: zodResolver(addressSchema.omit({ lat: true, long: true })),
     defaultValues: {
-      username: '',
-      city: '',
-      street: '',
-      phone: '',
+      username: data?.username || '',
+      city: data?.city || '',
+      street: data?.street || '',
+      phone: data?.phone || '',
     },
   });
 
-  function onSubmit(values: AddressFormSchema) {
-    addAddress(values, {
-      onSuccess: () => {
-        onClose?.();
-      },
-    });
+  // // Sync with parent data when coming back from map
+  // useEffect(() => {
+  //   if (data) {
+  //     form.reset({
+  //       username: data.username || '',
+  //       city: data.city || '',
+  //       street: data.street || '',
+  //       phone: data.phone || '',
+  //     });
+  //   }
+  // }, [data, form]);
+
+  function onSubmit(values: Omit<AddressFormSchema, 'lat' | 'long'>) {
+    onFormComplete?.(values);
   }
 
   return (
     <div className="space-y-2">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
-          <p className='text-maroon-600 font-medium text-2xl'>Enter address details</p>
+          <div className="flex gap-2 pt-2">
+            {onClose && (
+              <Button
+                className="rounded-full"
+                type="button"
+                size="icon"
+                onClick={onClose}
+              >
+                <ArrowLeft size={20}/>
+              </Button>
+            )}
+            <p className="text-2xl font-medium text-maroon-600">
+              Enter address details
+            </p>
+          </div>
+
           <Field>
             <FieldLabel htmlFor="username">{t('category-label')}</FieldLabel>
             <Input
@@ -108,8 +136,8 @@ export default function AddressForm({ onClose }: AddressFormProps) {
             )}
           />
 
-          <Button disabled={isPending} className="w-full" type="submit">
-            {isPending ? t('submitting') : t('submit-button')}
+          <Button type="submit" className="w-full">
+            Next
           </Button>
         </form>
       </Form>

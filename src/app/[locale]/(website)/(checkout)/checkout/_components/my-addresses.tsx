@@ -1,5 +1,6 @@
-import { AddressesModal } from './addresses-modal';
+// import { AddressesModal } from './addresses-modal';
 import { getUserAddresses } from '@/lib/services/addresses/get-user-addresses';
+import { AddressesModal } from './addresses-flow';
 
 export default async function MyAddresses() {
   const userAddresses = await getUserAddresses();
