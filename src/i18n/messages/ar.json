@@ -257,5 +257,16 @@
     "price-from": "من",
     "price-to": "إلى",
     "reset": "إعادة ضبط"
+  },
+  "checkout": {
+    "checkout-summary": {
+      "summary": "مراجعة الطلب",
+      "coupon": "تطبيق الكوبون",
+      "total-salary": "الإجمالي",
+      "total-price": "{price}",
+      "coupon-placeholder": "كود الكوبون",
+      "coupon-applied": "لم يتم تطبيق أي كوبونات",
+      "checkout-button": "الدفع"
+    }
   }
 }

@@ -262,5 +262,17 @@
     "price-from": "from",
     "price-to": "to",
     "reset": "reset"
+  },
+  "checkout": {
+    "checkout-summary": {
+      "summary": "summary",
+      "coupon": "Apply Coupon",
+      "total-salary": " total",
+      "total-price": "{price}",
+      "coupon-placeholder": "Coupon Code",
+      "coupon-applied": "no coupons applied",
+      "checkout-button": "checkout"
+    }
   }
+
 }
