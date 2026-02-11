@@ -267,6 +267,10 @@
       "coupon-placeholder": "كود الكوبون",
       "coupon-applied": "لم يتم تطبيق أي كوبونات",
       "checkout-button": "الدفع"
-    }
+    },
+    "shipping-address": "عنوان الشحن",
+    "next-step": "التالي",
+    "new-address": "إضافة عنوان جديد",
+    " or": "أو"
   }
 }
