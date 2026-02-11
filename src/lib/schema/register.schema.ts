@@ -6,25 +6,27 @@ export const getRegisterSchema = (t: Translations) =>
     .object({
       firstName: z
         .string()
-        .nonempty(t('auth.register.validation.firstNameRequired')),
+        .nonempty(t('auth.register.validation.first-name-required')),
       lastName: z
         .string()
-        .nonempty(t('auth.register.validation.lastNameRequired')),
+        .nonempty(t('auth.register.validation.last-name-required')),
       email: z.email({
         error: (issue) =>
           issue.input
-            ? t('auth.register.validation.emailInvalid')
-            : t('auth.register.validation.emailRequired'),
+            ? t('auth.register.validation.email-invalid')
+            : t('auth.register.validation.email-required'),
       }),
       phone: z
         .string()
-        .nonempty(t('auth.register.validation.phoneRequired'))
-        .min(10, t('auth.register.validation.phoneInvalid')),
-      gender: z.string().nonempty(t('auth.register.validation.genderRequired')),
+        .nonempty(t('auth.register.validation.phone-required'))
+        .min(10, t('auth.register.validation.phone-invalid')),
+      gender: z
+        .string()
+        .nonempty(t('auth.register.validation.gender-required')),
       password: z
         .string()
-        .nonempty(t('auth.register.validation.passwordRequired'))
-        .min(8, { message: t('auth.register.validation.passwordMinLength') })
+        .nonempty(t('auth.register.validation.password-required'))
+        .min(8, { message: t('auth.register.validation.password-min-length') })
         .refine((password) => /[A-Z]/.test(password), {
           message: t('auth.register.schema.password-uppercase'),
         })
@@ -39,10 +41,10 @@ export const getRegisterSchema = (t: Translations) =>
         }),
       rePassword: z
         .string()
-        .nonempty(t('auth.register.validation.confirmPasswordRequired')),
+        .nonempty(t('auth.register.validation.confirm-password-required')),
     })
     .refine((data) => data.password === data.rePassword, {
-      message: t('auth.register.validation.passwordsNotMatch'),
+      message: t('auth.register.validation.passwords-not-match'),
       path: ['rePassword'],
     });
 

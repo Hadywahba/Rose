@@ -31,7 +31,7 @@ export default function TestimonialsCarousel() {
     {
       id: 1,
       name: t('reviews.0.name'),
-      image: '/avatar/avatar1.png',
+      image: '/images/avatar1.png',
       rating: 4,
       review: t('reviews.0.review'),
       date: t('reviews.0.date'),
@@ -39,7 +39,7 @@ export default function TestimonialsCarousel() {
     {
       id: 2,
       name: t('reviews.1.name'),
-      image: '/avatar/avatar2.png',
+      image: '/images/avatar2.png',
       rating: 3,
       review: t('reviews.1.review'),
       date: t('reviews.1.date'),
@@ -47,7 +47,7 @@ export default function TestimonialsCarousel() {
     {
       id: 3,
       name: t('reviews.2.name'),
-      image: '/avatar/avatar3.png',
+      image: '/images/avatar3.png',
       rating: 4,
       review: t('reviews.2.review'),
       date: t('reviews.2.date'),
@@ -55,7 +55,7 @@ export default function TestimonialsCarousel() {
     {
       id: 4,
       name: t('reviews.3.name'),
-      image: '/avatar/avatar1.png',
+      image: '/images/avatar1.png',
       rating: 5,
       review: t('reviews.3.review'),
       date: t('reviews.3.date'),
@@ -64,12 +64,9 @@ export default function TestimonialsCarousel() {
 
   return (
     <section id="testimonials" className="py-10">
-      <MainHeading
-        heading="Testimonials"
-        paragraph="Real Words from Happy Customers"
-      />
+      <MainHeading heading={t('heading')} paragraph={t('paragraph')} />
       {/* use Static Color because wait design system */}
-      <div className="my-11 w-full bg-[#FBEAEA] px-4 md:p-10 py-20 dark:bg-[#3F3F46]">
+      <div className="my-11 w-full bg-[#FBEAEA] px-4 py-20 dark:bg-[#3F3F46] md:p-10">
         <div className="container mx-auto">
           <Carousel
             plugins={[plugin.current]}
@@ -84,7 +81,7 @@ export default function TestimonialsCarousel() {
               {testimonials.map((testimonial) => (
                 <CarouselItem
                   key={testimonial.id}
-                  className="flex py-4 md:basis-1/2 sm:px-8 lg:basis-1/3"
+                  className="flex py-4 sm:px-8 md:basis-1/2 lg:basis-1/3"
                 >
                   <div className="h-full w-full">
                     <TestimonialCard

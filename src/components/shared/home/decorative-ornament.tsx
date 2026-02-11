@@ -14,8 +14,8 @@ export default function DecorativeOrnament({ position = 'top' }: Props) {
     <Image
       src={
         theme === 'dark'
-          ? '/images/auth-images/decoration-auth-dark-img.png'
-          : '/images/auth-images/decoration-auth-img.png'
+          ? '/images/decoration-auth-dark-img.png'
+          : '/images/decoration-auth-img.png'
       }
       alt="Decorative Ornament"
       width={150}

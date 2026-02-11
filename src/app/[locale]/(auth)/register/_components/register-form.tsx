@@ -77,13 +77,13 @@ export function RegisterForm() {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="text-sm font-normal text-zinc-800 dark:text-zinc-50">
-                      {t('auth.register.firstName')}
+                      {t('auth.register.first-name')}
                     </FormLabel>
                     <FormControl>
                       <Input
                         {...field}
                         type="text"
-                        placeholder={t('auth.register.firstNamePlaceholder')}
+                        placeholder={t('auth.register.first-name-placeholder')}
                         className={cn(
                           'h-11 w-full border-gray-200 text-black placeholder:text-zinc-400 focus:border-gray-300 focus:outline-none focus:ring-0 dark:text-zinc-50',
                         )}
@@ -101,13 +101,13 @@ export function RegisterForm() {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="text-sm font-normal text-zinc-800 dark:text-zinc-50">
-                      {t('auth.register.lastName')}
+                      {t('auth.register.last-name')}
                     </FormLabel>
                     <FormControl>
                       <Input
                         {...field}
                         type="text"
-                        placeholder={t('auth.register.lastNamePlaceholder')}
+                        placeholder={t('auth.register.last-name-placeholder')}
                         className={cn(
                           'h-11 w-full border-zinc-300 text-black placeholder:text-zinc-400 focus:border-gray-300 focus:outline-none focus:ring-0 dark:border-zinc-600 dark:text-zinc-50',
                         )}
@@ -132,7 +132,7 @@ export function RegisterForm() {
                     <Input
                       {...field}
                       type="email"
-                      placeholder={t('auth.register.emailPlaceholder')}
+                      placeholder={t('auth.register.email-placeholder')}
                       className={cn(
                         'h-11 w-full border-zinc-300 text-black placeholder:text-left placeholder:text-zinc-400 focus:border-gray-300 focus:outline-none focus:ring-0 dark:border-zinc-600 dark:text-zinc-50',
                       )}
@@ -158,7 +158,7 @@ export function RegisterForm() {
                         'w-full border-zinc-300 text-black focus:outline-none focus:ring-0 dark:border-zinc-600 dark:text-zinc-50',
                       )}
                       defaultCountry="EG"
-                      placeholder={t('auth.register.phonePlaceholder')}
+                      placeholder={t('auth.register.phone-placeholder')}
                       {...field}
                     />
                   </FormControl>
@@ -187,16 +187,16 @@ export function RegisterForm() {
                         )}
                       >
                         <SelectValue
-                          placeholder={t('auth.register.genderPlaceholder')}
+                          placeholder={t('auth.register.gender-placeholder')}
                         />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent className="bg-white dark:bg-zinc-700">
                       <SelectItem value="male">
-                        {t('auth.register.genderMale')}
+                        {t('auth.register.gender-male')}
                       </SelectItem>
                       <SelectItem value="female">
-                        {t('auth.register.genderFemale')}
+                        {t('auth.register.gender-female')}
                       </SelectItem>
                     </SelectContent>
                   </Select>
@@ -218,7 +218,7 @@ export function RegisterForm() {
                     <Input
                       {...field}
                       type="password"
-                      placeholder={t('auth.register.passwordPlaceholder')}
+                      placeholder={t('auth.register.password-placeholder')}
                       className={cn(
                         'h-11 w-full border-zinc-300 pr-10 text-black placeholder:text-start placeholder:text-zinc-400 focus:border-gray-300 focus:outline-none focus:ring-0 dark:border-zinc-600 dark:text-zinc-50',
                       )}
@@ -236,7 +236,7 @@ export function RegisterForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-sm font-normal text-zinc-800 dark:text-zinc-50">
-                    {t('auth.register.confirmPassword')}
+                    {t('auth.register.confirm-password')}
                   </FormLabel>
                   <FormControl>
                     <div className="relative">
@@ -244,7 +244,7 @@ export function RegisterForm() {
                         {...field}
                         type="password"
                         placeholder={t(
-                          'auth.register.confirmPasswordPlaceholder',
+                          'auth.register.confirm-password-placeholder',
                         )}
                         className={cn(
                           'h-11 w-full border-zinc-300 pr-10 text-black placeholder:text-start placeholder:text-zinc-400 focus:border-gray-300 focus:outline-none focus:ring-0 dark:border-zinc-600 dark:text-zinc-50',
@@ -264,8 +264,8 @@ export function RegisterForm() {
               isValid={form.formState.isValid}
               isPending={isPending}
               loading="forget-password.form.submit.loading"
-              text="register.createAccount"
-              title="register.alreadyHaveAccount"
+              text="register.create-account"
+              title="register.already-have-account"
               link="/login"
             />
           </form>
