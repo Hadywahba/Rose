@@ -1,6 +1,8 @@
+'use client';
 import { Button } from '@/components/ui/button';
+import { useRouter } from '@/i18n/navigation';
 import { MoveLeft, MoveRight } from 'lucide-react';
-import { useRouter } from 'next/router';
+
 import React from 'react';
 import { useLocale, useTranslations } from 'use-intl';
 
