@@ -9,5 +9,5 @@ export type Addresses = {
 };
 
 export type AddressesResponse = {
-  address: Addresses[];
+  addresses: Addresses[];
 };

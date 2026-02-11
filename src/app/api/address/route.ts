@@ -9,8 +9,10 @@ export async function GET(req: NextRequest) {
     if (!token) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
-
-    const API_URL = 'https://flower.elevateegy.com/api/v1/addresses';
+    const { searchParams } = new URL(req.url);
+    const limit = searchParams.get('limit');
+    const page = searchParams.get('page') || '1';
+    const API_URL = `https://flower.elevateegy.com/api/v1/addresses?limit=${limit}&page=${page}`;
     const response = await fetch(API_URL, {
       headers: {
         ...JSON_HEADER,
