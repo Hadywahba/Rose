@@ -1,19 +1,21 @@
-import { useLocale, useTranslations } from 'next-intl';
+'use client';
+
+import { useTranslations } from 'next-intl';
 import React from 'react';
 import Coupon from './_components/coupon';
-import { Button } from '@/components/ui/button';
-import { MoveLeft, MoveRight } from 'lucide-react';
 import CartPrice from './_components/cart-price';
+import CartCheckoutButton from './_components/cart-checkout-button';
+import { usePathname } from '@/i18n/navigation';
 
 export default function Default() {
   // Translation
   const t = useTranslations('checkout');
 
   // Hook
-  const locale = useLocale();
+  const pathname = usePathname();
 
   // Variable
-  const arabic = locale === 'ar';
+  const isCartPage = pathname.includes('/cart');
 
   return (
     <div>
@@ -29,13 +31,7 @@ export default function Default() {
       </section>
 
       {/* Button */}
-      <div className="w-full pb-4 pt-6">
-        <Button variant={'primary'} className="w-full rounded-lg py-6">
-          {arabic ? <MoveLeft /> : null}
-          {t('checkout-summary.checkout-button')}
-          {!arabic ? <MoveRight /> : null}
-        </Button>
-      </div>
+      {isCartPage && <CartCheckoutButton />}
     </div>
   );
 }
