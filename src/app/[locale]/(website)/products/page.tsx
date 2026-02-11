@@ -9,8 +9,13 @@ import React, { Suspense } from 'react';
 
 export default function page({ searchParams }: RouteProps) {
   return (
-    <div className=" grid grid-cols-12 gap-2">
-      <div className="product-filters col-span-3"></div>
+    <div className=" grid grid-cols-12 gap-2 py-4">
+      <div className="product-filters col-span-3">
+
+        {/* <ProductsFilters /> */}
+
+        
+      </div>
 
       <Suspense fallback={<Loader className="animate-spin" />}>
         <ProductsList pathName={pathName} searchParams={searchParams} />
