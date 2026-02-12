@@ -33,7 +33,7 @@ export default function CheckOutContent() {
       <AddressButton />
 
       {/* Next Step */}
-      <div className="flex justify-end">
+      <div className="flex justify-end mb-4">
         <Button variant="primary" className="w-[9.5rem] rounded-lg py-6">
           {arabic && <MoveLeft className="h-5 w-5" />}
           {t('next-step')}
