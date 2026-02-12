@@ -2,15 +2,15 @@ import Providers from '@/components/providers';
 import { routing } from '@/i18n/routing';
 import { hasLocale } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { Inter, Sarabun, Tajawal, Zain } from 'next/font/google';
+import { Inter, Mulish, Sarabun, Tajawal, Zain } from 'next/font/google';
 import { notFound } from 'next/navigation';
 
- const sarabun = Sarabun({
+const sarabun = Sarabun({
   subsets: ['latin', 'thai'],
   weight: ['300', '400', '500', '600', '700'],
   variable: '--font-sarabun',
 });
- const tajawal = Tajawal({
+const tajawal = Tajawal({
   subsets: ['arabic'],
   weight: ['300', '400', '500', '700', '800'],
   variable: '--font-tajawal',
@@ -29,7 +29,11 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
-
+const mulish = Mulish({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-mulish',
+});
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -68,7 +72,7 @@ export default function LocaleLayout({
   return (
     <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <body
-        className={` ${locale === 'ar' ? tajawal.className : sarabun.className} ${zain.variable} ${inter.variable} antialiased [@media(min-width:1920px)]:container [@media(min-width:1920px)]:mx-auto`}
+        className={` ${locale === 'ar' ? tajawal.className : sarabun.className} ${zain.variable} ${inter.variable} ${mulish.variable} antialiased [@media(min-width:1920px)]:container [@media(min-width:1920px)]:mx-auto`}
       >
         <Providers>{children}</Providers>
       </body>

@@ -86,6 +86,7 @@ const config: Config = {
         sans: ['var(--font-sarabun)', 'sans-serif'],
         inter: ['var(--font-inter)'],
         edwardian: ['"Edwardian Script ITC"', 'cursive'],
+        mulish: ['var(--font-mulish)'],
       },
       borderRadius: {
         lg: 'var(--radius)',

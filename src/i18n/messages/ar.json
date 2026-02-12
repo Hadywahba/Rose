@@ -270,9 +270,21 @@
     },
     "shipping-address": "عنوان الشحن",
     "next-step": "التالي",
+    "back-step": "السابق",
     "new-address": "إضافة عنوان جديد",
+    "payment-method": "طريقة الدفع",
     "adresses-loading": "جارٍ التحميل...",
     "addresses-error": "لا يوجد عناوين",
-    "or": "أو"
+    "or": "أو",
+    "payment-methods": {
+      "cash": {
+        "title": "الدفع عند الاستلام",
+        "text": "ستدفع نقدًا عند وصول طلبك."
+      },
+      "visa": {
+        "title": "بطاقة ائتمان",
+        "text": "سيتم توجيهك بأمان إلى Stripe لإتمام عملية الدفع."
+      }
+    }
   }
 }

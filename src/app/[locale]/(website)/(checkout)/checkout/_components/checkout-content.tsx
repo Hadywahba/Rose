@@ -39,7 +39,7 @@ export default function CheckOutContent({ setStep }: CheckoutMethodProps) {
             setStep(CHECKOUT_STEPS.payment);
           }}
           variant="primary"
-          className="w-[9.5rem] rounded-lg py-6"
+          className="w-[9.5rem] rounded-lg py-5 capitalize"
         >
           {arabic && <MoveLeft className="h-5 w-5" />}
           {t('next-step')}
