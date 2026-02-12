@@ -20,7 +20,6 @@ import { useRouter } from '@/i18n/navigation';
 
 interface AddressesModalProps {
   userAddresses: Address[];
-  selectedAddressId?: string;
   onSelectAddress?: (id: string) => void;
   trigger?: React.ReactNode;
 }
@@ -29,7 +28,6 @@ type DialogStep = 'list' | 'form' | 'map';
 
 export function AddressesModalFlow({
   userAddresses,
-  selectedAddressId,
   onSelectAddress,
   trigger,
 }: AddressesModalProps) {
@@ -97,12 +95,19 @@ export function AddressesModalFlow({
     });
   };
 
-  const getDialogContentClass = () => {
-    if (step === 'form' || step === 'map') {
-      return 'max-h-[85vh] max-w-3xl py-5 overflow-auto';
-    }
-    return 'max-h-[85vh] max-w-3xl overflow-y-auto';
-  };
+const getDialogContentClass = () => {
+  const baseClasses = 'max-h-[85vh] max-w-3xl dark:bg-zinc-800 transition-all';
+
+  if (step === 'map') {
+    return cn(baseClasses, 'py-4 overflow-hidden'); // No scroll for map
+  }
+
+  if (step === 'form') {
+    return cn(baseClasses, 'py-4 overflow-y-auto');
+  }
+
+  return cn(baseClasses, 'overflow-y-auto'); // List view
+};
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
@@ -110,7 +115,7 @@ export function AddressesModalFlow({
         {trigger || <Button variant="outline">Open Address Book</Button>}
       </DialogTrigger>
       <DialogContent className={cn(getDialogContentClass())}>
-        <DialogHeader className="mt-2 flex flex-row items-center justify-between space-y-0 pb-4">
+        <DialogHeader className="mt-2 flex flex-row items-center justify-between space-y-0 ">
           <DialogTitle className="text-2xl font-bold">
             {step === 'list' && 'My Addresses'}
             {(step === 'form' || step === 'map') && 'Add New Address'}
@@ -129,7 +134,6 @@ export function AddressesModalFlow({
         {step === 'list' && (
           <AddressSelector
             userAddresses={userAddresses}
-            selectedAddressId={selectedAddressId}
             onSelectAddress={onSelectAddress}
           />
         )}

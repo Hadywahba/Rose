@@ -95,7 +95,7 @@ const Header = () => {
           <div className="mx-2 h-8 w-[1px] bg-gray-200" />
 
           <div className="flex items-center gap-5 text-gray-600">
-            <button className="hover:text-red-800">
+            <button aria-label='wishlist' className="hover:text-red-800">
               <Heart className="h-6 w-6" />
             </button>
 

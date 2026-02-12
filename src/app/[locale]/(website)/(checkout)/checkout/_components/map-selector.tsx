@@ -61,6 +61,7 @@ export default function MapSelector({
       <div className="flex gap-2 pt-2">
         {onBack && (
           <Button
+            aria-label="Go back"
             className="rounded-full"
             type="button"
             size="icon"
@@ -91,14 +92,14 @@ export default function MapSelector({
       </div>
 
       {/* Action button */}
-        <Button
-          onClick={handleConfirm}
-          className="w-full"
-          type="button"
-          disabled={isPending}
-        >
-          {isPending ? 'Adding Address...' : 'Add Address'}
-        </Button>
+      <Button
+        onClick={handleConfirm}
+        className="w-full"
+        type="button"
+        disabled={isPending}
+      >
+        {isPending ? 'Adding Address...' : 'Add Address'}
+      </Button>
     </div>
   );
 }

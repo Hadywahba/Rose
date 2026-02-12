@@ -1,6 +1,7 @@
+import { ConfirmDelete } from '@/components/shared/confirm-delete';
 import { RadioGroupItem } from '@/components/ui/radio-group';
 import { Address } from '@/lib/types/user-addresses';
-import { MapPin, PencilLine, Phone, Trash2 } from 'lucide-react';
+import { MapPin, PencilLine, Phone } from 'lucide-react';
 
 type AddressCardProps = {
   address: Address;
@@ -48,12 +49,7 @@ export default function AddressCard({ address, selected }: AddressCardProps) {
               <PencilLine size={18} className="text-zinc-600" />
             </button>
 
-            <button
-              className="flex h-8 w-8 items-center justify-center rounded-full bg-red-500 transition-colors hover:bg-red-600"
-              aria-label="Delete address"
-            >
-              <Trash2 size={18} className="text-white" />
-            </button>
+            <ConfirmDelete/>
           </div>
         </div>
       </label>

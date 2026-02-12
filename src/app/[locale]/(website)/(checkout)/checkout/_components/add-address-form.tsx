@@ -14,7 +14,6 @@ import { Input } from '@/components/ui/input';
 import { PhoneInput } from '@/components/ui/phone-input';
 import { Textarea } from '@/components/ui/textarea';
 import { AddressFormSchema, addressSchema } from '@/lib/schema/address.schema';
-import { cn } from '@/lib/utility/tailwind-merge';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ArrowLeft } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -66,23 +65,26 @@ export default function AddressForm({
           <div className="flex gap-2 pt-2">
             {onBack && (
               <Button
+                aria-label="Go back"
                 className="rounded-full"
                 type="button"
                 size="icon"
                 onClick={onBack}
               >
-                <ArrowLeft size={20}/>
+                <ArrowLeft size={20} />
               </Button>
             )}
-            <p className="text-2xl font-medium text-maroon-600">
+            <p className="text-2xl font-medium text-maroon-600 dark:text-softpink-200">
               Enter address details
             </p>
           </div>
 
           <Field>
-            <FieldLabel htmlFor="username">{t('category-label')}</FieldLabel>
+            <FieldLabel className="dark:text-zinc-50" htmlFor="username">
+              {t('category-label')}
+            </FieldLabel>
             <Input
-              className="w-full"
+              className="w-full dark:text-zinc-50"
               id="username"
               placeholder={t('category-placeholder')}
               {...form.register('username')}
@@ -91,9 +93,11 @@ export default function AddressForm({
           </Field>
 
           <Field>
-            <FieldLabel htmlFor="city">{t('city-label')}</FieldLabel>
+            <FieldLabel className="dark:text-zinc-50" htmlFor="city">
+              {t('city-label')}
+            </FieldLabel>
             <Input
-              className="w-full"
+              className="w-full dark:text-zinc-50"
               id="city"
               placeholder={t('city-placeholder')}
               {...form.register('city')}
@@ -102,9 +106,11 @@ export default function AddressForm({
           </Field>
 
           <Field>
-            <FieldLabel htmlFor="address">{t('address-label')}</FieldLabel>
+            <FieldLabel className="dark:text-zinc-50" htmlFor="street">
+              {t('address-label')}
+            </FieldLabel>
             <Textarea
-              className="min-h-36"
+              className="min-h-36 dark:text-zinc-50"
               id="street"
               placeholder={t('address-placeholder')}
               {...form.register('street')}
@@ -122,9 +128,9 @@ export default function AddressForm({
                 </FormLabel>
                 <FormControl>
                   <PhoneInput
-                    className={cn(
-                      'w-full border-zinc-300 text-black focus:outline-none focus:ring-0 dark:border-zinc-600 dark:text-zinc-50',
-                    )}
+                    className={
+                      'w-full border-zinc-300 text-black focus:outline-none focus:ring-0 dark:border-zinc-600 dark:text-zinc-50'
+                    }
                     defaultCountry="EG"
                     placeholder={t('phone-placeholder')}
                     {...field}

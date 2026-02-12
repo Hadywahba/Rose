@@ -7,21 +7,20 @@ import { Address } from '@/lib/types/user-addresses';
 
 interface AddressSelectorProps {
   userAddresses: Address[];
-  selectedAddressId?: string;
   onSelectAddress?: (id: string) => void;
 }
 
 export default function AddressSelector({
   userAddresses,
-  selectedAddressId,
   onSelectAddress,
 }: AddressSelectorProps) {
-  const [selectedId, setSelectedId] = useState(selectedAddressId ?? '');
+  const [selectedId, setSelectedId] = useState('');
 
   const handleSelectAddress = (id: string) => {
     setSelectedId(id);
     onSelectAddress?.(id);
   };
+  
 
   return (
     <RadioGroup value={selectedId} onValueChange={handleSelectAddress}>

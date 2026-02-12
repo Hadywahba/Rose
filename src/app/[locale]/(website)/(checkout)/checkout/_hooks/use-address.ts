@@ -7,7 +7,7 @@ import { AddressFormSchema } from "@/lib/schema/address.schema";
 
 export const useAddAddress = () => {
   // Translations
-  const t = useTranslations('review-form');
+  const t = useTranslations('my-addresses');
 
   // Mutation
   const { isPending, error, mutate } = useMutation({
