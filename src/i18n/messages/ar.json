@@ -278,5 +278,6 @@
   "number-must-be-integer": "يجب أن يكون الرقم عددًا صحيحًا",
   "number-must-be-positive": "يجب أن يكون الرقم موجبًا",
   "current-stock-now-is-quantity-available": "{المخزون الحالي الآن هو {الكمية} المتوفرة}",
-  "continue-shopping": "مواصلة التسوق"
+  "continue-shopping": "مواصلة التسوق",
+  "emtycart": "سلة التسوق الخاصة بك فارغة، هل تريد تجربة التسوق؟"
 }

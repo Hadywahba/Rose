@@ -1,6 +1,5 @@
 'use client';
 import Image from 'next/image';
-import defaultPhoto from '../../../../../../../../public/assets/Images/Cover.png';
 import { useTranslations } from 'next-intl';
 import { Star, X } from 'lucide-react';
 import CartAction from './cart-action';
@@ -46,7 +45,7 @@ export default function CartItem({
         <div className="imge w-full overflow-hidden rounded-md md:w-auto">
           <Image
             className="h-auto w-full object-cover md:w-[150px]"
-            src={imgCover || defaultPhoto}
+            src={imgCover}
             alt="title"
             width={150}
             height={0}

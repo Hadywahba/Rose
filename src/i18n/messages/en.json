@@ -284,5 +284,6 @@
   "number-must-be-integer": "Number Must be Integer",
   "number-must-be-positive": "Number Must be Positive",
   "current-stock-now-is-quantity-available": "{Current stock now is {quantity} available}",
-  "continue-shopping": "Continue Shopping"
+  "continue-shopping": "Continue Shopping",
+  "emtycart": "Your cart is empty, wanna try shopping?"
 }
