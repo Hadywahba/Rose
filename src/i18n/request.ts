@@ -52,6 +52,9 @@ export default getRequestConfig(async ({ requestLocale }) => {
           style: 'currency',
           maximumFractionDigits: 0,
         },
+        'number-base': {
+          numberingSystem: locale === 'ar' ? 'arab' : 'latn',
+        },
       },
       dateTime: {
         'date-max': {

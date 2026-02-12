@@ -258,5 +258,25 @@
     "price-from": "من",
     "price-to": "إلى",
     "reset": "إعادة ضبط"
-  }
+  },
+  "cart-cleared-successfully": "تم مسح العربة بنجاح",
+  "cart": "عربة التسوق",
+  "cart-count": "{count, plural,\n  =0 {لا توجد منتجات}\n  =1 {منتج واحد}\n  =2 {منتجان}\n  few {{n} منتجات}\n  many {{n} منتجًا}\n  other {{n} منتج}\n}\n",
+  "clear-cart": "حذف السلة",
+  "rating": "التقييم",
+  "rateavg-number-number-base": "{rateAvg,number,number-base}",
+  "ratecount-number-number-base": "{rateCount,number,number-base}",
+  "count-plural-0-no-ratings-1-rating-other-ratings": "{count, plural,\n  =0 {لا توجد تقييمات}\n  =1 {تقييم واحد}\n  =2 {تقييمان}\n  few {# تقييمات}\n  many {# تقييمًا}\n  other {# تقييم}\n}\n",
+  "productprice-number-number-base": "{productPrice,number,number-base}",
+  "egp": "جنية مصري",
+  "product-removed-from-cart-successfully": "تمت إزالة المنتج من سلة التسوق بنجاح",
+  "remove": "حذف",
+  "product-added-to-cart-successfully": "تمت إضافة المنتج إلى سلة التسوق بنجاح",
+  "product-deleted-successfully": "تم حذف المنتج بنجاح",
+  "product-updated-successfully": "تم تحديث المنتج بنجاح",
+  "validation-invalid_number": "رقم غير صالح",
+  "number-must-be-integer": "يجب أن يكون الرقم عددًا صحيحًا",
+  "number-must-be-positive": "يجب أن يكون الرقم موجبًا",
+  "current-stock-now-is-quantity-available": "{المخزون الحالي الآن هو {الكمية} المتوفرة}",
+  "continue-shopping": "مواصلة التسوق"
 }
