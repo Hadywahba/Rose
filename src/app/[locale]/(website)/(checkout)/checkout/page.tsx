@@ -1,10 +1,10 @@
 import React from 'react';
-import CheckoutContent from './_components/checkout-content';
+import DELayout from './_components/checkout-layout';
 
 export default function page() {
   return (
     <>
-      <CheckoutContent />
+      <DELayout />
     </>
   );
 }

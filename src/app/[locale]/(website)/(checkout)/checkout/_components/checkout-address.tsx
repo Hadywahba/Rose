@@ -15,8 +15,6 @@ export default function CheckoutAddress() {
   // Hook
   const locale = useLocale();
 
-  console.log(addresses);
-
   return (
     <ListError errors={error}>
       <section
