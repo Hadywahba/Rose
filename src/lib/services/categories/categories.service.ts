@@ -4,9 +4,8 @@ export async function getCategories(
   page: number = 1,
   limit: number = 7
 ): Promise<CategoriesResponse> {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API}/categories?page=${page}&limit=${limit}`,
-    {
+  const res = await fetch(`/api/categories?page=${page}&limit=${limit}`, {
+
       headers: {
         "Content-Type": "application/json",
       },

@@ -8,7 +8,7 @@ export async function GET(request: NextRequest) {
         const limit = searchParams.get("limit") || "7";
         
 
-        const backendUrl = `${process.env.NEXT_PUBLIC_API}/categories?page=${page}&limit=${limit}`;
+        const backendUrl = `${process.env.API_URL}/categories?page=${page}&limit=${limit}`;
 
         const response = await fetch(backendUrl, {
             method: "GET",

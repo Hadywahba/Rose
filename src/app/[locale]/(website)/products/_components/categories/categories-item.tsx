@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "@/lib/utility/tailwind-merge";
 import Image from "next/image";
 
 export type CategoryItemProps = {
@@ -11,21 +12,25 @@ export type CategoryItemProps = {
 
 export default function CategoryItem({ label, active, onClick, image }: CategoryItemProps) {
   return (
-    <button
+     <button
       onClick={onClick}
-      className={`flex h-7 w-full items-center gap-2 rounded-md text-zinc-800 transition-colors ${active ? "bg-maroon-50 hover:bg-maroon-100" : "bg-zinc-200 hover:bg-zinc-300"
-        }`}
+      className={cn(
+        "flex h-7 w-full items-center gap-2 rounded-md text-zinc-800 transition-colors mb-2",
+        active ? "bg-maroon-50 hover:bg-maroon-100" : "bg-zinc-200 hover:bg-zinc-300"
+      )}
     >
       <div
-        className={`flex h-full w-9 items-center justify-center  text-white transition-colors ${active ? "bg-maroon-600" : "bg-zinc-500"
-          }`}
+        className={cn(
+          "flex h-full w-9 items-center justify-center text-white transition-colors",
+          active ? "bg-maroon-600" : "bg-zinc-500"
+        )}
       >
         <Image
           src={image}
           alt={label}
           width={21}
           height={20}
-          className="object-cover filter-white"
+          className="object-cover brightness-0 invert"
         />
       </div>
 
