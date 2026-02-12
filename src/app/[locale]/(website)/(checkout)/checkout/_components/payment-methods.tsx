@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button';
 import { CHECKOUT_STEPS } from '@/lib/constants/checkout.constant';
 import { CheckoutMethodProps } from '@/lib/types/auth/forget-password/verify';
 import { cn } from '@/lib/utility/tailwind-merge';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, MoveLeft, MoveRight } from 'lucide-react';
 import React from 'react';
 import { useLocale, useTranslations } from 'use-intl';
 import PaymentCard from './payment-card';
@@ -23,7 +23,7 @@ export default function PaymentMethods({ setStep }: CheckoutMethodProps) {
       {/* Button & Title */}
       <div
         className={cn(
-          'mb-4 flex items-center gap-4 bg-slate-50',
+          'mb-4 flex items-center gap-4',
           arabic ? 'justify-end' : 'justify-start',
         )}
       >
@@ -55,9 +55,21 @@ export default function PaymentMethods({ setStep }: CheckoutMethodProps) {
       </div>
 
       {/* Payment Method */}
-      <section className="flex w-full flex-col p-3">
+      <section className="flex w-full flex-col p-3 pb-4 border-b-[.0625rem] border-zinc-300 ">
         <PaymentCard />
       </section>
+
+      {/* Checkout Button */}
+      <div className="mb-4 flex justify-end pt-4 ">
+        <Button
+          variant="primary"
+          className=" w-full md:w-[9.5rem] rounded-lg py-5 capitalize"
+        >
+          {arabic && <MoveLeft className="h-5 w-5" />}
+          {t('next-step')}
+          {!arabic && <MoveRight className="h-5 w-5" />}
+        </Button>
+      </div>
     </main>
   );
 }
