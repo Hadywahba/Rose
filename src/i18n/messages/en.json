@@ -249,6 +249,44 @@
     "description": "Oops! The page you are looking for does not exist.",
     "button": "Go back home"
   },
+  "orders": {
+    "title": "Orders",
+    "empty": {
+      "title": "No orders yet",
+      "description": "Your orders will appear here once you place one."
+    },
+    "card": {
+      "order": "Order",
+      "createdIn": "Created in",
+      "totalPrice": "Total Price",
+      "paid": "Paid",
+      "status": "Status",
+      "paymentMethod": "Payment Method",
+      "deliveryStatus": "Delivery Status",
+      "orderItems": "Order Items",
+      "showAll": "Show All",
+      "showLess": "Show Less"
+    },
+    "statuses": {
+      "inProgress": "In Progress",
+      "done": "Done",
+      "cancelled": "Cancelled"
+    },
+    "delivery": {
+      "pending": "Pending",
+      "delivered": "Delivered",
+      "cancelled": "Cancelled"
+    },
+    "payment": {
+      "cash": "Cash",
+      "creditCard": "Credit Card"
+    },
+    "item": {
+      "productFallback": "Product",
+      "rating": "Rating",
+      "ratings": "ratings"
+    }
+  },
   "price-number-currancy-base-0": "{price,number,currancy-base}",
   "hot-0": "HOT",
   "product-removed-successfully-0": "Product Removed Successfully",

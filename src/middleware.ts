@@ -13,7 +13,7 @@ const authPages = new Set(['/login', '/register', '/forgot-password']);
 const publicPages = new Set(['/home', '/products']);
 
 // Pages that require authentication to perform actions (like add/edit)
-const protectedPages = new Set(['/product/add', '/product/edit']);
+const protectedPages = new Set(['/product/add', '/product/edit', '/allOrders']);
 
 export default async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;

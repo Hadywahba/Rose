@@ -244,6 +244,44 @@
     "description": "عذرًا! الصفحة التي تبحث عنها غير موجودة.",
     "button": "العودة إلى الصفحة الرئيسية"
   },
+  "orders": {
+    "title": "الطلبات",
+    "empty": {
+      "title": "لا توجد طلبات بعد",
+      "description": "ستظهر طلباتك هنا بعد إتمام أول طلب."
+    },
+    "card": {
+      "order": "طلب",
+      "createdIn": "تاريخ الإنشاء",
+      "totalPrice": "إجمالي السعر",
+      "paid": "مدفوع",
+      "status": "الحالة",
+      "paymentMethod": "طريقة الدفع",
+      "deliveryStatus": "حالة التوصيل",
+      "orderItems": "عناصر الطلب",
+      "showAll": "عرض الكل",
+      "showLess": "عرض أقل"
+    },
+    "statuses": {
+      "inProgress": "قيد التنفيذ",
+      "done": "تم",
+      "cancelled": "ملغي"
+    },
+    "delivery": {
+      "pending": "قيد التحضير",
+      "delivered": "تم التوصيل",
+      "cancelled": "ملغي"
+    },
+    "payment": {
+      "cash": "نقدًا",
+      "creditCard": "بطاقة"
+    },
+    "item": {
+      "productFallback": "منتج",
+      "rating": "التقييم",
+      "ratings": "تقييمات"
+    }
+  },
   "price-number-currancy-base-0": "{price,number,currancy-base}",
   "hot-0": "تريند",
   "product-removed-successfully-0": "تمت إزالة المنتج بنجاح",

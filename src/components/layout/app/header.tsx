@@ -24,8 +24,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import Image from 'next/image';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { Link, usePathname } from '@/i18n/navigation';
 import ThemeToggleIcon from './theme-toggle';
 import ToggleLocale from '@/components/shared/ToggleLocale';
 import NotificationsList from '@/components/features/notifications/notification-list';
@@ -87,7 +86,9 @@ const Header = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuItem>Profile</DropdownMenuItem>
-              <DropdownMenuItem>Orders</DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/allOrders">Orders</Link>
+              </DropdownMenuItem>
               <DropdownMenuItem>Logout</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -99,8 +100,7 @@ const Header = () => {
               <Heart className="h-6 w-6" />
             </button>
 
-
-<NotificationsList/>
+            <NotificationsList />
             <button className="relative hover:text-red-800">
               <ShoppingCart className="h-6 w-6" />
               <Badge className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center bg-red-600 p-0 hover:bg-red-600">
