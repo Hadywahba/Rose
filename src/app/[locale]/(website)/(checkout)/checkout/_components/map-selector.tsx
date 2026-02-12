@@ -3,6 +3,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import { Button } from '@/components/ui/button';
+import { ArrowLeft } from 'lucide-react';
 
 const containerStyle = { width: '100%', height: '22rem' };
 const center = { lat: 30.0444, lng: 31.2357 }; // Cairo, Egypt
@@ -57,9 +58,21 @@ export default function MapSelector({
 
   return (
     <div className="space-y-4">
-      <p className="text-2xl font-medium text-maroon-600">
-        Enter address details
-      </p>
+      <div className="flex gap-2 pt-2">
+        {onBack && (
+          <Button
+            className="rounded-full"
+            type="button"
+            size="icon"
+            onClick={onBack}
+          >
+            <ArrowLeft size={20} />
+          </Button>
+        )}
+        <p className="text-2xl font-medium text-maroon-600">
+          Find Your Location
+        </p>
+      </div>
       <div className="overflow-hidden rounded-lg border">
         <GoogleMap
           mapContainerStyle={containerStyle}
@@ -77,28 +90,15 @@ export default function MapSelector({
         {position.lng.toFixed(6)}
       </div>
 
-      {/* Action buttons */}
-      <div className="flex gap-2">
-        {onBack && (
-          <Button
-            type="button"
-            variant="outline"
-            onClick={onBack}
-            className="flex-1"
-            disabled={isPending}
-          >
-            ← Back to Form
-          </Button>
-        )}
+      {/* Action button */}
         <Button
           onClick={handleConfirm}
-          className="flex-1"
+          className="w-full"
           type="button"
           disabled={isPending}
         >
-          {isPending ? 'Saving Address...' : 'Save Address'}
+          {isPending ? 'Adding Address...' : 'Add Address'}
         </Button>
-      </div>
     </div>
   );
 }

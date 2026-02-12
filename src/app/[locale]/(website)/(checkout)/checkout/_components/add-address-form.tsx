@@ -11,24 +11,23 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { PhoneInput } from '@/components/ui/phone-input';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useTranslations } from 'next-intl';
-import { useForm } from 'react-hook-form';
+import { Textarea } from '@/components/ui/textarea';
 import { AddressFormSchema, addressSchema } from '@/lib/schema/address.schema';
 import { cn } from '@/lib/utility/tailwind-merge';
-import { useEffect } from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { ArrowLeft } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { useForm } from 'react-hook-form';
 
 interface AddressFormProps {
   data?: Partial<AddressFormSchema>;
-  onClose?: () => void;
+  onBack?: () => void;
   onFormComplete?: (data: Omit<AddressFormSchema, 'lat' | 'long'>) => void;
 }
 
 export default function AddressForm({
-  onClose,
+  onBack,
   data,
   onFormComplete,
 }: AddressFormProps) {
@@ -65,12 +64,12 @@ export default function AddressForm({
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
           <div className="flex gap-2 pt-2">
-            {onClose && (
+            {onBack && (
               <Button
                 className="rounded-full"
                 type="button"
                 size="icon"
-                onClick={onClose}
+                onClick={onBack}
               >
                 <ArrowLeft size={20}/>
               </Button>

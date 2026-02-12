@@ -16,6 +16,7 @@ import { cn } from '@/lib/utility/tailwind-merge';
 import MapSelector from './map-selector';
 import { AddressFormSchema } from '@/lib/schema/address.schema';
 import { useAddAddress } from '../_hooks/use-address';
+import { useRouter } from '@/i18n/navigation';
 
 interface AddressesModalProps {
   userAddresses: Address[];
@@ -26,7 +27,7 @@ interface AddressesModalProps {
 
 type DialogStep = 'list' | 'form' | 'map';
 
-export function AddressesModal({
+export function AddressesModalFlow({
   userAddresses,
   selectedAddressId,
   onSelectAddress,
@@ -43,6 +44,7 @@ export function AddressesModal({
     long: '',
   });
 
+  const router = useRouter();
   const { isPending, addAddress } = useAddAddress();
 
   const handleOpenChange = (isOpen: boolean) => {
@@ -89,6 +91,7 @@ export function AddressesModal({
           lat: '',
           long: '',
         });
+        router.refresh();
         setStep('list');
       },
     });
@@ -134,7 +137,7 @@ export function AddressesModal({
         {step === 'form' && (
           <AddressForm
             data={formData as AddressFormSchema}
-            onClose={() => setStep('list')}
+            onBack={() => setStep('list')}
             onFormComplete={handleFormComplete}
           />
         )}
