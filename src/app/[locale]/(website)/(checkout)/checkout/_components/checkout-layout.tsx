@@ -6,7 +6,7 @@ import { useState } from 'react';
 import CheckOutContent from './checkout-content';
 import PaymentMethods from './payment-methods';
 
-export default function DELayout() {
+export default function CheckoutLayout() {
   const [step, setStep] = useState<CheckoutStep>(CHECKOUT_STEPS.address);
 
   const steps = {

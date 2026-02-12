@@ -1,10 +1,13 @@
 import React from 'react';
-import DELayout from './_components/checkout-layout';
+import CheckoutLayout from './_components/checkout-layout';
+import { CheckoutProvider } from '@/components/providers/app/checkout/payment-provider';
 
 export default function page() {
   return (
     <>
-      <DELayout />
+      <CheckoutProvider>
+        <CheckoutLayout />
+      </CheckoutProvider>
     </>
   );
 }

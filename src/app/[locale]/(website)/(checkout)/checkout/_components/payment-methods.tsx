@@ -7,6 +7,7 @@ export default function PaymentMethods({ setStep }: CheckoutMethodProps) {
  return (
     <div>
       <div className="mb-4 flex justify-end">
+        {/* Back Button */}
         <Button
           onClick={() => {
             setStep(CHECKOUT_STEPS.address);
