@@ -1,5 +1,6 @@
 'use client';
 
+import SharedProgress from '@/components/shared/shared-progress';
 import { Button } from '@/components/ui/button';
 import { Field, FieldError, FieldLabel } from '@/components/ui/field';
 import {
@@ -13,6 +14,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { PhoneInput } from '@/components/ui/phone-input';
 import { Textarea } from '@/components/ui/textarea';
+import { ADDRESS_STEPS } from '@/lib/constants/checkout.constant';
 import { AddressFormSchema, addressSchema } from '@/lib/schema/address.schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ArrowLeft } from 'lucide-react';
@@ -47,9 +49,16 @@ export default function AddressForm({
   }
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-0">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-1">
+          {/* Progress */}
+          <SharedProgress
+            step={ADDRESS_STEPS.form}
+            steps={Object.values(ADDRESS_STEPS)}
+            firstValue="25%"
+          />
+          {/* Title & Back */}
           <div className="flex gap-2 pt-2">
             {onBack && (
               <Button
@@ -98,7 +107,7 @@ export default function AddressForm({
               {t('address-label')}
             </FieldLabel>
             <Textarea
-              className="min-h-36 dark:text-zinc-50"
+              className="min-h-28 dark:text-zinc-50"
               id="street"
               placeholder={t('address-placeholder')}
               {...form.register('street')}
@@ -128,10 +137,11 @@ export default function AddressForm({
               </FormItem>
             )}
           />
-
-          <Button type="submit" className="w-full">
-            Next
-          </Button>
+          <div className='pt-2'>
+            <Button type="submit" className="w-full">
+              Next
+            </Button>
+          </div>
         </form>
       </Form>
     </div>

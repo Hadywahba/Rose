@@ -4,6 +4,8 @@ import { useState, useCallback, useEffect } from 'react';
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
+import SharedProgress from '@/components/shared/shared-progress';
+import { ADDRESS_STEPS } from '@/lib/constants/checkout.constant';
 
 const containerStyle = { width: '100%', height: '22rem' };
 const center = { lat: 30.0444, lng: 31.2357 }; // Cairo, Egypt
@@ -54,6 +56,13 @@ export default function MapSelector({
 
   return (
     <div className="space-y-4">
+      {/* Progress */}
+      <SharedProgress
+        step={ADDRESS_STEPS.map}
+        steps={Object.values(ADDRESS_STEPS)}
+        secondValue="75%"
+      />
+      {/* Title & Back */}
       <div className="flex gap-2 pt-2">
         {onBack && (
           <Button
@@ -81,11 +90,11 @@ export default function MapSelector({
         </GoogleMap>
       </div>
 
-      {/* Show selected coordinates */}
+      {/* Show selected coordinates
       <div className="rounded-md bg-maroon-50 p-3 text-sm text-maroon-700">
         📍 Selected Location: {position.lat.toFixed(6)},{' '}
         {position.lng.toFixed(6)}
-      </div>
+      </div> */}
 
       {/* Action button */}
       <Button

@@ -23,7 +23,7 @@ interface AddressesModalProps {
   trigger?: React.ReactNode;
 }
 
-type DialogStep = 'list' | 'form' | 'map';
+export type DialogStep = 'list' | 'form' | 'map';
 
 export function AddressesModalFlow({
   userAddresses,
@@ -93,19 +93,15 @@ export function AddressesModalFlow({
     });
   };
 
-const getDialogContentClass = () => {
-  const baseClasses = 'max-h-[85vh] max-w-3xl dark:bg-zinc-800 transition-all';
+const getDialogContentClass = () =>
+  cn(
+    'h-[85vh] max-w-3xl overflow-y-scroll scrollbar-gutter-stable dark:bg-zinc-800 ',
+    step !== 'list' && 'py-4',
+    step == "map" && "overflow-hidden"
+  );
 
-  if (step === 'map') {
-    return cn(baseClasses, 'py-4 overflow-hidden'); // No scroll for map
-  }
 
-  if (step === 'form') {
-    return cn(baseClasses, 'py-4 overflow-y-auto');
-  }
 
-  return cn(baseClasses, 'overflow-y-auto'); // List view
-};
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
