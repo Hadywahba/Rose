@@ -20,16 +20,16 @@ export default function PriceFilterInputs({
 
   // Hook
   const { filters, setFilter } = useFilters({
-    'price[gte]': '',
-    'price[lte]': '',
+    'priceAfterDiscount[gte]': '',
+    'priceAfterDiscount[lte]': '',
   });
 
   // Ref to track if we're in reset mode
   const isResettingRef = useRef(false);
 
   // State
-  const [from, setFrom] = useState(filters['price[gte]'] ?? '');
-  const [to, setTo] = useState(filters['price[lte]'] ?? '');
+  const [from, setFrom] = useState(filters['priceAfterDiscount[gte]'] ?? '');
+  const [to, setTo] = useState(filters['priceAfterDiscount[lte]'] ?? '');
 
   // Variables
   const [debouncedFrom] = useDebounce(from, DEBOUNCE_TIME);
@@ -40,9 +40,9 @@ export default function PriceFilterInputs({
     if (
       !resetFlag &&
       !isResettingRef.current &&
-      debouncedFrom !== (filters['price[gte]'] || '')
+      debouncedFrom !== (filters['priceAfterDiscount[gte]'] || '')
     ) {
-      setFilter('price[gte]', debouncedFrom || null);
+      setFilter('priceAfterDiscount[gte]', debouncedFrom || null);
     }
   }, [debouncedFrom, setFilter, resetFlag, filters]);
 
@@ -50,9 +50,9 @@ export default function PriceFilterInputs({
     if (
       !resetFlag &&
       !isResettingRef.current &&
-      debouncedTo !== (filters['price[lte]'] || '')
+      debouncedTo !== (filters['priceAfterDiscount[lte]'] || '')
     ) {
-      setFilter('price[lte]', debouncedTo || null);
+      setFilter('priceAfterDiscount[lte]', debouncedTo || null);
     }
   }, [debouncedTo, setFilter, resetFlag, filters]);
 

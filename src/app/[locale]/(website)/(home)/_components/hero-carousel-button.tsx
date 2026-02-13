@@ -74,7 +74,7 @@ export const NextButton: React.FC<PropType> = ({
       )}
       {...props}
     >
-      {locale === 'ar' ? <ChevronLeft size={30} /> : <ChevronRight size={30} />}
+      {locale === 'ar' ? <ChevronLeft size={20} /> : <ChevronRight size={20} />}
     </Button>
   );
 };
@@ -97,7 +97,7 @@ export const PrevButton: React.FC<PropType> = ({
       )}
       {...props}
     >
-      {locale === 'ar' ? <ChevronRight size={30}  /> : <ChevronLeft size={30} />}
+      {locale === 'ar' ? <ChevronRight size={20}  /> : <ChevronLeft size={20} />}
     </Button>
   );
 };

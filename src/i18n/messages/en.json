@@ -249,7 +249,7 @@
     "description": "Oops! The page you are looking for does not exist.",
     "button": "Go back home"
   },
-  "price-number-currancy-base-0": "{price,number,currancy-base}",
+  "price-number-currancy-base-0": "{price,number,currency-no-decimals}",
   "hot-0": "HOT",
   "product-removed-successfully-0": "Product Removed Successfully",
   "remove-from-whishlist": "Remove From Whishlist",
