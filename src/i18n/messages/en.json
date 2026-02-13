@@ -250,7 +250,9 @@
     "button": "Go back home"
   },
   "price-number-currancy-base-0": "{price,number,currency-no-decimals}",
-  "hot-0": "HOT",
+  "product-hot": "hot",
+  "product-out": " out of stock",
+  "product-new": "new",
   "product-removed-successfully-0": "Product Removed Successfully",
   "remove-from-whishlist": "Remove From Whishlist",
   "product-added-successfully": "Product Added successfully",

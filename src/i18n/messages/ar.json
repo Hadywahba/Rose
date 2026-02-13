@@ -245,7 +245,9 @@
     "button": "العودة إلى الصفحة الرئيسية"
   },
   "price-number-currancy-base-0": "{price,number,currency-no-decimals}",
-  "hot-0": "تريند",
+  "product-hot": "تريند",
+  "product-out": "غير متوفر",
+  "product-new": "جديد",
   "product-removed-successfully-0": "تمت إزالة المنتج بنجاح",
   "remove-from-whishlist": "إزالة من قائمة المفضلة",
   "product-added-successfully": "تمت إضافة المنتج بنجاح",

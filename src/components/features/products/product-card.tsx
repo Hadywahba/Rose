@@ -121,10 +121,10 @@ export default function ProductCard({
         {salesCount >= 1 && (
           <div>
             <Badge
-              className="z-10 h-6 w-fit text-base font-medium dark:bg-softpink-200 dark:hover:bg-softpink-300"
+              className="z-10 h-6 w-fit text-sm font-medium uppercase dark:bg-softpink-200 dark:hover:bg-softpink-300"
               variant={'secondary'}
             >
-              {t('hot-0')}
+              {t('product-hot')}
             </Badge>
           </div>
         )}
@@ -132,10 +132,10 @@ export default function ProductCard({
         {quantity < 0 && (
           <div>
             <Badge
-              className="z-10 h-6 w-fit bg-red-600 text-base font-medium uppercase text-softpink-100 hover:bg-red-700 dark:bg-red-600 dark:hover:bg-red-700"
+              className="z-10 h-6 w-fit bg-red-600 text-sm font-medium uppercase text-softpink-100 hover:bg-red-700 dark:bg-red-600 dark:hover:bg-red-700"
               variant={'secondary'}
             >
-              out of stock
+              {t('product-out')}
             </Badge>
           </div>
         )}
@@ -143,10 +143,10 @@ export default function ProductCard({
         {isNew && (
           <div>
             <Badge
-              className="z-10 h-6 w-fit bg-zinc-100 text-base font-medium uppercase text-zinc-700 hover:bg-zinc-200 dark:bg-zinc-100 dark:text-zinc-700 dark:hover:bg-zinc-200"
+              className="z-10 h-6 w-fit bg-zinc-100 text-sm font-medium uppercase text-zinc-700 hover:bg-zinc-200 dark:bg-zinc-100 dark:text-zinc-700 dark:hover:bg-zinc-200"
               variant="secondary"
             >
-              New
+              {t('product-new')}
             </Badge>
           </div>
         )}
