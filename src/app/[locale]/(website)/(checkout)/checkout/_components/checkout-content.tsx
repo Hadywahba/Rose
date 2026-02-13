@@ -6,6 +6,7 @@ import CheckoutAddress from './checkout-address';
 import AddressButton from './address-button';
 import { CHECKOUT_STEPS } from '@/lib/constants/checkout.constant';
 import { CheckoutMethodProps } from '@/lib/types/auth/forget-password/verify';
+import CheckoutProgress from './checkout-progress';
 
 export default function CheckOutContent({ setStep }: CheckoutMethodProps) {
   // Translation
@@ -20,6 +21,7 @@ export default function CheckOutContent({ setStep }: CheckoutMethodProps) {
   return (
     <main className="flex flex-col gap-6">
       {/* Progress Section */}
+      <CheckoutProgress step={CHECKOUT_STEPS.address} />
 
       {/* Title */}
       <h1 className="text-3xl font-semibold capitalize">

@@ -8,6 +8,7 @@ import React from 'react';
 import { useLocale, useTranslations } from 'use-intl';
 import PaymentCard from './payment-card';
 import PaymentButton from './payment-button';
+import CheckoutProgress from './checkout-progress';
 
 export default function PaymentMethods({ setStep }: CheckoutMethodProps) {
   // Translation
@@ -21,6 +22,7 @@ export default function PaymentMethods({ setStep }: CheckoutMethodProps) {
   return (
     <main className="flex flex-col">
       {/* Progress Section */}
+      <CheckoutProgress step={CHECKOUT_STEPS.payment} />
 
       {/* Button & Title */}
       <div
