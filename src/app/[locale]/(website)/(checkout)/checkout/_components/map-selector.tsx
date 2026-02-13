@@ -44,10 +44,6 @@ export default function MapSelector({
     onSubmit?.(position);
   };
 
-  useEffect(() => {
-    console.log('Position object:', position);
-  }, [position]);
-
   if (!isLoaded) {
     return (
       <div className="flex h-[400px] w-full items-center justify-center rounded-lg border bg-muted">

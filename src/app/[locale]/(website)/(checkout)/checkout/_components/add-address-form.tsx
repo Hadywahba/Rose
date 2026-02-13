@@ -42,18 +42,6 @@ export default function AddressForm({
     },
   });
 
-  // // Sync with parent data when coming back from map
-  // useEffect(() => {
-  //   if (data) {
-  //     form.reset({
-  //       username: data.username || '',
-  //       city: data.city || '',
-  //       street: data.street || '',
-  //       phone: data.phone || '',
-  //     });
-  //   }
-  // }, [data, form]);
-
   function onSubmit(values: Omit<AddressFormSchema, 'lat' | 'long'>) {
     onFormComplete?.(values);
   }

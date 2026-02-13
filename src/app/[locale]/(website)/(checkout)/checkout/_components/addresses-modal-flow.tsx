@@ -20,7 +20,6 @@ import { useRouter } from '@/i18n/navigation';
 
 interface AddressesModalProps {
   userAddresses: Address[];
-  onSelectAddress?: (id: string) => void;
   trigger?: React.ReactNode;
 }
 
@@ -28,7 +27,6 @@ type DialogStep = 'list' | 'form' | 'map';
 
 export function AddressesModalFlow({
   userAddresses,
-  onSelectAddress,
   trigger,
 }: AddressesModalProps) {
   const [step, setStep] = useState<DialogStep>('list');
@@ -134,7 +132,6 @@ const getDialogContentClass = () => {
         {step === 'list' && (
           <AddressSelector
             userAddresses={userAddresses}
-            onSelectAddress={onSelectAddress}
           />
         )}
 
