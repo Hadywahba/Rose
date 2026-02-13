@@ -16,21 +16,25 @@ import { cn } from '@/lib/utility/tailwind-merge';
 import MapSelector from './map-selector';
 import { AddressFormSchema } from '@/lib/schema/address.schema';
 import { useAddAddress } from '../_hooks/use-address';
+import { useUpdateAddress } from '../_hooks/use-update-address';
 import { useRouter } from '@/i18n/navigation';
+import { useDeleteAddress } from '../_hooks/use-delete-address';
 
 interface AddressesModalProps {
   userAddresses: Address[];
   trigger?: React.ReactNode;
 }
 
-export type DialogStep = 'list' | 'form' | 'map';
+type DialogStep = 'list' | 'form' | 'map';
 
 export function AddressesModalFlow({
   userAddresses,
   trigger,
 }: AddressesModalProps) {
+  // State
   const [step, setStep] = useState<DialogStep>('list');
   const [open, setOpen] = useState(false);
+  const [editingAddressId, setEditingAddressId] = useState<string | null>(null);
   const [formData, setFormData] = useState<Partial<AddressFormSchema>>({
     username: '',
     city: '',
@@ -40,28 +44,54 @@ export function AddressesModalFlow({
     long: '',
   });
 
+  // Hooks
   const router = useRouter();
-  const { isPending, addAddress } = useAddAddress();
+  const { isPending: isAddPending, addAddress } = useAddAddress();
+  const { pendingUpdate, updateAddress } = useUpdateAddress();
+  const { pendingDelete, deleteAddress } = useDeleteAddress();
+
+
+  const isPending = isAddPending || pendingUpdate;
+
+  const resetForm = () => {
+    setFormData({
+      username: '',
+      city: '',
+      street: '',
+      phone: '',
+      lat: '',
+      long: '',
+    });
+    setEditingAddressId(null);
+  };
 
   const handleOpenChange = (isOpen: boolean) => {
     setOpen(isOpen);
     if (!isOpen) {
       setStep('list');
-      setFormData({
-        username: '',
-        city: '',
-        street: '',
-        phone: '',
-        lat: '',
-        long: '',
-      });
+      resetForm();
     }
   };
+
+  const handleEditAddress = (address: Address) => {
+    // Populate form with existing address data
+    setFormData({
+      username: address.username,
+      city: address.city,
+      street: address.street,
+      phone: address.phone,
+    });
+    setEditingAddressId(address._id);
+    setStep('form');
+  };
+
+    const handleDeleteAddress = (id: string) => {
+      deleteAddress(id);
+    };
 
   const handleFormComplete = (
     data: Omit<AddressFormSchema, 'lat' | 'long'>,
   ) => {
-    // Save form data and go to map
     setFormData((prev) => ({
       ...prev,
       ...data,
@@ -70,38 +100,42 @@ export function AddressesModalFlow({
   };
 
   const handleMapSubmit = (location: { lat: number; lng: number }) => {
-    // Combine form data with coordinates and submit
     const completeData: AddressFormSchema = {
       ...formData,
       lat: location.lat.toString(),
       long: location.lng.toString(),
     } as AddressFormSchema;
 
-    addAddress(completeData, {
-      onSuccess: () => {
-        setFormData({
-          username: '',
-          city: '',
-          street: '',
-          phone: '',
-          lat: '',
-          long: '',
-        });
-        router.refresh();
-        setStep('list');
-      },
-    });
+    if (editingAddressId) {
+      // Update existing address
+      updateAddress(
+        { id: editingAddressId, data: completeData },
+        {
+          onSuccess: () => {
+            resetForm();
+            router.refresh();
+            setStep('list');
+          },
+        },
+      );
+    } else {
+      // Add new address
+      addAddress(completeData, {
+        onSuccess: () => {
+          resetForm();
+          router.refresh();
+          setStep('list');
+        },
+      });
+    }
   };
 
-const getDialogContentClass = () =>
-  cn(
-    'h-[85vh] max-w-3xl overflow-y-scroll scrollbar-gutter-stable dark:bg-zinc-800 ',
-    step !== 'list' && 'py-4',
-    step == "map" && "overflow-hidden"
-  );
-
-
-
+  const getDialogContentClass = () =>
+    cn(
+      'h-[85vh] max-w-3xl overflow-y-scroll scrollbar-gutter-stable dark:bg-zinc-800 ',
+      step !== 'list' && 'py-4',
+      step === 'map' && 'overflow-hidden',
+    );
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
@@ -109,15 +143,20 @@ const getDialogContentClass = () =>
         {trigger || <Button variant="outline">Open Address Book</Button>}
       </DialogTrigger>
       <DialogContent className={cn(getDialogContentClass())}>
-        <DialogHeader className="mt-2 flex flex-row items-center justify-between space-y-0 ">
+        <DialogHeader className="mt-2 flex flex-row items-center justify-between space-y-0">
           <DialogTitle className="text-2xl font-bold">
             {step === 'list' && 'My Addresses'}
-            {(step === 'form' || step === 'map') && 'Add New Address'}
+            {(step === 'form' || step === 'map') &&
+              (editingAddressId ? 'Update Address Info' : 'Add New Address')}
+
           </DialogTitle>
 
           {step === 'list' && (
             <Button
-              onClick={() => setStep('form')}
+              onClick={() => {
+                resetForm();
+                setStep('form');
+              }}
               className="ml-auto bg-maroon-50 text-maroon-600 hover:bg-maroon-100"
             >
               Add a New Address
@@ -128,6 +167,9 @@ const getDialogContentClass = () =>
         {step === 'list' && (
           <AddressSelector
             userAddresses={userAddresses}
+            onEditAddress={handleEditAddress}
+            onDeleteAddress={handleDeleteAddress}
+            pendingDelete={pendingDelete}
           />
         )}
 

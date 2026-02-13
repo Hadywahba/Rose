@@ -5,12 +5,14 @@ import { MapPin, PencilLine, Phone } from 'lucide-react';
 type AddressCardProps = {
   address: Address;
   handleDeleteAddress: (id: string) => void;
+  onEditAddress: (address: Address) => void; 
   pendingDelete: boolean;
 };
 
 export default function AddressCard({
   address,
   handleDeleteAddress,
+  onEditAddress, 
   pendingDelete,
 }: AddressCardProps) {
   return (
@@ -27,15 +29,17 @@ export default function AddressCard({
       </div>
 
       <div className="absolute -right-4 bottom-2 flex flex-shrink-0 items-start gap-2">
-        <div className="flex items-center py-2 gap-2 text-zinc-600">
+        <div className="flex items-center gap-2 py-2 text-zinc-600">
           <Phone size={20} />
           <span className="text-sm">{address.phone}</span>
         </div>
 
         <div className="flex flex-col gap-2">
           <button
-            className="flex h-8 w-8 items-center justify-center rounded-full border bg-zinc-50 border-zinc-400 transition-colors hover:bg-zinc-200"
             aria-label="Edit address"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-zinc-400 bg-zinc-50 transition-colors hover:bg-zinc-200"
+            type="button"
+            onClick={() => onEditAddress(address)}
           >
             <PencilLine size={18} className="text-zinc-600" />
           </button>

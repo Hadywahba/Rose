@@ -2,21 +2,20 @@
 
 import AddressCard from './address-card';
 import { Address } from '@/lib/types/user-addresses';
-import { useDeleteAddress } from '../_hooks/use-delete-address';
 
 interface AddressSelectorProps {
   userAddresses: Address[];
+  onEditAddress: (address: Address) => void;
+  onDeleteAddress: (id: string) => void;
+  pendingDelete: boolean;
 }
 
 export default function AddressSelector({
   userAddresses,
+  onEditAddress,
+  onDeleteAddress,
+  pendingDelete,
 }: AddressSelectorProps) {
-  const { pendingDelete, deleteAddress } = useDeleteAddress();
-
-  const handleDeleteAddress = (id: string) => {
-    deleteAddress(id);
-  };
-
   const groupedAddresses = userAddresses.reduce<Record<string, Address[]>>(
     (acc, address) => {
       const category = address.username;
@@ -41,9 +40,9 @@ export default function AddressSelector({
         return (
           <div key={category} className="space-y-3">
             {/* Category header */}
-              <h3 className="text-xl font-semibold text-maroon-600">
-                {category}
-              </h3>
+            <h3 className="text-xl font-semibold text-maroon-600">
+              {category}
+            </h3>
 
             {/* Addresses */}
             <div className="space-y-3">
@@ -51,7 +50,8 @@ export default function AddressSelector({
                 <AddressCard
                   key={address._id}
                   address={address}
-                  handleDeleteAddress={handleDeleteAddress}
+                  handleDeleteAddress={onDeleteAddress}
+                  onEditAddress={onEditAddress}
                   pendingDelete={pendingDelete}
                 />
               ))}
