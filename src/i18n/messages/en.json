@@ -290,7 +290,8 @@
         "title": "credit card",
         "text": "You’ll be securely redirected to Stripe to complete your payment."
       },
-      "payment-loading": "loading...."
+      "payment-loading": "loading....",
+      "select-required": "Please select all required items"
     }
   }
 }

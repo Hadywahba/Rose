@@ -5,7 +5,6 @@ import { VisaPayload } from '@/lib/types/checkout/checkout-visa';
 import { useMutation } from '@tanstack/react-query';
 import { useContext } from 'react';
 
-
 export const usePaymentVisa = () => {
   // Context
   const { setAddress, setPaymentMethod } = useContext(CheckoutContext)!;
@@ -27,14 +26,15 @@ export const usePaymentVisa = () => {
         },
       };
       const payload = await addPaymentWithVISA(result);
+
       if ('error' in payload) {
         throw new Error(payload.error);
       }
+
       return payload;
     },
+
     onSuccess: (data) => {
-      // toast.success('well done hady');
-      // Redirect to Stripe checkout URL
       if (data.session?.url) {
         window.location.href = data.session.url;
         setPaymentMethod(null);

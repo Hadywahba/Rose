@@ -5,7 +5,6 @@ import { Addresses } from '@/lib/types/address/address';
 import { CashPayload } from '@/lib/types/checkout/checkout-cash';
 import { useMutation } from '@tanstack/react-query';
 import { useContext } from 'react';
-import { toast } from 'sonner';
 
 export const usePaymentCash = () => {
   // Navigation
@@ -39,7 +38,6 @@ export const usePaymentCash = () => {
       return payload;
     },
     onSuccess: () => {
-      toast.success('well done hady');
       router.push('/allOrders');
       setPaymentMethod(null);
       setAddress(null);
