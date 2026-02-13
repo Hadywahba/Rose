@@ -169,7 +169,8 @@
       "password": "Password",
       "email": "Email",
       "submit": "Login",
-      "login-error": "An error occurred during login. Please try again."
+      "login-error": "An error occurred during login. Please try again.",
+      "remember me": "Remember me"
     },
     "register": {
       "title": "Become part of our family!",
@@ -263,5 +264,39 @@
     "price-from": "from",
     "price-to": "to",
     "reset": "reset"
+ 
+},
+ "header": {
+    "home": "Home",
+    "products": "Products",
+    "categories": "Categories",
+    "occasion": "Occasions",
+    "contact": "Contact",
+    "about": "About",
+    "login": "Login",
+    "register": "Register",
+    "deliver to": "Deliver to",
+    "search": "What awesome gift are you looking for?"
+  },
+  "footer": {
+    "title": "Rose E-Commerce App",
+    "discover":"Discover our website",
+    "home": "Home",
+    "products": "Products",
+    "categories": "Categories",
+    "occasion": "Occasions",
+    "about": "About",
+    "contact": "Contact",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy",
+    "faqs": "FAQs",
+    "copyright": "All rights reserved | 2025",
+    "get":"Get",
+    "discount":"20%",
+    "getDiscount":"Off Discount Coupon",
+    "subscribingWay":"By subscribing to our newsletter",
+    "emailPlaceholder":"Enter your email",
+    "subscribe":"Subscribe"
+
   }
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import { useSyncLocalWishlistToServer } from '@/lib/hooks/local-storage/use-sync-local-whishlist-to-server';
+import { JSON_HEADER } from '@/lib/constants/api.constant';
 import { LoginFormFields } from '@/lib/schema/login.schema';
 import { useMutation } from '@tanstack/react-query';
 import { signIn } from 'next-auth/react';
@@ -10,36 +11,69 @@ import { toast } from 'sonner';
 export default function useLogin() {
   // Translation
   const t = useTranslations('auth');
+
   // Hooks
   const { sendWhishlistProductsFromStorageToServer } =
     useSyncLocalWishlistToServer();
 
-  //mutation
-  const { isPending, error, mutate } = useMutation({
-    mutationFn: async (credentials: LoginFormFields) => {
+  const mutation = useMutation({
+    mutationFn: async (data: {
+      values: LoginFormFields;
+      rememberMe: boolean;
+    }) => {
+      const { values, rememberMe } = data;
+
+      const callbackUrl =
+        new URLSearchParams(window.location.search).get('callbackUrl') || '/';
+
+      if (!rememberMe) {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_API}/auth/signin`,
+          {
+            method: 'POST',
+            headers: { ...JSON_HEADER },
+            body: JSON.stringify({
+              email: values.email,
+              password: values.password,
+            }),
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error('Invalid credentials');
+        }
+
+        const data = await response.json();
+        sessionStorage.setItem('user', JSON.stringify(data));
+        window.location.href = callbackUrl;
+        return data;
+      }
+
       const response = await signIn('credentials', {
-        email: credentials.email,
-        password: credentials.password,
+        email: values.email,
+        password: values.password,
         redirect: false,
       });
-      if (response?.ok) {
-        const callbackUrl =
-          new URLSearchParams(location.search).get('callbackUrl') || '/';
-        return (location.href = callbackUrl);
-      }
-      // Handle authentication error
+
       if (response?.error) {
-        throw new Error(response.error);
+        throw new Error('Invalid credentials');
       }
-      return response;
+
+      window.location.href = callbackUrl;
     },
+
     onSuccess: async () => {
-      // Sync local wishlist to server after successful login
       await sendWhishlistProductsFromStorageToServer();
     },
+
     onError: () => {
       toast.error(t('login.login-error'));
     },
   });
-  return { isPending, error, login: mutate };
+
+  return {
+    isPending: mutation.isPending,
+    error: mutation.error,
+    login: mutation.mutate,
+  };
 }

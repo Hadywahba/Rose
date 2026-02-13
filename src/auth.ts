@@ -1,5 +1,5 @@
 import { LoginResponse } from '@/lib/types/auth';
-import { NextAuthOptions } from 'next-auth';
+import { NextAuthOptions} from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import { JSON_HEADER } from '@/lib/constants/api.constant';
 
@@ -10,7 +10,6 @@ export const authOption: NextAuthOptions = {
       credentials: {
         email: {},
         password: {},
-        rememberMe: {},
       },
 
       authorize: async (credentials) => {
@@ -35,17 +34,18 @@ export const authOption: NextAuthOptions = {
           id: payload.user._id,
           user: payload.user,
           accessToken: payload.token,
-          rememberMe: credentials?.rememberMe === 'true',
         };
       },
     }),
   ],
+  session: {
+    strategy: 'jwt'
+  },
   callbacks: {
     jwt: ({ token, user }) => {
       if (user) {
         token.accessToken = user.accessToken;
         token.user = user.user;
-        token.rememberMe = user.accessToken;
       }
 
       return token;
