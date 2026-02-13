@@ -48,3 +48,13 @@ export interface StripeCustomerDetails {
     country?: string;
   };
 }
+
+export type VisaPayload = {
+  shippingAddress: {
+    street: string;
+    phone: string;
+    city: string;
+    lat: string;
+    long: string;
+  };
+};

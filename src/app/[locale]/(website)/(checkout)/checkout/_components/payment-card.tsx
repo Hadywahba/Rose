@@ -13,7 +13,7 @@ export default function PaymentCard() {
 
   // Context
   const { paymentMethod, setPaymentMethod } = useContext(CheckoutContext)!;
-  console.log(paymentMethod);
+
   return (
     <div className="flex flex-col items-center justify-center gap-3 md:flex md:flex-row md:items-center md:justify-between">
       {paymentMethods.map((card) => {

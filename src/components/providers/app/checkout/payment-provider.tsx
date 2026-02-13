@@ -13,8 +13,8 @@ import {
 type PaymentContextType = {
   address: Addresses | null;
   paymentMethod: PaymentMethods | null;
-  setAddress: (address: Addresses) => void;
-  setPaymentMethod: (method: PaymentMethods) => void;
+  setAddress: (address: Addresses | null) => void;
+  setPaymentMethod: (method: PaymentMethods | null) => void;
 };
 
 export const CheckoutContext = createContext<PaymentContextType | undefined>(
@@ -32,15 +32,23 @@ export const CheckoutProvider = ({ children }: { children: ReactNode }) => {
   // Fumctions
 
   //   Is Used to save payment address
-  const setAddress = (add: Addresses) => {
+  const setAddress = (add: Addresses | null) => {
     setAddressState(add);
-    sessionStorage.setItem('checkout-addresses', JSON.stringify(add));
+    if (add) {
+      sessionStorage.setItem('checkout-addresses', JSON.stringify(add));
+    } else {
+      sessionStorage.removeItem('checkout-addresses');
+    }
   };
 
   //   Is Used to save payment method
-  const setPaymentMethod = (payment: PaymentMethods) => {
+  const setPaymentMethod = (payment: PaymentMethods | null) => {
     setPaymentState(payment);
-    sessionStorage.setItem('checkout-payment', payment);
+    if (payment) {
+      sessionStorage.setItem('checkout-payment', payment);
+    } else {
+      sessionStorage.removeItem('checkout-payment');
+    }
   };
 
   //   Effect

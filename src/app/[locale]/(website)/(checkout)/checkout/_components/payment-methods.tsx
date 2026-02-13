@@ -1,20 +1,17 @@
-"use client"
+'use client';
 import { Button } from '@/components/ui/button';
 import { CHECKOUT_STEPS } from '@/lib/constants/checkout.constant';
 import { CheckoutMethodProps } from '@/lib/types/auth/forget-password/verify';
 import { cn } from '@/lib/utility/tailwind-merge';
-import { ArrowLeft, MoveLeft, MoveRight } from 'lucide-react';
-import React, { useContext } from 'react';
+import { ArrowLeft } from 'lucide-react';
+import React from 'react';
 import { useLocale, useTranslations } from 'use-intl';
 import PaymentCard from './payment-card';
-import { CheckoutContext } from '@/components/providers/app/checkout/payment-provider';
+import PaymentButton from './payment-button';
 
 export default function PaymentMethods({ setStep }: CheckoutMethodProps) {
   // Translation
   const t = useTranslations('checkout');
-
- // Context
-  const { paymentMethod , address } = useContext(CheckoutContext)!;
 
   // Hook
   const locale = useLocale();
@@ -60,22 +57,12 @@ export default function PaymentMethods({ setStep }: CheckoutMethodProps) {
       </div>
 
       {/* Payment Method */}
-      <section className="flex w-full flex-col p-3 pb-4 border-b-[.0625rem] border-zinc-100 dark:border-zinc-300 ">
+      <section className="flex w-full flex-col border-b-[.0625rem] border-zinc-100 p-3 pb-4 dark:border-zinc-300">
         <PaymentCard />
       </section>
 
       {/* Checkout Button */}
-      <div className="mb-4 flex justify-end pt-4 ">
-        <Button
-          variant="primary"
-          className=" w-full md:w-[9.5rem] rounded-lg py-5 capitalize disabled:bg-maroon-600 dark:disabled:bg-softpink-200"
-          disabled={paymentMethod===null || address ===null }
-        >
-          {arabic && <MoveLeft className="h-5 w-5" />}
-          {t('checkout-summary.checkout-button')}
-          {!arabic && <MoveRight className="h-5 w-5" />}
-        </Button>
-      </div>
+      <PaymentButton />
     </main>
   );
 }

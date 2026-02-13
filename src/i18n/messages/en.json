@@ -289,7 +289,8 @@
       "visa": {
         "title": "credit card",
         "text": "You’ll be securely redirected to Stripe to complete your payment."
-      }
+      },
+      "payment-loading": "loading...."
     }
   }
 }

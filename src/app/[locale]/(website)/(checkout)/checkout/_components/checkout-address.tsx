@@ -20,7 +20,7 @@ export default function CheckoutAddress() {
   // Hook
   const locale = useLocale();
 
-  console.log(address);
+ 
   return (
     <ListError errors={error}>
       <section
