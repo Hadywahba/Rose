@@ -279,5 +279,8 @@
   "number-must-be-positive": "يجب أن يكون الرقم موجبًا",
   "current-stock-now-is-quantity-available": "{المخزون الحالي الآن هو {الكمية} المتوفرة}",
   "continue-shopping": "مواصلة التسوق",
-  "emtycart": "سلة التسوق الخاصة بك فارغة، هل تريد تجربة التسوق؟"
+  "emtycart": "سلة التسوق الخاصة بك فارغة، هل تريد تجربة التسوق؟",
+  "product-added-successfully-0": "تمت إضافة المنتج بنجاح",
+  "price-quantity": "{productPrice}",
+  "quantity-number-number-base": "{quantity,number,number-base}"
 }

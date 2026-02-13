@@ -77,7 +77,7 @@ export default function CartItem({
               <span className="flex items-center font-bold text-maroon-600 dark:text-maroon-50">
                 {/* quantity in cart */}
                 (<X size={16} className="inline" />
-                {t('quantity-number-number-base', { quantity })}
+                {t('quantity-number-number-base', { quantity })} )
               </span>
               {/* total price of item in cart */}
               <span className="text-2xl font-bold text-zinc-800 dark:text-zinc-200">

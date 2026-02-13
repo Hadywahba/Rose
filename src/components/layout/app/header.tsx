@@ -14,6 +14,7 @@ import {
   PartyPopper,
   Headset,
   Info,
+  Loader,
 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -29,6 +30,11 @@ import { usePathname } from 'next/navigation';
 import ThemeToggleIcon from './theme-toggle';
 import ToggleLocale from '@/components/shared/ToggleLocale';
 import NotificationsList from '@/components/features/notifications/notification-list';
+import { useLocale } from 'next-intl';
+import { useCart } from '@/lib/hooks/cart/use-cart';
+import { useGuestCartContext } from '@/lib/hooks/cart/use-guest-cart-context';
+import { useSession } from 'next-auth/react';
+import { useRouter } from '@/i18n/navigation';
 
 const NAV_LINKS = [
   { label: 'Home', href: '/', icon: Home },
@@ -40,7 +46,21 @@ const NAV_LINKS = [
 ];
 
 const Header = () => {
+  // Translations
+  const locale = useLocale();
+
+  // Navigations
   const pathname = usePathname();
+  const router = useRouter();
+
+  // Querys
+  const { data, isLoading, isFetching } = useCart();
+
+  // Hooks
+  const { totalItems } = useGuestCartContext();
+  // Variables
+  const { data: session } = useSession();
+  const numOfCartItems = session ? data?.numOfCartItems : totalItems;
 
   return (
     <header className="w-full bg-white shadow-sm">
@@ -99,12 +119,23 @@ const Header = () => {
               <Heart className="h-6 w-6" />
             </button>
 
-
-<NotificationsList/>
-            <button className="relative hover:text-red-800">
+            {/* Notifications */}
+            <NotificationsList />
+            {/* Cart-Badge */}
+            <button
+              className="relative hover:text-red-800"
+              // navigate to cart page
+              onClick={() => {
+                router.push('/cart', { locale });
+              }}
+            >
               <ShoppingCart className="h-6 w-6" />
               <Badge className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center bg-red-600 p-0 hover:bg-red-600">
-                8
+                {isLoading || isFetching ? (
+                  <Loader size={12} className="animate-spin" />
+                ) : (
+                  numOfCartItems
+                )}
               </Badge>
             </button>
 

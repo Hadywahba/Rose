@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { addToCartAction } from "@/lib/actions/cart/add-to-cart.action";
-import { useQueryClient } from "@tanstack/react-query";
-import { useGuestCartContext } from "./use-guest-cart-context";
+import { addToCartAction } from '@/lib/actions/cart/add-to-cart.action';
+import { useQueryClient } from '@tanstack/react-query';
+import { useGuestCartContext } from './use-guest-cart-context';
 
 export function useSyncGuestCartToServer() {
   const queryClient = useQueryClient();
@@ -20,14 +20,14 @@ export function useSyncGuestCartToServer() {
         quantity: item.quantity,
       });
 
-      // ✅ only remove if server success
-      if (!("error" in payload) && payload?.message === "success") {
+      //only remove if server success
+      if (payload?.message === 'success') {
         removeItem(item.product._id);
       }
     }
 
     // ✅ refresh server cart after merge
-    await queryClient.invalidateQueries({ queryKey: ["cart"] });
+    await queryClient.invalidateQueries({ queryKey: ['cart'] });
   }
 
   return { sendCartItemsFromStorageToServer };

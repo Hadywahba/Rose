@@ -65,6 +65,7 @@ export default async function ProductsList({
               src={product.imgCover}
               title={product.title}
               showWishListBtn={true}
+              productInfo={product}
             />
           ))}
       </div>

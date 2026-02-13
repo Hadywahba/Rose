@@ -1,7 +1,7 @@
-import { clearCartAction } from "@/lib/actions/cart/clear-cart.action";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useTranslations } from "next-intl";
-import { toast } from "sonner";
+import { clearCartAction } from '@/lib/actions/cart/clear-cart.action';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useTranslations } from 'next-intl';
+import { toast } from 'sonner';
 
 export function useClearCart() {
   // Translations
@@ -14,16 +14,17 @@ export function useClearCart() {
 
       // catch-error
 
-      if ("error" in payload) {
+      if ('error' in payload) {
         throw new Error(
-          payload.error || "error during update product in cart!",
+          payload.error || 'error during update product in cart!',
         );
       }
       return payload;
     },
     onSuccess: async () => {
       toast.success(t('cart-cleared-successfully'));
-      await queryClient.invalidateQueries({ queryKey: ["cart"] });
+      // revalidate cart
+      await queryClient.invalidateQueries({ queryKey: ['cart'] });
     },
     onError: (error) => {
       toast.error(error.message);
