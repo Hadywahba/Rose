@@ -41,9 +41,9 @@ import {
 
 import RememberMe from '@/app/[locale]/(auth)/login/_components/remeber-me';
 import SubmitButton from '@/components/features/auth/submit-button';
-import useLogin from '@/app/[locale]/(auth)/login/_components/_hooks/use-login';
 import { LoginFormFields, loginSchema } from '@/lib/schema/login.schema';
 import { cn } from '@/lib/utility/tailwind-merge';
+import useLogin from '@/app/[locale]/(auth)/login/_hooks/use-login';
 
 const Header = () => {
   const t = useTranslations('header');

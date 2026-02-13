@@ -264,9 +264,8 @@
     "price-from": "from",
     "price-to": "to",
     "reset": "reset"
- 
-},
- "header": {
+  },
+  "header": {
     "home": "Home",
     "products": "Products",
     "categories": "Categories",
@@ -280,7 +279,7 @@
   },
   "footer": {
     "title": "Rose E-Commerce App",
-    "discover":"Discover our website",
+    "discover": "Discover our website",
     "home": "Home",
     "products": "Products",
     "categories": "Categories",
@@ -291,12 +290,11 @@
     "privacy": "Privacy Policy",
     "faqs": "FAQs",
     "copyright": "All rights reserved | 2025",
-    "get":"Get",
-    "discount":"20%",
-    "getDiscount":"Off Discount Coupon",
-    "subscribingWay":"By subscribing to our newsletter",
-    "emailPlaceholder":"Enter your email",
-    "subscribe":"Subscribe"
-
+    "get": "Get",
+    "discount": "20%",
+    "getDiscount": "Off Discount Coupon",
+    "subscribingWay": "By subscribing to our newsletter",
+    "emailPlaceholder": "Enter your email",
+    "subscribe": "Subscribe"
   }
 }
