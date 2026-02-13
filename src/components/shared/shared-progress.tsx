@@ -2,26 +2,40 @@
 
 import React from 'react';
 import { cn } from '@/lib/utility/tailwind-merge';
-import { CHECKOUT_STEPS } from '@/lib/constants/checkout.constant';
 import { CheckoutStep } from '@/lib/types/auth';
+import { useLocale } from 'next-intl';
 
 interface CheckoutProgressProps {
   step: CheckoutStep;
+  steps: string[];
+  firstValue?: string;
+  secondValue?: string;
 }
 
-export default function CheckoutProgress({ step }: CheckoutProgressProps) {
-  // Variable
-  const steps = [CHECKOUT_STEPS.address, CHECKOUT_STEPS.payment];
+export default function SharedProgress({
+  step,
+  steps,
+  firstValue,
+  secondValue,
+}: CheckoutProgressProps) {
+  // Hook
+  const locale = useLocale();
 
+  // State
   const currentStepIndex = steps.indexOf(step) + 1;
+
+  const arabic = locale === 'ar';
 
   return (
     <div className="relative mb-6 mt-2 flex w-full flex-col gap-2">
       {/* Progress Line */}
       <div className="relative h-2 w-full rounded-full bg-zinc-200">
         <div
-          className="absolute left-0 top-0 h-2 rounded-full bg-maroon-600 transition-all duration-500 dark:bg-softpink-300"
-          style={{ width: currentStepIndex === 1 ? '25%' : '100%' }}
+          className={cn(
+            'absolute top-0 h-2 rounded-full bg-maroon-600 transition-all duration-500 dark:bg-softpink-300',
+            arabic ? 'right-0' : 'left-0',
+          )}
+          style={{ width: currentStepIndex === 1 ? firstValue : secondValue }}
         />
       </div>
 

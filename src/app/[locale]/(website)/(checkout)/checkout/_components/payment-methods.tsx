@@ -8,7 +8,8 @@ import React from 'react';
 import { useLocale, useTranslations } from 'use-intl';
 import PaymentCard from './payment-card';
 import PaymentButton from './payment-button';
-import CheckoutProgress from './checkout-progress';
+import SharedProgress from '@/components/shared/shared-progress';
+
 
 export default function PaymentMethods({ setStep }: CheckoutMethodProps) {
   // Translation
@@ -19,10 +20,17 @@ export default function PaymentMethods({ setStep }: CheckoutMethodProps) {
 
   // Variable
   const arabic = locale === 'ar';
+
+  const steps = [CHECKOUT_STEPS.address, CHECKOUT_STEPS.payment];
+
   return (
     <main className="flex flex-col">
       {/* Progress Section */}
-      <CheckoutProgress step={CHECKOUT_STEPS.payment} />
+      <SharedProgress
+        step={CHECKOUT_STEPS.payment}
+        steps={steps}
+        secondValue={'100%'}
+      />
 
       {/* Button & Title */}
       <div

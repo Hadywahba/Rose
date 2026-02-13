@@ -6,7 +6,7 @@ import CheckoutAddress from './checkout-address';
 import AddressButton from './address-button';
 import { CHECKOUT_STEPS } from '@/lib/constants/checkout.constant';
 import { CheckoutMethodProps } from '@/lib/types/auth/forget-password/verify';
-import CheckoutProgress from './checkout-progress';
+import SharedProgress from '@/components/shared/shared-progress';
 
 export default function CheckOutContent({ setStep }: CheckoutMethodProps) {
   // Translation
@@ -16,12 +16,19 @@ export default function CheckOutContent({ setStep }: CheckoutMethodProps) {
   const locale = useLocale();
 
   // Variable
+  const steps = [CHECKOUT_STEPS.address, CHECKOUT_STEPS.payment];
+
+  // Variable
   const arabic = locale === 'ar';
 
   return (
     <main className="flex flex-col gap-6">
       {/* Progress Section */}
-      <CheckoutProgress step={CHECKOUT_STEPS.address} />
+      <SharedProgress
+        step={CHECKOUT_STEPS.address}
+        steps={steps}
+        firstValue={'25%'}
+      />
 
       {/* Title */}
       <h1 className="text-3xl font-semibold capitalize">
