@@ -135,7 +135,7 @@ export default function AddressForm({
                 </FormLabel>
                 <FormControl>
                   <PhoneInput
-                    className="w-full border-zinc-300 text-black focus:outline-none focus:ring-0 dark:border-zinc-600 dark:text-zinc-50"
+                    className="w-full border-zinc-300 text-black focus:outline-none focus:ring-0 dark:border-zinc-600"
                     defaultCountry="EG"
                     // placeholder={t('my-addresses.phone-placeholder')}
                     {...field}

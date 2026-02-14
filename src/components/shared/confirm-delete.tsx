@@ -42,22 +42,23 @@ export function ConfirmDelete({ handleDeleteAddress, id, pendingDelete }: Confir
         </Button>
       </AlertDialogTrigger>
 
-      <AlertDialogContent className="flex h-[20rem] max-w-md flex-col rounded-2xl p-4">
+      <AlertDialogContent className="flex h-[20rem] max-w-md flex-col rounded-2xl p-4 dark:bg-zinc-700">
         <AlertDialogHeader className="flex flex-1 flex-col items-center justify-center gap-4 pt-2">
           <Image
+            className="rounded-full bg-zinc-300"
             src="/images/trashIcon.svg"
             alt="delete icon"
             width={110}
             height={110}
           />
 
-          <AlertDialogDescription className="text-center text-xl font-semibold text-zinc-800">
+          <AlertDialogDescription className="text-center text-xl font-semibold text-zinc-800 dark:text-zinc-300">
             {t('sure-to-delete')}
           </AlertDialogDescription>
         </AlertDialogHeader>
 
         <AlertDialogFooter className="flex gap-4 sm:justify-center">
-          <AlertDialogCancel className="border-zinc-400 text-zinc-800">
+          <AlertDialogCancel className="border-zinc-400 text-zinc-800 dark:bg-softpink-100 dark:text-softpink-700">
             {t('Cancel')}
           </AlertDialogCancel>
           <AlertDialogAction

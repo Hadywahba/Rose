@@ -45,7 +45,7 @@ export default function AddressSelector({
         return (
           <div key={category} className="space-y-3">
             {/* Category header */}
-            <h3 className="text-xl font-semibold text-maroon-600">
+            <h3 className="text-xl font-semibold text-maroon-600 dark:text-softpink-200">
               {category}
             </h3>
 

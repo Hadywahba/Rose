@@ -56,13 +56,13 @@ export async function ProductsReviews({ productId }: { productId: string }) {
           <>
             {/* Rating Summary */}
             <div className="mb-8">
-              <h2 className="text-xl font-semibold tracking-tight text-zinc-800 md:text-2xl">
+              <h2 className="text-xl font-semibold tracking-tight text-zinc-800 dark:text-zinc-50 md:text-2xl">
                 {t('general-rating')}
               </h2>
               <div className="mt-2 flex flex-col gap-1">
-                <span className="text-2xl font-bold text-zinc-800">
+                <span className="text-2xl font-bold text-zinc-800 dark:text-zinc-50">
                   {formatNumber(averageRating)}{' '}
-                  <span className="text-sm font-medium text-zinc-500">
+                  <span className="text-sm font-medium text-zinc-500 dark:text-zinc-200">
                     ({formatCount(fetchedReviews.length)} {t('ratings-count')})
                   </span>
                 </span>
@@ -71,12 +71,14 @@ export async function ProductsReviews({ productId }: { productId: string }) {
             </div>
 
             {/* Reviews Grid */}
-            <div className="grid grid-cols-1 gap-8 border-t pt-4 lg:grid-cols-2">
+            <div className="grid grid-cols-1 gap-8 border-t pt-4 dark:border-zinc-50 lg:grid-cols-2">
               {/* Reviews List - Scrollable */}
               <div className="max-h-96 space-y-2 overflow-y-auto pe-4">
                 {fetchedReviews.map((review, index) => (
                   <div key={review._id}>
-                    {index > 0 && <Separator className="mb-6" />}
+                    {index > 0 && (
+                      <Separator className="mb-6 dark:bg-zinc-50" />
+                    )}
                     <ReviewItem review={review} formatNumber={formatNumber} />
                   </div>
                 ))}
