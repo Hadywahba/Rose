@@ -1,34 +1,35 @@
 'use client';
 
-import { addToCartAction } from '@/lib/actions/cart/add-to-cart.action';
+import { useCallback } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
+
 import { useGuestCartContext } from './use-guest-cart-context';
+import { addToCartAction } from '@/lib/actions/cart/add-to-cart.action';
 
 export function useSyncGuestCartToServer() {
   const queryClient = useQueryClient();
-  const { cartItems, removeItem, isReady } = useGuestCartContext();
+  const { cartItems, removeItem } = useGuestCartContext();
 
-  async function sendCartItemsFromStorageToServer() {
-    if (!isReady) return;
-    if (cartItems.length === 0) return;
+  const sendCartItemsFromStorageToServer = useCallback(async () => {
+    if (!cartItems.length) return;
 
-    const itemsSnapshot = [...cartItems];
+    const productIds = [...cartItems];
 
-    for (const item of itemsSnapshot) {
+    for (const item of productIds) {
       const payload = await addToCartAction({
         productId: item.product._id,
         quantity: item.quantity,
       });
 
-      //only remove if server success
+      // If server succeeded, remove from local
       if (payload?.message === 'success') {
-        removeItem(item.product._id);
+        removeItem(item._id);
       }
     }
 
-    // ✅ refresh server cart after merge
+    // Refresh server wishlist queries once
     await queryClient.invalidateQueries({ queryKey: ['cart'] });
-  }
+  }, [cartItems, removeItem, queryClient]);
 
   return { sendCartItemsFromStorageToServer };
 }
