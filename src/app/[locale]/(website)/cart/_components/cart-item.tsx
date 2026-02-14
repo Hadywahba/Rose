@@ -98,6 +98,8 @@ export default function CartItem({
         productQuantity={productQuantity}
         quantityInCart={quantity}
       />
+
+      
     </div>
   );
 }
