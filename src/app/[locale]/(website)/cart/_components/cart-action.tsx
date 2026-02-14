@@ -64,6 +64,7 @@ export default function CartAction({
     if (!session) {
       // guest: update local storage via context
       setQuantity(productId, nextValue);
+      toast.success(t("product-updated-successfully"))
       return;
     }
 
