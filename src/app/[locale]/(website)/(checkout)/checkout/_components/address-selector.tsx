@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import AddressCard from './address-card';
 import { Address } from '@/lib/types/user-addresses';
 
@@ -16,6 +17,10 @@ export default function AddressSelector({
   onDeleteAddress,
   pendingDelete,
 }: AddressSelectorProps) {
+  // Translations
+  const t = useTranslations('my-addresses');
+
+  // group addresses by category
   const groupedAddresses = userAddresses.reduce<Record<string, Address[]>>(
     (acc, address) => {
       const category = address.username;
@@ -31,11 +36,11 @@ export default function AddressSelector({
   );
 
   if (!userAddresses.length) {
-    return <p className="text-maroon-600">No addresses found.</p>;
+    return <p className="text-maroon-600">{t('no-addresses-found')}</p>;
   }
 
   return (
-    <div className="space-y-6">
+    <div dir='ltr' className="space-y-6">
       {Object.entries(groupedAddresses).map(([category, categoryAddresses]) => {
         return (
           <div key={category} className="space-y-3">

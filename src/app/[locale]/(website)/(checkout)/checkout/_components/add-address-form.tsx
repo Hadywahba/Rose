@@ -17,8 +17,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { ADDRESS_STEPS } from '@/lib/constants/checkout.constant';
 import { AddressFormSchema, addressSchema } from '@/lib/schema/address.schema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { ArrowLeft } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { useTranslations, useLocale } from 'next-intl';
 import { useForm } from 'react-hook-form';
 
 interface AddressFormProps {
@@ -32,10 +32,14 @@ export default function AddressForm({
   data,
   onFormComplete,
 }: AddressFormProps) {
-  const t = useTranslations('my-addresses');
+  // Translations
+  const t = useTranslations();
+  const locale = useLocale();
+  const isRTL = locale === 'ar';
 
+  // Form Hook
   const form = useForm<Omit<AddressFormSchema, 'lat' | 'long'>>({
-    resolver: zodResolver(addressSchema.omit({ lat: true, long: true })),
+    resolver: zodResolver(addressSchema(t).omit({ lat: true, long: true })),
     defaultValues: {
       username: data?.username || '',
       city: data?.city || '',
@@ -44,6 +48,7 @@ export default function AddressForm({
     },
   });
 
+  // Functions
   function onSubmit(values: Omit<AddressFormSchema, 'lat' | 'long'>) {
     onFormComplete?.(values);
   }
@@ -58,78 +63,81 @@ export default function AddressForm({
             steps={Object.values(ADDRESS_STEPS)}
             firstValue="25%"
           />
+
           {/* Title & Back */}
           <div className="flex gap-2 pt-2">
             {onBack && (
               <Button
-                aria-label="Go back"
+                aria-label={t('my-addresses.back-button')}
                 className="rounded-full"
                 type="button"
                 size="icon"
                 onClick={onBack}
               >
-                <ArrowLeft size={20} />
+                {isRTL ? <ArrowRight size={20} /> : <ArrowLeft size={20} />}
               </Button>
             )}
             <p className="text-2xl font-medium text-maroon-600 dark:text-softpink-200">
-              Enter address details
+              {t('my-addresses.form-title')}
             </p>
           </div>
 
+          {/* Username/Category Field */}
           <Field>
             <FieldLabel className="dark:text-zinc-50" htmlFor="username">
-              {t('category-label')}
+              {t('my-addresses.category-label')}
             </FieldLabel>
             <Input
               className="w-full dark:text-zinc-50"
               id="username"
-              placeholder={t('category-placeholder')}
+              placeholder={t('my-addresses.category-placeholder')}
               {...form.register('username')}
             />
             <FieldError>{form.formState.errors.username?.message}</FieldError>
           </Field>
 
+          {/* City Field */}
           <Field>
             <FieldLabel className="dark:text-zinc-50" htmlFor="city">
-              {t('city-label')}
+              {t('my-addresses.city-label')}
             </FieldLabel>
             <Input
               className="w-full dark:text-zinc-50"
               id="city"
-              placeholder={t('city-placeholder')}
+              placeholder={t('my-addresses.city-placeholder')}
               {...form.register('city')}
             />
             <FieldError>{form.formState.errors.city?.message}</FieldError>
           </Field>
 
+          {/* Street Address Field */}
           <Field>
             <FieldLabel className="dark:text-zinc-50" htmlFor="street">
-              {t('address-label')}
+              {t('my-addresses.address-label')}
             </FieldLabel>
             <Textarea
               className="min-h-28 dark:text-zinc-50"
               id="street"
-              placeholder={t('address-placeholder')}
+              placeholder={t('my-addresses.address-placeholder')}
               {...form.register('street')}
             />
             <FieldError>{form.formState.errors.street?.message}</FieldError>
           </Field>
 
+          {/* Phone Field */}
           <FormField
             control={form.control}
             name="phone"
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="text-sm font-normal text-zinc-800 dark:text-zinc-50">
-                  {t('phone-label')}
+                  {t('my-addresses.phone-label')}
                 </FormLabel>
                 <FormControl>
                   <PhoneInput
-                    className={
-                      'w-full border-zinc-300 text-black focus:outline-none focus:ring-0 dark:border-zinc-600 dark:text-zinc-50'
-                    }
+                    className="w-full border-zinc-300 text-black focus:outline-none focus:ring-0 dark:border-zinc-600 dark:text-zinc-50"
                     defaultCountry="EG"
-                    placeholder={t('phone-placeholder')}
+                    // placeholder={t('my-addresses.phone-placeholder')}
                     {...field}
                   />
                 </FormControl>
@@ -137,9 +145,11 @@ export default function AddressForm({
               </FormItem>
             )}
           />
-          <div className='pt-2'>
+
+          {/* Submit Button */}
+          <div className="pt-2">
             <Button type="submit" className="w-full">
-              Next
+              {t('my-addresses.submit-button')}
             </Button>
           </div>
         </form>

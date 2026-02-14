@@ -3,9 +3,10 @@
 import { useState, useCallback, useEffect } from 'react';
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import SharedProgress from '@/components/shared/shared-progress';
 import { ADDRESS_STEPS } from '@/lib/constants/checkout.constant';
+import { useTranslations, useLocale } from 'next-intl';
 
 const containerStyle = { width: '100%', height: '22rem' };
 const center = { lat: 30.0444, lng: 31.2357 }; // Cairo, Egypt
@@ -23,11 +24,17 @@ export default function MapSelector({
   initialPosition = center,
   isPending = false,
 }: MapSelectorProps) {
+  // Translation
+  const t = useTranslations('my-addresses');
+  const locale = useLocale();
+  const isRTL = locale === 'ar';
+
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '',
+    googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY || '',
   });
 
+  // State
   const [position, setPosition] = useState(initialPosition);
 
   useEffect(() => {
@@ -49,7 +56,7 @@ export default function MapSelector({
   if (!isLoaded) {
     return (
       <div className="flex h-[400px] w-full items-center justify-center rounded-lg border bg-muted">
-        <p className="text-muted-foreground">Loading Map...</p>
+        <p className="text-muted-foreground">{t('loading-map')}</p>
       </div>
     );
   }
@@ -72,13 +79,15 @@ export default function MapSelector({
             size="icon"
             onClick={onBack}
           >
-            <ArrowLeft size={20} />
+            {isRTL ? <ArrowRight size={20} /> : <ArrowLeft size={20} />}
           </Button>
         )}
-        <p className="text-2xl font-medium text-maroon-600">
-          Find Your Location
+        <p className="text-2xl font-medium text-maroon-600 dark:text-softpink-200">
+          {t('map-title')}
         </p>
       </div>
+
+      {/* GoogleMap */}
       <div className="overflow-hidden rounded-lg border">
         <GoogleMap
           mapContainerStyle={containerStyle}
@@ -90,12 +99,6 @@ export default function MapSelector({
         </GoogleMap>
       </div>
 
-      {/* Show selected coordinates
-      <div className="rounded-md bg-maroon-50 p-3 text-sm text-maroon-700">
-        📍 Selected Location: {position.lat.toFixed(6)},{' '}
-        {position.lng.toFixed(6)}
-      </div> */}
-
       {/* Action button */}
       <Button
         onClick={handleConfirm}
@@ -103,7 +106,7 @@ export default function MapSelector({
         type="button"
         disabled={isPending}
       >
-        {isPending ? 'Adding Address...' : 'Add Address'}
+        {isPending ? t('adding-address') : t('add-address-button')}
       </Button>
     </div>
   );

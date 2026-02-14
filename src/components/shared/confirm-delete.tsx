@@ -13,6 +13,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utility/tailwind-merge';
 import { Trash2Icon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 
 type ConfirmDeleteProps = {
@@ -23,12 +24,16 @@ type ConfirmDeleteProps = {
 
 
 export function ConfirmDelete({ handleDeleteAddress, id, pendingDelete }: ConfirmDeleteProps) {
+  // Translations
+  const t = useTranslations('my-addresses');
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button
-          className={cn('flex h-8 w-8 items-center justify-center rounded-full',
-            pendingDelete && 'cursor-not-allowed opacity-50')}
+          className={cn(
+            'flex h-8 w-8 items-center justify-center rounded-full',
+            pendingDelete && 'cursor-not-allowed opacity-50',
+          )}
           disabled={pendingDelete}
           aria-label="Delete address"
           variant="destructive"
@@ -37,7 +42,7 @@ export function ConfirmDelete({ handleDeleteAddress, id, pendingDelete }: Confir
         </Button>
       </AlertDialogTrigger>
 
-      <AlertDialogContent className="flex h-[20rem] max-w-md flex-col p-4 rounded-2xl">
+      <AlertDialogContent className="flex h-[20rem] max-w-md flex-col rounded-2xl p-4">
         <AlertDialogHeader className="flex flex-1 flex-col items-center justify-center gap-4 pt-2">
           <Image
             src="/images/trashIcon.svg"
@@ -47,22 +52,23 @@ export function ConfirmDelete({ handleDeleteAddress, id, pendingDelete }: Confir
           />
 
           <AlertDialogDescription className="text-center text-xl font-semibold text-zinc-800">
-            Are you sure you want to delete this address?
+            {t('sure-to-delete')}
           </AlertDialogDescription>
         </AlertDialogHeader>
 
         <AlertDialogFooter className="flex gap-4 sm:justify-center">
-          <AlertDialogCancel className=" text-zinc-800 border-zinc-400">
-            Cancel
+          <AlertDialogCancel className="border-zinc-400 text-zinc-800">
+            {t('Cancel')}
           </AlertDialogCancel>
           <AlertDialogAction
-              className={cn(
-                'bg-maroon-600 text-white hover:bg-maroon-700',
-                pendingDelete && 'cursor-not-allowed opacity-50')}
-              onClick={() => handleDeleteAddress(id)}
-              disabled={pendingDelete}>
-            
-            Confirm
+            className={cn(
+              'bg-maroon-600 text-white hover:bg-maroon-700',
+              pendingDelete && 'cursor-not-allowed opacity-50',
+            )}
+            onClick={() => handleDeleteAddress(id)}
+            disabled={pendingDelete}
+          >
+            {t('Confirm')}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

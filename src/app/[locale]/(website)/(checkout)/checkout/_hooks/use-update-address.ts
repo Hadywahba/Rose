@@ -22,11 +22,11 @@ export const useUpdateAddress = () => {
     },
 
     onSuccess: () => {
-      toast.success(t('success-delete-message'));
+      toast.success(t('success-update-message'));
       router.refresh();
     },
     onError: (error: Error) => {
-      toast.error(t('error-delete-message', { message: error.message }));
+      toast.error(t('error-update-message', { message: error.message }));
     }
   });
 

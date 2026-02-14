@@ -1,6 +1,5 @@
 'use client';
 
-import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -9,16 +8,18 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import { useRouter } from '@/i18n/navigation';
+import { AddressFormSchema } from '@/lib/schema/address.schema';
 import { Address } from '@/lib/types/user-addresses';
+import { cn } from '@/lib/utility/tailwind-merge';
+import { useTranslations } from 'next-intl';
+import React, { useState } from 'react';
+import { useAddAddress } from '../_hooks/use-add-address';
+import { useDeleteAddress } from '../_hooks/use-delete-address';
+import { useUpdateAddress } from '../_hooks/use-update-address';
 import AddressForm from './add-address-form';
 import AddressSelector from './address-selector';
-import { cn } from '@/lib/utility/tailwind-merge';
 import MapSelector from './map-selector';
-import { AddressFormSchema } from '@/lib/schema/address.schema';
-import { useAddAddress } from '../_hooks/use-address';
-import { useUpdateAddress } from '../_hooks/use-update-address';
-import { useRouter } from '@/i18n/navigation';
-import { useDeleteAddress } from '../_hooks/use-delete-address';
 
 interface AddressesModalProps {
   userAddresses: Address[];
@@ -31,6 +32,9 @@ export function AddressesModalFlow({
   userAddresses,
   trigger,
 }: AddressesModalProps) {
+  // Translations
+  const t = useTranslations('my-addresses');
+
   // State
   const [step, setStep] = useState<DialogStep>('list');
   const [open, setOpen] = useState(false);
@@ -50,9 +54,9 @@ export function AddressesModalFlow({
   const { pendingUpdate, updateAddress } = useUpdateAddress();
   const { pendingDelete, deleteAddress } = useDeleteAddress();
 
-
   const isPending = isAddPending || pendingUpdate;
 
+  // Functions
   const resetForm = () => {
     setFormData({
       username: '',
@@ -74,7 +78,6 @@ export function AddressesModalFlow({
   };
 
   const handleEditAddress = (address: Address) => {
-    // Populate form with existing address data
     setFormData({
       username: address.username,
       city: address.city,
@@ -85,17 +88,14 @@ export function AddressesModalFlow({
     setStep('form');
   };
 
-    const handleDeleteAddress = (id: string) => {
-      deleteAddress(id);
-    };
+  const handleDeleteAddress = (id: string) => {
+    deleteAddress(id);
+  };
 
   const handleFormComplete = (
     data: Omit<AddressFormSchema, 'lat' | 'long'>,
   ) => {
-    setFormData((prev) => ({
-      ...prev,
-      ...data,
-    }));
+    setFormData((prev) => ({ ...prev, ...data }));
     setStep('map');
   };
 
@@ -106,49 +106,47 @@ export function AddressesModalFlow({
       long: location.lng.toString(),
     } as AddressFormSchema;
 
+    const onSuccess = () => {
+      resetForm();
+      router.refresh();
+      setStep('list');
+    };
+
     if (editingAddressId) {
-      // Update existing address
       updateAddress(
         { id: editingAddressId, data: completeData },
-        {
-          onSuccess: () => {
-            resetForm();
-            router.refresh();
-            setStep('list');
-          },
-        },
+        { onSuccess },
       );
     } else {
-      // Add new address
-      addAddress(completeData, {
-        onSuccess: () => {
-          resetForm();
-          router.refresh();
-          setStep('list');
-        },
-      });
+      addAddress(completeData, { onSuccess });
     }
   };
 
   const getDialogContentClass = () =>
     cn(
-      'h-[85vh] max-w-3xl overflow-y-scroll scrollbar-gutter-stable dark:bg-zinc-800 ',
+      'h-[85vh] max-w-3xl overflow-y-auto scrollbar-gutter-stable dark:bg-zinc-800',
       step !== 'list' && 'py-4',
       step === 'map' && 'overflow-hidden',
     );
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
+      {/* Modal Button */}
       <DialogTrigger asChild>
-        {trigger || <Button variant="outline">Open Address Book</Button>}
+        {trigger || <Button variant="outline">{t('open-address-book')}</Button>}
       </DialogTrigger>
-      <DialogContent className={cn(getDialogContentClass())}>
-        <DialogHeader className="mt-2 flex flex-row items-center justify-between space-y-0">
-          <DialogTitle className="text-2xl font-bold">
-            {step === 'list' && 'My Addresses'}
-            {(step === 'form' || step === 'map') &&
-              (editingAddressId ? 'Update Address Info' : 'Add New Address')}
 
+      <DialogContent className={getDialogContentClass()}>
+        {/* Dialog Header */}
+        <DialogHeader
+          className={cn(
+            'mt-2 flex flex-row items-center justify-between gap-4 space-y-0',
+          )}
+        >
+          <DialogTitle className="text-start text-2xl font-bold">
+            {step === 'list' && t('my-addresses')}
+            {(step === 'form' || step === 'map') &&
+              (editingAddressId ? t('update-address') : t('add-new-address'))}
           </DialogTitle>
 
           {step === 'list' && (
@@ -157,13 +155,14 @@ export function AddressesModalFlow({
                 resetForm();
                 setStep('form');
               }}
-              className="ml-auto bg-maroon-50 text-maroon-600 hover:bg-maroon-100"
+              className="shrink-0 bg-maroon-50 text-maroon-600 hover:bg-maroon-100"
             >
-              Add a New Address
+              {t('add-new-address')}
             </Button>
           )}
         </DialogHeader>
 
+        {/* Steps */}
         {step === 'list' && (
           <AddressSelector
             userAddresses={userAddresses}

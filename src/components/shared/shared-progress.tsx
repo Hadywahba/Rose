@@ -5,9 +5,6 @@ import { cn } from '@/lib/utility/tailwind-merge';
 import { AddressStep, CheckoutStep } from '@/lib/types/auth';
 import { useLocale } from 'next-intl';
 
-
-
-
 interface CheckoutProgressProps {
   step: CheckoutStep | AddressStep;
   steps: string[];
@@ -21,13 +18,14 @@ export default function SharedProgress({
   firstValue,
   secondValue,
 }: CheckoutProgressProps) {
-  // Hook
   const locale = useLocale();
-
-  // State
+  const rtl = locale === 'ar';
   const currentStepIndex = steps.indexOf(step) + 1;
 
-  const arabic = locale === 'ar';
+  const formatNumber = (num: number) =>
+    rtl
+      ? new Intl.NumberFormat('ar-EG', { numberingSystem: 'arab' }).format(num)
+      : num;
 
   return (
     <div className="relative mb-6 mt-2 flex w-full flex-col gap-2">
@@ -36,14 +34,14 @@ export default function SharedProgress({
         <div
           className={cn(
             'absolute top-0 h-2 rounded-full bg-maroon-600 transition-all duration-500 dark:bg-softpink-300',
-            arabic ? 'right-0' : 'left-0',
+            rtl ? 'right-0 origin-right' : 'left-0 origin-left',
           )}
           style={{ width: currentStepIndex === 1 ? firstValue : secondValue }}
         />
       </div>
 
       {/* Steps Circles */}
-      <div className="absolute left-0 top-1/2 flex w-full -translate-y-1/2 justify-around">
+      <div className="absolute left-0 top-1/2 flex w-full -translate-y-1/2 flex-row justify-around">
         {steps.map((s, index) => {
           const stepNumber = index + 1;
           return (
@@ -56,7 +54,7 @@ export default function SharedProgress({
                   : 'border-zinc-200 bg-zinc-200 text-gray-500',
               )}
             >
-              {stepNumber}
+              {formatNumber(stepNumber)}
             </div>
           );
         })}
