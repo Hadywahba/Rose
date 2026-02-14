@@ -36,9 +36,8 @@ export default function AddressSelector({
   );
 
   if (!userAddresses.length) {
-    return <p className="text-maroon-600">{t('no-addresses-found')}</p>;
+    return <p className="text-maroon-600 text-center font-semibold text-xl">{t('no-addresses-found')}</p>;
   }
-
   return (
     <div dir='ltr' className="space-y-6">
       {Object.entries(groupedAddresses).map(([category, categoryAddresses]) => {

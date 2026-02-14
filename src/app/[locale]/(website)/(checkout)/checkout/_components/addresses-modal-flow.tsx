@@ -124,23 +124,25 @@ export function AddressesModalFlow({
 
   const getDialogContentClass = () =>
     cn(
-      'h-[85vh] max-w-3xl overflow-y-auto scrollbar-gutter-stable dark:bg-zinc-800',
+      'max-h-[85vh] max-w-3xl overflow-y-auto scrollbar-gutter-stable dark:bg-zinc-800',
       step !== 'list' && 'py-4',
-      step === 'map' && 'overflow-hidden',
+      step === 'form' && 'h-[85vh]',
     );
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       {/* Modal Button */}
       <DialogTrigger asChild>
-        {trigger || <Button variant="outline">{t('open-address-book')}</Button>}
+        {trigger || (
+          <Button variant={'secondary'}>{t('open-address-book')}</Button>
+        )}
       </DialogTrigger>
 
       <DialogContent className={getDialogContentClass()}>
         {/* Dialog Header */}
         <DialogHeader
           className={cn(
-            'mt-2 flex flex-row items-center justify-between gap-4 space-y-0',
+            'mt-2 flex flex-row items-start justify-between gap-4 space-y-0',
           )}
         >
           <DialogTitle className="text-start text-2xl font-bold">
