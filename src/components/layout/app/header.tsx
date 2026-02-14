@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Search,
  
@@ -28,7 +28,6 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import ThemeToggleIcon from './theme-toggle';
 import ToggleLocale from '@/components/shared/ToggleLocale';
-import NotificationsList from '@/components/features/notifications/notification-list';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
   Form,
@@ -44,6 +43,7 @@ import SubmitButton from '@/components/features/auth/submit-button';
 import { LoginFormFields, loginSchema } from '@/lib/schema/login.schema';
 import { cn } from '@/lib/utility/tailwind-merge';
 import useLogin from '@/app/[locale]/(auth)/login/_hooks/use-login';
+import NotificationsList from '@/components/features/notifications/notification-list';
 
 const Header = () => {
   const t = useTranslations('header');
@@ -78,11 +78,25 @@ const Header = () => {
     { label: t('contact'), href: '/contact', icon: Headset },
     { label: t('about'), href: '/about', icon: Info },
   ];
-  let user=null
-if(sessionStorage.getItem('user')) {
-   user = JSON.parse(sessionStorage.getItem('user') || '{}');
-
+interface User {
+  message?: string;
+  token?: string;
+  user?: {
+    firstName?: string;
+    addresses?: string[];
+  };
 }
+
+const [user, setUser] = useState<User | null>(null);
+
+useEffect(() => {
+  const storedUser = sessionStorage.getItem('user');
+  if (storedUser) {
+    setUser(JSON.parse(storedUser));
+  }
+}, []);
+
+
 
   return (
     <header className="w-full bg-white shadow-sm dark:bg-zinc-700">
@@ -93,7 +107,7 @@ if(sessionStorage.getItem('user')) {
           <Image src="/assets/images/logo.png" width={60} height={60} alt="Logo" />
         </Link>
       {session?.user || user ? (
-        <div>Deliver to: {session?.user.addresses[0] || user.user.addresses[0]}</div>
+        <div>Deliver to: {session?.user.addresses?.[0] || user?.user?.addresses?.[0]}</div>
       ) : (
         null
       )}
@@ -112,7 +126,7 @@ if(sessionStorage.getItem('user')) {
           {session?.user || user ? (
             <div className="relative group">
               <p className="cursor-pointer font-medium dark:text-white">
-                Hello {session?.user.firstName || user.user.firstName}
+                Hello {session?.user.firstName || user?.user?.firstName}
               </p>
 
               <div className="invisible absolute right-0 top-full z-30 mt-2 w-40 rounded-md bg-white shadow-lg opacity-0 transition group-hover:visible group-hover:opacity-100">
@@ -134,7 +148,6 @@ if(sessionStorage.getItem('user')) {
               </button>
 
 
-<NotificationsList/>
               {/* Hover Login */}
               <div className="invisible absolute right-0  top-full z-30 mt-2 w-96 rounded-md overflow-hidden bg-white shadow-lg opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
                 <Tabs defaultValue="login">
@@ -222,6 +235,8 @@ if(sessionStorage.getItem('user')) {
           <Heart />
           <ShoppingCart />
           <Bell />
+          <NotificationsList/>
+
           <ThemeToggleIcon />
           <ToggleLocale />
         </div>
