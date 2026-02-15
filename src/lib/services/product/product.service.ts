@@ -4,7 +4,7 @@ import { Product } from '@/lib/types/product';
 
 export async function getProductById(productId: string) {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API!}/products/${productId}`,
+    `${process.env.API_URL!}/products/${productId}`,
   );
 
   const payload = await response.json();
