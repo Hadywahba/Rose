@@ -12,25 +12,29 @@ import { cn } from '@/lib/utility/tailwind-merge';
 type ProductCardProps = {
   src: StaticImageData | string;
   title?: string;
-  rate?: number;
+  rate: number;
   rateCount?: number;
   priceBeforeSale: number;
   priceAfterSale?: number;
-  salesCount?: number;
+  salesCount: number;
   productId: string;
   className?: string;
+  createdAt: string;
   showWishListBtn?: boolean;
+  quantity: number;
 };
-
+const DAYS = 100 * 24 * 60 * 60 * 1000;
 export default function ProductCard({
   src,
   productId,
-  rate = 0,
+  rate,
   title = 'Flower App',
-  salesCount = 0,
-  priceAfterSale = 0,
-  priceBeforeSale = 0,
+  salesCount,
+  priceAfterSale,
+  priceBeforeSale,
   showWishListBtn = false,
+  quantity,
+  createdAt,
 
   className,
 }: ProductCardProps) {
@@ -40,6 +44,8 @@ export default function ProductCard({
 
   // Variable
   const arabic = locale === 'ar';
+
+  const isNew = Date.now() - new Date(createdAt).getTime() < DAYS;
   return (
     <div
       className={cn(
@@ -66,6 +72,7 @@ export default function ProductCard({
         </div>
       </Link>
 
+      {/* Titles */}
       <h2 className="dark:text-soft-pink-200 pb-3 text-xl font-semibold text-maroon-700">
         {title.split(' ').splice(0, 3).join(' ')}
       </h2>
@@ -79,7 +86,9 @@ export default function ProductCard({
                 ? t('price-number-currancy-base-0', { price: priceAfterSale })
                 : t('price-number-currancy-base-0', {
                     price: priceAfterSale,
-                  }).replace(/^(\D+)?(\d+(\.\d+)?)/, '$2\u00A0$1')}
+                  })
+                    .replace(/^([^\d]+)\s*/, '')
+                    .concat(' EGP')}
             </span>
             <span
               className={cn(
@@ -91,25 +100,57 @@ export default function ProductCard({
                 ? t('price-number-currancy-base-0', { price: priceBeforeSale })
                 : t('price-number-currancy-base-0', {
                     price: priceBeforeSale,
-                  }).replace(/^(\D+)?(\d+(\.\d+)?)/, '$2\u00A0$1')}
+                  })
+                    .replace(/^([^\d]+)\s*/, '')
+                    .concat(' EGP')}
             </span>
           </div>
         </div>
-        <Button className="flex h-11 w-11 items-center justify-center rounded-full bg-maroon-600">
+
+        {/* Card */}
+        <Button
+          size="icon"
+          className="flex h-11 w-11 items-center justify-center rounded-full bg-maroon-600"
+        >
           <ShoppingCart size={40} />
         </Button>
       </div>
 
-      {salesCount > 5 && (
-        <div className="badge absolute end-4 top-3">
-          <Badge
-            className="z-10 h-6 w-fit text-base font-medium dark:bg-softpink-200"
-            variant={'secondary'}
-          >
-            {t('hot-0')}
-          </Badge>
-        </div>
-      )}
+      {/* Badge */}
+      <div className="absolute end-4 top-3 flex gap-2">
+        {salesCount >= 1 && (
+          <div>
+            <Badge
+              className="z-10 h-6 w-fit text-sm font-medium uppercase dark:bg-softpink-200 dark:hover:bg-softpink-300"
+              variant={'secondary'}
+            >
+              {t('product-hot')}
+            </Badge>
+          </div>
+        )}
+
+        {quantity < 0 && (
+          <div>
+            <Badge
+              className="z-10 h-6 w-fit bg-red-600 text-sm font-medium uppercase text-softpink-100 hover:bg-red-700 dark:bg-red-600 dark:hover:bg-red-700"
+              variant={'secondary'}
+            >
+              {t('product-out')}
+            </Badge>
+          </div>
+        )}
+
+        {isNew && (
+          <div>
+            <Badge
+              className="z-10 h-6 w-fit bg-zinc-100 text-sm font-medium uppercase text-zinc-700 hover:bg-zinc-200 dark:bg-zinc-100 dark:text-zinc-700 dark:hover:bg-zinc-200"
+              variant="secondary"
+            >
+              {t('product-new')}
+            </Badge>
+          </div>
+        )}
+      </div>
 
       {/*add & remove whishlist-buttons */}
       <div className="pointer-events-auto absolute top-0">

@@ -245,8 +245,10 @@
     "description": "عذرًا! الصفحة التي تبحث عنها غير موجودة.",
     "button": "العودة إلى الصفحة الرئيسية"
   },
-  "price-number-currancy-base-0": "{price,number,currancy-base}",
-  "hot-0": "تريند",
+  "price-number-currancy-base-0": "{price,number,currency-no-decimals}",
+  "product-hot": "تريند",
+  "product-out": "غير متوفر",
+  "product-new": "جديد",
   "product-removed-successfully-0": "تمت إزالة المنتج بنجاح",
   "remove-from-whishlist": "إزالة من قائمة المفضلة",
   "product-added-successfully": "تمت إضافة المنتج بنجاح",
