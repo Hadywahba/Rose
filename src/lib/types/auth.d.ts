@@ -1,4 +1,3 @@
-import { CHECKOUT_STEPS } from '../constants/checkout.constant';
 import { FORGOT_PASSWORD_STEPS } from './../constants/auth.constant';
 
 // forgot password step type
@@ -31,5 +30,4 @@ export interface RegisterResponse {
   token: string;
 }
 
-// Checkout step type
-export type CheckoutStep = (typeof CHECKOUT_STEPS)[keyof typeof CHECKOUT_STEPS];
+

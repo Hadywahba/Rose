@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { cn } from '@/lib/utility/tailwind-merge';
-import { CheckoutStep } from '@/lib/types/auth';
 import { useLocale } from 'next-intl';
+import { CheckoutStep } from '@/lib/types/checkout/checkout';
 
 interface CheckoutProgressProps {
   step: CheckoutStep;

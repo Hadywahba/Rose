@@ -1,7 +1,6 @@
 'use client';
 import { Button } from '@/components/ui/button';
 import { CHECKOUT_STEPS } from '@/lib/constants/checkout.constant';
-import { CheckoutMethodProps } from '@/lib/types/auth/forget-password/verify';
 import { cn } from '@/lib/utility/tailwind-merge';
 import { ArrowLeft } from 'lucide-react';
 import React from 'react';
@@ -9,6 +8,7 @@ import { useLocale, useTranslations } from 'use-intl';
 import PaymentCard from './payment-card';
 import PaymentButton from './payment-button';
 import SharedProgress from '@/components/shared/shared-progress';
+import { CheckoutMethodProps } from '@/lib/types/checkout/checkout';
 
 
 export default function PaymentMethods({ setStep }: CheckoutMethodProps) {

@@ -5,8 +5,8 @@ import React from 'react';
 import CheckoutAddress from './checkout-address';
 import AddressButton from './address-button';
 import { CHECKOUT_STEPS } from '@/lib/constants/checkout.constant';
-import { CheckoutMethodProps } from '@/lib/types/auth/forget-password/verify';
 import SharedProgress from '@/components/shared/shared-progress';
+import { CheckoutMethodProps } from '@/lib/types/checkout/checkout';
 
 export default function CheckOutContent({ setStep }: CheckoutMethodProps) {
   // Translation
