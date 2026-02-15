@@ -27,7 +27,7 @@ export default function ProductDetailsUpper({ product }: { product: Product }) {
   return (
     <div className="container mx-auto grid grid-cols-1 gap-8 md:gap-12 lg:grid-cols-2">
       {/* Gallery */}
-      <div className="space-y-4 bg-red-400">
+      <div className="space-y-4">
         {/* Main Image */}
         <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl">
           <Image
@@ -65,7 +65,7 @@ export default function ProductDetailsUpper({ product }: { product: Product }) {
       </div>
 
       {/* Product Info */}
-      <div className="flex bg-blue-400 flex-col justify-between space-y-2">
+      <div className="flex flex-col justify-between space-y-2">
         <div>
           {/* Title */}
           <h1 className="text-2xl font-semibold text-zinc-800 dark:text-white md:text-3xl">

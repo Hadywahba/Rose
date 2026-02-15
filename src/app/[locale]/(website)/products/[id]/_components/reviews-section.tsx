@@ -7,7 +7,7 @@ type ReviewsSectionProps = {
 
 export default function ReviewsSection({ productId }: ReviewsSectionProps) {
   return (
-    <section className="container mx-auto flex w-11/12 flex-col py-10">
+    <section className="flex w-full flex-col gap-10">
       <ProductsReviews productId={productId} />
       <RelatedProducts productId={productId} />
     </section>
