@@ -83,8 +83,17 @@ interface User {
   token?: string;
   user?: {
     firstName?: string;
-    addresses?: string[];
+    addresses?: Array<{
+      city?: string;
+    }>;
   };
+}
+
+interface SessionUser {
+  firstName?: string;
+  addresses?: Array<{
+    city?: string;
+  }>;
 }
 
 const [user, setUser] = useState<User | null>(null);
@@ -107,7 +116,7 @@ useEffect(() => {
           <Image src="/assets/images/logo.png" width={60} height={60} alt="Logo" />
         </Link>
       {session?.user || user ? (
-        <div>Deliver to: {session?.user.addresses?.[0] || user?.user?.addresses?.[0]}</div>
+        <div>Deliver to: {(session?.user as SessionUser)?.addresses?.[0]?.city || user?.user?.addresses?.[0]?.city}</div>
       ) : (
         null
       )}
