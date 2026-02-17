@@ -4,6 +4,9 @@ import PriceFilter from './price-filter';
 import { SearchParams } from '@/lib/types/global';
 import ProductsList from '@/components/features/products/product-list';
 import ProductsSkeleton from '@/components/skeletons/product/products-skeleton';
+import CategoriesFilters from './categories/categories-filter';
+import RatingFilter from './rating/rating-filter';
+import ResetAll from './reset/reset-all';
 
 
 
@@ -18,11 +21,19 @@ export default function ProductContent({ searchParams }: ProductsListProps) {
     <div className="mx-20 mb-10 mt-20 flex-col items-start justify-center gap-5 lg:flex lg:flex-row lg:items-start lg:justify-center">
       {/* Filters */}
       <section className="flex w-full flex-col lg:max-w-[18.9125rem]">
+        {/* category Filter */}
+        <CategoriesFilters />
+
         {/* Occasion Filter */}
         <OccasionFilter />
+        {/* Rating Filter */}
+        <RatingFilter />
 
         {/* Price Filter */}
         <PriceFilter />
+
+        {/* Reset Filter */}
+        <ResetAll />
       </section>
 
       {/* Product List */}
