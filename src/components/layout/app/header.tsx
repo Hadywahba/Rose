@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import {
   Search,
- 
   Heart,
   ShoppingCart,
   Bell,
@@ -20,7 +19,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
-import { useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -44,6 +43,7 @@ import { LoginFormFields, loginSchema } from '@/lib/schema/login.schema';
 import { cn } from '@/lib/utility/tailwind-merge';
 import useLogin from '@/app/[locale]/(auth)/login/_hooks/use-login';
 import NotificationsList from '@/components/features/notifications/notification-list';
+
 
 const Header = () => {
   const t = useTranslations('header');
@@ -78,25 +78,32 @@ const Header = () => {
     { label: t('contact'), href: '/contact', icon: Headset },
     { label: t('about'), href: '/about', icon: Info },
   ];
-interface User {
-  message?: string;
-  token?: string;
-  user?: {
-    firstName?: string;
-    addresses?: string[];
-  };
-}
-
-const [user, setUser] = useState<User | null>(null);
-
-useEffect(() => {
-  const storedUser = sessionStorage.getItem('user');
-  if (storedUser) {
-    setUser(JSON.parse(storedUser));
+  interface User {
+    message?: string;
+    token?: string;
+    user?: {
+      firstName?: string;
+      addresses?: Array<{
+        city?: string;
+      }>;
+    };
   }
-}, []);
 
+  interface SessionUser {
+    firstName?: string;
+    addresses?: Array<{
+      city?: string;
+    }>;
+  }
 
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const storedUser = sessionStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
 
   return (
     <header className="w-full bg-white shadow-sm dark:bg-zinc-700">
@@ -104,52 +111,72 @@ useEffect(() => {
       <div className="mx-auto flex items-center gap-6 px-4 py-4">
         {/* Logo */}
         <Link href="/">
-          <Image src="/assets/images/logo.png" width={60} height={60} alt="Logo" />
+          <Image
+            src="/assets/images/logo.png"
+            width={60}
+            height={60}
+            alt="Logo"
+          />
         </Link>
-      {session?.user || user ? (
-        <div>Deliver to: {session?.user.addresses?.[0] || user?.user?.addresses?.[0]}</div>
-      ) : (
-        null
-      )}
+        {session?.user || user ? (
+          <div>
+            Deliver to:
+            {(session?.user as SessionUser)?.addresses?.[0]?.city ||
+              user?.user?.addresses?.[0]?.city}
+          </div>
+        ) : null}
         {/* Search */}
         <div className="relative flex-grow">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
-          <Input
-            placeholder={t('search')}
-            className="h-12 pl-10 w-full"
-          />
+          <Input placeholder={t('search')} className="h-12 w-full pl-10" />
         </div>
 
         {/* Actions */}
         <div className="flex items-center gap-4">
           {/* Auth */}
           {session?.user || user ? (
-            <div className="relative group">
-              <p className="cursor-pointer font-medium dark:text-white">
-                Hello {session?.user.firstName || user?.user?.firstName}
-              </p>
+            //////////////////////////////////////
+          <div className="relative group">
+  {/* النص اللي هيظهر للهوفر */}
+  <p className="cursor-pointer font-medium dark:text-white">
+    Hello {session?.user.firstName || user?.user?.firstName}
+  </p>
 
-              <div className="invisible absolute right-0 top-full z-30 mt-2 w-40 rounded-md bg-white shadow-lg opacity-0 transition group-hover:visible group-hover:opacity-100">
-                <Link className="block px-4 py-2 hover:bg-gray-100" href="/profile">
-                  Profile
-                </Link>
-                <Link className="block px-4 py-2 hover:bg-gray-100" href="/orders">
-                  Orders
-                </Link>
-                <button className="block w-full px-4 py-2 text-left hover:bg-gray-100">
-                  Logout
-                </button>
-              </div>
-            </div>
+  {/* القائمة */}
+  <div className="invisible absolute right-0 top-full z-30 mt-2 w-40 rounded-md bg-white shadow-lg opacity-0 transition-all duration-200
+                  group-hover:visible group-hover:opacity-100">
+    <Link
+      className="block px-4 py-2 hover:bg-gray-100"
+      href="/profile"
+    >
+      Profile
+    </Link>
+    <Link
+      className="block px-4 py-2 hover:bg-gray-100"
+      href="/orders"
+    >
+      Orders
+    </Link>
+    <button
+      className="block w-full px-4 py-2 text-left hover:bg-gray-100 text-red-500"
+      onClick={() => {
+        signOut({ callbackUrl: '/login' })
+        sessionStorage.removeItem('user')
+      }}
+    >
+      Logout
+    </button>
+  </div>
+</div>
+
           ) : (
-            <div className="relative group">
+            <div className="group relative">
               <button className="px-4 py-2 font-medium dark:text-white">
                 {t('login')}
               </button>
 
-
               {/* Hover Login */}
-              <div className="invisible absolute right-0  top-full z-30 mt-2 w-96 rounded-md overflow-hidden bg-white shadow-lg opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+              <div className="invisible absolute right-0 top-full z-30 mt-2 w-96 overflow-hidden rounded-md bg-white opacity-0 shadow-lg transition group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
                 <Tabs defaultValue="login">
                   <TabsList className="w-full">
                     <TabsTrigger value="login" asChild className="w-1/2">
@@ -197,7 +224,9 @@ useEffect(() => {
                                 variant="ghost"
                                 className={cn(
                                   'absolute top-1/2 -translate-y-1/2 hover:!bg-transparent',
-                                  locale === 'ar' ? 'left-[-25px]' : 'right-[-25px]',
+                                  locale === 'ar'
+                                    ? 'left-[-25px]'
+                                    : 'right-[-25px]',
                                 )}
                                 onClick={() => setShowPassword((p) => !p)}
                               >
@@ -209,12 +238,12 @@ useEffect(() => {
                         </FormItem>
                       )}
                     />
-  <Link
-            href="/forgot-password"
-            className="mt-2 text-right text-sm font-semibold text-maroon-700 dark:text-softpink-300"
-          >
-            {a('login.forget-password')}
-          </Link>
+                    <Link
+                      href="/forgot-password"
+                      className="mt-2 text-right text-sm font-semibold text-maroon-700 dark:text-softpink-300"
+                    >
+                      {a('login.forget-password')}
+                    </Link>
                     <RememberMe checked={rememberMe} onChange={setRememberMe} />
 
                     <SubmitButton
@@ -235,7 +264,7 @@ useEffect(() => {
           <Heart />
           <ShoppingCart />
           <Bell />
-          <NotificationsList/>
+          <NotificationsList />
 
           <ThemeToggleIcon />
           <ToggleLocale />
