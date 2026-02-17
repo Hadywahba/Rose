@@ -1,0 +1,108 @@
+import { Input } from '@/components/ui/input';
+import { Label } from '@radix-ui/react-label';
+import { useTranslations } from 'next-intl';
+import React, { useEffect, useState, useRef } from 'react';
+import { useFilters } from '../_hooks/use-filter';
+import { useDebounce } from 'use-debounce';
+
+interface PriceFilterInputsProps {
+  resetFlag: boolean;
+  handleReset: () => void;
+}
+
+const DEBOUNCE_TIME = 1000;
+export default function PriceFilterInputs({
+  resetFlag,
+  handleReset,
+}: PriceFilterInputsProps) {
+  // Translations
+  const t = useTranslations('product-filter');
+
+  // Hook
+  const { filters, setFilter } = useFilters({
+    'priceAfterDiscount[gte]': '',
+    'priceAfterDiscount[lte]': '',
+  });
+
+  // Ref to track if we're in reset mode
+  const isResettingRef = useRef(false);
+
+  // State
+  const [from, setFrom] = useState(filters['priceAfterDiscount[gte]'] ?? '');
+  const [to, setTo] = useState(filters['priceAfterDiscount[lte]'] ?? '');
+
+  // Variables
+  const [debouncedFrom] = useDebounce(from, DEBOUNCE_TIME);
+  const [debouncedTo] = useDebounce(to, DEBOUNCE_TIME);
+
+  // Effect
+  useEffect(() => {
+    if (
+      !resetFlag &&
+      !isResettingRef.current &&
+      debouncedFrom !== (filters['priceAfterDiscount[gte]'] || '')
+    ) {
+      setFilter('priceAfterDiscount[gte]', debouncedFrom || null);
+    }
+  }, [debouncedFrom, setFilter, resetFlag, filters]);
+
+  useEffect(() => {
+    if (
+      !resetFlag &&
+      !isResettingRef.current &&
+      debouncedTo !== (filters['priceAfterDiscount[lte]'] || '')
+    ) {
+      setFilter('priceAfterDiscount[lte]', debouncedTo || null);
+    }
+  }, [debouncedTo, setFilter, resetFlag, filters]);
+
+  useEffect(() => {
+    if (resetFlag) {
+      isResettingRef.current = true;
+      setFrom('');
+      setTo('');
+      handleReset();
+
+      // Clear the resetting flag after debounce time
+      setTimeout(() => {
+        isResettingRef.current = false;
+      }, DEBOUNCE_TIME + 100);
+    }
+  }, [resetFlag, handleReset]);
+
+  return (
+    <section className="flex w-full flex-col items-center justify-center gap-2 sm:flex sm:flex-row sm:items-center sm:justify-between lg:w-[18.875rem]">
+      {/* Price From */}
+      <div className="w-full flex-1">
+        {/* Label */}
+        <Label className="font-inter text-sm font-medium">
+          {t('price-from')}
+        </Label>
+
+        {/* Input */}
+        <Input
+          value={from}
+          onChange={(e) => setFrom(e.target.value)}
+          type="number"
+          className="w-full dark:text-zinc-50"
+        />
+      </div>
+
+      {/* Price to */}
+      <div className="w-full flex-1">
+        {/* Label */}
+        <Label className="font-inter text-sm font-medium">
+          {t('price-to')}
+        </Label>
+
+        {/* Input */}
+        <Input
+          type="number"
+          value={to}
+          onChange={(e) => setTo(e.target.value)}
+          className="w-full dark:text-zinc-50"
+        />
+      </div>
+    </section>
+  );
+}

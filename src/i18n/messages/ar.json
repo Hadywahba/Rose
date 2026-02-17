@@ -40,7 +40,6 @@
       }
     }
   },
-
   "about": {
     "title": "من نحن",
     "heading": "نقدّم <span>أجود</span> علب الهدايا من أجل <span>مناسباتك</span> المميزة",
@@ -54,7 +53,6 @@
       "توصيل سريع وموثوق"
     ]
   },
-
   "gallery": {
     "heading": "المعرض",
     "paragraph": "تفقد معرضنا الرائع",
@@ -67,9 +65,9 @@
       "galleryGrid6": "خاتم خطوبة مع بطاقة هدية بيضاء"
     }
   },
-
   "testimonials": {
     "heading": "ماذا يقول عملاؤنا",
+    "paragraph": "كلمات حقيقية من عملاء سعداء",
     "customer": "عميل",
     "reviews": [
       {
@@ -94,9 +92,35 @@
       }
     ]
   },
-
   "companies": {
     "trustedBy": "موثوق به من قبل أكثر من <span></span> شركة"
+  },
+
+  "product": {
+    "currency": "ج.م",
+    "inStock": "متبقي {count} في المخزون",
+    "inStockUnlimited": "متوفر",
+    "outOfStock": "غير متوفر",
+    "ratingLine": "التقييم: {value}/5 ({count} تقييمات)",
+    "addToCart": "أضف إلى السلة",
+    "addToCartLoading": "جاري الإضافة...",
+    "wishlistAdd": "أضف إلى المفضلة",
+    "wishlistRemove": "إزالة من المفضلة",
+    "fetchError": "تعذر تحميل تفاصيل المنتج",
+    "retry": "إعادة المحاولة",
+    "noImage": "لا توجد صورة",
+    "noThumbnails": "لا توجد صور مصغرة",
+    "zoomImage": "تكبير الصورة",
+    "zoomHint": "انقر خارج النافذة للإغلاق",
+    "selectImage": "اختر الصورة رقم {index}",
+    "notifyHint": "هذا المنتج غير متوفر حالياً.",
+    "toast": {
+      "adding": "جاري الإضافة إلى السلة...",
+      "added": "تمت الإضافة إلى السلة",
+      "error": "حدث خطأ ما",
+      "notFound": "المنتج غير موجود",
+      "soldOut": "المنتج غير متوفر حالياً"
+    }
   },
 
   "auth": {
@@ -162,25 +186,25 @@
     },
     "register": {
       "title": "كن جزءاً من عائلتنا!",
-      "firstName": "الاسم الأول",
-      "firstNamePlaceholder": "اسم المستخدم",
-      "lastName": " العائلة",
-      "lastNamePlaceholder": "اسم العائلة",
+      "first-name": "الاسم الأول",
+      "first-name-placeholder": "اسم المستخدم",
+      "last-name": " العائلة",
+      "last-name-placeholder": "اسم العائلة",
       "email": "البريد الإلكتروني",
-      "emailPlaceholder": "user@example.com",
+      "email-placeholder": "user@example.com",
       "phone": "رقم الهاتف",
-      "phonePlaceholder": "1012345678",
+      "phone-placeholder": "1012345678",
       "gender": "الجنس",
-      "genderPlaceholder": "اختر الجنس",
-      "genderMale": "ذكر",
-      "genderFemale": "أنثى",
+      "gender-placeholder": "اختر الجنس",
+      "gender-male": "ذكر",
+      "gender-female": "أنثى",
       "password": "كلمة المرور",
-      "passwordPlaceholder": "••••••••",
-      "confirmPassword": "تأكيد كلمة المرور",
-      "confirmPasswordPlaceholder": "••••••••",
-      "createAccount": "إنشاء حساب",
-      "creatingAccount": "جاري إنشاء الحساب...",
-      "alreadyHaveAccount": "هل لديك حساب بالفعل؟ <span> تسجيل الدخول </span>",
+      "password-placeholder": "••••••••",
+      "confirm-password": "تأكيد كلمة المرور",
+      "confirm-password-placeholder": "••••••••",
+      "create-account": "إنشاء حساب",
+      "creating-account": "جاري إنشاء الحساب...",
+      "already-have-account": "هل لديك حساب بالفعل؟ <span> تسجيل الدخول </span>",
       "login": "تسجيل الدخول",
       "schema": {
         "password-required": "كلمة المرور الخاصة بك مطلوبة",
@@ -193,18 +217,18 @@
         "password-lowercase": "يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل."
       },
       "validation": {
-        "firstNameRequired": "الاسم الأول مطلوب",
-        "lastNameRequired": "اسم العائلة مطلوب",
-        "emailRequired": "البريد الإلكتروني مطلوب",
-        "emailInvalid": "يرجى إدخال بريد إلكتروني صحيح",
-        "phoneRequired": "رقم الهاتف مطلوب",
-        "phoneInvalid": "رقم الهاتف يجب أن يكون 10 أرقام على الأقل",
-        "genderRequired": "يرجى اختيار الجنس",
-        "passwordRequired": "كلمة المرور مطلوبة",
-        "passwordMinLength": "كلمة المرور يجب أن تكون 8 أحرف على الأقل",
-        "passwordPattern": "كلمة المرور يجب أن تحتوي على حرف كبير وصغير ورقم ورمز خاص",
-        "confirmPasswordRequired": "تأكيد كلمة المرور مطلوب",
-        "passwordsNotMatch": "كلمات المرور غير متطابقة"
+        "first-name-required": "الاسم الأول مطلوب",
+        "last-name-required": "اسم العائلة مطلوب",
+        "email-required": "البريد الإلكتروني مطلوب",
+        "email-invalid": "يرجى إدخال بريد إلكتروني صحيح",
+        "phone-required": "رقم الهاتف مطلوب",
+        "phone-invalid": "رقم الهاتف يجب أن يكون 10 أرقام على الأقل",
+        "gender-required": "يرجى اختيار الجنس",
+        "password-required": "كلمة المرور مطلوبة",
+        "password-min-length": "كلمة المرور يجب أن تكون 8 أحرف على الأقل",
+        "password-pattern": "كلمة المرور يجب أن تحتوي على حرف كبير وصغير ورقم ورمز خاص",
+        "confirm-password-required": "تأكيد كلمة المرور مطلوب",
+        "passwords-not-match": "كلمات المرور غير متطابقة"
       },
       "toast": {
         "loading": "جاري إنشاء الحساب...",
@@ -220,10 +244,10 @@
       "submit": "دخول",
       "password": "كلمة المرور",
       "email": "البريد الالكتروني",
-      "login-error": "حدث خطأ أثناء تسجيل الدخول . حاول مرة أخرى."
+      "login-error": "حدث خطأ أثناء تسجيل الدخول . حاول مرة أخرى.",
+      "remember me": "تذكرني"
     }
   },
-
   "reviews": {
     "title": "تقييمات المنتج",
     "general-rating": "التقييم العام:",
@@ -232,7 +256,6 @@
     "error-loading": "فشل تحميل التقييمات.",
     "related-products": "منتجات ذات صلة"
   },
-
   "review-form": {
     "your-rating": "تقييمك:",
     "title-label": "عنوان التقييم",
@@ -245,10 +268,60 @@
     "error-message": "فشل إرسال التقييم: {message}",
     "login-to-review": "الرجاء تسجيل الدخول لتتمكن من تقيم المنتج"
   },
-  
   "not-found": {
     "title": "لا توجد صفحة",
     "description": "عذرًا! الصفحة التي تبحث عنها غير موجودة.",
     "button": "العودة إلى الصفحة الرئيسية"
+  },
+  "price-number-currancy-base-0": "{price,number,currency-no-decimals}",
+  "product-hot": "تريند",
+  "product-out": "غير متوفر",
+  "product-new": "جديد",
+  "product-removed-successfully-0": "تمت إزالة المنتج بنجاح",
+  "remove-from-whishlist": "إزالة من قائمة المفضلة",
+  "product-added-successfully": "تمت إضافة المنتج بنجاح",
+  "add-to-wishlist": "أضف إلى قائمة المفضلة",
+  "product-filter": {
+    "occasion": "المناسبة",
+    "occasion-error": "لا توجد مناسبات أخرى",
+    "occasion-loading": "جارٍ التحميل...",
+    "price": "السعر",
+    "price-from": "من",
+    "price-to": "إلى",
+    "reset": "إعادة ضبط"
+  
+},
+ "header": {
+    "home": "الرئيسية",
+    "products": "المنتجات",
+    "categories": "التصنيفات",
+    "occasion": "المناسبات",
+    "contact": "اتصل بنا",
+    "about": "من نحن",
+    "login": "تسجيل الدخول",
+    "register": "تسجيل حساب جديد",
+    "deliver to": "توصيل إلى ",
+    "search": "ما هي الهدية المميزة التي تبحث عنها؟"
+  },
+  "footer": {
+    "title": "تطبيق روز",
+    "discover":"اكتشف موقعنا",
+    "home": "الرئيسية",
+    "products": "المنتجات",
+    "categories": "التصنيفات",
+    "occasion": "المناسبات",
+    "about": "من نحن",
+    "contact": "اتصل بنا",
+    "terms": "الشروط والاحكام",
+    "privacy": "سياسة الخصوصية",
+    "faqs": "الاسئلة الشائعة",
+    "copyright": "جميع الحقوق محفوظة | 2025",
+    "get":"احصل على",
+    "getDiscount":" كوبون خصم",
+    "discount":"20%",
+    "subscribingWay":"اشترك في مجلتنا",
+    "emailPlaceholder":"اكتب بريدك الإلكتروني",
+    "subscribe":"اشترك"
+
   }
 }

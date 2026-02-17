@@ -5,12 +5,12 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Inter, Sarabun, Tajawal, Zain } from 'next/font/google';
 import { notFound } from 'next/navigation';
 
- const sarabun = Sarabun({
+const sarabun = Sarabun({
   subsets: ['latin', 'thai'],
   weight: ['300', '400', '500', '600', '700'],
   variable: '--font-sarabun',
 });
- const tajawal = Tajawal({
+const tajawal = Tajawal({
   subsets: ['arabic'],
   weight: ['300', '400', '500', '700', '800'],
   variable: '--font-tajawal',
@@ -28,8 +28,6 @@ const inter = Inter({
   weight: ['700'],
   variable: '--font-inter',
 });
-
-
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -62,7 +60,7 @@ export default function LocaleLayout({
 }: LayoutProps) {
   if (!hasLocale(routing.locales, locale)) {
     notFound();
-  } // Enable static rendering
+  }
   setRequestLocale(locale);
 
   return (
@@ -70,7 +68,7 @@ export default function LocaleLayout({
       <body
         className={` ${locale === 'ar' ? tajawal.className : sarabun.className} ${zain.variable} ${inter.variable} antialiased [@media(min-width:1920px)]:container [@media(min-width:1920px)]:mx-auto`}
       >
-        <Providers>{children}</Providers>
+        <Providers locale={locale}>{children}</Providers>
       </body>
     </html>
   );

@@ -40,7 +40,6 @@
       }
     }
   },
-
   "about": {
     "title": "About",
     "heading": "Delivering the <span>Finest</span> Gift Boxes for Your <span>Special</span> Moments",
@@ -59,7 +58,6 @@
       "Fast & Reliable Delivery"
     ]
   },
-
   "gallery": {
     "heading": "Gallery",
     "paragraph": "Check Out our Wonderful Gallery",
@@ -72,9 +70,9 @@
       "galleryGrid6": "Engagement ring with white engagement card gift"
     }
   },
-
   "testimonials": {
     "heading": "What Our Customers Say",
+    "paragraph": "Real Words from Happy Customers",
     "customer": "Customer",
     "reviews": [
       {
@@ -99,9 +97,35 @@
       }
     ]
   },
-
   "companies": {
     "trustedBy": "Trusted by over <span></span> companies"
+  },
+
+  "product": {
+    "currency": "EGP",
+    "inStock": "{count} left in stock",
+    "inStockUnlimited": "In stock",
+    "outOfStock": "Out of stock",
+    "ratingLine": "Rating: {value}/5 ({count} ratings)",
+    "addToCart": "Add to Cart",
+    "addToCartLoading": "Adding...",
+    "wishlistAdd": "Add to wishlist",
+    "wishlistRemove": "Remove from wishlist",
+    "fetchError": "Failed to load product details",
+    "retry": "Try again",
+    "noImage": "No image available",
+    "noThumbnails": "No thumbnails available",
+    "zoomImage": "Zoom image",
+    "zoomHint": "Click outside to close",
+    "selectImage": "Select image {index}",
+    "notifyHint": "This item is currently unavailable.",
+    "toast": {
+      "adding": "Adding to cart...",
+      "added": "Added to cart",
+      "error": "Something went wrong",
+      "notFound": "Product not found",
+      "soldOut": "This product is sold out"
+    }
   },
 
   "auth": {
@@ -173,30 +197,30 @@
       "password": "Password",
       "email": "Email",
       "submit": "Login",
-      "login-error": "An error occurred during login. Please try again."
+      "login-error": "An error occurred during login. Please try again.",
+      "remember me": "Remember me"
     },
-
     "register": {
       "title": "Become part of our family!",
-      "firstName": "First name",
-      "firstNamePlaceholder": "User Name",
-      "lastName": "Last name",
-      "lastNamePlaceholder": "Last Name",
+      "first-name": "First name",
+      "first-name-placeholder": "User Name",
+      "last-name": "Last name",
+      "last-name-placeholder": "Last Name",
       "email": "Email",
-      "emailPlaceholder": "user@example.com",
+      "email-placeholder": "user@example.com",
       "phone": "Phone",
-      "phonePlaceholder": "1012345678",
+      "phone-placeholder": "1012345678",
       "gender": "Gender",
-      "genderPlaceholder": "Select gender",
-      "genderMale": "Male",
-      "genderFemale": "Female",
+      "gender-placeholder": "Select gender",
+      "gender-male": "Male",
+      "gender-female": "Female",
       "password": "Password",
-      "passwordPlaceholder": "••••••••",
-      "confirmPassword": "Confirm Password",
-      "confirmPasswordPlaceholder": "••••••••",
-      "createAccount": "Create Account",
-      "creatingAccount": "Creating Account...",
-      "alreadyHaveAccount": "Already have an account?  <span> Login </span>",
+      "password-placeholder": "••••••••",
+      "confirm-password": "Confirm Password",
+      "confirm-password-placeholder": "••••••••",
+      "create-account": "Create Account",
+      "creating-account": "Creating Account...",
+      "already-have-account": "Already have an account?  <span> Login </span>",
       "login": "Login",
       "schema": {
         "password-required": "your password is required",
@@ -209,18 +233,18 @@
         "password-match": "Passwords do not match"
       },
       "validation": {
-        "firstNameRequired": "First name is required",
-        "lastNameRequired": "Last name is required",
-        "emailRequired": "Email is required",
-        "emailInvalid": "Please enter a valid email address",
-        "phoneRequired": "Phone number is required",
-        "phoneInvalid": "Phone number must be at least 10 digits",
-        "genderRequired": "Please select your gender",
-        "passwordRequired": "Password is required",
-        "passwordMinLength": "Password must be at least 8 characters",
-        "passwordPattern": "Password must contain uppercase, lowercase, number, and special character",
-        "confirmPasswordRequired": "Confirm password is required",
-        "passwordsNotMatch": "Passwords don't match"
+        "first-name-required": "First name is required",
+        "last-name-required": "Last name is required",
+        "email-required": "Email is required",
+        "email-invalid": "Please enter a valid email address",
+        "phone-required": "Phone number is required",
+        "phone-invalid": "Phone number must be at least 10 digits",
+        "gender-required": "Please select your gender",
+        "password-required": "Password is required",
+        "password-min-length": "Password must be at least 8 characters",
+        "password-pattern": "Password must contain uppercase, lowercase, number, and special character",
+        "confirm-password-required": "Confirm password is required",
+        "passwords-not-match": "Passwords don't match"
       },
       "toast": {
         "loading": "Creating your account...",
@@ -229,7 +253,6 @@
       }
     }
   },
-
   "reviews": {
     "title": "Product Reviews",
     "general-rating": "General rating:",
@@ -238,7 +261,6 @@
     "error-loading": "Failed to load reviews.",
     "related-products": "Related Products"
   },
-
   "review-form": {
     "your-rating": "Your Rating:",
     "title-label": "Title",
@@ -251,10 +273,58 @@
     "error-message": "Failed to submit review: {message}",
     "login-to-review": "Please login to be able to review the product"
   },
-  
   "not-found": {
     "title": "Page not found",
     "description": "Oops! The page you are looking for does not exist.",
     "button": "Go back home"
+  },
+  "price-number-currancy-base-0": "{price,number,currency-no-decimals}",
+  "product-hot": "hot",
+  "product-out": " out of stock",
+  "product-new": "new",
+  "product-removed-successfully-0": "Product Removed Successfully",
+  "remove-from-whishlist": "Remove From Whishlist",
+  "product-added-successfully": "Product Added successfully",
+  "add-to-wishlist": "Add to Whishlist",
+  "product-filter": {
+    "occasion": "occasion",
+    "occasion-loading": "Loading...",
+    "occasion-error": " No more Occasions",
+    "price": "price",
+    "price-from": "from",
+    "price-to": "to",
+    "reset": "reset"
+  },
+  "header": {
+    "home": "Home",
+    "products": "Products",
+    "categories": "Categories",
+    "occasion": "Occasions",
+    "contact": "Contact",
+    "about": "About",
+    "login": "Login",
+    "register": "Register",
+    "deliver to": "Deliver to",
+    "search": "What awesome gift are you looking for?"
+  },
+  "footer": {
+    "title": "Rose E-Commerce App",
+    "discover": "Discover our website",
+    "home": "Home",
+    "products": "Products",
+    "categories": "Categories",
+    "occasion": "Occasions",
+    "about": "About",
+    "contact": "Contact",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy",
+    "faqs": "FAQs",
+    "copyright": "All rights reserved | 2025",
+    "get": "Get",
+    "discount": "20%",
+    "getDiscount": "Off Discount Coupon",
+    "subscribingWay": "By subscribing to our newsletter",
+    "emailPlaceholder": "Enter your email",
+    "subscribe": "Subscribe"
   }
 }

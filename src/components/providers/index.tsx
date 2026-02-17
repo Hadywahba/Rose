@@ -7,6 +7,7 @@ import NextAuthProvider from './components/next-auth.provider';
 
 type Props = {
   children: React.ReactNode;
+  locale: string;
 };
 
 export default async function RootLayout({ children }: Props) {

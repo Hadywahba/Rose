@@ -5,12 +5,24 @@ export interface RelatedProductsResponse {
 }
 
 export interface RelatedProduct {
-  _id: string
-  title: string
-  imgCover: string
-  price: number
-  priceAfterDiscount: number
-  rateAvg: number
-  rateCount: number
-  id: string
+  _id: string;
+  title: string;
+  slug: string;
+  description: string;
+  imgCover: string;
+  images: string[];
+  price: number;
+  priceAfterDiscount: number;
+  quantity: number;
+  category: string;
+  occasion: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+  isSuperAdmin?: boolean;
+  sold: number;
+  rateAvg: number;
+  rateCount: number;
+  favoriteId: string | null;
+  isInWishlist: boolean;
 }

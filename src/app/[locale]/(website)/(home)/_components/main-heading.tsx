@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '@/lib/utility/tailwind-merge';
+import { useLocale } from 'next-intl';
 
 interface MainHeadingProps {
   heading?: string;
@@ -20,6 +21,7 @@ export default function MainHeading({
   paragraph,
   className,
 }: MainHeadingProps) {
+  const Local = useLocale();
   return (
     <div
       className={cn(
@@ -35,7 +37,9 @@ export default function MainHeading({
       )}
       {paragraph && (
         // use Static Color because wait design system
-        <h2 className="relative inline-block w-fit pb-1 text-2xl font-bold leading-none text-maroon-700 before:absolute before:bottom-0 before:left-1/2 before:z-[-1] before:h-[17px] before:w-[165px] before:translate-x-[-50%] before:rounded-br-[20px] before:rounded-tr-[20px] before:bg-[#FFE0E7] after:absolute after:bottom-[-0px] after:left-1/2 after:z-[1] after:h-[2px] after:w-[165px] after:-translate-x-1/2 after:bg-[#E65073] dark:text-[#FFC2D0] dark:before:bg-[#3F3F46] dark:after:bg-[#FF668B] sm:text-[2.3rem] sm:before:left-0 sm:before:w-[420px] sm:before:translate-x-0 sm:after:left-0 sm:after:translate-x-0">
+        <h2
+          className={`relative inline-block w-fit pb-1 text-2xl font-bold leading-none text-maroon-700 before:absolute before:bottom-0 before:left-1/2 before:z-[-1] before:h-[17px] before:w-[165px] before:translate-x-[-50%] ${Local == "ar" ? "  before:rounded-bl-[20px] before:rounded-tl-[20px]": " before:rounded-br-[20px] before:rounded-tr-[20px]"} before:bg-[#FFE0E7] after:absolute after:bottom-[-0px] after:left-1/2 after:z-[1] after:h-[2px] after:w-[20%] after:-translate-x-1/2 after:bg-[#E65073] dark:text-[#FFC2D0] dark:before:bg-[#3F3F46] dark:after:bg-[#FF668B] sm:text-[2.3rem] sm:before:start-0 before:w-[50%] sm:before:w-[60%] md:before:w-[70%] sm:before:translate-x-0 sm:after:start-0 sm:after:translate-x-0`}
+        >
           {paragraph}
         </h2>
       )}

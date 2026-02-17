@@ -2,9 +2,8 @@
 
 import * as React from "react"
 import * as TabsPrimitive from "@radix-ui/react-tabs"
+
 import { cn } from "@/lib/utility/tailwind-merge"
-
-
 
 const Tabs = TabsPrimitive.Root
 
@@ -15,7 +14,7 @@ const TabsList = React.forwardRef<
   <TabsPrimitive.List
     ref={ref}
     className={cn(
-      "inline-flex h-9 items-center justify-center rounded-lg bg-muted p-1 text-muted-foreground",
+      "inline-flex h-9 w-full items-center !bg-zinc-50 !border-zinc-300 justify-center rounded-lg bg-muted  text-zinc-800 dark:!bg-zinc-800 dark:!text-zinc-50",
       className
     )}
     {...props}
@@ -30,7 +29,7 @@ const TabsTrigger = React.forwardRef<
   <TabsPrimitive.Trigger
     ref={ref}
     className={cn(
-      "inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow",
+      "inline-flex h-9 w-1/2 items-center justify-center whitespace-nowrap  px-3 py-1 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 disabled:!bg-zinc-300 data-[state=active]:bg-maroon-600 data-[state=active]:text-foreground data-[state=active]:shadow data-[state=active]:hover:!bg-maroon-700 data-[state=active]:focus:!bg-maroon-600 data-[state=active]:focus:!shadow-[0_0_10px_#741C2140,0_0_0_5px_#741C2140] data-[state=active]:dark:focus:!shadow-[0_0_10px_#741C2140,0_0_0_5px_#FF85A240] data-[state=active]:dark:!bg-softpink-300 data-[state=active]:dark:hover:!bg-softpink-400 data-[state=active]:dark:text-zinc-800 ",
       className
     )}
     {...props}

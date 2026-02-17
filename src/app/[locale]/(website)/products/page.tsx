@@ -1,27 +1,11 @@
-import { Suspense } from "react"; 
-import ProductListing from "@/components/features/products/product-listing";
-import CategoriesFilter from "./_components/categories/categories-filter";
-import RatingFilter from "./_components/rating/rating-filter";
-import ResetAll from "./_components/reset/reset-all";
+import React from 'react';
+import ProductContent from './_components/product-content';
+import { RouteProps } from '@/lib/types/global';
 
-export default async function ProductsPage() {
+export default function page({ searchParams }: RouteProps) {
   return (
-    <div className="flex flex-row items-start gap-6 p-6">
-      <main className="w-[280px] rounded-2xl bg-white p-4 shadow-sm space-y-6">
-        
-        <Suspense fallback={<div>Loading Filters...</div>}>
-          <CategoriesFilter />
-          <RatingFilter />
-          <ResetAll />
-        </Suspense>
-      </main>
-
-      <section className="flex-1">
-        
-        <Suspense fallback={<div>Loading Products...</div>}>
-          <ProductListing />
-        </Suspense>
-      </section>
-    </div>
+    <>
+      <ProductContent searchParams={searchParams} />
+    </>
   );
 }

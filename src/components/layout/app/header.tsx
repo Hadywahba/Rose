@@ -1,10 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Search,
-  MapPin,
-  ChevronDown,
+ 
   Heart,
   ShoppingCart,
   Bell,
@@ -14,152 +13,255 @@ import {
   PartyPopper,
   Headset,
   Info,
+  Eye,
+  EyeOff,
 } from 'lucide-react';
-import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useLocale, useTranslations } from 'next-intl';
+import { useSession } from 'next-auth/react';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 import ThemeToggleIcon from './theme-toggle';
 import ToggleLocale from '@/components/shared/ToggleLocale';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+
+import RememberMe from '@/app/[locale]/(auth)/login/_components/remeber-me';
+import SubmitButton from '@/components/features/auth/submit-button';
+import { LoginFormFields, loginSchema } from '@/lib/schema/login.schema';
+import { cn } from '@/lib/utility/tailwind-merge';
+import useLogin from '@/app/[locale]/(auth)/login/_hooks/use-login';
 import NotificationsList from '@/components/features/notifications/notification-list';
 
-const NAV_LINKS = [
-  { label: 'Home', href: '/', icon: Home },
-  { label: 'Products', href: '/products', icon: Gift },
-  { label: 'Categories', href: '/categories', icon: LayoutGrid },
-  { label: 'Occasions', href: '/occasions', icon: PartyPopper },
-  { label: 'Contact', href: '/contact', icon: Headset },
-  { label: 'About', href: '/about', icon: Info },
-];
-
 const Header = () => {
+  const t = useTranslations('header');
+  const a = useTranslations('auth');
+  const locale = useLocale();
   const pathname = usePathname();
+  const { data: session } = useSession();
+
+  const { login, isPending, error } = useLogin();
+
+  const form = useForm<LoginFormFields>({
+    mode: 'all',
+    resolver: zodResolver(loginSchema(a)),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
+
+  const onSubmit: SubmitHandler<LoginFormFields> = (values) => {
+    login({ values, rememberMe });
+  };
+
+  const NAV_LINKS = [
+    { label: t('home'), href: '/', icon: Home },
+    { label: t('products'), href: '/products', icon: Gift },
+    { label: t('categories'), href: '/categories', icon: LayoutGrid },
+    { label: t('occasion'), href: '/occasions', icon: PartyPopper },
+    { label: t('contact'), href: '/contact', icon: Headset },
+    { label: t('about'), href: '/about', icon: Info },
+  ];
+interface User {
+  message?: string;
+  token?: string;
+  user?: {
+    firstName?: string;
+    addresses?: string[];
+  };
+}
+
+const [user, setUser] = useState<User | null>(null);
+
+useEffect(() => {
+  const storedUser = sessionStorage.getItem('user');
+  if (storedUser) {
+    setUser(JSON.parse(storedUser));
+  }
+}, []);
+
+
 
   return (
-    <header className="w-full bg-white shadow-sm">
-      {/* --- Top Row --- */}
+    <header className="w-full bg-white shadow-sm dark:bg-zinc-700">
+      {/* Top Row */}
       <div className="mx-auto flex items-center gap-6 px-4 py-4">
-        {/* Logo & Delivery */}
-        <div className="flex items-center gap-6">
-          <Link href="/" className="flex items-center gap-1">
-            <Image
-              src="/assets/images/logo.png"
-              width={60}
-              height={60}
-              alt="Logo"
-            />
-          </Link>
-
-          <div className="hidden flex-col border-l border-gray-200 pl-6 text-sm lg:flex">
-            <span className="text-gray-400">Deliver to:</span>
-            <div className="flex items-center gap-1 font-semibold text-red-800">
-              <MapPin className="h-4 w-4" />
-              <span>Cairo</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Search Bar */}
+        {/* Logo */}
+        <Link href="/">
+          <Image src="/assets/images/logo.png" width={60} height={60} alt="Logo" />
+        </Link>
+      {session?.user || user ? (
+        <div>Deliver to: {session?.user.addresses?.[0] || user?.user?.addresses?.[0]}</div>
+      ) : (
+        null
+      )}
+        {/* Search */}
         <div className="relative flex-grow">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
           <Input
-            type="text"
-            placeholder="What awesome gift are you looking for?"
-            className="h-12 w-full rounded-lg border-gray-200 pl-10 focus-visible:ring-red-800"
+            placeholder={t('search')}
+            className="h-12 pl-10 w-full"
           />
         </div>
 
-        {/* User Actions & Icons */}
+        {/* Actions */}
         <div className="flex items-center gap-4">
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex flex-col items-start text-sm outline-none">
-              <span className="text-xs text-gray-400">Hello</span>
-              <div className="flex items-center gap-1 font-semibold text-red-900">
-                Jonathan <ChevronDown className="h-4 w-4" />
+          {/* Auth */}
+          {session?.user || user ? (
+            <div className="relative group">
+              <p className="cursor-pointer font-medium dark:text-white">
+                Hello {session?.user.firstName || user?.user?.firstName}
+              </p>
+
+              <div className="invisible absolute right-0 top-full z-30 mt-2 w-40 rounded-md bg-white shadow-lg opacity-0 transition group-hover:visible group-hover:opacity-100">
+                <Link className="block px-4 py-2 hover:bg-gray-100" href="/profile">
+                  Profile
+                </Link>
+                <Link className="block px-4 py-2 hover:bg-gray-100" href="/orders">
+                  Orders
+                </Link>
+                <button className="block w-full px-4 py-2 text-left hover:bg-gray-100">
+                  Logout
+                </button>
               </div>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem>Profile</DropdownMenuItem>
-              <DropdownMenuItem>Orders</DropdownMenuItem>
-              <DropdownMenuItem>Logout</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <div className="mx-2 h-8 w-[1px] bg-gray-200" />
-
-          <div className="flex items-center gap-5 text-gray-600">
-            <button className="hover:text-red-800">
-              <Heart className="h-6 w-6" />
-            </button>
+            </div>
+          ) : (
+            <div className="relative group">
+              <button className="px-4 py-2 font-medium dark:text-white">
+                {t('login')}
+              </button>
 
 
-<NotificationsList/>
-            <button className="relative hover:text-red-800">
-              <ShoppingCart className="h-6 w-6" />
-              <Badge className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center bg-red-600 p-0 hover:bg-red-600">
-                8
-              </Badge>
-            </button>
+              {/* Hover Login */}
+              <div className="invisible absolute right-0  top-full z-30 mt-2 w-96 rounded-md overflow-hidden bg-white shadow-lg opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                <Tabs defaultValue="login">
+                  <TabsList className="w-full">
+                    <TabsTrigger value="login" asChild className="w-1/2">
+                      <Link href="/login">{t('login')}</Link>
+                    </TabsTrigger>
+                    <TabsTrigger value="register" asChild className="w-1/2">
+                      <Link href="/register">{t('register')}</Link>
+                    </TabsTrigger>
+                  </TabsList>
+                </Tabs>
 
-            <button className="relative hover:text-red-800">
-              <Bell className="h-6 w-6" />
-              <Badge className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center bg-red-600 p-0 hover:bg-red-600">
-                8
-              </Badge>
-            </button>
-          </div>
+                <Form {...form}>
+                  <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="space-y-4 p-4"
+                  >
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>{a('login.email')}</FormLabel>
+                          <FormControl>
+                            <Input {...field} placeholder="user@example.com" />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="password"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>{a('login.password')}</FormLabel>
+                          <FormControl>
+                            <div className="relative">
+                              <Input
+                                {...field}
+                                type={showPassword ? 'text' : 'password'}
+                              />
+                              <Button
+                                type="button"
+                                variant="ghost"
+                                className={cn(
+                                  'absolute top-1/2 -translate-y-1/2 hover:!bg-transparent',
+                                  locale === 'ar' ? 'left-[-25px]' : 'right-[-25px]',
+                                )}
+                                onClick={() => setShowPassword((p) => !p)}
+                              >
+                                {showPassword ? <EyeOff /> : <Eye />}
+                              </Button>
+                            </div>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+  <Link
+            href="/forgot-password"
+            className="mt-2 text-right text-sm font-semibold text-maroon-700 dark:text-softpink-300"
+          >
+            {a('login.forget-password')}
+          </Link>
+                    <RememberMe checked={rememberMe} onChange={setRememberMe} />
+
+                    <SubmitButton
+                      error={error}
+                      isSubmitting={form.formState.isSubmitting}
+                      isValid={form.formState.isValid}
+                      isPending={isPending}
+                      text="login.submit"
+                      loading="login.loading"
+                    />
+                  </form>
+                </Form>
+              </div>
+            </div>
+          )}
+
+          {/* Icons */}
+          <Heart />
+          <ShoppingCart />
+          <Bell />
+          <NotificationsList/>
+
           <ThemeToggleIcon />
           <ToggleLocale />
         </div>
       </div>
 
-      {/* --- Bottom Navigation Row --- */}
-      <nav className="no-scrollbar w-full overflow-x-auto bg-maroon-700 text-white">
-        <div className="mx-auto flex max-w-7xl items-center justify-center gap-8 px-4">
+      {/* Bottom Nav */}
+      <nav className="bg-maroon-700 text-white">
+        <div className="mx-auto flex justify-center gap-8">
           {NAV_LINKS.map((link) => (
-            <NavLink
+            <Link
               key={link.href}
               href={link.href}
-              label={link.label}
-              icon={<link.icon size={18} />}
-              active={pathname === link.href}
-            />
+              className={cn(
+                'flex items-center gap-2 py-3',
+                pathname === link.href && 'border-b-2 border-white',
+              )}
+            >
+              <link.icon size={18} />
+              {link.label}
+            </Link>
           ))}
         </div>
       </nav>
     </header>
   );
 };
-
-// Sub-component for Nav Links
-const NavLink = ({
-  icon,
-  label,
-  href,
-  active,
-}: {
-  icon: React.ReactNode;
-  label: string;
-  href: string;
-  active: boolean;
-}) => (
-  <Link
-    href={href}
-    className={`relative flex items-center gap-2 whitespace-nowrap px-1 py-3 text-sm font-medium transition-all ${active ? 'text-white' : 'text-white/70 hover:text-white'} `}
-  >
-    {icon}
-    {label}
-    {active && (
-      <div className="absolute bottom-0 left-0 right-0 h-0.5 rounded-t-sm bg-white" />
-    )}
-  </Link>
-);
 
 export default Header;

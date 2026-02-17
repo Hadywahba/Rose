@@ -2,7 +2,6 @@ import AuthAside from '@/components/layout/auth/auth-aside';
 import AuthLocaleToggle from '@/components/layout/auth/auth-locale-toggle';
 import DecorativeOrnament from '@/components/shared/home/decorative-ornament';
 
-
 export default async function AuthLayout({
   children,
 }: {
@@ -31,7 +30,7 @@ export default async function AuthLayout({
 
       {/* Right Side - Image */}
       <div className="relative hidden lg:block">
-       <AuthAside/>
+        <AuthAside />
       </div>
     </div>
   );
