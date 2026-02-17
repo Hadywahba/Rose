@@ -337,7 +337,8 @@
     "login": "تسجيل الدخول",
     "register": "تسجيل حساب جديد",
     "deliver to": "توصيل إلى ",
-    "search": "ما هي الهدية المميزة التي تبحث عنها؟"
+    "search": "ما هي الهدية المميزة التي تبحث عنها؟",
+    "hello": "مرحبا"
   },
   "footer": {
     "title": "تطبيق روز",
@@ -436,5 +437,27 @@
   "products": "المنتجات",
   "preview-website": "الذهاب للموقع",
   "my-account": "حسابي",
-  "log-out": "تسجيل خروج"
-}
+  "log-out": "تسجيل خروج",
+  "change-password": {
+    "current-password": "كلمة المرور الحالية",
+    "new-password": "كلمة المرور الجديدة",
+    "confirm-password": "تأكيد كلمة المرور الجديدة",
+    "change-password": "تغيير كلمة المرور"
+  },
+  "profile":{
+    "Account-Settings": "إعدادات الحساب",
+    "My-Account": " حسابي",
+    "Change-Password": "تغيير كلمة المرور",
+    "Logout": "تسجيل الخروج",
+    "Upload-Photo": "رفع صورة",
+    "photo-info":" يمكنك رفع صورة بصيغة .jpg, .png, أو .gif بحجم لا يزيد عن 5 ميجابايت.",
+    "First-name": "الاسم الأول",
+    "Last-name": "الاسم الأخير",
+    "Email": "البريد الإلكتروني",
+    "Phone": "رقم الهاتف",
+    "Gender": "الجنس",
+    "delete-account": "حذف حسابي",
+    "save-changes": "حفظ التغييرات"
+  }
+  }
+
