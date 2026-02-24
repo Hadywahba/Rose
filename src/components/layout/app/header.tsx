@@ -61,91 +61,91 @@ const Header = () => {
 
 
   return (
-    <header className= "w-full bg-white shadow-sm" >
-    {/* --- Top Row --- */ }
-    < div className = "mx-auto flex items-center gap-6 px-4 py-4" >
-      {/* Logo & Delivery */ }
-      < div className = "flex items-center gap-6" >
-        <Link href="/" className = "flex items-center gap-1" >
-          <Image
+    <header className="w-full bg-white shadow-sm" >
+      {/* --- Top Row --- */}
+      < div className="mx-auto flex items-center gap-6 px-4 py-4" >
+        {/* Logo & Delivery */}
+        < div className="flex items-center gap-6" >
+          <Link href="/" className="flex items-center gap-1" >
+            <Image
               src="/assets/images/logo.png"
-  width = { 60}
-  height = { 60}
-  alt = "Logo"
-    />
-    </Link>
+              width={60}
+              height={60}
+              alt="Logo"
+            />
+          </Link>
 
-    < div className = "hidden flex-col border-l border-gray-200 pl-6 text-sm lg:flex" >
-      <span className="text-gray-400" > Deliver to: </span>
-        < div className = "flex items-center gap-1 font-semibold text-red-800" >
-          <MapPin className="h-4 w-4" />
-            <span>Cairo </span>
+          < div className="hidden flex-col border-l border-gray-200 pl-6 text-sm lg:flex" >
+            <span className="text-gray-400" > Deliver to: </span>
+            < div className="flex items-center gap-1 font-semibold text-red-800" >
+              <MapPin className="h-4 w-4" />
+              <span>Cairo </span>
             </div>
-            </div>
-            </div>
+          </div>
+        </div>
 
-  {/* Search Bar */ }
-  <SearchInput onSearch={ handleSearch } />
+        {/* Search Bar */}
+        <SearchInput onSearch={handleSearch} />
 
-  {/* User Actions & Icons */ }
-  <div className="flex items-center gap-4" >
-    <DropdownMenu>
-    <DropdownMenuTrigger className="flex flex-col items-start text-sm outline-none" >
-      <span className="text-xs text-gray-400" > Hello </span>
-        < div className = "flex items-center gap-1 font-semibold text-red-900" >
-          Jonathan < ChevronDown className = "h-4 w-4" />
-            </div>
+        {/* User Actions & Icons */}
+        <div className="flex items-center gap-4" >
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex flex-col items-start text-sm outline-none" >
+              <span className="text-xs text-gray-400" > Hello </span>
+              < div className="flex items-center gap-1 font-semibold text-red-900" >
+                Jonathan < ChevronDown className="h-4 w-4" />
+              </div>
             </DropdownMenuTrigger>
-            < DropdownMenuContent align = "end" >
+            < DropdownMenuContent align="end" >
               <DropdownMenuItem>Profile </DropdownMenuItem>
               < DropdownMenuItem > Orders </DropdownMenuItem>
               < DropdownMenuItem > Logout </DropdownMenuItem>
-              </DropdownMenuContent>
-              </DropdownMenu>
+            </DropdownMenuContent>
+          </DropdownMenu>
 
-              < div className = "mx-2 h-8 w-[1px] bg-gray-200" />
+          < div className="mx-2 h-8 w-[1px] bg-gray-200" />
 
-                <div className="flex items-center gap-5 text-gray-600" >
-                  <button className="hover:text-red-800" >
-                    <Heart className="h-6 w-6" />
-                      </button>
+          <div className="flex items-center gap-5 text-gray-600" >
+            <button className="hover:text-red-800" >
+              <Heart className="h-6 w-6" />
+            </button>
 
-                      < button className = "relative hover:text-red-800" >
-                        <ShoppingCart className="h-6 w-6" />
-                          <Badge className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center bg-red-600 p-0 hover:bg-red-600" >
-                            8
-                            </Badge>
-                            </button>
+            < button className="relative hover:text-red-800" >
+              <ShoppingCart className="h-6 w-6" />
+              <Badge className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center bg-red-600 p-0 hover:bg-red-600" >
+                8
+              </Badge>
+            </button>
 
-                            < button className = "relative hover:text-red-800" >
-                              <Bell className="h-6 w-6" />
-                                <Badge className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center bg-red-600 p-0 hover:bg-red-600" >
-                                  8
-                                  </Badge>
-                                  </button>
-                                  </div>
-                                  < ThemeToggleIcon />
-                                  <ToggleLocale />
-                                  </div>
-                                  </div>
+            < button className="relative hover:text-red-800" >
+              <Bell className="h-6 w-6" />
+              <Badge className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center bg-red-600 p-0 hover:bg-red-600" >
+                8
+              </Badge>
+            </button>
+          </div>
+          < ThemeToggleIcon />
+          <ToggleLocale />
+        </div>
+      </div>
 
-  {/* --- Bottom Navigation Row --- */ }
-  <nav className="no-scrollbar w-full overflow-x-auto bg-maroon-700 text-white" >
-    <div className="mx-auto flex max-w-7xl items-center justify-center gap-8 px-4" >
-    {
-      NAV_LINKS.map((link) => (
-        <NavLink
-              key= { link.href }
-              href = { link.href }
-              label = { link.label }
-              icon = {< link.icon size = { 18} />}
-  active = { pathname === link.href
-}
-            />
-          ))}
-</div>
-  </nav>
-  </header>
+      {/* --- Bottom Navigation Row --- */}
+      <nav className="no-scrollbar w-full overflow-x-auto bg-maroon-700 text-white" >
+        <div className="mx-auto flex max-w-7xl items-center justify-center gap-8 px-4" >
+          {
+            NAV_LINKS.map((link) => (
+              <NavLink
+                key={link.href}
+                href={link.href}
+                label={link.label}
+                icon={< link.icon size={18} />}
+                active={pathname === link.href
+                }
+              />
+            ))}
+        </div>
+      </nav>
+    </header>
   );
 };
 
@@ -162,17 +162,17 @@ const NavLink = ({
   active: boolean;
 }) => (
   <Link
-    href= { href }
-className = {`relative flex items-center gap-2 whitespace-nowrap px-1 py-3 text-sm font-medium transition-all ${active ? 'text-white' : 'text-white/70 hover:text-white'} `}
+    href={href}
+    className={`relative flex items-center gap-2 whitespace-nowrap px-1 py-3 text-sm font-medium transition-all ${active ? 'text-white' : 'text-white/70 hover:text-white'} `}
   >
-  { icon }
-{ label }
-{
-  active && (
-    <div className="absolute bottom-0 left-0 right-0 h-0.5 rounded-t-sm bg-white" />
-    )
-}
-</Link>
+    {icon}
+    {label}
+    {
+      active && (
+        <div className="absolute bottom-0 left-0 right-0 h-0.5 rounded-t-sm bg-white" />
+      )
+    }
+  </Link>
 );
 
 export default Header;

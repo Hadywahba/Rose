@@ -29,16 +29,16 @@ export default function SearchInput({
   }, [value, delay, onSearch]);
 
   return (
-    <div className= "relative flex-grow" >
-    <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+    <div className="relative flex-grow" >
+      <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
 
       <Input
-        value={ value }
-  onChange = {(e) => setValue(e.target.value)
-}
-placeholder = "What awesome gift are you looking for?"
-className = "h-12 w-full rounded-lg border-gray-200 pl-10 focus-visible:ring-red-800"
-  />
-  </div>
+        value={value}
+        onChange={(e) => setValue(e.target.value)
+        }
+        placeholder="What awesome gift are you looking for?"
+        className="h-12 w-full rounded-lg border-gray-200 pl-10 focus-visible:ring-red-800"
+      />
+    </div>
   );
 }
