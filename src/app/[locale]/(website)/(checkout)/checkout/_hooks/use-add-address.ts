@@ -1,7 +1,7 @@
 import { toast } from "sonner";
 import { useMutation } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
-import { AddAddressAction } from "../_action/add-address.action";
+import { addAddressAction } from "../_action/add-address.action";
 import { AddressFormSchema } from "@/lib/schema/address.schema";
 
 
@@ -12,7 +12,7 @@ export const useAddAddress = () => {
   // Mutation
   const { isPending, error, mutate } = useMutation({
     mutationFn: async (data: AddressFormSchema) => {
-      const res = await AddAddressAction(data);
+      const res = await addAddressAction(data);
 
       if ("error" in res) {
         throw new Error(res.error);

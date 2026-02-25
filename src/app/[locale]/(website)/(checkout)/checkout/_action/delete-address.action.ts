@@ -3,7 +3,7 @@
 import { JSON_HEADER } from '@/lib/constants/api.constant';
 import { getToken } from '@/lib/utility/manage-token';
 
-export const DeleteAddressAction = async (id:string) => {
+export const deleteAddressAction = async (id:string) => {
   
   const token = await getToken();
 

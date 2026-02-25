@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
-import { DeleteAddressAction } from "../_action/delete-address.action";
+import { deleteAddressAction } from "../_action/delete-address.action";
 import { useRouter } from "@/i18n/navigation";
 
 
@@ -13,7 +13,7 @@ export const useDeleteAddress = () => {
   // Mutation
   const { isPending, error, mutate } = useMutation({
     mutationFn: async (id:string) => {
-      const res = await DeleteAddressAction(id);
+      const res = await deleteAddressAction(id);
 
       if ("error" in res) {
         throw new Error(res.error);

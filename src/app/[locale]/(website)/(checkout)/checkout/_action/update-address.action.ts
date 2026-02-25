@@ -4,7 +4,7 @@ import { JSON_HEADER } from '@/lib/constants/api.constant';
 import { AddressFormSchema } from '@/lib/schema/address.schema';
 import { getToken } from '@/lib/utility/manage-token';
 
-export const UpdateAddressAction = async (id:string,data: AddressFormSchema) => {
+export const updateAddressAction = async (id:string,data: AddressFormSchema) => {
   
   const token = await getToken();
 
