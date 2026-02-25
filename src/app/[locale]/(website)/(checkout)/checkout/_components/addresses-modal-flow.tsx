@@ -28,6 +28,15 @@ interface AddressesModalProps {
 
 type DialogStep = 'list' | 'form' | 'map';
 
+const emptyFormData: Partial<AddressFormSchema> = {
+  username: '',
+  city: '',
+  street: '',
+  phone: '',
+  lat: '',
+  long: '',
+};
+
 export function AddressesModalFlow({
   userAddresses,
   trigger,
@@ -39,14 +48,8 @@ export function AddressesModalFlow({
   const [step, setStep] = useState<DialogStep>('list');
   const [open, setOpen] = useState(false);
   const [editingAddressId, setEditingAddressId] = useState<string | null>(null);
-  const [formData, setFormData] = useState<Partial<AddressFormSchema>>({
-    username: '',
-    city: '',
-    street: '',
-    phone: '',
-    lat: '',
-    long: '',
-  });
+  const [formData, setFormData] =
+    useState<Partial<AddressFormSchema>>(emptyFormData);
 
   // Hooks
   const router = useRouter();
@@ -54,18 +57,11 @@ export function AddressesModalFlow({
   const { pendingUpdate, updateAddress } = useUpdateAddress();
   const { pendingDelete, deleteAddress } = useDeleteAddress();
 
-  const isPending = isAddPending || pendingUpdate;
+  const isPending = [isAddPending, pendingUpdate].some(Boolean);
 
   // Functions
   const resetForm = () => {
-    setFormData({
-      username: '',
-      city: '',
-      street: '',
-      phone: '',
-      lat: '',
-      long: '',
-    });
+    setFormData(emptyFormData);
     setEditingAddressId(null);
   };
 
@@ -86,10 +82,6 @@ export function AddressesModalFlow({
     });
     setEditingAddressId(address._id);
     setStep('form');
-  };
-
-  const handleDeleteAddress = (id: string) => {
-    deleteAddress(id);
   };
 
   const handleFormComplete = (
@@ -122,13 +114,6 @@ export function AddressesModalFlow({
     }
   };
 
-  const getDialogContentClass = () =>
-    cn(
-      'max-h-[85vh] max-w-3xl overflow-y-auto scrollbar-gutter-stable dark:bg-zinc-800',
-      step !== 'list' && 'py-4',
-      step === 'form' && 'h-[85vh]',
-    );
-
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       {/* Modal Button */}
@@ -138,13 +123,15 @@ export function AddressesModalFlow({
         )}
       </DialogTrigger>
 
-      <DialogContent className={getDialogContentClass()}>
+      <DialogContent
+        className={cn(
+          'scrollbar-gutter-stable h-[85vh] max-w-3xl overflow-y-auto dark:bg-zinc-800',
+          step !== 'list' && 'py-4',
+          step === 'list' && 'h-[75vh]',
+        )}
+      >
         {/* Dialog Header */}
-        <DialogHeader
-          className={cn(
-            'mt-2 flex flex-row items-start justify-between gap-4 space-y-0',
-          )}
-        >
+        <DialogHeader className="mt-2 flex flex-row items-start justify-between gap-4 space-y-0">
           <DialogTitle className="text-start text-2xl font-bold">
             {step === 'list' && t('my-addresses')}
             {(step === 'form' || step === 'map') &&
@@ -169,7 +156,7 @@ export function AddressesModalFlow({
           <AddressSelector
             userAddresses={userAddresses}
             onEditAddress={handleEditAddress}
-            onDeleteAddress={handleDeleteAddress}
+            onDeleteAddress={deleteAddress}
             pendingDelete={pendingDelete}
           />
         )}

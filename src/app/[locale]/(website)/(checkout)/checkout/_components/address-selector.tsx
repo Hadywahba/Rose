@@ -49,7 +49,7 @@ export default function AddressSelector({
             </h3>
 
             {/* Addresses */}
-            <div className="space-y-3">
+            <div className="space-y-2">
               {categoryAddresses.map((address) => (
                 <AddressCard
                   key={address._id}
