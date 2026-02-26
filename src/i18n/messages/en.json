@@ -307,6 +307,20 @@
     "deliver to": "Deliver to",
     "search": "What awesome gift are you looking for?"
   },
+  "dashboard": {
+    "stats-overview": {
+      "total-products": "Total products",
+      "total-orders": "Total orders",
+      "total-categories": "Total categories",
+      "total-revenue": "Total revenue",
+      "egp": "EGP"
+    },
+    "all-categories": {
+      "title": "All Categories",
+      "products": "Products",
+      "empty": "No categories found"
+    }
+  },
   "footer": {
     "title": "Rose E-Commerce App",
     "discover": "Discover our website",

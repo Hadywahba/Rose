@@ -289,9 +289,8 @@
     "price-from": "من",
     "price-to": "إلى",
     "reset": "إعادة ضبط"
-  
-},
- "header": {
+  },
+  "header": {
     "home": "الرئيسية",
     "products": "المنتجات",
     "categories": "التصنيفات",
@@ -303,9 +302,23 @@
     "deliver to": "توصيل إلى ",
     "search": "ما هي الهدية المميزة التي تبحث عنها؟"
   },
+  "dashboard": {
+    "stats-overview": {
+      "total-products": "إجمالي المنتجات",
+      "total-orders": "إجمالي الطلبات",
+      "total-categories": "إجمالي الفئات",
+      "total-revenue": "إجمالي الإيرادات",
+      "egp": "ج.م"
+    },
+    "all-categories": {
+      "title": "جميع الفئات",
+      "products": "منتج",
+      "empty": "لا توجد فئات"
+    }
+  },
   "footer": {
     "title": "تطبيق روز",
-    "discover":"اكتشف موقعنا",
+    "discover": "اكتشف موقعنا",
     "home": "الرئيسية",
     "products": "المنتجات",
     "categories": "التصنيفات",
@@ -316,12 +329,11 @@
     "privacy": "سياسة الخصوصية",
     "faqs": "الاسئلة الشائعة",
     "copyright": "جميع الحقوق محفوظة | 2025",
-    "get":"احصل على",
-    "getDiscount":" كوبون خصم",
-    "discount":"20%",
-    "subscribingWay":"اشترك في مجلتنا",
-    "emailPlaceholder":"اكتب بريدك الإلكتروني",
-    "subscribe":"اشترك"
-
+    "get": "احصل على",
+    "getDiscount": " كوبون خصم",
+    "discount": "20%",
+    "subscribingWay": "اشترك في مجلتنا",
+    "emailPlaceholder": "اكتب بريدك الإلكتروني",
+    "subscribe": "اشترك"
   }
 }
