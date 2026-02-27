@@ -3,7 +3,6 @@
 import * as React from 'react';
 import { cn } from '@/lib/utility/tailwind-merge';
 import { Eye, EyeOff, Search } from 'lucide-react';
-import { Button } from './button';
 import { useLocale } from 'next-intl';
 
 type InputVariant =
@@ -118,21 +117,20 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             placeholder="***********"
           />
           {/* Toggle-button */}
-          <Button
-            variant={'carousel'}
-            className={cn(
-              'absolute top-1/2 size-5 -translate-y-1/2',
-              locale === 'ar' ? 'left-0' : 'right-0',
-            )}
-            onClick={handleTogglePassword}
+          <button
             type="button"
+            onClick={handleTogglePassword}
+            className={cn(
+              'absolute top-1/2 flex -translate-y-1/2 items-center justify-center p-1 text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200',
+              locale === 'ar' ? 'left-2' : 'right-2',
+            )}
           >
             {showPassword ? (
-              <Eye className="size-5 text-zinc-400 dark:text-zinc-500" />
+              <Eye className="size-4" />
             ) : (
-              <EyeOff className="size-5 text-zinc-400 dark:text-zinc-500" />
+              <EyeOff className="size-4" />
             )}
-          </Button>
+          </button>
         </div>
       );
     }

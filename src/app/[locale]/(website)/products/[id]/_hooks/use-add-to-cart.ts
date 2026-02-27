@@ -1,4 +1,4 @@
-import { addToCart } from '@/lib/services/product/product.service';
+import { addToCartAction } from '@/lib/actions/cart/add-to-cart.action';
 import type { AddToCartPayload } from '@/lib/types/cart';
 import { useMutation } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
@@ -8,11 +8,21 @@ export const useAddToCart = () => {
   const t = useTranslations('product.toast');
   const guestCartKey = 'guest-cart';
 
-  // const { data: session } = useSession();
-  const getToken = () => {
-    if (typeof window === 'undefined') return null;
-    // will be used in future when authentication is implemented
-    return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjk4NjFmMjBlMzY0ZWY2MTQwNTBkY2RjIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NzAzOTc0OTB9.mhb9mwGIli7C5KdqACe9mq-iq1AOqUY_x5CbzreapxE';
+  /**
+   * Case 2: session-only login (no remember me) — token stored in sessionStorage by use-login.
+   * Case 1 (remember me) and Case 3 (guest) are handled inside the server action.
+   */
+  
+  const getSessionStorageToken = (): string | undefined => {
+    if (typeof window === 'undefined') return undefined;
+    try {
+      const raw = sessionStorage.getItem('user');
+      if (!raw) return undefined;
+      const parsed = JSON.parse(raw) as { token?: string };
+      return parsed?.token ?? undefined;
+    } catch {
+      return undefined;
+    }
   };
 
   const saveGuestCart = (data: AddToCartPayload) => {
@@ -33,14 +43,15 @@ export const useAddToCart = () => {
 
   const { mutate: add, isPending } = useMutation({
     mutationFn: async (data: AddToCartPayload) => {
-      const token = getToken();
+      // Pass sessionStorage token (case 2); server action handles case 1 (cookie) and case 3 (guest)
+      const clientToken = getSessionStorageToken();
+      const payload = await addToCartAction(data, clientToken);
 
-      if (!token) {
+      // Case 3: guest — server action found no token
+      if ('guest' in payload) {
         saveGuestCart(data);
         return { message: 'guest' };
       }
-
-      const payload = await addToCart(data, token);
 
       if ('error' in payload) {
         throw new Error(payload.error);
