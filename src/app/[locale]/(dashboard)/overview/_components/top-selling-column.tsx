@@ -7,6 +7,7 @@ const rankColors = [
   'bg-gradient-to-r from-slate-500/25 to-slate-500/10',
   'bg-gradient-to-r from-[hsla(28,100%,28%,0.25)] to-[hsla(28,100%,28%,0.1)]',
 ];
+const fontWeight = ['font-semibold', 'font-medium', 'font-medium'];
 
 export default function TopSellingColumn({
   products,
@@ -22,7 +23,7 @@ export default function TopSellingColumn({
       <p className="text-2xl font-semibold">{t('title')}</p>
 
       {/* Top Selling Products List */}
-      <div className="no-scrollbar flex max-h-[21.25rem] flex-col gap-3 overflow-y-auto">
+      <div className="no-scrollbar flex max-h-[21.25rem] flex-col gap-3 overflow-y-auto pb-6">
         {products.map((product, index) => (
           <div
             key={product._id}
@@ -33,11 +34,7 @@ export default function TopSellingColumn({
           >
             <p
               className={cn(
-                index === 0
-                  ? 'font-semibold'
-                  : index === 1 || index === 2
-                    ? 'font-medium'
-                    : 'font-normal',
+                fontWeight[index] ?? 'font-normal'
               )}
             >
               {product.title}{' '}

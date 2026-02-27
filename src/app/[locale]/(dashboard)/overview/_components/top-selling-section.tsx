@@ -8,8 +8,8 @@ export default async function TopSellingSection() {
   const products = await getTopProducts();
 
   // Sort products for top selling and low stock
-  const topSelling = [...products].sort((a, b) => b.sold - a.sold);
-  const lowStock = [...products].sort((a, b) => a.quantity - b.quantity);
+  const topSelling = [...products].sort((a, b) => b.sold - a.sold).slice(0, 10);
+  const lowStock = [...products].sort((a, b) => a.quantity - b.quantity).slice(0, 10);
 
   return (
     // TODO: remove this div

@@ -16,7 +16,7 @@ export default function LowStockColumn({
       <p className="text-2xl font-semibold">{t('title')}</p>
 
       {/* Low Stock Products List */}
-      <div className="no-scrollbar flex max-h-[21.25rem] flex-col gap-3 overflow-y-auto">
+      <div className="no-scrollbar flex max-h-[21.25rem] flex-col gap-3 overflow-y-auto pb-6">
         {products.map((product) => (
           <div
             key={product._id}
