@@ -1,4 +1,4 @@
-import ForgotPasswordLayout from './_components/forgort-password-layout';
+import ForgotPasswordLayout from './_components/forgot-password-layout';
 
 export default function Page() {
   return (

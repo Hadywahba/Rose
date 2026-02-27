@@ -18,7 +18,7 @@ export default function Home() {
       {/* Hero Service */}
       <HeroServiceSection />
 
-      {/* Abou Section */}
+      {/* About Section */}
       <About />
 
       {/* Gallery Section */}
