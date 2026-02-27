@@ -1,11 +1,11 @@
 import { TopProducts } from '@/lib/types/products/product';
 import { cn } from '@/lib/utility/tailwind-merge';
-import React from 'react';
+import { useTranslations } from 'next-intl';
 
 const rankColors = [
-  'bg-gradient-to-r from-[hsla(45,82%,48%,0.25)] to-[hsla(45,82%,48%,0.1)]', // 🥇 Gold
-  'bg-gradient-to-r from-slate-500/25 to-slate-500/10', // 🥈 Silver
-  'bg-gradient-to-r from-[hsla(28,100%,28%,0.25)] to-[hsla(28,100%,28%,0.1)]', // 🥉 Bronze
+  'bg-gradient-to-r from-[hsla(45,82%,48%,0.25)] to-[hsla(45,82%,48%,0.1)]',
+  'bg-gradient-to-r from-slate-500/25 to-slate-500/10',
+  'bg-gradient-to-r from-[hsla(28,100%,28%,0.25)] to-[hsla(28,100%,28%,0.1)]',
 ];
 
 export default function TopSellingColumn({
@@ -13,12 +13,16 @@ export default function TopSellingColumn({
 }: {
   products: TopProducts[];
 }) {
+  // Translations
+  const t = useTranslations('dashboard.topSelling');
+
   return (
     <div className="flex flex-col gap-6 bg-white p-6 text-zinc-800">
-      {/* title */}
-      <p className="text-2xl font-semibold">Top Selling Products</p>
+      {/* Title */}
+      <p className="text-2xl font-semibold">{t('title')}</p>
 
-      <div className="no-scrollbar flex max-h-[21.25rem] flex-col gap-3 overflow-y-auto pr-2">
+      {/* Top Selling Products List */}
+      <div className="no-scrollbar flex max-h-[21.25rem] flex-col gap-3 overflow-y-auto">
         {products.map((product, index) => (
           <div
             key={product._id}
@@ -39,8 +43,8 @@ export default function TopSellingColumn({
               {product.title}{' '}
               <span className="text-sm font-normal">({product.price} EGP)</span>
             </p>
-            <p className="font-bold text-sm">
-              {product.sold} <span className="font-medium">Sales</span>
+            <p className="text-sm font-bold">
+              {product.sold} <span className="font-medium">{t('sales')}</span>
             </p>
           </div>
         ))}
