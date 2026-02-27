@@ -1,3 +1,4 @@
+import { JSON_HEADER } from './../../../../../lib/constants/api.constant';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
@@ -11,7 +12,7 @@ export const useChangePassword = () => {
     mutationFn: async (data: ChangePasswordPayload) => {
       const res = await fetch('/api/change-password', {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
+        ...JSON_HEADER,
         body: JSON.stringify(data),
       });
 

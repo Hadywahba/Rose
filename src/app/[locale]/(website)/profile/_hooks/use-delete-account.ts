@@ -8,7 +8,7 @@ export const useDeleteAccount = () => {
 
   return useMutation({
     mutationFn: async () => {
-      const res = await fetch('/api/profile/delete', { // تأكد إن المسار صحيح
+      const res = await fetch('/api/profile/delete', {
         method: 'DELETE',
       });
 
@@ -21,7 +21,6 @@ export const useDeleteAccount = () => {
     },
     onSuccess: () => {
       toast.success('Account deleted successfully');
-      // 👇 ممكن تعمل redirect للصفحة الرئيسية أو صفحة تسجيل الدخول
       router.push('/login');
     },
     onError: (error: Error) => {

@@ -120,7 +120,7 @@ const Header = () => {
         </Link>
         {session?.user || user ? (
           <div>
-            Deliver to:
+            {t('deliver to')}:
             {(session?.user as SessionUser)?.addresses?.[0]?.city ||
               user?.user?.addresses?.[0]?.city}
           </div>
@@ -139,7 +139,7 @@ const Header = () => {
           <div className="relative group">
   {/* النص اللي هيظهر للهوفر */}
   <p className="cursor-pointer font-medium dark:text-white">
-    Hello {session?.user.firstName || user?.user?.firstName}
+    {t('hello')} {session?.user.firstName || user?.user?.firstName}
   </p>
 
   {/* القائمة */}

@@ -1,10 +1,11 @@
 'use client';
 
+import { User } from '@/lib/types/auth';
 import { useQuery } from '@tanstack/react-query';
 
 export const PROFILE_QUERY_KEY = ['profile'];
-
-export const useGetProfile = () => {
+// get profile data
+export const useGetProfile = (initialData?: User) => {
   return useQuery({
     queryKey: PROFILE_QUERY_KEY,
     queryFn: async () => {
@@ -21,9 +22,9 @@ export const useGetProfile = () => {
       return res.json();
     },
     retry: false,
+    initialData,
   });
 };
-
 
 
 
