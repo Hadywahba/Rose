@@ -32,14 +32,19 @@ export default function TopSellingColumn({
               rankColors[index] ?? 'bg-zinc-100',
             )}
           >
-            <p
-              className={cn(
-                fontWeight[index] ?? 'font-normal'
-              )}
-            >
-              {product.title}{' '}
-              <span className="text-sm font-normal">({product.price} EGP)</span>
-            </p>
+            <div className="flex min-w-0 items-center gap-1">
+              <p
+                className={cn(
+                  'max-w-[75%] truncate',
+                  fontWeight[index] ?? 'font-normal',
+                )}
+              >
+                {product.title}
+              </p>
+              <span className="shrink-0 text-sm font-normal">
+                ({product.price} EGP)
+              </span>
+            </div>
             <p className="text-sm font-bold">
               {product.sold} <span className="font-medium">{t('sales')}</span>
             </p>
