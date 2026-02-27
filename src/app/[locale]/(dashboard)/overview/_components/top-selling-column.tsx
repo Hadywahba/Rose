@@ -14,13 +14,11 @@ export default function TopSellingColumn({
   products: TopProducts[];
 }) {
   return (
-    <div className="flex flex-col gap-6 bg-white p-6">
+    <div className="flex flex-col gap-6 bg-white p-6 text-zinc-800">
       {/* title */}
-      <p className="text-2xl font-semibold text-zinc-800">
-        Top Selling Products
-      </p>
+      <p className="text-2xl font-semibold">Top Selling Products</p>
 
-      <div className="no-scrollbar flex max-h-[300px] flex-col gap-3 overflow-y-auto pr-2">
+      <div className="no-scrollbar flex max-h-[21.25rem] flex-col gap-3 overflow-y-auto pr-2">
         {products.map((product, index) => (
           <div
             key={product._id}
@@ -41,7 +39,7 @@ export default function TopSellingColumn({
               {product.title}{' '}
               <span className="text-sm font-normal">({product.price} EGP)</span>
             </p>
-            <p className="font-bold">
+            <p className="font-bold text-sm">
               {product.sold} <span className="font-medium">Sales</span>
             </p>
           </div>
