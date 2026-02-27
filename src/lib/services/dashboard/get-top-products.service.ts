@@ -9,8 +9,7 @@ export const getTopProducts = async () => {
     },
   );
   const payload: TopProductsResponse = await response.json();
-  console.log(payload);
-  
-  
-  return payload;
+
+
+  return payload.products;
 };

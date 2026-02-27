@@ -33,6 +33,12 @@ export interface ProductsResponse {
   products: Product[];
 }
 
+export type TopProducts = Pick<
+  Product,
+  "_id" | "title" | "sold" | "quantity" | "price"
+>;
+
 export interface TopProductsResponse {
-  product: Pick<Product, "_id" | "title" | "sold" | "quantity" | "price">;
+  metadata: Metadata;
+  products: TopProducts[];
 }
