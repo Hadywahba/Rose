@@ -289,9 +289,8 @@
     "price-from": "من",
     "price-to": "إلى",
     "reset": "إعادة ضبط"
-  
-},
- "header": {
+  },
+  "header": {
     "home": "الرئيسية",
     "products": "المنتجات",
     "categories": "التصنيفات",
@@ -305,7 +304,7 @@
   },
   "footer": {
     "title": "تطبيق روز",
-    "discover":"اكتشف موقعنا",
+    "discover": "اكتشف موقعنا",
     "home": "الرئيسية",
     "products": "المنتجات",
     "categories": "التصنيفات",
@@ -316,12 +315,42 @@
     "privacy": "سياسة الخصوصية",
     "faqs": "الاسئلة الشائعة",
     "copyright": "جميع الحقوق محفوظة | 2025",
-    "get":"احصل على",
-    "getDiscount":" كوبون خصم",
-    "discount":"20%",
-    "subscribingWay":"اشترك في مجلتنا",
-    "emailPlaceholder":"اكتب بريدك الإلكتروني",
-    "subscribe":"اشترك"
-
+    "get": "احصل على",
+    "getDiscount": " كوبون خصم",
+    "discount": "20%",
+    "subscribingWay": "اشترك في مجلتنا",
+    "emailPlaceholder": "اكتب بريدك الإلكتروني",
+    "subscribe": "اشترك"
+  },
+  "checkout": {
+    "checkout-summary": {
+      "summary": "مراجعة الطلب",
+      "coupon": "تطبيق الكوبون",
+      "total-salary": "الإجمالي",
+      "total-price": "{price}",
+      "coupon-placeholder": "كود الكوبون",
+      "coupon-applied": "لم يتم تطبيق أي كوبونات",
+      "checkout-button": "الدفع"
+    },
+    "shipping-address": "عنوان الشحن",
+    "next-step": "التالي",
+    "back-step": "السابق",
+    "new-address": "إضافة عنوان جديد",
+    "payment-method": "طريقة الدفع",
+    "adresses-loading": "جارٍ التحميل...",
+    "addresses-error": "لا يوجد عناوين",
+    "or": "أو",
+    "payment-methods": {
+      "cash": {
+        "title": "الدفع عند الاستلام",
+        "text": "ستدفع نقدًا عند وصول طلبك."
+      },
+      "visa": {
+        "title": "بطاقة ائتمان",
+        "text": "سيتم توجيهك بأمان إلى Stripe لإتمام عملية الدفع."
+      },
+      "payment-loading": "جاري التحميل...",
+      "select-required": "يرجى اختيار جميع العناصر المطلوبة"
+    }
   }
 }

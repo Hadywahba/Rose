@@ -326,5 +326,36 @@
     "subscribingWay": "By subscribing to our newsletter",
     "emailPlaceholder": "Enter your email",
     "subscribe": "Subscribe"
+  },
+  "checkout": {
+    "checkout-summary": {
+      "summary": "summary",
+      "coupon": "Apply Coupon",
+      "total-salary": " total",
+      "total-price": "{price}",
+      "coupon-placeholder": "Coupon Code",
+      "coupon-applied": "no coupons applied",
+      "checkout-button": "checkout"
+    },
+    "shipping-address": "shipping address",
+    "next-step": " next",
+    "back-step": " back",
+    "new-address": "  Add a New Address",
+    "payment-method": "payment method",
+    "adresses-loading": "Loading...",
+    "addresses-error": " No more Addresses",
+    "or": "or",
+    "payment-methods": {
+      "cash": {
+        "title": "Cash on Delivery",
+        "text": " You’ll pay in cash when your order is delivered."
+      },
+      "visa": {
+        "title": "credit card",
+        "text": "You’ll be securely redirected to Stripe to complete your payment."
+      },
+      "payment-loading": "loading....",
+      "select-required": "Please select all required items"
+    }
   }
 }

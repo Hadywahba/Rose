@@ -5,3 +5,4 @@ export type VerifyResetFields = {
 export interface ForgotPasswordFormProps {
   setStep: React.Dispatch<React.SetStateAction<ForgotPasswordStep>>;
 }
+
