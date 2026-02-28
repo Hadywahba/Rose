@@ -21,7 +21,7 @@ export default function Coupon() {
         </div>
         <Button
           variant="primary"
-          className="h-12 w-[50%] whitespace-nowrap rounded-lg px-4 lg:w-auto"
+          className="h-12 w-1/2 whitespace-nowrap rounded-lg px-4 lg:w-auto"
         >
           <TicketPercent className="size-6" />
           {t('checkout-summary.coupon')}

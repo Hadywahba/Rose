@@ -13,16 +13,17 @@ export default function CartCheckoutButton() {
   //Navigation
   const router = useRouter();
 
-  // Hook
+  //Hook
   const locale = useLocale();
 
-  // Variable
+  //Variable
   const arabic = locale === 'ar';
 
-  //   Functions
+  //Functions
   const goToCheckout = () => {
     router.push('/checkout');
   };
+
   return (
     <div className="w-full pb-4 pt-6">
       <Button
