@@ -4,6 +4,7 @@ import React from 'react';
 import { useCart } from '../../cart/_hooks/use-cart';
 import SummarySkeleton from '@/components/skeletons/checkout/summary-skeleton';
 import ListError from '@/components/error/list-error';
+import { CURRENCY } from '@/lib/constants/global.constant';
 
 export default function CartPrice() {
   // Translation
@@ -19,12 +20,9 @@ export default function CartPrice() {
 
   const totalPrice = cart?.cart?.totalPrice ?? 0;
 
-  const price = arabic
-    ? format.number(totalPrice, 'currency-no-decimals')
-    : format
-        .number(totalPrice, 'currency-no-decimals')
-        .replace(/^(\D+)?(\d+(\.\d+)?)/, '$2\u00A0$1');
-
+  const cartPrice = format.number(totalPrice, 'decimals');
+  const currencyLabel = arabic ? 'ج.م' : CURRENCY;
+  const price = `${cartPrice} ${currencyLabel}`;
   return (
     <>
       {isLoading ? (

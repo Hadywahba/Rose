@@ -48,8 +48,14 @@ export default getRequestConfig(async ({ requestLocale }) => {
         },
         'currancy-base': {
           numberingSystem: locale === 'ar' ? 'arab' : 'latn',
-          currency: 'EGP',
+          currency: CURRENCY,
           style: 'currency',
+          maximumFractionDigits: 0,
+        },
+        decimals: {
+          numberingSystem,
+          style: 'decimal',
+          minimumFractionDigits: 0,
           maximumFractionDigits: 0,
         },
       },
