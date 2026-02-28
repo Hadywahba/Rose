@@ -11,6 +11,7 @@ export async function GET(req: NextRequest) {
     }
 
     const API_URL = 'https://flower.elevateegy.com/api/v1/cart';
+
     const response = await fetch(API_URL, {
       headers: {
         ...JSON_HEADER,
