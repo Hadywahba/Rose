@@ -119,7 +119,12 @@ export function AddressesModalFlow({
       {/* Modal Button */}
       <DialogTrigger asChild>
         {trigger || (
-          <Button variant={'secondary'}>{t('open-address-book')}</Button>
+          <Button
+            className="mb-9 w-full rounded-xl py-6 text-base font-medium dark:bg-softpink-300 dark:text-black dark:hover:bg-softpink-400"
+            variant={'secondary'}
+          >
+            {t('open-address-book')}
+          </Button>
         )}
       </DialogTrigger>
 

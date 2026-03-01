@@ -1,16 +1,11 @@
 'use client';
-import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utility/tailwind-merge';
-import React, { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import CheckoutModal from './checkout-modal';
 
 export default function AddressButton() {
   // Translation
   const t = useTranslations('checkout');
 
-  // State
-  const [openModal, setOpenModal] = useState<boolean>(false);
 
   // Hook
   const locale = useLocale();
@@ -18,10 +13,7 @@ export default function AddressButton() {
   // Variable
   const arabic = locale === 'ar';
 
-  // Function
-  const openLocationModal = () => {
-    setOpenModal(true);
-  };
+
 
   return (
     <>
@@ -42,17 +34,7 @@ export default function AddressButton() {
         >
           {t('or')}
         </p>
-
-        {/* Button */}
-        <Button
-          onClick={openLocationModal}
-          variant={'secondary'}
-          className="mb-9 w-full rounded-xl py-6 text-base font-medium dark:bg-softpink-300 dark:text-black dark:hover:bg-softpink-400"
-        >
-          {t('new-address')}
-        </Button>
       </section>
-      {openModal && <CheckoutModal setOpenModal={setOpenModal} openModal={openModal} />}
     </>
   );
 }

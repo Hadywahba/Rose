@@ -1,3 +1,4 @@
+'use client';
 import { Button } from '@/components/ui/button';
 import { MoveLeft, MoveRight } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
@@ -8,7 +9,10 @@ import { CHECKOUT_STEPS } from '@/lib/constants/checkout.constant';
 import SharedProgress from '@/components/shared/shared-progress';
 import { CheckoutMethodProps } from '@/lib/types/checkout/checkout';
 
-export default function CheckOutContent({ setStep }: CheckoutMethodProps) {
+interface Props extends CheckoutMethodProps {
+  myAddresses: React.ReactNode;
+}
+export default function CheckOutContent({ setStep, myAddresses }: Props) {
   // Translation
   const t = useTranslations('checkout');
 
@@ -29,7 +33,6 @@ export default function CheckOutContent({ setStep }: CheckoutMethodProps) {
         steps={steps}
         firstValue={'25%'}
       />
-
       {/* Title */}
       <h1 className="text-3xl font-semibold capitalize">
         {t('shipping-address')}
@@ -40,6 +43,7 @@ export default function CheckOutContent({ setStep }: CheckoutMethodProps) {
 
       {/* Added New Adress */}
       <AddressButton />
+      {myAddresses}
 
       {/* Next Step */}
       <div className="mb-4 flex justify-end">

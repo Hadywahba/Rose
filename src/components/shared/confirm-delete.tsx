@@ -10,7 +10,6 @@ import {
   AlertDialogHeader,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
-import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utility/tailwind-merge';
 import { Trash2Icon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -29,17 +28,16 @@ export function ConfirmDelete({ handleDeleteAddress, id, pendingDelete }: Confir
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button
+        <button
           className={cn(
-            'flex h-8 w-8 items-center justify-center rounded-full',
+            'flex h-8 w-8 items-center bg-red-600 hover:bg-red-700 justify-center rounded-full',
             pendingDelete && 'cursor-not-allowed opacity-50',
           )}
           disabled={pendingDelete}
           aria-label="Delete address"
-          variant="destructive"
         >
-          <Trash2Icon size={18} />
-        </Button>
+          <Trash2Icon className='text-white' size={18} />
+        </button>
       </AlertDialogTrigger>
 
       <AlertDialogContent className="flex h-[20rem] max-w-md flex-col rounded-2xl p-4 dark:bg-zinc-700">

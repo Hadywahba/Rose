@@ -20,7 +20,6 @@ export default function CheckoutAddress() {
   // Hook
   const locale = useLocale();
 
- 
   return (
     <ListError errors={error}>
       <section
@@ -65,7 +64,9 @@ export default function CheckoutAddress() {
                 <h2
                   className={cn(
                     'text-2xl font-semibold capitalize',
-                    address?._id === add._id ? 'text-zinc-50' : 'dark:text-zinc-800',
+                    address?._id === add._id
+                      ? 'text-zinc-50'
+                      : 'dark:text-zinc-800',
                   )}
                 >
                   {add.city}
