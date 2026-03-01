@@ -8,7 +8,7 @@ export default function LowStockColumn({
   products: TopProducts[];
 }) {
   // Translations
-  const t = useTranslations('dashboard.lowStock');
+  const t = useTranslations('dashboard.low-stock');
 
   return (
     <div className="flex flex-col gap-6 bg-white p-6 text-zinc-800">

@@ -15,7 +15,7 @@ export default function TopSellingColumn({
   products: TopProducts[];
 }) {
   // Translations
-  const t = useTranslations('dashboard.topSelling');
+  const t = useTranslations('dashboard.top-selling');
 
   return (
     <div className="flex flex-col gap-6 bg-white p-6 text-zinc-800">

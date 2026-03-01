@@ -324,11 +324,11 @@
   },
 
   "dashboard": {
-    "topSelling": {
+    "top-selling": {
       "title": "المنتجات الأكثر مبيعاً",
       "sales": "مبيع"
     },
-    "lowStock": {
+    "low-stock": {
       "title": "المنتجات منخفضة المخزون",
       "products": "منتج"
     }

@@ -329,11 +329,11 @@
   },
 
   "dashboard": {
-    "topSelling": {
+    "top-selling": {
       "title": "Top Selling Products",
       "sales": "Sales"
     },
-    "lowStock": {
+    "low-stock": {
       "title": "Low Stock Products",
       "products": "products"
     }
