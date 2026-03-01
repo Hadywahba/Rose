@@ -289,9 +289,24 @@
     "price-from": "من",
     "price-to": "إلى",
     "reset": "إعادة ضبط"
-  
-},
- "header": {
+  },
+
+  "revenueChart": {
+    "title": "الإيرادات",
+    "monthly": "شهري",
+    "weekly": "أسبوعي",
+    "loading": "جارٍ التحميل...",
+    "noData": "لا توجد بيانات إيرادات",
+    "fetchError": "فشل في تحميل بيانات الإيرادات"
+  },
+  "ordersStatus": {
+    "title": "حالة الطلبات",
+    "completed": "مكتمل",
+    "inProgress": "قيد التنفيذ",
+    "canceled": "ملغي"
+  },
+
+  "header": {
     "home": "الرئيسية",
     "products": "المنتجات",
     "categories": "التصنيفات",
@@ -305,7 +320,7 @@
   },
   "footer": {
     "title": "تطبيق روز",
-    "discover":"اكتشف موقعنا",
+    "discover": "اكتشف موقعنا",
     "home": "الرئيسية",
     "products": "المنتجات",
     "categories": "التصنيفات",
@@ -316,12 +331,11 @@
     "privacy": "سياسة الخصوصية",
     "faqs": "الاسئلة الشائعة",
     "copyright": "جميع الحقوق محفوظة | 2025",
-    "get":"احصل على",
-    "getDiscount":" كوبون خصم",
-    "discount":"20%",
-    "subscribingWay":"اشترك في مجلتنا",
-    "emailPlaceholder":"اكتب بريدك الإلكتروني",
-    "subscribe":"اشترك"
-
+    "get": "احصل على",
+    "getDiscount": " كوبون خصم",
+    "discount": "20%",
+    "subscribingWay": "اشترك في مجلتنا",
+    "emailPlaceholder": "اكتب بريدك الإلكتروني",
+    "subscribe": "اشترك"
   }
 }

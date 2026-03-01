@@ -295,6 +295,20 @@
     "price-to": "to",
     "reset": "reset"
   },
+  "revenueChart": {
+    "title": "Revenue",
+    "monthly": "Monthly",
+    "weekly": "Weekly",
+    "loading": "Loading...",
+    "noData": "No revenue data available",
+    "fetchError": "Failed to load revenue data"
+  },
+  "ordersStatus": {
+    "title": "Orders Status",
+    "completed": "Completed",
+    "inProgress": "In Progress",
+    "canceled": "Canceled"
+  },
   "header": {
     "home": "Home",
     "products": "Products",
