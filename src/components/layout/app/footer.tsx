@@ -22,7 +22,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="mt-auto w-full bg-zinc-800 px-4 py-16 text-white md:px-8">
+    <footer className="mt-auto w-full bg-zinc-800 dark:bg-zinc-900 px-4 py-16 text-white md:px-8">
       <div className="mx-auto flex max-w-7xl gap-12 md:gap-8">
         <div className="flex flex-col items-center space-y-4 text-center md:items-start md:text-left">
           <div className="relative h-52 w-52">

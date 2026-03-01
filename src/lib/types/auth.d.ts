@@ -31,3 +31,6 @@ export interface RegisterResponse {
 }
 
 
+// Checkout step type
+export type CheckoutStep = (typeof CHECKOUT_STEPS)[keyof typeof CHECKOUT_STEPS];
+export type AddressStep = (typeof ADDRESS_STEPS)[keyof typeof ADDRESS_STEPS];

@@ -72,7 +72,7 @@ export default function LocaleLayout({
   return (
     <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <body
-        className={` ${locale === 'ar' ? tajawal.className : sarabun.className} ${zain.variable} ${inter.variable} ${mulish.variable} antialiased [@media(min-width:1920px)]:container [@media(min-width:1920px)]:mx-auto`}
+        className={` ${locale === 'ar' ? tajawal.className : sarabun.className} ${zain.variable} ${inter.variable} antialiased [@media(min-width:1920px)]:container [@media(min-width:1920px)]:mx-auto dark:bg-zinc-800`}
       >
         <Providers locale={locale}>{children}</Providers>
       </body>

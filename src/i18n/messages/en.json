@@ -357,5 +357,43 @@
       "payment-loading": "loading....",
       "select-required": "Please select all required items"
     }
+},
+
+  "my-addresses": {
+    "form-title": "Enter address details",
+    "back-button": "Go back",
+    "category-label": "Address Label",
+    "category-placeholder": "e.g., Home, Work, Office",
+    "city-label": "City",
+    "city-placeholder": "Enter your city",
+    "address-label": "Address",
+    "address-placeholder": "Enter your full street address",
+    "phone-label": "Phone Number",
+    "phone-placeholder": "Enter phone number",
+    "submit-button": "Next",
+    "update-button": "Update Address",
+    "cancel-button": "cancel",
+    "success-message": "your address was added successfully",
+    "error-message": "we couldn't add your address",
+    "success-delete-message": "your address was deleted successfully",
+    "error-delete-message": "we couldn't delete your address",
+    "open-address-book": "Add a New Address",
+    "my-addresses": "My Addresses",
+    "add-new-address": "Add a New Address",
+    "update-address": "Update Address Info",
+    "no-addresses-found": "No addresses found 📍 Please add an address",
+    "loading-map": "Loading Map...",
+    "map-title": "Find Your Location",
+    "adding-address": "Adding Address...",
+    "add-address-button": "Add Address",
+    "label-required": "Label is required",
+    "city-required": "City is required",
+    "address-required": "Address is required",
+    "phone-required": "Valid phone number is required",
+    "success-update-message": "your address was updated successfully",
+    "error-update-message": "we couldn't update your address",
+    "sure-to-delete": "Are you sure you want to delete this address?",
+    "Cancel": "Cancel",
+    "Confirm": "Confirm"
   }
 }

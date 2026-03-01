@@ -33,7 +33,7 @@ export default function ReviewItem({ review, formatNumber }: { review: Review, f
           </AvatarFallback>
         </Avatar>
         <div className="flex flex-col items-start text-sm">
-          <span className="font-semibold text-zinc-600">
+          <span className="font-semibold text-zinc-600 dark:text-zinc-50">
             {review.user.firstName} {review.user.lastName}
           </span>
           <span className="text-zinc-400">{formatDate(review.createdAt)}</span>
@@ -43,7 +43,7 @@ export default function ReviewItem({ review, formatNumber }: { review: Review, f
       {/* Rating */}
       <div className="mt-1 flex items-center gap-1">
         <Rating rate={review.rating} className="[&_svg]:size-4" />
-        <span className="text-sm font-semibold text-zinc-800">
+        <span className="text-sm font-semibold text-zinc-800 dark:text-zinc-200">
           ({formatNumber(review.rating)})
         </span>
       </div>

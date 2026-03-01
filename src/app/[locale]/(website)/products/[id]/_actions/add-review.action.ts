@@ -5,16 +5,13 @@ import { RatingFormSchema } from '@/lib/schema/add-review';
 import { getToken } from '@/lib/utility/manage-token';
 
 export const AddReviewAction = async (data: RatingFormSchema) => {
+  
   const token = await getToken();
-
-  if (!token) {
-    throw new Error('UNAUTHORIZED');
-  }
 
   const response = await fetch(`${process.env.API_URL}/reviews`, {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${token.accessToken}`,
+      Authorization: `Bearer ${token?.accessToken}`,
       ...JSON_HEADER,
     },
     body: JSON.stringify(data),

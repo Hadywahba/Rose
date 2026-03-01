@@ -43,10 +43,10 @@ export default function ReviewForm({ productId }: ReviewFormProps) {
   const isDisabled = status !== 'authenticated';
 
   return (
-    <div className="relative col-span-1 border-s ps-4">
+    <div className="relative col-span-1 border-s ps-4 dark:border-zinc-50">
       {/* Optional overlay message */}
       {isDisabled && (
-        <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center font-semibold text-zinc-800">
+        <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center font-semibold text-zinc-800 dark:text-zinc-50">
           {t('login-to-review')}
         </div>
       )}
@@ -61,7 +61,9 @@ export default function ReviewForm({ productId }: ReviewFormProps) {
             {/* Rating */}
             <div className="space-y-1">
               <div className="flex items-center gap-4">
-                <FieldLabel>{t('your-rating')}</FieldLabel>
+                <FieldLabel className="dark:text-zinc-50">
+                  {t('your-rating')}
+                </FieldLabel>
                 <Controller
                   name="rating"
                   control={form.control}
@@ -79,9 +81,11 @@ export default function ReviewForm({ productId }: ReviewFormProps) {
 
             {/* Title */}
             <Field>
-              <FieldLabel htmlFor="title">{t('title-label')}</FieldLabel>
+              <FieldLabel className="dark:text-zinc-50" htmlFor="title">
+                {t('title-label')}
+              </FieldLabel>
               <Input
-                className="w-full"
+                className="w-full dark:text-zinc-50"
                 id="title"
                 placeholder={t('title-placeholder')}
                 {...form.register('title')}
@@ -91,9 +95,11 @@ export default function ReviewForm({ productId }: ReviewFormProps) {
 
             {/* Comment */}
             <Field>
-              <FieldLabel htmlFor="comment">{t('review-label')}</FieldLabel>
+              <FieldLabel className="dark:text-zinc-50" htmlFor="comment">
+                {t('review-label')}
+              </FieldLabel>
               <Textarea
-                className="min-h-36"
+                className="min-h-36 dark:text-zinc-50"
                 id="comment"
                 placeholder={t('review-placeholder')}
                 {...form.register('comment')}

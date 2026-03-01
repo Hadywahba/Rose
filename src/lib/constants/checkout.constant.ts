@@ -1,5 +1,9 @@
-// forgot password const
 export const CHECKOUT_STEPS = {
   address: 'address',
   payment: 'payment',
+} as const;
+
+export const ADDRESS_STEPS = {
+  form: 'form',
+  map: 'map',
 } as const;

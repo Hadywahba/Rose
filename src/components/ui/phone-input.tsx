@@ -66,7 +66,7 @@ const InputComponent = React.forwardRef<
   <Input
     noWrapper
     className={cn(
-      '!w-full rounded-e-lg rounded-s-none border-zinc-300 bg-white placeholder:text-zinc-400 dark:bg-zinc-700',
+      '!w-full rounded-e-lg rounded-s-none border-zinc-300 bg-white placeholder:text-zinc-400 dark:bg-zinc-700 dark:text-zinc-50',
       'rtl:rounded-e-none rtl:rounded-s-lg',
       className,
     )}

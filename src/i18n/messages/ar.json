@@ -352,5 +352,45 @@
       "payment-loading": "جاري التحميل...",
       "select-required": "يرجى اختيار جميع العناصر المطلوبة"
     }
+
+
+},
+
+  "my-addresses": {
+    "form-title": "أدخل تفاصيل العنوان",
+    "back-button": "رجوع",
+    "category-label": "تسمية العنوان",
+    "category-placeholder": "مثال: المنزل، العمل، المكتب",
+    "city-label": "المدينة",
+    "city-placeholder": "أدخل مدينتك",
+    "address-label": "العنوان",
+    "address-placeholder": "أدخل عنوان الشارع بالكامل",
+    "phone-label": "رقم الهاتف",
+    "phone-placeholder": "أدخل رقم الهاتف",
+    "submit-button": "التالي",
+    "update-button": "تحديث العنوان",
+    "cancel-button": "إلغاء",
+    "success-message": "تم إضافة عنوانك بنجاح",
+    "error-message": "لم نتمكن من إضافة عنوانك",
+    "success-delete-message": "تم حذف عنوانك بنجاح",
+    "error-delete-message": "لم نتمكن من حذف عنوانك",
+    "open-address-book": "إضافة عنوان جديد",
+    "my-addresses": "عناويني",
+    "add-new-address": "إضافة عنوان جديد",
+    "update-address": "تحديث معلومات العنوان",
+    "no-addresses-found": "لم يتم العثور على عناوين 📍 الرجاء إضافة عنوان",
+    "loading-map": "جاري تحميل الخريطة...",
+    "map-title": "حدد موقعك",
+    "adding-address": "جاري إضافة العنوان...",
+    "add-address-button": "إضافة العنوان",
+    "label-required": "التسمية مطلوبة",
+    "city-required": "المدينة مطلوبة",
+    "address-required": "العنوان مطلوب",
+    "phone-required": "رقم هاتف صحيح مطلوب",
+    "success-update-message": "تم تحديث عنوانك بنجاح",
+    "error-update-message": "لم نتمكن من تحديث عنوانك",
+    "sure-to-delete": "هل أنت متأكد أنك تريد حذف هذا العنوان؟",
+    "Cancel": "الغاء",
+    "Confirm": "تأكيد"
   }
 }
