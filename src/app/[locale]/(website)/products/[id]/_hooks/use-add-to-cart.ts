@@ -5,14 +5,17 @@ import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 
 export const useAddToCart = () => {
+  // Translation
   const t = useTranslations('product.toast');
+
+  // Variables
   const guestCartKey = 'guest-cart';
 
+  // Functions
   /**
    * Case 2: session-only login (no remember me) — token stored in sessionStorage by use-login.
    * Case 1 (remember me) and Case 3 (guest) are handled inside the server action.
    */
-  
   const getSessionStorageToken = (): string | undefined => {
     if (typeof window === 'undefined') return undefined;
     try {
@@ -41,6 +44,7 @@ export const useAddToCart = () => {
     localStorage.setItem(guestCartKey, JSON.stringify(items));
   };
 
+  // Mutation
   const { mutate: add, isPending } = useMutation({
     mutationFn: async (data: AddToCartPayload) => {
       // Pass sessionStorage token (case 2); server action handles case 1 (cookie) and case 3 (guest)

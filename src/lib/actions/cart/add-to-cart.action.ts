@@ -8,14 +8,16 @@ export async function addToCartAction(
   data: AddToCartPayload,
   clientToken?: string,
 ): Promise<ApiResponse<AddToCartResponse> | { guest: true }> {
+  // Token — prefer cookie (remember me / case 1), fallback to sessionStorage (case 2)
   const jwt = await getToken();
   const token = (jwt?.accessToken as string | undefined) ?? clientToken;
 
-  // Case 3: guest
+  // Case 3: guest — no token found anywhere
   if (!token) {
     return { guest: true };
   }
 
+  // Request
   const response = await fetch(`${process.env.API_URL}/cart`, {
     method: 'POST',
     headers: {
@@ -25,6 +27,7 @@ export async function addToCartAction(
     body: JSON.stringify(data),
   });
 
+  // Response
   const payload: ApiResponse<AddToCartResponse> = await response.json();
   return payload;
 }

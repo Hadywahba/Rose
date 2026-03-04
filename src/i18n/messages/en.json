@@ -357,8 +357,83 @@
       "payment-loading": "loading....",
       "select-required": "Please select all required items"
     }
-},
+  },
 
+  "products": {
+    "add": {
+      "title": "Add a New Product",
+      "submit": "Add Product",
+      "submit-loading": "Adding...",
+      "fields": {
+        "title": "Title",
+        "title-placeholder": "Enter product title",
+        "description": "Description",
+        "description-placeholder": "Enter product description",
+        "price": "Price",
+        "price-placeholder": "Example: 5000",
+        "discount": "Discount",
+        "discount-placeholder": "Example: 5",
+        "price-after-discount": "Price after discount",
+        "price-after-discount-placeholder": "Example: 5",
+        "quantity": "Quantity",
+        "quantity-placeholder": "Example: 200",
+        "cover": "Product cover",
+        "gallery": "Product gallery",
+        "upload": "Upload file",
+        "category": "Category",
+        "category-placeholder": "Select an option",
+        "occasion": "Occasion",
+        "occasion-placeholder": "Select an option"
+      },
+      "validation": {
+        "title-required": "Product title is required",
+        "description-required": "Product description is required",
+        "description-min": "Description must be at least 10 characters long",
+        "price-invalid": "Please enter a valid price",
+        "discount-invalid": "Please enter a valid discount (0-100)",
+        "quantity-invalid": "Product quantity is required",
+        "cover-required": "Product cover is required",
+        "cover-single": "Product cover must be a single image",
+        "gallery-required": "Product gallery images are required",
+        "images-only": "Only image files are allowed",
+        "category-required": "Please select a category for the product",
+        "occasion-required": "Please select an occasion for the product"
+      }
+    },
+    "update": {
+      "title": "Update Product: {title}",
+      "submit": "Update Product",
+      "submit-loading": "Updating...",
+      "fields": {
+        "title": "Title",
+        "title-placeholder": "Enter product title",
+        "description": "Description",
+        "description-placeholder": "Enter product description",
+        "price": "Price",
+        "price-placeholder": "Example: 5000",
+        "discount": "Discount",
+        "discount-placeholder": "Example: 5",
+        "price-after-discount": "Price after discount",
+        "price-after-discount-placeholder": "Example: 5",
+        "quantity": "Quantity",
+        "quantity-placeholder": "Example: 200",
+        "category": "Category",
+        "category-placeholder": "Select an option",
+        "occasion": "Occasion",
+        "occasion-placeholder": "Select an option"
+      },
+      "validation": {
+        "title-required": "Product title is required",
+        "description-required": "Product description is required",
+        "description-min": "Description must be at least 10 characters long",
+        "price-invalid": "Please enter a valid price",
+        "discount-invalid": "Please enter a valid discount (0-100)",
+        "quantity-invalid": "Product quantity is required",
+        "category-required": "Please select a category for the product",
+        "occasion-required": "Please select an occasion for the product"
+      }
+    }
+  },
   "my-addresses": {
     "form-title": "Enter address details",
     "back-button": "Go back",

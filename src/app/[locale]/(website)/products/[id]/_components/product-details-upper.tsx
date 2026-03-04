@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { ShoppingCart, Star, Package, HeartPlus } from 'lucide-react';
-import type { Product } from '@/lib/types/product';
+import type { Product } from '@/lib/types/product/product';
 import { cn } from '@/lib/utility/tailwind-merge';
 import { Button } from '@/components/ui/button';
 import { FaSpinner } from 'react-icons/fa';

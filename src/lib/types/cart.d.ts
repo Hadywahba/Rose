@@ -1,4 +1,4 @@
-import type { Product } from '@/lib/types/product';
+import type { Product } from '@/lib/types/product/product';
 
 export type AddToCartPayload = {
   product: string;
