@@ -26,7 +26,7 @@ export default function AddOccasion() {
   // Translation
   const t = useTranslations('dashboard');
 
-  //   Mutation
+  // Mutation
   const { Addoccasion, error, isPending } = UseAddOccasion();
 
   // Form
@@ -40,7 +40,12 @@ export default function AddOccasion() {
 
   // Function
   const onsubmit: SubmitHandler<AddOccasionFormFields> = (data) => {
-    Addoccasion(data);
+    const formData = new FormData();
+    formData.append('name', data.name);
+    if (data.image) {
+      formData.append('image', data.image);
+    }
+    Addoccasion(formData);
   };
   return (
     <div className="w-full max-w-[46.625rem] pb-6">
@@ -48,9 +53,9 @@ export default function AddOccasion() {
         {/*Form */}
         <form
           onSubmit={form.handleSubmit(onsubmit)}
-          className="flex flex-col justify-center gap-32 p-6"
+          className="flex flex-col justify-center gap-6 p-6"
         >
-          <div>
+          <div className="space-y-4">
             {/* Name Field */}
             <FormField
               control={form.control}

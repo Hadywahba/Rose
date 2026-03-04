@@ -417,7 +417,9 @@
       "occasion-add-image": "صورة المناسبة",
       "occasion-added": "إضافة مناسبة",
       "upload-file": "رفع ملف",
-      "occasion-add-images": "من فضلك ارفع صورة المناسبة"
+      "occasion-add-images": "من فضلك ارفع صورة المناسبة",
+      "occasion-edit-successfully": "تم تعديل المناسبة بنجاح",
+      "occasion-edit-failed": "فشل في تعديل المناسبة"
     }
   }
 }

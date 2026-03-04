@@ -1,10 +1,21 @@
 import { EditOccasionFormFields } from '@/lib/schema/occasion/occasion.schema';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { EditOccasion } from '../_actions/edit-occasion.action';
-
+import { useTranslations } from 'next-intl';
+import { useRouter } from '@/i18n/navigation';
+import { toast } from 'sonner';
 
 export const UseEditOccasionName = (id: string) => {
-    // Mutation
+  // Translation
+  const t = useTranslations('dashboard');
+
+  // Navigation
+  const router = useRouter();
+
+  // Mutation
+  const queryClient = useQueryClient();
+
+  // Mutation
   const {
     mutate: editoccasion,
     error,
@@ -19,6 +30,16 @@ export const UseEditOccasionName = (id: string) => {
       }
 
       return payload;
+    },
+    onSuccess: () => {
+      toast.success(t('dashboard-occasion.occasion-edit-successfully'));
+      queryClient.invalidateQueries({
+        queryKey: ['Occasion', 'occasions'],
+      });
+      router.push('/dashboard/occasions');
+    },
+    onError: () => {
+      toast.error(t('dashboard-occasion.occasion-edit-failed'));
     },
   });
 
