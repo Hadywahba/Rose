@@ -1,10 +1,7 @@
 import { getOccasion } from '@/lib/services/occasion/occasion-content.service';
 import { useQuery } from '@tanstack/react-query';
 
-export const useOccasion = (
-  limit: number,
-  page: number
-) => {
+export const useOccasion = (limit: number, page: number) => {
   const { data, isLoading, error } = useQuery({
     queryKey: ['Occasion', limit, page],
     queryFn: async () => {
