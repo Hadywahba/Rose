@@ -100,7 +100,6 @@
   "companies": {
     "trustedBy": "Trusted by over <span></span> companies"
   },
-
   "product": {
     "currency": "EGP",
     "inStock": "{count} left in stock",
@@ -127,7 +126,6 @@
       "soldOut": "This product is sold out"
     }
   },
-
   "auth": {
     "forget-password": {
       "forgot-password": "forgot password?",
@@ -357,7 +355,7 @@
       "payment-loading": "loading....",
       "select-required": "Please select all required items"
     }
-},
+  },
 
   "my-addresses": {
     "form-title": "Enter address details",
@@ -395,5 +393,12 @@
     "sure-to-delete": "Are you sure you want to delete this address?",
     "Cancel": "Cancel",
     "Confirm": "Confirm"
-  }
+  },
+  "overview": "OverView",
+  "categories": "Categories",
+  "occasion": "Occasions",
+  "products": "Products",
+  "preview-website": "Preview Website",
+  "my-account": "My account",
+  "log-out": "Log-Out"
 }

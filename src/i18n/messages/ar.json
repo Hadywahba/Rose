@@ -95,7 +95,6 @@
   "companies": {
     "trustedBy": "موثوق به من قبل أكثر من <span></span> شركة"
   },
-
   "product": {
     "currency": "ج.م",
     "inStock": "متبقي {count} في المخزون",
@@ -122,7 +121,6 @@
       "soldOut": "المنتج غير متوفر حالياً"
     }
   },
-
   "auth": {
     "forget-password": {
       "forgot-password": "هل نسيت كلمة المرور؟",
@@ -392,5 +390,12 @@
     "sure-to-delete": "هل أنت متأكد أنك تريد حذف هذا العنوان؟",
     "Cancel": "الغاء",
     "Confirm": "تأكيد"
-  }
+  },
+  "overview": "ملخص",
+  "categories": "الاقسام",
+  "occasion": "المناسبات",
+  "products": "المنتجات",
+  "preview-website": "الذهاب للموقع",
+  "my-account": "حسابي",
+  "log-out": "تسجيل خروج"
 }
