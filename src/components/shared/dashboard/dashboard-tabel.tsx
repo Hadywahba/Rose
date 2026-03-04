@@ -14,7 +14,9 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { cn } from '@/lib/utility/tailwind-merge';
 import { MoreHorizontalIcon, Pencil, Trash2 } from 'lucide-react';
+import { useLocale } from 'next-intl';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -104,6 +106,12 @@ export function DashboardTable<T extends { _id: string }>({
   onEdit,
   onDelete,
 }: DashboardTableProps<T>) {
+  // Hook
+  const locale = useLocale();
+
+  // Variable
+  const isArabic = locale === 'ar';
+
   return (
     <section className="min-h-[60vh]">
       <Table>
@@ -112,12 +120,21 @@ export function DashboardTable<T extends { _id: string }>({
             {columns.map((col) => (
               <TableHead
                 key={col.label}
-                className={`text-zinc-900 dark:text-zinc-100 ${col.className ?? ''}`}
+                className={cn(
+                  'text-zinc-900 dark:text-zinc-100',
+                  isArabic ? 'text-right' : 'text-left',
+                  col.className,
+                )}
               >
                 {col.label}
               </TableHead>
             ))}
-            <TableHead className="text-right capitalize text-zinc-900 dark:text-zinc-100 md:pr-20">
+            <TableHead
+              className={cn(
+                'capitalize text-zinc-900 dark:text-zinc-100',
+                isArabic ? 'text-left md:pl-20' : 'text-right md:pr-20',
+              )}
+            >
               actions
             </TableHead>
           </TableRow>

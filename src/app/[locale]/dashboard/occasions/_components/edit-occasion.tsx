@@ -69,7 +69,7 @@ export default function EditOccasion({
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="font-inter text-sm font-medium capitalize text-zinc-800 dark:text-zinc-50">
-                    {t('occasion-name')}
+                    {t('dashboard-occasion.occasion-name')}
                   </FormLabel>
 
                   {/* Field */}
@@ -90,9 +90,9 @@ export default function EditOccasion({
             <div className="flex justify-end">
               <Button
                 variant={'outline'}
-                className="mt-5 border-[.0625rem] border-[rgba(0,0,0,0.08)] text-blue-600"
+                className="mt-5 border-[.0625rem] border-[rgba(0,0,0,0.08)] text-blue-600 dark:bg-transparent dark:text-zinc-50 w-48"
               >
-                <ImagePlus size={18} /> View occasion image
+                <ImagePlus size={18} /> {t('dashboard-occasion.occasion-image')}
               </Button>
             </div>
           </div>

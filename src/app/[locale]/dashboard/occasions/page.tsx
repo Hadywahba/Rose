@@ -9,7 +9,7 @@ export default function page() {
       <div className="flex flex-col gap-5 rounded-lg bg-white p-5 dark:bg-zinc-700">
         <DashboardHeaderPage
           title="dashboard-occasion.occasion-header"
-          btnText="dashboard-occasion.button-ocaasion-add"
+          btnText="dashboard-occasion.button-occasion-add"
           path="/"
         />
         <DashboardSearchInput />

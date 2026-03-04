@@ -65,7 +65,8 @@ export default function OccasionList() {
         </ListError>
       </div>
       {/* pagination */}
-      {(showPagination || !error) && (
+      <div className='pb-6'>
+        {(showPagination || !error) && (
         <AppPagination
           currentPage={currentPage}
           locale={locale}
@@ -75,6 +76,7 @@ export default function OccasionList() {
           searchParams={searchQuery}
         />
       )}
+      </div>
     </>
   );
 }

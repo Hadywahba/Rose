@@ -414,8 +414,10 @@
       "occasion-min-name": "Minimum 3 characters",
       "update-occasion-button": "Update Occasion",
       "occasion-loading": "Loading...",
-      "button-ocaasion-add":"Add a new occasion",
-      "occasion-header":"all occasions"
+      "button-occasion-add":"Add a new occasion",
+      "occasion-header":"all occasions",
+      "occasion-update":" update occasion",
+      "occasion-image":"View occasion image"
     }
   }
 }

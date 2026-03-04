@@ -409,7 +409,9 @@
       "update-occasion-button": "تحديث المناسبة",
       "occasion-loading": "جارٍ التحميل...",
       "button-occasion-add": "إضافة مناسبة جديدة",
-      "occasion-header": "كل المناسبات"
+      "occasion-header": "كل المناسبات",
+      "occasion-update": "تحديث المناسبة",
+      "occasion-image": "عرض صورة المناسبة"
     }
   }
 }
