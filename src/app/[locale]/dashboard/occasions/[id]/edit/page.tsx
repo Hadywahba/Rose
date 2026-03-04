@@ -1,8 +1,8 @@
-
 import { getTranslations } from 'next-intl/server';
 import LayoutWrapper from '../../../_components/layout-wrapper';
 import EditOccasion from '../../_components/edit-occasion';
 import { GetOneOccasion } from '../../_hooks/get-occaion';
+import ListError from '@/components/error/list-error';
 
 interface Props {
   params: { id: string };
@@ -18,10 +18,8 @@ export default async function EditOccasionPage({ params }: Props) {
   // Hook
   const { data, error } = await GetOneOccasion(id);
 
-  if (error) return <div>Error: {error}</div>;
-
   return (
-    <div className=" ">
+    <ListError errors={error ?? null} >
       <LayoutWrapper
         disableFullHeight
         disableMainPadding
@@ -38,6 +36,6 @@ export default async function EditOccasionPage({ params }: Props) {
       <div className="rounded-md bg-white dark:bg-zinc-400">
         <EditOccasion occasionId={id} occasionData={data!} />
       </div>
-    </div>
+    </ListError>
   );
 }
