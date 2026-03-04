@@ -350,9 +350,7 @@
       "payment-loading": "جاري التحميل...",
       "select-required": "يرجى اختيار جميع العناصر المطلوبة"
     }
-
-
-},
+  },
 
   "my-addresses": {
     "form-title": "أدخل تفاصيل العنوان",
@@ -397,5 +395,16 @@
   "products": "المنتجات",
   "preview-website": "الذهاب للموقع",
   "my-account": "حسابي",
-  "log-out": "تسجيل خروج"
+  "log-out": "تسجيل خروج",
+  "common-table": {
+    "delete": "حذف",
+    "edit": "تعديل",
+    "actions": "إجراءات"
+  },
+  "dashboard-occasion": {
+    "edit-occasion-name": "من فضلك أدخل اسم المناسبة",
+    "occasion-name": "الاسم",
+    "occasion-min-name": "الحد الأدنى 3 حروف",
+    "update-occasion-button": "تحديث المناسبة"
+  }
 }

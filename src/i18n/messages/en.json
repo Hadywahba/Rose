@@ -400,5 +400,17 @@
   "products": "Products",
   "preview-website": "Preview Website",
   "my-account": "My account",
-  "log-out": "Log-Out"
+  "log-out": "Log-Out",
+
+  "common-table": {
+    "delete": "delete",
+    "edit": "edit",
+    "actions": "actions"
+  },
+  "dashboard-occasion": {
+    "edit-occasion-name": "please enter occasion name",
+    "occasion-name": "name",
+    "occasion-min-name": "Minimum 3 characters",
+    "update-occasion-button": "Update Occasion"
+  }
 }
