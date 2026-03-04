@@ -28,7 +28,7 @@ export default async function EditOccasionPage({ params }: Props) {
         }}
       >
         {/* Title */}
-        <section className="p-0">
+        <section className="p-0 pt-4 md:pt-0">
           <h1 className="pb-6 font-inter text-2xl font-semibold capitalize text-zinc-800">
             {t('dashboard-occasion.occasion-update')}:{data?.occasion.name}
           </h1>

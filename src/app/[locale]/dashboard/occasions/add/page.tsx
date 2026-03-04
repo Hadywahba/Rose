@@ -8,7 +8,7 @@ export default function Page() {
   return (
     <main>
       {/* Title */}
-      <section className="p-0">
+      <section className=" pt-4 md:pt-0 p-0">
         <h1 className="pb-6 font-inter text-2xl font-semibold capitalize text-zinc-800">
           {t('dashboard-occasion.occasion-add')}
         </h1>
