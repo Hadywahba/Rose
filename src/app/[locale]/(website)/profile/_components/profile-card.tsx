@@ -29,7 +29,7 @@ export default function UpdateProfilePage({
 }: {
   initialData: User;
 }) {
-  const { data, isLoading, error } = useGetProfile(initialData);
+const { data, isLoading, error } = useGetProfile(initialData);
   const editMutation = useEditProfile();
   const deleteMutation = useDeleteAccount();
   const uploadPhotoMutation = useUploadPhoto();
@@ -52,12 +52,13 @@ export default function UpdateProfilePage({
   const { handleSubmit, reset, control } = profileForm;
 
   useEffect(() => {
-    if (data?.user) reset(data.user);
-  }, [data, reset]);
+  if (data?.user) {
+    reset(data.user, { keepDefaultValues: true });
+  }
+}, [data, reset]);
 
-  if (isLoading) return <div className="p-10">Loading profile...</div>;
-  if (error)
-    return <div className="p-10 text-red-500">Error loading profile</div>;
+if (isLoading && !data) return <div className="p-10">Loading profile...</div>;
+ if (error && !data) return <div className="p-10 text-red-500">Error loading profile</div>;
 
   const onSubmitProfile = (values: User) => {
     editMutation.mutate(values);
@@ -248,12 +249,13 @@ export default function UpdateProfilePage({
                   {t('delete-account')}
                 </Button>
 
-                <Button
-                  type="submit"
-                  className="bg-red-700 px-8 text-white hover:bg-red-800"
-                >
-                  {t('save-changes')}
-                </Button>
+               <Button
+  type="submit"
+  className="bg-red-700 px-8 text-white hover:bg-red-800"
+  disabled={editMutation.isPending} 
+>
+  {editMutation.isPending ? t('Saving...') : t('save-changes')}
+</Button>
               </div>
             </form>
           </Form>

@@ -1,41 +1,87 @@
 
-
 'use server';
+import { JSON_HEADER } from "@/lib/constants/api.constant";
+import { User } from "@/lib/types/auth";
 import { getToken } from "@/lib/utility/manage-token";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-
-// get token
-
-const token  =getToken();
-const getHeaders = () => ({
-  'Authorization': `Bearer ${token}`,
-  'Content-Type': 'application/json',
-});
+const getHeaders = async () => {
+  const token = await getToken();
+  return {
+    'Authorization': `Bearer ${token}`,
+    'Content-Type': 'application/json',
+  };
+};
 
 export const fetchProfileData = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API}/profile-data`, {
-    headers: getHeaders(),
-  });
+  const headers = await getHeaders();
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API}/auth/profile-data`, { headers });
   if (!res.ok) throw new Error('Failed to fetch profile');
   return res.json();
 };
 
-export const updateProfileData = async (formData: FormData) => {
-  // Assuming this endpoint exists based on your requirements
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API}/profile-data`, {
+export const updateProfileData = async (data: User) => {
+  const token = await getToken();
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API}/auth/editProfile`, {
     method: 'PUT',
-    headers: { 'Authorization': `Bearer ${token}` }, 
-    body: formData,
+    headers: { 'Authorization': `Bearer ${token?.accessToken}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
   });
   if (!res.ok) throw new Error('Failed to update profile');
   return res.json();
 };
 
-export const deleteAccount = async () => {
-  const res = await fetch(`${process.env.API_URL}/delete-account`, {
-    method: 'DELETE',
-    headers: getHeaders(),
+
+export const deleteAccountAction = async () => {
+  try {
+    const token = await getToken();
+
+    if (!token) {
+      throw new Error("No token found. Please login again.");
+    }
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API}/auth/deleteMe`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${token.accessToken}`,
+      ...JSON_HEADER
+      },
+    });
+
+
+
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => ({}));
+      throw new Error(errorData.message || `Error: ${res.status}`);
+    }
+
+    return { success: true };
+  } catch (error: any) {
+    console.error("Delete Action Error:", error.message);
+    throw error;
+  }
+};
+
+export const uploadPhotoAction = async (formData: FormData) => {
+  const token = await getToken();
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API}/upload-photo`, {
+    method: 'POST',
+    headers: { 'Authorization': `Bearer ${token}` },
+    body: formData,
   });
-  if (!res.ok) throw new Error('Failed to delete account');
   return res.json();
+};
+
+export const useUploadPhoto = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (file: File) => {
+      const formData = new FormData();
+      formData.append('photo', file);
+      return uploadPhotoAction(formData);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['profile'] });
+    }
+  });
 };
