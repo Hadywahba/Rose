@@ -411,6 +411,7 @@
     "edit-occasion-name": "please enter occasion name",
     "occasion-name": "name",
     "occasion-min-name": "Minimum 3 characters",
-    "update-occasion-button": "Update Occasion"
+    "update-occasion-button": "Update Occasion",
+    "occasion-loading":"Loading..."
   }
 }

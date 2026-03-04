@@ -405,6 +405,7 @@
     "edit-occasion-name": "من فضلك أدخل اسم المناسبة",
     "occasion-name": "الاسم",
     "occasion-min-name": "الحد الأدنى 3 حروف",
-    "update-occasion-button": "تحديث المناسبة"
+    "update-occasion-button": "تحديث المناسبة",
+    "occasion-loading": "جارٍ التحميل..."
   }
 }

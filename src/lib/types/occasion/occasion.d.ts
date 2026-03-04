@@ -20,3 +20,8 @@ export interface OccasionsResponse {
   metadata: Metadata;
   occasions: Occasion[];
 }
+
+export interface OccasionResponse {
+  message: string;
+  occasion: Occasion;
+}
