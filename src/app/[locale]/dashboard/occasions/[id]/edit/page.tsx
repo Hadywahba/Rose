@@ -19,7 +19,7 @@ export default async function EditOccasionPage({ params }: Props) {
   const { data, error } = await GetOneOccasion(id);
 
   return (
-    <ListError errors={error ?? null} >
+    <ListError errors={error ?? null}>
       <LayoutWrapper
         disableFullHeight
         disableMainPadding
@@ -27,12 +27,15 @@ export default async function EditOccasionPage({ params }: Props) {
           edit: `Update Occasion: ${data?.occasion.name}`,
         }}
       >
+        {/* Title */}
         <section className="p-0">
           <h1 className="pb-6 font-inter text-2xl font-semibold capitalize text-zinc-800">
             {t('dashboard-occasion.occasion-update')}:{data?.occasion.name}
           </h1>
         </section>
       </LayoutWrapper>
+
+      {/* Update Occasion */}
       <div className="rounded-md bg-white dark:bg-zinc-400">
         <EditOccasion occasionId={id} occasionData={data!} />
       </div>

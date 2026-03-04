@@ -10,7 +10,7 @@ export default function page() {
         <DashboardHeaderPage
           title="dashboard-occasion.occasion-header"
           btnText="dashboard-occasion.button-occasion-add"
-          path="/"
+          path="/dashboard/occasions/add"
         />
         <DashboardSearchInput />
       </div>

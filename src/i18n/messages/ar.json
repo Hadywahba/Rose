@@ -411,7 +411,13 @@
       "button-occasion-add": "إضافة مناسبة جديدة",
       "occasion-header": "كل المناسبات",
       "occasion-update": "تحديث المناسبة",
-      "occasion-image": "عرض صورة المناسبة"
+      "occasion-image": "عرض صورة المناسبة",
+      "occasion-add": "إضافة مناسبة جديدة",
+      "occasion-image-size": "حجم الصورة يجب ألا يتجاوز 5 ميجابايت.",
+      "occasion-add-image": "صورة المناسبة",
+      "occasion-added": "إضافة مناسبة",
+      "upload-file": "رفع ملف",
+      "occasion-add-images": "من فضلك ارفع صورة المناسبة"
     }
   }
 }
