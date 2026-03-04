@@ -28,7 +28,7 @@ export default async function EditOccasionPage({ params }: Props) {
           </h1>
         </section>
       </LayoutWrapper>
-      <div className="rounded-md bg-white">
+      <div className="rounded-md bg-white ">
         <EditOccasion occasionId={id} occasionData={data!} />
       </div>
     </div>

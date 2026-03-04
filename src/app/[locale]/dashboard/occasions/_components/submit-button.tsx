@@ -25,7 +25,7 @@ export default function SubmitButton({
   loading,
 }: SubmitButtonProps) {
   // Translation
-  const t = useTranslations('dashboard-occasion');
+  const t = useTranslations('dashboard');
 
   return (
     <div className="mt-0 flex flex-col gap-6 pt-9">

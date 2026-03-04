@@ -35,7 +35,7 @@ export default function EditOccasion({
   occasionData,
 }: EditOccasionProps) {
   // Translation
-  const t = useTranslations('dashboard-occasion');
+  const t = useTranslations('dashboard');
 
   //   Mutation
   const { error, editoccasion, isPending } = UseEditOccasionName(occasionId);
@@ -102,8 +102,8 @@ export default function EditOccasion({
             isSubmitting={form.formState.isSubmitting}
             isValid={form.formState.isValid}
             isPending={isPending}
-            loading="occasion-loading"
-            text="update-occasion-button"
+            loading="dashboard-occasion.occasion-loading"
+            text="dashboard-occasion.update-occasion-button"
           />
         </form>
       </Form>

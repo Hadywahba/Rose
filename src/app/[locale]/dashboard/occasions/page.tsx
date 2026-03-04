@@ -8,8 +8,8 @@ export default function page() {
     <main className="flex flex-col gap-5">
       <div className="flex flex-col gap-5 rounded-lg bg-white p-5 dark:bg-zinc-700">
         <DashboardHeaderPage
-          title="all occasions"
-          btnText="Add a new occasion"
+          title="dashboard-occasion.occasion-header"
+          btnText="dashboard-occasion.button-ocaasion-add"
           path="/"
         />
         <DashboardSearchInput />

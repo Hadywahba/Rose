@@ -4,6 +4,7 @@ import { useRouter } from '@/i18n/navigation';
 import { cn } from '@/lib/utility/tailwind-merge';
 
 import { Plus } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 type DashboardHeaderPropts = {
   title: string;
@@ -17,6 +18,9 @@ export default function DashboardHeaderPage({
   path,
   className,
 }: DashboardHeaderPropts) {
+   // Translation
+      const t = useTranslations('dashboard');
+
   // Navigation
   const router = useRouter();
 
@@ -33,13 +37,13 @@ export default function DashboardHeaderPage({
       )}
     >
       <h1 className="font-inter text-2xl font-semibold capitalize text-zinc-800 dark:text-zinc-200">
-        {title}
+        {t(title)}
       </h1>
       <Button
         onClick={handleNavigate}
         className="flex h-11 w-full items-center justify-center gap-2 sm:w-44 sm:justify-between"
       >
-        <Plus /> <span>{btnText}</span>
+        <Plus /> <span>{t(btnText)}</span>
       </Button>
     </header>
   );

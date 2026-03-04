@@ -407,11 +407,15 @@
     "edit": "edit",
     "actions": "actions"
   },
-  "dashboard-occasion": {
-    "edit-occasion-name": "please enter occasion name",
-    "occasion-name": "name",
-    "occasion-min-name": "Minimum 3 characters",
-    "update-occasion-button": "Update Occasion",
-    "occasion-loading":"Loading..."
+  "dashboard": {
+    "dashboard-occasion": {
+      "edit-occasion-name": "please enter occasion name",
+      "occasion-name": "name",
+      "occasion-min-name": "Minimum 3 characters",
+      "update-occasion-button": "Update Occasion",
+      "occasion-loading": "Loading...",
+      "button-ocaasion-add":"Add a new occasion",
+      "occasion-header":"all occasions"
+    }
   }
 }
