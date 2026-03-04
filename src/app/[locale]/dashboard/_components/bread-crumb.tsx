@@ -72,10 +72,7 @@ function getLabel(seg: string): string {
 
 //  Used to prevent IDs from appearing in breadcrumbs.
 function isIdLike(seg: string): boolean {
-  return (
-    /^[a-f0-9]{24}$/i.test(seg) || // MongoDB ObjectId
-    /^[0-9a-f-]{32,36}$/i.test(seg) // UUID
-  );
+  return /^[a-f0-9]{24}$/i.test(seg) || /^[0-9a-f-]{32,36}$/i.test(seg);
 }
 export default function Breadcrumbs({
   className,
@@ -97,17 +94,14 @@ export default function Breadcrumbs({
     .split('/')
     .filter(Boolean);
 
-  // ===== Detect if the first segment represents a locale =====
-  // If the URL starts with /en or /ar,
-  // exclude it from breadcrumb labels
-  // but preserve it later when rebuilding href.
+  //Detect if the first segment represents a locale
   const locale = parts[0];
   const hasLocale = locale === 'en' || locale === 'ar';
 
   // Segments used for breadcrumb rendering
   const segments = hasLocale ? parts.slice(1) : parts;
 
-  // ===== Initialize breadcrumb collection =====
+  //Initialize breadcrumb collection
   const crumbs: Crumb[] = [];
 
   // Accumulator used to rebuild the full href step by step
@@ -119,7 +113,6 @@ export default function Breadcrumbs({
     // Incrementally build full path
     hrefAccumulator += `/${seg}`;
 
-    // Skip raw database identifiers as ids
     // Example: /products/67c9.../edit
     if (isIdLike(seg)) return;
 

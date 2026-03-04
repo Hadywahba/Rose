@@ -43,7 +43,6 @@ export default function UserMenu({ className }: UserMenuProps) {
   // Queries
   const { data, isFetching, isLoading } = useUserData();
 
-  console.log(data)
   // Variables
   const isBusy = isLoading || isFetching;
 
