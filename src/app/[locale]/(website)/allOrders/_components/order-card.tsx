@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useLocale, useTranslations } from 'next-intl';
+import { useFormatter, useTranslations } from 'next-intl';
 import { Order } from '@/lib/types/order';
 import OrderItem from './order-item';
 import {
@@ -23,47 +23,23 @@ type OrderCardProps = {
 const VISIBLE_ITEMS = 2;
 const PREVIEW_ITEMS = 2;
 
-function formatCreatedAt(createdAt: string, locale: string) {
-  const date = new Date(createdAt);
-  const lang = locale === 'ar' ? 'ar-EG' : 'en-US';
-
-  if (locale !== 'ar') {
-    const day = date.toLocaleDateString(lang, { day: 'numeric' });
-    const month = date.toLocaleDateString(lang, { month: 'long' });
-    const year = date.toLocaleDateString(lang, { year: 'numeric' });
-    const rawTime = date.toLocaleTimeString(lang, {
-      hour: 'numeric',
-      minute: '2-digit',
-      hour12: true,
-    });
-    const timeStr = rawTime.replace(/\s/g, '');
-    return `${day} ${month}, ${year} at ${timeStr}`;
-  }
-
-  const dateStr = date.toLocaleDateString(lang, {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  });
-  const timeStr = date
-    .toLocaleTimeString(lang, { hour: 'numeric', minute: '2-digit' })
-    .replace(/\s/g, '');
-  return `${dateStr} ${timeStr}`;
-}
-
 export default function OrderCard({ order }: OrderCardProps) {
-  const locale = useLocale();
+  // Translation
   const t = useTranslations('orders');
+
+  // Formatter
+  const format = useFormatter();
+
+  // State
   const [showAll, setShowAll] = React.useState(false);
 
+  // Variables
   const state = order.state;
   const isCancelled = state === 'canceled';
   const isDelivered = order.isDelivered || state === 'delivered';
 
-  const created = formatCreatedAt(order.createdAt, locale);
-  const formattedTotal = new Intl.NumberFormat(
-    locale === 'ar' ? 'ar-EG' : 'en-US',
-  ).format(order.totalPrice ?? 0);
+  const created = format.dateTime(new Date(order.createdAt), 'date-max');
+  const formattedTotal = format.number(order.totalPrice ?? 0, 'currancy-base');
 
   const paymentMethodLabel =
     order.paymentType === 'cash' ? t('payment.cash') : t('payment.creditCard');
@@ -105,7 +81,7 @@ export default function OrderCard({ order }: OrderCardProps) {
 
   return (
     <section className="overflow-hidden rounded-xl border border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-950">
-      {/* Header bar */}
+      {/* Header Bar */}
       <div className="flex items-center justify-between bg-maroon-600 px-4 py-3 text-white dark:bg-maroon-700">
         <h3 className="text-xl font-semibold">
           {t('card.order')} {order.orderNumber}
@@ -117,14 +93,12 @@ export default function OrderCard({ order }: OrderCardProps) {
 
       {/* Summary */}
       <div className="bg-zinc-200 px-4 py-4 text-zinc-800 dark:bg-zinc-900 dark:text-zinc-50">
+        {/* Price & Status Row */}
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-zinc-300 pb-2 dark:border-zinc-800">
           <div className="flex flex-wrap items-center gap-3">
             <p className="text-2xl font-medium">
               {t('card.totalPrice')}:{' '}
-              <span className="font-bold">
-                {formattedTotal}{' '}
-                <span className="text-base font-semibold">EGP</span>
-              </span>
+              <span className="font-bold">{formattedTotal}</span>
             </p>
 
             {order.isPaid && (
@@ -147,6 +121,7 @@ export default function OrderCard({ order }: OrderCardProps) {
           </div>
         </div>
 
+        {/* Payment & Delivery Info */}
         <div className="grid grid-cols-1 gap-1 py-1">
           <p className="flex items-center gap-1">
             <span className="font-semibold">{t('card.paymentMethod')}:</span>
@@ -163,12 +138,14 @@ export default function OrderCard({ order }: OrderCardProps) {
           </p>
         </div>
 
+        {/* Order Items */}
         <p className="font-semibold text-zinc-900 dark:text-zinc-50">
           {t('card.orderItems')}:
         </p>
 
         <div className="mt-3 rounded-xl bg-zinc-50 p-4 dark:bg-zinc-900/40 md:p-6">
           <div className="relative">
+            {/* Items Grid */}
             <div
               className={cn(
                 'relative rounded-xl',
@@ -191,10 +168,12 @@ export default function OrderCard({ order }: OrderCardProps) {
                 })}
               </div>
 
+              {/* Fade Overlay */}
               {isCollapsed && (
                 <div className="pointer-events-none absolute inset-0 rounded-xl bg-gradient-to-b from-white/5 via-white/35 to-white/95 dark:from-zinc-950/5 dark:via-zinc-950/35 dark:to-zinc-950/95" />
               )}
 
+              {/* Show More Button */}
               {isCollapsed && (
                 <button
                   type="button"
@@ -207,6 +186,7 @@ export default function OrderCard({ order }: OrderCardProps) {
               )}
             </div>
 
+            {/* Show Less Button */}
             {showAll && canToggle && (
               <button
                 type="button"
