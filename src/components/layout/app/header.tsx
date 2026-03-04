@@ -16,8 +16,6 @@ import {
   EyeOff,
 } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { useSession } from 'next-auth/react';
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -25,6 +23,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { Link, usePathname } from '@/i18n/navigation';
 import ThemeToggleIcon from './theme-toggle';
 import ToggleLocale from '@/components/shared/ToggleLocale';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';

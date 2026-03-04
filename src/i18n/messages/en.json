@@ -280,6 +280,45 @@
   "product-hot": "hot",
   "product-out": " out of stock",
   "product-new": "new",
+  "orders": {
+    "title": "Orders",
+    "empty": {
+      "title": "No orders yet",
+      "description": "Your orders will appear here once you place one."
+    },
+    "card": {
+      "order": "Order",
+      "createdIn": "Created in",
+      "totalPrice": "Total Price",
+      "paid": "Paid",
+      "status": "Status",
+      "paymentMethod": "Payment Method",
+      "deliveryStatus": "Delivery Status",
+      "orderItems": "Order Items",
+      "showAll": "Show All",
+      "showLess": "Show Less"
+    },
+    "statuses": {
+      "inProgress": "In Progress",
+      "done": "Done",
+      "cancelled": "Cancelled"
+    },
+    "delivery": {
+      "pending": "Pending",
+      "delivered": "Delivered",
+      "cancelled": "Cancelled"
+    },
+    "payment": {
+      "cash": "Cash",
+      "creditCard": "Credit Card"
+    },
+    "item": {
+      "productFallback": "Product",
+      "rating": "Rating",
+      "ratings": "ratings"
+    }
+  },
+  "hot-0": "HOT",
   "product-removed-successfully-0": "Product Removed Successfully",
   "remove-from-whishlist": "Remove From Whishlist",
   "product-added-successfully": "Product Added successfully",
