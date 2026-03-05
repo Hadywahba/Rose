@@ -1,6 +1,11 @@
+import AdminProfile from "./_component/admin-profile";
+import { getProfile } from './_actions/get-profile';
 
-export default function DashboardProfilePage() {
+
+export default async function Page() {
+    const data = await getProfile();
+
   return<>
-  profile dashboard
+ <AdminProfile   initialData={data}/>
   </>
 }

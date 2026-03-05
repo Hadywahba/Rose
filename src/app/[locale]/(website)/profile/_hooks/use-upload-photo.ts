@@ -2,12 +2,12 @@ import {  useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 export const useUploadPhoto = () => {
-    const queryClient = useQueryClient(); // 👈 هنا
+    const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async (file: File) => {
       const formData = new FormData();
-      formData.append('photo', file); 
+      formData.append('photo', file);
 
       const res = await fetch('/api/upload-photo', {
         method: 'PUT',
