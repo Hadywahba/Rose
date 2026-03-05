@@ -1,16 +1,14 @@
 'use client';
 import React from 'react';
-
 import ListError from '@/components/error/list-error';
-
 import { useRouter } from '@/i18n/navigation';
-
 import { useSearchParams } from 'next/navigation';
 import { useLocale } from 'next-intl';
 import AppPagination from '@/components/shared/app-pagination';
 import Spinner from '@/components/loader/Spinner';
 import { useOccasion } from '../_hooks/use-occasions';
 import { DashboardTable } from '@/components/shared/dashboard/dashboard-tabel';
+import { UseDeleteOccasion } from '../_hooks/use-delete-occasion';
 
 export default function OccasionList() {
   // Translations
@@ -26,6 +24,7 @@ export default function OccasionList() {
 
   // Hook
   const { occasion, error, isLoading } = useOccasion(6, currentPage);
+  const { deleteOccasion } = UseDeleteOccasion();
 
   // Variables
   const occasionItems = occasion?.occasions || [];
@@ -35,7 +34,7 @@ export default function OccasionList() {
 
   return (
     <>
-      <div className="rounded-lg bg-white p-5 dark:bg-zinc-700">
+      <div className="rounded-lg bg-white dark:bg-zinc-700">
         <ListError errors={error}>
           {isLoading ? (
             <div className="my-48 flex items-center justify-center">
@@ -59,23 +58,25 @@ export default function OccasionList() {
               onEdit={(row) =>
                 router.push(`/dashboard/occasions/${row._id}/edit`)
               }
-              onDelete={(row) => console.log('delete', row)}
+              onDelete={(row) => {
+                deleteOccasion(row._id);
+              }}
             />
           )}
         </ListError>
       </div>
       {/* pagination */}
-      <div className='pb-6'>
+      <div className="pb-6">
         {(showPagination || !error) && (
-        <AppPagination
-          currentPage={currentPage}
-          locale={locale}
-          totalPages={totalPages}
-          show={totalPages > 1}
-          pathname="/dashboard/occasions"
-          searchParams={searchQuery}
-        />
-      )}
+          <AppPagination
+            currentPage={currentPage}
+            locale={locale}
+            totalPages={totalPages}
+            show={totalPages > 1}
+            pathname="/dashboard/occasions"
+            searchParams={searchQuery}
+          />
+        )}
       </div>
     </>
   );

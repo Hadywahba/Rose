@@ -13,7 +13,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-
 import {
   AddOccasionFormFields,
   addOccasionSchema,

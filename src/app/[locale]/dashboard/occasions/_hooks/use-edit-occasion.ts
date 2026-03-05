@@ -14,8 +14,7 @@ export const UseEditOccasionName = (id: string) => {
 
   // Mutation
   const queryClient = useQueryClient();
-
-  // Mutation
+  
   const {
     mutate: editoccasion,
     error,

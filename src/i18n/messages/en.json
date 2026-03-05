@@ -427,7 +427,9 @@
       "occasion-added-successfully": "Occasion added successfully",
       "occasion-add-failed": "Failed to add occasion",
       "occasion-edit-successfully": "Occasion edited successfully",
-      "occasion-edit-failed": "Failed to edit occasion"
+      "occasion-edit-failed": "Failed to edit occasion",
+      "occasion-delete-successfully": "Occasion deleted successfully",
+      "occasion-delete-failed": "Failed to delete occasion"
     }
   }
 }

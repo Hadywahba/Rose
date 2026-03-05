@@ -419,7 +419,9 @@
       "upload-file": "رفع ملف",
       "occasion-add-images": "من فضلك ارفع صورة المناسبة",
       "occasion-edit-successfully": "تم تعديل المناسبة بنجاح",
-      "occasion-edit-failed": "فشل في تعديل المناسبة"
+      "occasion-edit-failed": "فشل في تعديل المناسبة",
+      "occasion-delete-successfully": "تم حذف المناسبة بنجاح",
+      "occasion-delete-failed": "فشل في حذف المناسبة"
     }
   }
 }
