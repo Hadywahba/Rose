@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { ShoppingCart, Star, Package, HeartPlus } from 'lucide-react';
-import type { Product } from '@/lib/types/product';
+import type { Product } from '@/lib/types/products/product';
 import { cn } from '@/lib/utility/tailwind-merge';
 import { Button } from '@/components/ui/button';
 import { FaSpinner } from 'react-icons/fa';
@@ -44,6 +44,7 @@ export default function ProductDetailsUpper({ product }: { product: Product }) {
         <div className="flex justify-center gap-3">
           {gallery.map((url, idx) => (
             <button
+              aria-label={`view image ${idx + 1}`}
               key={idx}
               onClick={() => setSelectedIndex(idx)}
               className={cn(

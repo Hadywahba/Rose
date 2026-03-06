@@ -389,9 +389,7 @@
       "payment-loading": "جاري التحميل...",
       "select-required": "يرجى اختيار جميع العناصر المطلوبة"
     }
-
-
-},
+  },
 
   "my-addresses": {
     "form-title": "أدخل تفاصيل العنوان",
@@ -436,5 +434,17 @@
   "products": "المنتجات",
   "preview-website": "الذهاب للموقع",
   "my-account": "حسابي",
-  "log-out": "تسجيل خروج"
+  "log-out": "تسجيل خروج",
+
+  "dashboard": {
+    "top-selling": {
+      "title": "المنتجات الأكثر مبيعاً",
+      "sales": "مبيع",
+      "currency": "ج.م"
+    },
+    "low-stock": {
+      "title": "المنتجات منخفضة المخزون",
+      "products": "منتج"
+    }
+  }
 }

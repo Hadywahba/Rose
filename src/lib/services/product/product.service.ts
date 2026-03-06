@@ -1,6 +1,6 @@
 import { JSON_HEADER } from '@/lib/constants/api.constant';
 import type { AddToCartPayload, AddToCartResponse } from '@/lib/types/cart';
-import { Product } from '@/lib/types/product';
+import { Product } from '@/lib/types/products/product';
 
 export async function getProductById(productId: string) {
   const response = await fetch(

@@ -439,5 +439,17 @@
   "products": "Products",
   "preview-website": "Preview Website",
   "my-account": "My account",
-  "log-out": "Log-Out"
+  "log-out": "Log-Out",
+
+  "dashboard": {
+    "top-selling": {
+      "title": "Top Selling Products",
+      "sales": "Sales"
+    },
+    "low-stock": {
+      "title": "Low Stock Products",
+      "products": "products",
+      "currency": "EGP"
+    }
+  }
 }
