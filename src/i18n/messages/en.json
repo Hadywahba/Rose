@@ -395,7 +395,6 @@
       "select-required": "Please select all required items"
     }
   },
-
   "my-addresses": {
     "form-title": "Enter address details",
     "back-button": "Go back",
@@ -440,11 +439,11 @@
   "preview-website": "Preview Website",
   "my-account": "My account",
   "log-out": "Log-Out",
-
   "dashboard": {
     "top-selling": {
       "title": "Top Selling Products",
-      "sales": "Sales"
+      "sales": "Sales",
+      "currency": "EGP"
     },
     "low-stock": {
       "title": "Low Stock Products",
