@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
-import { signOut, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -42,7 +42,6 @@ import { LoginFormFields, loginSchema } from '@/lib/schema/login.schema';
 import { cn } from '@/lib/utility/tailwind-merge';
 import useLogin from '@/app/[locale]/(auth)/login/_hooks/use-login';
 import NotificationsList from '@/components/features/notifications/notification-list';
-
 
 const Header = () => {
   const t = useTranslations('header');
@@ -119,7 +118,7 @@ const Header = () => {
         </Link>
         {session?.user || user ? (
           <div>
-            {t('deliver to')}:
+            Deliver to:{' '}
             {(session?.user as SessionUser)?.addresses?.[0]?.city ||
               user?.user?.addresses?.[0]?.city}
           </div>
@@ -134,40 +133,29 @@ const Header = () => {
         <div className="flex items-center gap-4">
           {/* Auth */}
           {session?.user || user ? (
-            //////////////////////////////////////
-          <div className="relative group">
-  {/* النص اللي هيظهر للهوفر */}
-  <p className="cursor-pointer font-medium dark:text-white">
-    {t('hello')} {session?.user.firstName || user?.user?.firstName}
-  </p>
+            <div className="group relative">
+              <p className="cursor-pointer font-medium dark:text-white">
+                Hello {session?.user.firstName || user?.user?.firstName}
+              </p>
 
-  {/* القائمة */}
-  <div className="invisible absolute right-0 top-full z-30 mt-2 w-40 rounded-md bg-white shadow-lg opacity-0 transition-all duration-200
-                  group-hover:visible group-hover:opacity-100">
-    <Link
-      className="block px-4 py-2 hover:bg-gray-100"
-      href="/profile"
-    >
-      Profile
-    </Link>
-    <Link
-      className="block px-4 py-2 hover:bg-gray-100"
-      href="/orders"
-    >
-      Orders
-    </Link>
-    <button
-      className="block w-full px-4 py-2 text-left hover:bg-gray-100 text-red-500"
-      onClick={() => {
-        signOut({ callbackUrl: '/login' })
-        sessionStorage.removeItem('user')
-      }}
-    >
-      Logout
-    </button>
-  </div>
-</div>
-
+              <div className="invisible absolute right-0 top-full z-30 mt-2 w-40 rounded-md bg-white opacity-0 shadow-lg transition group-hover:visible group-hover:opacity-100">
+                <Link
+                  className="block px-4 py-2 hover:bg-gray-100"
+                  href="/profile"
+                >
+                  Profile
+                </Link>
+                <Link
+                  className="block px-4 py-2 hover:bg-gray-100"
+                  href="/orders"
+                >
+                  Orders
+                </Link>
+                <button className="block w-full px-4 py-2 text-left hover:bg-gray-100">
+                  Logout
+                </button>
+              </div>
+            </div>
           ) : (
             <div className="group relative">
               <button className="px-4 py-2 font-medium dark:text-white">

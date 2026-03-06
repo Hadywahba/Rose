@@ -342,8 +342,7 @@
     "login": "Login",
     "register": "Register",
     "deliver to": "Deliver to",
-    "search": "What awesome gift are you looking for?",
-    "hello": "Hello"
+    "search": "What awesome gift are you looking for?"
   },
   "footer": {
     "title": "Rose E-Commerce App",
@@ -440,26 +439,5 @@
   "products": "Products",
   "preview-website": "Preview Website",
   "my-account": "My account",
-  "log-out": "Log-Out",
-  "change-password": {
-    "current-password": "Current Password",
-    "new-password": "New Password",
-    "confirm-password": "Confirm Password",
-    "change-password": "Change Password"
-  },
-  "profile":{
-    "Account-Settings": "Account Settings",
-    "My-Account": " My Account",
-    "Change-Password": "Change Password",
-    "Logout": "Logout",
-    "Upload-Photo": "Upload Photo",
-    "photo-info":" You can upload a .jpg, .png, or .gif photo with max size of5MB.",
-    "First-name": "First Name",
-    "Last-name": "Last Name",
-    "Email": "Email",
-    "Phone": "Phone",
-    "Gender": "Gender",
-    "delete-account": "Delete My Account",
-    "save-changes": "Save Changes"
-  }
+  "log-out": "Log-Out"
 }
