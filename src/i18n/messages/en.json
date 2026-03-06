@@ -335,7 +335,8 @@
     },
     "low-stock": {
       "title": "Low Stock Products",
-      "products": "products"
+      "products": "products",
+      "currency": "EGP"
     }
   }
 }

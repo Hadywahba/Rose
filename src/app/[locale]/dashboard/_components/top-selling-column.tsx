@@ -42,7 +42,7 @@ export default function TopSellingColumn({
                 {product.title}
               </p>
               <span className="shrink-0 text-sm font-normal">
-                ({product.price} EGP)
+                ({product.price} {t('currency')})
               </span>
             </div>
             <p className="text-sm font-bold">

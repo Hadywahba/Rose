@@ -326,7 +326,8 @@
   "dashboard": {
     "top-selling": {
       "title": "المنتجات الأكثر مبيعاً",
-      "sales": "مبيع"
+      "sales": "مبيع",
+      "currency": "ج.م"
     },
     "low-stock": {
       "title": "المنتجات منخفضة المخزون",
