@@ -28,6 +28,9 @@ export default async function middleware(req: NextRequest) {
   // Get authentication token
   const token = await getToken({ req });
 
+  // Get role
+  const role = req.cookies.get("role")?.value;
+
   // Allow public pages
   if (publicPages.has(purePathname)) {
     return intlResponse;
@@ -44,6 +47,17 @@ export default async function middleware(req: NextRequest) {
   // Redirect authenticated users away from auth pages
   if (authPages.has(purePathname) && token) {
     return NextResponse.redirect(new URL(`/${locale}`, req.nextUrl.origin));
+  }
+  // Dashboard access control
+   if (pathname.startsWith("/dashboard")) {
+
+    if (!token) {
+      return NextResponse.redirect(new URL("/login", req.nextUrl.origin));
+    }
+
+    if (role !== "admin") {
+      return NextResponse.redirect(new URL("/not-authorized", req.nextUrl.origin));
+    }
   }
 
   return intlResponse;

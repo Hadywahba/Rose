@@ -272,8 +272,8 @@
     "login-to-review": "Please login to be able to review the product"
   },
   "not-found": {
-    "title": "Page not found",
-    "description": "Oops! The page you are looking for does not exist.",
+    "title": "This page does not exist.",
+    "description": "We couldn’t find the page your are looking for, please make sure you are in the right path.",
     "button": "Go back home"
   },
   "price-number-currancy-base-0": "{price,number,currency-no-decimals}",
@@ -461,5 +461,9 @@
     "Gender": "Gender",
     "delete-account": "Delete My Account",
     "save-changes": "Save Changes"
+  },
+  "global-error": {
+    "title": "Oops, something went wrong!",
+    "description": "Something unexpected happened, please refresh the page or try again shortly."
   }
 }

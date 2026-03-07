@@ -32,3 +32,7 @@ export interface ProductsResponse {
   metadata: Metadata;
   products: Product[];
 }
+export interface ProductGalleryProps {
+  images: string[];
+  children: React.ReactNode;
+}
