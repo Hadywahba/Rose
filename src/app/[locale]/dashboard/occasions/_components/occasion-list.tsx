@@ -21,14 +21,11 @@ export default function OccasionList() {
   const searchParams = useSearchParams();
   const searchQuery = Object.fromEntries(searchParams.entries());
   const currentPage = Number(searchParams.get('page')) || 1;
-  const occasionName = searchParams.get('name') ?? undefined;
-
+  const occasionName = searchParams.get('search') ?? undefined;
+  const limit = occasionName ? 1000 : 6;
+  const page = occasionName ? 1 : currentPage;
   // Hook
-  const { occasion, error, isLoading } = useOccasion(
-    6,
-    currentPage,
-    occasionName,
-  );
+  const { occasion, error, isLoading } = useOccasion(limit, page, occasionName);
   const { deleteOccasion } = UseDeleteOccasion();
 
   // Variables

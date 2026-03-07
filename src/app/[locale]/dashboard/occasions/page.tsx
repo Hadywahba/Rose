@@ -12,7 +12,7 @@ export default function page() {
           btnText="dashboard-occasion.button-occasion-add"
           path="/dashboard/occasions/add"
         />
-        <DashboardSearchInput  />
+        <DashboardSearchInput queryKey="search"  />
       </div>
 
       <OccasionList />

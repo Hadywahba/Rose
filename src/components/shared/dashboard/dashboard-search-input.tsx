@@ -7,14 +7,14 @@ import { usePathname, useRouter } from '@/i18n/navigation';
 import { useLocale } from 'next-intl';
 
 type DashboardSearchInputProps = {
-  queryKey?: string;
+  queryKey: string;
   placeholder?: string;
   debounceMs?: number;
   className?: string;
 };
 
 export default function DashboardSearchInput({
-  queryKey = 'name',
+  queryKey,
   placeholder = 'Search...',
   debounceMs = 400,
   className,
