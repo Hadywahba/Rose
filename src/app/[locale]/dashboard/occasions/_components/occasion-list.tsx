@@ -5,10 +5,10 @@ import { useRouter } from '@/i18n/navigation';
 import { useSearchParams } from 'next/navigation';
 import { useLocale } from 'next-intl';
 import AppPagination from '@/components/shared/app-pagination';
-import Spinner from '@/components/loader/Spinner';
 import { useOccasion } from '../_hooks/use-occasions';
 import { DashboardTable } from '@/components/shared/dashboard/dashboard-tabel';
 import { UseDeleteOccasion } from '../_hooks/use-delete-occasion';
+import DashboardTableSkeleton from '@/components/skeletons/dashboard/occasion-list-skeleton';
 
 export default function OccasionList() {
   // Translations
@@ -39,9 +39,7 @@ export default function OccasionList() {
       <div className="rounded-lg bg-white dark:bg-zinc-700">
         <ListError errors={error}>
           {isLoading ? (
-            <div className="my-48 flex items-center justify-center">
-              <Spinner />
-            </div>
+            <DashboardTableSkeleton columns={2} />
           ) : (
             <DashboardTable
               rows={occasionItems}
