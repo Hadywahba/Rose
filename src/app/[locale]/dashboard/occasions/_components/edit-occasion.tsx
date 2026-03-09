@@ -22,6 +22,7 @@ import {
   editoccasionSchema,
 } from '@/lib/schema/occasion/occasion.schema';
 import SubmitButton from './submit-button';
+import { cn } from '@/lib/utility/tailwind-merge';
 
 interface EditOccasionProps {
   occasionId: string;
@@ -67,9 +68,13 @@ export default function EditOccasion({
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-inter text-sm font-medium capitalize text-zinc-800 dark:text-zinc-50">
+                  <FormLabel
+                    className={cn(
+                      'font-inter text-sm font-medium capitalize text-zinc-800 dark:text-zinc-50',
+                      "after:ml-1 after:text-destructive after:content-['*']",
+                    )}
+                  >
                     {t('dashboard-occasion.occasion-name')}{' '}
-                    <span className="text-destructive">*</span>
                   </FormLabel>
 
                   {/* Field */}
