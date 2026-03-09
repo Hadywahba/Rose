@@ -37,8 +37,8 @@ export const UseEditOccasionName = (id: string) => {
       });
       router.push('/dashboard/occasions');
     },
-    onError: () => {
-      toast.error(t('dashboard-occasion.occasion-edit-failed'));
+    onError: (error: Error) => {
+      toast.error( error.message || t('dashboard-occasion.occasion-edit-failed'));
     },
   });
 

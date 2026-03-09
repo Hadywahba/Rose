@@ -20,6 +20,7 @@ import {
 import SubmitButton from './submit-button';
 import { UseAddOccasion } from '../_hooks/use-add-occasion';
 import FileUpload from '@/components/ui/input-file';
+import { cn } from '@/lib/utility/tailwind-merge';
 
 export default function AddOccasion() {
   // Translation
@@ -46,6 +47,7 @@ export default function AddOccasion() {
     }
     Addoccasion(formData);
   };
+
   return (
     <div className="w-full max-w-[46.625rem] pb-6">
       <Form {...form}>
@@ -61,9 +63,13 @@ export default function AddOccasion() {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-inter text-sm font-medium capitalize text-zinc-800 dark:text-zinc-50">
-                    {t('dashboard-occasion.occasion-name')}{' '}
-                    <span className="text-destructive">*</span>
+                  <FormLabel
+                    className={cn(
+                      'font-inter text-sm font-medium capitalize text-zinc-800 dark:text-zinc-50',
+                      "after:ml-1 after:text-destructive after:content-['*']",
+                    )}
+                  >
+                    {t('dashboard-occasion.occasion-name')}
                   </FormLabel>
 
                   {/* Field */}
@@ -88,9 +94,13 @@ export default function AddOccasion() {
               name="image"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-inter text-sm font-medium capitalize text-zinc-800 dark:text-zinc-50">
+                  <FormLabel
+                    className={cn(
+                      'font-inter text-sm font-medium capitalize text-zinc-800 dark:text-zinc-50',
+                      "after:ml-1 after:text-destructive after:content-['*']",
+                    )}
+                  >
                     {t('dashboard-occasion.occasion-add-image')}{' '}
-                    <span className="text-destructive">*</span>
                   </FormLabel>
 
                   <FormControl>

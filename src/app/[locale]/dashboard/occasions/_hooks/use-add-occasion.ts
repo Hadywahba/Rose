@@ -35,8 +35,8 @@ export const UseAddOccasion = () => {
       });
       router.push('/dashboard/occasions');
     },
-    onError: () => {
-      toast.error(t('dashboard-occasion.occasion-add-failed'));
+    onError: (error: Error) => {
+      toast.error( error.message || t('dashboard-occasion.occasion-add-failed'));
     },
   });
 

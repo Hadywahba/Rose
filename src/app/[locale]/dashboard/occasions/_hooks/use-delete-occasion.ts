@@ -31,8 +31,8 @@ export const UseDeleteOccasion = () => {
         queryKey: ['Occasion'],
       });
     },
-    onError: () => {
-      toast.error(t('dashboard-occasion.occasion-delete-failed'));
+    onError: (error: Error) => {
+      toast.error( error.message || t('dashboard-occasion.occasion-delete-failed'));
     },
   });
 
