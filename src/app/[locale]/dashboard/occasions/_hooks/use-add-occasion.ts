@@ -3,7 +3,8 @@ import { AddOccasion } from '../_actions/add-occasion.action';
 import { useRouter } from '@/i18n/navigation';
 import { toast } from 'sonner';
 import { useTranslations } from 'next-intl';
-export const UseAddOccasion = () => {
+
+export const useAddOccasion = () => {
   // Translation
   const t = useTranslations('dashboard');
 
@@ -36,7 +37,7 @@ export const UseAddOccasion = () => {
       router.push('/dashboard/occasions');
     },
     onError: (error: Error) => {
-      toast.error( error.message || t('dashboard-occasion.occasion-add-failed'));
+      toast.error(error.message || t('dashboard-occasion.occasion-add-failed'));
     },
   });
 

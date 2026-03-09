@@ -7,7 +7,7 @@ import { useLocale } from 'next-intl';
 import AppPagination from '@/components/shared/app-pagination';
 import { useOccasion } from '../_hooks/use-occasions';
 import { DashboardTable } from '@/components/shared/dashboard/dashboard-tabel';
-import { UseDeleteOccasion } from '../_hooks/use-delete-occasion';
+import { useDeleteOccasion } from '../_hooks/use-delete-occasion';
 import DashboardTableSkeleton from '@/components/skeletons/dashboard/occasion-list-skeleton';
 
 export default function OccasionList() {
@@ -26,7 +26,7 @@ export default function OccasionList() {
   const page = occasionName ? 1 : currentPage;
   // Hook
   const { occasion, error, isLoading } = useOccasion(limit, page, occasionName);
-  const { deleteOccasion } = UseDeleteOccasion();
+  const { deleteOccasion } = useDeleteOccasion();
 
   // Variables
   const occasionItems = occasion?.occasions || [];

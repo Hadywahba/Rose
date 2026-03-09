@@ -18,7 +18,7 @@ import {
   addOccasionSchema,
 } from '@/lib/schema/occasion/occasion.schema';
 import SubmitButton from './submit-button';
-import { UseAddOccasion } from '../_hooks/use-add-occasion';
+import { useAddOccasion } from '../_hooks/use-add-occasion';
 import FileUpload from '@/components/ui/input-file';
 import { cn } from '@/lib/utility/tailwind-merge';
 
@@ -27,7 +27,7 @@ export default function AddOccasion() {
   const t = useTranslations('dashboard');
 
   // Mutation
-  const { Addoccasion, error, isPending } = UseAddOccasion();
+  const { Addoccasion, error, isPending } = useAddOccasion();
 
   // Form
   const form = useForm<AddOccasionFormFields>({

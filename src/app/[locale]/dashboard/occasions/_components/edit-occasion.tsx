@@ -16,7 +16,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { OccasionResponse } from '@/lib/types/occasion/occasion';
 import { Button } from '@/components/ui/button';
 import { ImagePlus } from 'lucide-react';
-import { UseEditOccasionName } from '../_hooks/use-edit-occasion';
+import { useEditOccasionName } from '../_hooks/use-edit-occasion';
 import {
   EditOccasionFormFields,
   editoccasionSchema,
@@ -37,7 +37,7 @@ export default function EditOccasion({
   const t = useTranslations('dashboard');
 
   //   Mutation
-  const { error, editoccasion, isPending } = UseEditOccasionName(occasionId);
+  const { error, editoccasion, isPending } = useEditOccasionName(occasionId);
 
   // Form
   const form = useForm<EditOccasionFormFields>({

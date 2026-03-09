@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/navigation';
 import { toast } from 'sonner';
 
-export const UseEditOccasionName = (id: string) => {
+export const useEditOccasionName = (id: string) => {
   // Translation
   const t = useTranslations('dashboard');
 

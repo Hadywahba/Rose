@@ -3,7 +3,7 @@ import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 import { DeleteOccasion } from '../_actions/delete-occasion.action';
 
-export const UseDeleteOccasion = () => {
+export const useDeleteOccasion = () => {
   // Translation
   const t = useTranslations('dashboard');
 
