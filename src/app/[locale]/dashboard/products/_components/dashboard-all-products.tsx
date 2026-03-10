@@ -9,6 +9,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import DashboardEmptyState from '@/components/shared/dashboard/dashboard-empty-state';
 import { cn } from '@/lib/utility/tailwind-merge';
+import { useDeleteProduct } from '../_hooks/use-delete-products';
 
 export default function DashboardAllProducts({
   allProducts,
@@ -19,6 +20,8 @@ export default function DashboardAllProducts({
 }) {
   const t = useTranslations('dashboard.products');
   const locale = useLocale();
+
+  const { deleteProduct } = useDeleteProduct();
 
   const rawParams = useSearchParams();
   const searchQuery = Object.fromEntries(rawParams.entries());
@@ -71,8 +74,7 @@ export default function DashboardAllProducts({
               ),
             },
           ]}
-          // onEdit={(row) => {}}
-          // onDelete={(row, onSettled) => {}}
+          onDelete={(row) => deleteProduct(row._id)}
         />
       ) : (
         <DashboardEmptyState

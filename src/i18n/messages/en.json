@@ -459,7 +459,9 @@
       "rating": "Ratings",
       "no-products-found": "No products found",
       "no-products-match": "No products match your search.",
-      "currency": "EGP"
+      "currency": "EGP",
+      "success-delete-message": "product deleted successfully",
+      "error-delete-message": "Failed to delete product"
     }
   }
 }
