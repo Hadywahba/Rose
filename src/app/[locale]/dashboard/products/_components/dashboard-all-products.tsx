@@ -8,6 +8,7 @@ import { TopProducts } from '@/lib/types/products/product';
 import { useLocale, useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import DashboardEmptyState from '@/components/shared/dashboard/dashboard-empty-state';
+import { cn } from '@/lib/utility/tailwind-merge';
 
 export default function DashboardAllProducts({
   allProducts,
@@ -16,7 +17,7 @@ export default function DashboardAllProducts({
   allProducts: TopProducts[];
   totalPages: number;
 }) {
-  const t = useTranslations();
+  const t = useTranslations('dashboard.products');
   const locale = useLocale();
 
   const rawParams = useSearchParams();
@@ -28,9 +29,9 @@ export default function DashboardAllProducts({
   return (
     <section className="space-y-4 rounded-md bg-white p-3 dark:bg-gray-800">
       <DashboardHeaderPage
-        btnText={t('add-a-new-product')}
-        title={t('all-products')}
-        path="products/create"
+        btnText="products.add-a-new-product"
+        title="products.all-products"
+        path="/dashboard/products"
       />
 
       <DashboardSearchInput />
@@ -47,35 +48,31 @@ export default function DashboardAllProducts({
             },
             {
               label: t('price'),
-              render: (row) => `$${row.price}`,
+              render: (row) => `${row.price} ${t('currency')}`,
             },
             {
               label: t('quantity'),
               render: (row) => (
-                <span className="text-gray-500 dark:text-gray-400">
+                <span className={cn(row.quantity < 5 && 'text-red-500')}>
                   {row.quantity}
                 </span>
               ),
             },
             {
               label: t('sold'),
-              render: (row) => (
-                <span className="text-gray-500 dark:text-gray-400">
-                  {row.sold}
-                </span>
-              ),
+              render: (row) => <span>{row.sold || 0}</span>,
             },
             {
               label: t('rating'),
               render: (row) => (
-                <span className="inline-flex items-center gap-1 text-sm font-medium text-yellow-500">
-                  ⭐ {row.rateAvg}/5 ({row.rateCount})
+                <span>
+                  {row.rateAvg}/5 ({row.rateCount})
                 </span>
               ),
             },
           ]}
-          onEdit={(row) => {}}
-          onDelete={(row, onSettled) => {}}
+          // onEdit={(row) => {}}
+          // onDelete={(row, onSettled) => {}}
         />
       ) : (
         <DashboardEmptyState

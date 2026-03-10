@@ -141,7 +141,7 @@ export function DashboardTable<T extends { _id: string }>({
         </TableHeader>
         <TableBody>
           {rows.map((row) => (
-            <TableRow key={row._id}>
+            <TableRow className="hover:bg-maroon-50" key={row._id}>
               {columns.map((col) => (
                 <TableCell key={col.label} className={col.className}>
                   {col.render(row)}

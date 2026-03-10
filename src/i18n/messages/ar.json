@@ -445,6 +445,18 @@
     "low-stock": {
       "title": "المنتجات منخفضة المخزون",
       "products": "منتج"
+    },
+    "products": {
+      "add-a-new-product": "إضافة منتج جديد",
+      "all-products": "جميع المنتجات",
+      "name": "الاسم",
+      "price": "السعر",
+      "quantity": "المخزون",
+      "sold": "المبيعات",
+      "rating": "التقييمات",
+      "no-products-found": "لا توجد منتجات",
+      "no-products-match": "لا توجد منتجات تطابق بحثك.",
+      "currency": "ج.م"
     }
   }
 }

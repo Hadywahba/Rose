@@ -447,7 +447,18 @@
     },
     "low-stock": {
       "title": "Low Stock Products",
-      "products": "products",
+      "products": "products"
+    },
+    "products": {
+      "add-a-new-product": "Add a new product",
+      "all-products": "All Products",
+      "name": "Name",
+      "price": "Price",
+      "quantity": "Stock",
+      "sold": "Sales",
+      "rating": "Ratings",
+      "no-products-found": "No products found",
+      "no-products-match": "No products match your search.",
       "currency": "EGP"
     }
   }
