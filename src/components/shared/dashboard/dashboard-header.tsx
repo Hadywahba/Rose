@@ -6,7 +6,7 @@ import { cn } from '@/lib/utility/tailwind-merge';
 import { Plus } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
-type DashboardHeaderPropts = {
+type DashboardHeaderProps = {
   title: string;
   path: string;
   className?: string;
@@ -17,7 +17,7 @@ export default function DashboardHeaderPage({
   btnText,
   path,
   className,
-}: DashboardHeaderPropts) {
+}: DashboardHeaderProps) {
   // Translation
   const t = useTranslations('dashboard');
 
