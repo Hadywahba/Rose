@@ -51,10 +51,10 @@ export function ProductGallery({ images, children }: ProductGalleryProps) {
               ))}
             </CarouselContent>
 
-            <div className="mt-4 flex justify-end gap-2 px-4">
+            {images.length > 1 && (<div className="mt-4 flex justify-end gap-2 px-4">
               <CarouselPrevious className="static h-10 w-10 translate-y-0 border-red-200 text-red-500 hover:bg-red-50" />
               <CarouselNext className="static h-10 w-10 translate-y-0 border-red-200 text-red-500 hover:bg-red-50" />
-            </div>
+            </div>)}
           </Carousel>
 
           <div className="absolute bottom-10 left-10 flex gap-2">

@@ -465,5 +465,10 @@
   "global-error": {
     "title": "Oops, something went wrong!",
     "description": "Something unexpected happened, please refresh the page or try again shortly."
+  },
+  "not-authorized": {
+    "title": "You are not authorized to access this page.",
+    "description": "If you think this is wrong, please contact the support.",
+    "go-home": "Go to Homepage"
   }
 }
