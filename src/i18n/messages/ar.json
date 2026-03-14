@@ -340,6 +340,29 @@
     "deliver to": "توصيل إلى ",
     "search": "ما هي الهدية المميزة التي تبحث عنها؟"
   },
+  "dashboard": {
+    "stats-overview": {
+      "total-products": "إجمالي المنتجات",
+      "total-orders": "إجمالي الطلبات",
+      "total-categories": "إجمالي الفئات",
+      "total-revenue": "إجمالي الإيرادات",
+      "egp": "ج.م"
+    },
+    "all-categories": {
+      "title": "جميع الفئات",
+      "products": "منتج",
+      "empty": "لا توجد فئات"
+    },
+    "top-selling": {
+      "title": "المنتجات الأكثر مبيعاً",
+      "sales": "مبيع",
+      "currency": "ج.م"
+    },
+    "low-stock": {
+      "title": "المنتجات منخفضة المخزون",
+      "products": "منتج"
+    }
+  },
   "footer": {
     "title": "تطبيق روز",
     "discover": "اكتشف موقعنا",
@@ -354,10 +377,10 @@
     "faqs": "الاسئلة الشائعة",
     "copyright": "جميع الحقوق محفوظة | 2025",
     "get": "احصل على",
-    "getDiscount": " كوبون خصم",
+    "get-discount": " كوبون خصم",
     "discount": "20%",
-    "subscribingWay": "اشترك في مجلتنا",
-    "emailPlaceholder": "اكتب بريدك الإلكتروني",
+    "subscribing-way": "اشترك في مجلتنا",
+    "email-placeholder": "اكتب بريدك الإلكتروني",
     "subscribe": "اشترك"
   },
   "checkout": {
@@ -435,17 +458,6 @@
   "preview-website": "الذهاب للموقع",
   "my-account": "حسابي",
   "log-out": "تسجيل خروج",
-  "dashboard": {
-    "top-selling": {
-      "title": "المنتجات الأكثر مبيعاً",
-      "sales": "مبيع",
-      "currency": "ج.م"
-    },
-    "low-stock": {
-      "title": "المنتجات منخفضة المخزون",
-      "products": "منتج"
-    }
-  },
   "category-deleted-successfully": "تم حذف الفئة بنجاح",
   "add-a-new-category": "أضافة فئة جديدة",
   "all-categories": "جميع الفئات",
