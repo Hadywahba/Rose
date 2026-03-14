@@ -288,7 +288,7 @@ export default function UpdateProductForm({ product }: UpdateProductFormProps) {
                 <SelectContent className="bg-white dark:bg-zinc-700">
                   {loadingCategories ? (
                     <SelectItem value="loading" disabled>
-                      Loading...
+                      {t('products.update.fields.loading-options')}
                     </SelectItem>
                   ) : (
                     categories?.map((cat) => (
@@ -330,7 +330,7 @@ export default function UpdateProductForm({ product }: UpdateProductFormProps) {
                 <SelectContent className="bg-white dark:bg-zinc-700">
                   {loadingOccasions ? (
                     <SelectItem value="loading" disabled>
-                      Loading...
+                      {t('products.update.fields.loading-options')}
                     </SelectItem>
                   ) : (
                     occasions?.map((occ) => (

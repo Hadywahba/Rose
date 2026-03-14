@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getOccasion } from '@/lib/services/occasion/occasion-content.service';
 
 export default function useOccasions() {
+  // Query
   return useQuery({
     queryKey: ['occasions'],
     queryFn: async () => {

@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getCategories } from '@/lib/services/category/category.service';
 
 export default function useCategories() {
+  // Query
   return useQuery({
     queryKey: ['categories'],
     queryFn: async () => {

@@ -346,7 +346,9 @@ export default function AddProductForm() {
                     >
                       <span className="flex-1 truncate ps-3 text-sm text-zinc-400">
                         {value && value.length > 0
-                          ? `${value.length} file${value.length > 1 ? 's' : ''} selected`
+                          ? t('products.add.fields.files-selected', {
+                              count: value.length,
+                            })
                           : ''}
                       </span>
                       <input
@@ -405,7 +407,7 @@ export default function AddProductForm() {
                   <SelectContent className="bg-white dark:bg-zinc-700">
                     {loadingCategories ? (
                       <SelectItem value="loading" disabled>
-                        Loading...
+                        {t('products.add.fields.loading-options')}
                       </SelectItem>
                     ) : (
                       categories?.map((cat) => (
@@ -449,7 +451,7 @@ export default function AddProductForm() {
                   <SelectContent className="bg-white dark:bg-zinc-700">
                     {loadingOccasions ? (
                       <SelectItem value="loading" disabled>
-                        Loading...
+                        {t('products.add.fields.loading-options')}
                       </SelectItem>
                     ) : (
                       occasions?.map((occ) => (
