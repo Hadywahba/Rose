@@ -244,7 +244,8 @@
       "email": "البريد الالكتروني",
       "login-error": "حدث خطأ أثناء تسجيل الدخول . حاول مرة أخرى.",
       "remember me": "تذكرني"
-    }
+    },
+    "successfully-login": "تم تسجيل الدخول بنجاح"
   },
   "reviews": {
     "title": "تقييمات المنتج",
@@ -390,7 +391,6 @@
       "select-required": "يرجى اختيار جميع العناصر المطلوبة"
     }
   },
-
   "my-addresses": {
     "form-title": "أدخل تفاصيل العنوان",
     "back-button": "رجوع",
@@ -435,7 +435,6 @@
   "preview-website": "الذهاب للموقع",
   "my-account": "حسابي",
   "log-out": "تسجيل خروج",
-
   "dashboard": {
     "top-selling": {
       "title": "المنتجات الأكثر مبيعاً",
@@ -469,5 +468,29 @@
   "category-created-successfully": "تم إنشاء الفئة بنجاح",
   "add-a-new-category-0": "إضافة فئة جديدة",
   "upload-file": "تحميل الملف",
-  "update-category-0": " :تحديث الفئة"
+  "update-category-0": " :تحديث الفئة",
+  "cart-cleared-successfully": "تم مسح العربة بنجاح",
+  "cart": "عربة التسوق",
+  "cart-count": "{count, plural,\n  =0 {لا توجد منتجات}\n  =1 {منتج واحد}\n  =2 {منتجان}\n  few {{n} منتجات}\n  many {{n} منتجًا}\n  other {{n} منتج}\n}\n",
+  "clear-cart": "حذف السلة",
+  "rating": "التقييم",
+  "rateavg-number-number-base": "{rateAvg,number,number-base}",
+  "ratecount-number-number-base": "{rateCount,number,number-base}",
+  "count-plural-0-no-ratings-1-rating-other-ratings": "{count, plural,\n  =0 {لا توجد تقييمات}\n  =1 {تقييم واحد}\n  =2 {تقييمان}\n  few {# تقييمات}\n  many {# تقييمًا}\n  other {# تقييم}\n}\n",
+  "productprice-number-number-base": "{productPrice,number,number-base}",
+  "egp": "جنية مصري",
+  "product-removed-from-cart-successfully": "تمت إزالة المنتج من سلة التسوق بنجاح",
+  "remove": "حذف",
+  "product-added-to-cart-successfully": "تمت إضافة المنتج إلى سلة التسوق بنجاح",
+  "product-deleted-successfully": "تم حذف المنتج بنجاح",
+  "product-updated-successfully": "تم تحديث المنتج بنجاح",
+  "validation-invalid_number": "رقم غير صالح",
+  "number-must-be-integer": "يجب أن يكون الرقم عددًا صحيحًا",
+  "number-must-be-positive": "يجب أن يكون الرقم موجبًا",
+  "current-stock-now-is-quantity-available": "{المخزون الحالي الآن هو {الكمية} المتوفرة}",
+  "continue-shopping": "مواصلة التسوق",
+  "emtycart": "سلة التسوق الخاصة بك فارغة، هل تريد تجربة التسوق؟",
+  "product-added-successfully-0": "تمت إضافة المنتج بنجاح",
+  "price-quantity": "{productPrice}",
+  "quantity-number-number-base": "{quantity,number,number-base}"
 }

@@ -4,6 +4,7 @@ import ReactQueryProvider from './components/react-query-provider';
 import { ThemeProvider } from 'next-themes';
 import UserEmailProvider from './app/forget-password/email-provider';
 import NextAuthProvider from './components/next-auth.provider';
+import { GuestCartProvider } from './cart/guest-cart.provider';
 
 type Props = {
   children: React.ReactNode;
@@ -21,7 +22,10 @@ export default async function RootLayout({ children }: Props) {
             enableSystem={false}
           >
             <Toaster />
-            <UserEmailProvider>{children}</UserEmailProvider>
+            {/* Provider for Cart for guest */}
+            <GuestCartProvider>
+              <UserEmailProvider>{children}</UserEmailProvider>
+            </GuestCartProvider>
           </ThemeProvider>
         </ReactQueryProvider>
       </NextAuthProvider>

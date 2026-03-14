@@ -1,5 +1,5 @@
-import React from 'react';
+import CartWrapper from "./_components/cart-wrapper";
 
-export default function page() {
-  return <div>hady</div>;
+export default function CartPage() {
+  return <CartWrapper/>;
 }

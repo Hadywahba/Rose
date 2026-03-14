@@ -5,7 +5,6 @@ import {
   Search,
   Heart,
   ShoppingCart,
-  Bell,
   Home,
   Gift,
   LayoutGrid,
@@ -14,6 +13,8 @@ import {
   Info,
   Eye,
   EyeOff,
+  Loader,
+  Badge,
 } from 'lucide-react';
 import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
@@ -23,7 +24,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Link, usePathname } from '@/i18n/navigation';
+import { Link, usePathname, useRouter } from '@/i18n/navigation';
 import ThemeToggleIcon from './theme-toggle';
 import ToggleLocale from '@/components/shared/ToggleLocale';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -42,14 +43,17 @@ import { LoginFormFields, loginSchema } from '@/lib/schema/login.schema';
 import { cn } from '@/lib/utility/tailwind-merge';
 import useLogin from '@/app/[locale]/(auth)/login/_hooks/use-login';
 import NotificationsList from '@/components/features/notifications/notification-list';
+import { useCart } from '@/lib/hooks/cart/use-cart';
+import { useGuestCartContext } from '@/lib/hooks/cart/use-guest-cart-context';
 
 const Header = () => {
   const t = useTranslations('header');
   const a = useTranslations('auth');
   const locale = useLocale();
   const pathname = usePathname();
-  const { data: session } = useSession();
 
+  // navigation
+  const router = useRouter();
   const { login, isPending, error } = useLogin();
 
   const form = useForm<LoginFormFields>({
@@ -63,6 +67,15 @@ const Header = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+
+  // Querys
+  const { data, isLoading, isFetching } = useCart();
+
+  // Hooks
+  const { totalItems } = useGuestCartContext();
+  // Variables
+  const { data: session } = useSession();
+  const numOfCartItems = session ? data?.numOfCartItems : totalItems;
 
   const onSubmit: SubmitHandler<LoginFormFields> = (values) => {
     login({ values, rememberMe });
@@ -249,9 +262,25 @@ const Header = () => {
 
           {/* Icons */}
           <Heart />
-          <ShoppingCart />
-          <Bell />
+          {/* Notifications */}
           <NotificationsList />
+          {/* Cart-Badge */}
+          <button
+            className="relative hover:text-red-800"
+            // navigate to cart page
+            onClick={() => {
+              router.push('/cart', { locale });
+            }}
+          >
+            <ShoppingCart className="h-6 w-6" />
+            <Badge className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center bg-red-600 p-0 hover:bg-red-600">
+              {isLoading || isFetching ? (
+                <Loader size={12} className="animate-spin" />
+              ) : (
+                numOfCartItems
+              )}
+            </Badge>
+          </button>
 
           <ThemeToggleIcon />
           <ToggleLocale />

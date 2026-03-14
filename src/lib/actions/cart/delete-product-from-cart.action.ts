@@ -1,12 +1,10 @@
 'use server';
 
 import { JSON_HEADER } from '@/lib/constants/api.constant';
-import { AddToCartProps } from '@/lib/types/cart';
 import { getToken } from '@/lib/utility/manage-token';
 
-export async function addToCartAction({ productId, quantity }: AddToCartProps) {
+export async function deleteProductFromCartAction(productId: string) {
   // get-token
-
   const token = await getToken();
 
   // guard-class
@@ -15,13 +13,12 @@ export async function addToCartAction({ productId, quantity }: AddToCartProps) {
     throw new Error('you must login first');
   }
 
-  const resp = await fetch(`${process.env.API_URL}/cart`, {
-    method: 'POST',
+  const resp = await fetch(`${process.env.API_URL}/cart/${productId}`, {
+    method: 'DELETE',
     headers: {
       ...JSON_HEADER,
       Authorization: `Bearer ${token.accessToken}`,
     },
-    body: JSON.stringify({ product: productId, quantity }),
   });
 
   const payload = await resp.json();

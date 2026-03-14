@@ -1,12 +1,13 @@
 import { Link } from '@/i18n/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import Image, { StaticImageData } from 'next/image';
-import { Eye, ShoppingCart } from 'lucide-react';
+import { Eye,} from 'lucide-react';
 import { RatingStars } from '@/components/ui/ring-stars';
-import { Button } from '@/components/ui/button';
 import ProductCardWhishlistButtons from './product-card-whishlist-button';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utility/tailwind-merge';
+import ProductAddButton from './product-add-button';
+import { Product } from '@/lib/types/end-point-api/products';
 
 // Types
 type ProductCardProps = {
@@ -22,6 +23,7 @@ type ProductCardProps = {
   createdAt: string;
   showWishListBtn?: boolean;
   quantity: number;
+  productInfo:Product;
 };
 const DAYS = 100 * 24 * 60 * 60 * 1000;
 export default function ProductCard({
@@ -35,7 +37,7 @@ export default function ProductCard({
   showWishListBtn = false,
   quantity,
   createdAt,
-
+productInfo,
   className,
 }: ProductCardProps) {
   // Translations
@@ -106,14 +108,9 @@ export default function ProductCard({
             </span>
           </div>
         </div>
-
-        {/* Card */}
-        <Button
-          size="icon"
-          className="flex h-11 w-11 items-center justify-center rounded-full bg-maroon-600"
-        >
-          <ShoppingCart size={40} />
-        </Button>
+       
+       {/* Add to cart button */}
+       <ProductAddButton productInfo={productInfo}/>
       </div>
 
       {/* Badge */}

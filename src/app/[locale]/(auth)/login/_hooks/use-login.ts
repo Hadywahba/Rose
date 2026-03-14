@@ -1,5 +1,4 @@
 'use client';
-
 import { useSyncLocalWishlistToServer } from '@/lib/hooks/local-storage/use-sync-local-whishlist-to-server';
 import { JSON_HEADER } from '@/lib/constants/api.constant';
 import { LoginFormFields } from '@/lib/schema/login.schema';
@@ -7,6 +6,7 @@ import { useMutation } from '@tanstack/react-query';
 import { signIn } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
+import { useSyncGuestCartToServer } from '@/lib/hooks/cart/use-sync-guest-cart-to-server';
 
 export default function useLogin() {
   // Translation
@@ -15,7 +15,7 @@ export default function useLogin() {
   // Hooks
   const { sendWhishlistProductsFromStorageToServer } =
     useSyncLocalWishlistToServer();
-
+const {sendCartItemsFromStorageToServer} = useSyncGuestCartToServer()
   const mutation = useMutation({
     mutationFn: async (data: {
       values: LoginFormFields;
@@ -36,7 +36,7 @@ export default function useLogin() {
               email: values.email,
               password: values.password,
             }),
-          }
+          },
         );
 
         if (!response.ok) {
@@ -63,11 +63,23 @@ export default function useLogin() {
     },
 
     onSuccess: async () => {
-      await sendWhishlistProductsFromStorageToServer();
-    },
+      toast.success(t('successfully-login'), {
+        duration: 3000,
+        onAutoClose: async () => {
+          // ✅ transfer local wishlist to server
+          await sendWhishlistProductsFromStorageToServer();
 
-    onError: () => {
-      toast.error(t('login.login-error'));
+          // ✅ transfer guest cart to server
+          await sendCartItemsFromStorageToServer();
+          // Programmatic Navigation
+          const callbackUrl =
+            new URLSearchParams(location.search).get('callbackUrl') || '/';
+          window.location.href = callbackUrl;
+        },
+      });
+    },
+    onError: (error) => {
+      toast.error(error.message);
     },
   });
 
