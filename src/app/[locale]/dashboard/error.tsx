@@ -1,14 +1,15 @@
-"use client";
+'use client';
 
-type  ErrorProps={
-  error:Error;
-  reset:()=>void;
-}
-export default function DashBoardLayoutError({ error, reset }: ErrorProps) {
+type ErrorProps = {
+  error: Error & { digest?: string };
+  reset: () => void;
+};
+
+export default function Error({ error }: ErrorProps) {
   return (
-    <div>
-      {error.message}
-      <button onClick={() => reset()}>Try Again</button>
+    <div className="flex pt-24 flex-col items-center justify-center">
+      <h1 className="text-3xl font-bold text-red-500">Something went wrong</h1>
+      <p className="text-red-500">{error.message}</p>
     </div>
   );
 }

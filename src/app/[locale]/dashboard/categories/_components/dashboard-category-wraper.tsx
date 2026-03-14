@@ -78,8 +78,8 @@ export default function DashboardCategoryWraper() {
       {/* empty-category */}
       {!isBusy && !categoriesList.length && (
         <DashboardEmptyState
-          title="No categories found"
-          description="No categories match your search. Try resetting to see all."
+          title="dashboard.dashboard-categories.empty-category-title"
+          description="dashboard.dashboard-categories.empty-category-description"
           showReset
         />
       )}

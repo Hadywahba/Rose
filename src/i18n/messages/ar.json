@@ -391,6 +391,7 @@
       "select-required": "يرجى اختيار جميع العناصر المطلوبة"
     }
   },
+
   "my-addresses": {
     "form-title": "أدخل تفاصيل العنوان",
     "back-button": "رجوع",
@@ -435,17 +436,7 @@
   "preview-website": "الذهاب للموقع",
   "my-account": "حسابي",
   "log-out": "تسجيل خروج",
-  "dashboard": {
-    "top-selling": {
-      "title": "المنتجات الأكثر مبيعاً",
-      "sales": "مبيع",
-      "currency": "ج.م"
-    },
-    "low-stock": {
-      "title": "المنتجات منخفضة المخزون",
-      "products": "منتج"
-    }
-  },
+
   "category-deleted-successfully": "تم حذف الفئة بنجاح",
   "add-a-new-category": "أضافة فئة جديدة",
   "all-categories": "جميع الفئات",
@@ -492,5 +483,48 @@
   "emtycart": "سلة التسوق الخاصة بك فارغة، هل تريد تجربة التسوق؟",
   "product-added-successfully-0": "تمت إضافة المنتج بنجاح",
   "price-quantity": "{productPrice}",
-  "quantity-number-number-base": "{quantity,number,number-base}"
+  "quantity-number-number-base": "{quantity,number,number-base}",
+  "common-table": {
+    "delete": "حذف",
+    "edit": "تعديل",
+    "actions": "إجراءات"
+  },
+  "dashboard": {
+    "dashboard-occasion": {
+      "edit-occasion-name": "من فضلك أدخل اسم المناسبة",
+      "occasion-name": "الاسم",
+      "occasion-min-name": "الحد الأدنى 3 حروف",
+      "update-occasion-button": "تحديث المناسبة",
+      "occasion-loading": "جارٍ التحميل...",
+      "button-occasion-add": "إضافة مناسبة جديدة",
+      "occasion-header": "كل المناسبات",
+      "occasion-update": "تحديث المناسبة",
+      "occasion-image": "عرض صورة المناسبة",
+      "occasion-add": "إضافة مناسبة جديدة",
+      "occasion-image-size": "حجم الصورة يجب ألا يتجاوز 5 ميجابايت.",
+      "occasion-add-image": "صورة المناسبة",
+      "occasion-added": "إضافة مناسبة",
+      "upload-file": "رفع ملف",
+      "occasion-add-images": "من فضلك ارفع صورة المناسبة",
+      "occasion-edit-successfully": "تم تعديل المناسبة بنجاح",
+      "occasion-edit-failed": "فشل في تعديل المناسبة",
+      "occasion-delete-successfully": "تم حذف المناسبة بنجاح",
+      "occasion-delete-failed": "فشل في حذف المناسبة",
+      "empty-occasion-title": "لم يتم العثور على أي مناسبات",
+      "empty-occasion-description": "لا توجد مناسبات تطابق عملية البحث. حاول إعادة التعيين لعرض جميع المناسبات."
+    },
+    "dashboard-categories": {
+      "empty-category-title": "لم يتم العثور على أي فئات",
+      "empty-category-description": "لا توجد فئات تطابق عملية البحث. حاول إعادة التعيين لعرض جميع الفئات."
+    },
+    "top-selling": {
+      "title": "المنتجات الأكثر مبيعاً",
+      "sales": "مبيع",
+      "currency": "ج.م"
+    },
+    "low-stock": {
+      "title": "المنتجات منخفضة المخزون",
+      "products": "منتج"
+    }
+  }
 }
