@@ -10,7 +10,7 @@ export default async function page() {
   const statistics = 'error' in payload ? null : payload.statistics;
 
   return (
-    <div className="min-h-screen bg-zinc-50 p-6 dark:bg-zinc-900">
+    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-900 space-y-6 ">
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <StatsOverview statistics={statistics} />
         <AllCategories />

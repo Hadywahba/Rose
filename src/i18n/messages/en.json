@@ -358,6 +358,35 @@
       "products": "Products",
       "empty": "No categories found"
     },
+    "dashboard-occasion": {
+      "edit-occasion-name": "please enter occasion name",
+      "occasion-name": "name",
+      "occasion-min-name": "Minimum 3 characters",
+      "update-occasion-button": "Update Occasion",
+      "occasion-loading": "Loading...",
+      "button-occasion-add": "Add a new occasion",
+      "occasion-header": "all occasions",
+      "occasion-update": " update occasion",
+      "occasion-image": "View occasion image",
+      "occasion-add": "Add a New Occasion",
+      "occasion-image-size": "Image size must not exceed 5 MB.",
+      "occasion-add-image": "Occasion image",
+      "occasion-added": " Add occasion",
+      "upload-file": "Upload file",
+      "occasion-add-images": "Please upload an occasion image",
+      "occasion-added-successfully": "Occasion added successfully",
+      "occasion-add-failed": "Failed to add occasion",
+      "occasion-edit-successfully": "Occasion edited successfully",
+      "occasion-edit-failed": "Failed to edit occasion",
+      "occasion-delete-successfully": "Occasion deleted successfully",
+      "occasion-delete-failed": "Failed to delete occasion",
+      "empty-occasion-title": "No occasion found",
+      "empty-occasion-description": "No occasion match your search. Try resetting to see all."
+    },
+    "dashboard-categories": {
+      "empty-category-title": "No categories found",
+      "empty-category-description": "No categories match your search. Try resetting to see all."
+    },
     "top-selling": {
       "title": "Top Selling Products",
       "sales": "Sales",
@@ -464,18 +493,6 @@
   "preview-website": "Preview Website",
   "my-account": "My account",
   "log-out": "Log-Out",
-  "dashboard": {
-    "top-selling": {
-      "title": "Top Selling Products",
-      "sales": "Sales",
-      "currency": "EGP"
-    },
-    "low-stock": {
-      "title": "Low Stock Products",
-      "products": "products",
-      "currency": "EGP"
-    }
-  },
   "category-deleted-successfully": "Category deleted successfully",
   "add-a-new-category": "Add a new category",
   "all-categories": "All Categories",
@@ -529,46 +546,5 @@
     "delete": "delete",
     "edit": "edit",
     "actions": "actions"
-  },
-  "dashboard": {
-    "dashboard-occasion": {
-      "edit-occasion-name": "please enter occasion name",
-      "occasion-name": "name",
-      "occasion-min-name": "Minimum 3 characters",
-      "update-occasion-button": "Update Occasion",
-      "occasion-loading": "Loading...",
-      "button-occasion-add": "Add a new occasion",
-      "occasion-header": "all occasions",
-      "occasion-update": " update occasion",
-      "occasion-image": "View occasion image",
-      "occasion-add": "Add a New Occasion",
-      "occasion-image-size": "Image size must not exceed 5 MB.",
-      "occasion-add-image": "Occasion image",
-      "occasion-added": " Add occasion",
-      "upload-file": "Upload file",
-      "occasion-add-images": "Please upload an occasion image",
-      "occasion-added-successfully": "Occasion added successfully",
-      "occasion-add-failed": "Failed to add occasion",
-      "occasion-edit-successfully": "Occasion edited successfully",
-      "occasion-edit-failed": "Failed to edit occasion",
-      "occasion-delete-successfully": "Occasion deleted successfully",
-      "occasion-delete-failed": "Failed to delete occasion",
-      "empty-occasion-title": "No occasion found",
-      "empty-occasion-description": "No occasion match your search. Try resetting to see all."
-    },
-    "dashboard-categories": {
-      "empty-category-title": "No categories found",
-      "empty-category-description": "No categories match your search. Try resetting to see all."
-    },
-    "top-selling": {
-      "title": "Top Selling Products",
-      "sales": "Sales",
-      "currency": "EGP"
-    },
-    "low-stock": {
-      "title": "Low Stock Products",
-      "products": "products",
-      "currency": "EGP"
-    }
   }
 }
