@@ -14,7 +14,7 @@ export const useEditOccasionName = (id: string) => {
 
   // Mutation
   const queryClient = useQueryClient();
-  
+
   const {
     mutate: editoccasion,
     error,
@@ -38,7 +38,9 @@ export const useEditOccasionName = (id: string) => {
       router.push('/dashboard/occasions');
     },
     onError: (error: Error) => {
-      toast.error( error.message || t('dashboard-occasion.occasion-edit-failed'));
+      toast.error(
+        error.message || t('dashboard-occasion.occasion-edit-failed'),
+      );
     },
   });
 
