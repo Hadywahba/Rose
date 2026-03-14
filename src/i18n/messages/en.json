@@ -357,6 +357,16 @@
       "title": "All Categories",
       "products": "Products",
       "empty": "No categories found"
+    },
+    "top-selling": {
+      "title": "Top Selling Products",
+      "sales": "Sales",
+      "currency": "EGP"
+    },
+    "low-stock": {
+      "title": "Low Stock Products",
+      "products": "products",
+      "currency": "EGP"
     }
   },
   "footer": {
@@ -454,18 +464,6 @@
   "preview-website": "Preview Website",
   "my-account": "My account",
   "log-out": "Log-Out",
-  "dashboard": {
-    "top-selling": {
-      "title": "Top Selling Products",
-      "sales": "Sales",
-      "currency": "EGP"
-    },
-    "low-stock": {
-      "title": "Low Stock Products",
-      "products": "products",
-      "currency": "EGP"
-    }
-  },
   "category-deleted-successfully": "Category deleted successfully",
   "add-a-new-category": "Add a new category",
   "all-categories": "All Categories",
