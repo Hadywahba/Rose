@@ -50,10 +50,10 @@ export default function DashboardEmptyState({
       {/* Text */}
       <div className="space-y-1">
         <h3 className="text-lg font-semibold text-zinc-800 dark:text-zinc-100">
-          {title}
+          {t(title)}
         </h3>
-        <p className="text-sm text-zinc-500 dark:text-zinc-400 max-w-xs">
-          {description}
+        <p className="text-sm text-zinc-500 dark:text-zinc-400 ">
+          {t(description)}
         </p>
       </div>
 

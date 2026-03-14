@@ -1,15 +1,23 @@
-"use client";
+'use client';
 
-import SideBar from "./side-bar";
-import Breadcrumbs from "./bread-crumb";
-import { useCallback, useEffect, useState } from "react";
-import { cn } from "@/lib/utility/tailwind-merge";
+import SideBar from './side-bar';
+import Breadcrumbs from './bread-crumb';
+import { useCallback, useEffect, useState } from 'react';
+import { cn } from '@/lib/utility/tailwind-merge';
 
 type LayoutWrapperProps = {
   children: React.ReactNode;
+  breadcrumbOverrides?: Record<string, string>;
+  disableMainPadding?: boolean;
+  disableFullHeight?: boolean;
 };
 
-export default function LayoutWrapper({ children }: LayoutWrapperProps) {
+export default function LayoutWrapper({
+  children,
+  breadcrumbOverrides,
+  disableMainPadding,
+  disableFullHeight,
+}: LayoutWrapperProps) {
   // State
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
@@ -26,7 +34,7 @@ export default function LayoutWrapper({ children }: LayoutWrapperProps) {
     if (!isMobileSidebarOpen) return;
 
     const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = 'hidden';
 
     return () => {
       document.body.style.overflow = prev;
@@ -38,15 +46,20 @@ export default function LayoutWrapper({ children }: LayoutWrapperProps) {
     if (!isMobileSidebarOpen) return;
 
     function onKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") closeMobileSidebar();
+      if (e.key === 'Escape') closeMobileSidebar();
     }
 
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
   }, [isMobileSidebarOpen, closeMobileSidebar]);
 
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-600">
+    <div
+      className={cn(
+        !disableFullHeight && 'min-h-screen',
+        'bg-zinc-50 dark:bg-zinc-600',
+      )}
+    >
       {/*Sidebar (Desktop Fixed)  */}
       <SideBar
         variant="desktop"
@@ -66,23 +79,24 @@ export default function LayoutWrapper({ children }: LayoutWrapperProps) {
       {/* Breadcrumb*/}
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-40",
-          "border-b border-black/10 bg-white/85 backdrop-blur",
-          "dark:border-white/10 dark:bg-zinc-800/80",
-          "p-3",
-          "md:ps-[calc(theme(spacing.4)+theme(spacing.72))]",
+          'fixed inset-x-0 top-0 z-40',
+          'border-b border-black/10 bg-white/85 backdrop-blur',
+          'dark:border-white/10 dark:bg-zinc-800/80',
+          'p-3',
+          'md:ps-[calc(theme(spacing.4)+theme(spacing.72))]',
         )}
       >
         <Breadcrumbs
           className="w-full"
           showToggle
           onToggleSidebar={openMobileSidebar}
+          overrides={breadcrumbOverrides}
         />
       </header>
 
       {/*Main Content*/}
-      <main className="pt-16 md:ps-72">
-        <div className="px-4 py-4">{children}</div>
+      <main className={cn(!disableMainPadding && 'pt-16 md:ps-72')}>
+        <div className="px-4">{children}</div>
       </main>
     </div>
   );
