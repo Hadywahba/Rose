@@ -8,23 +8,10 @@ import {
 } from 'lucide-react';
 import { useTranslations, useFormatter } from 'next-intl';
 import { cn } from '@/lib/utility/tailwind-merge';
-import { type LucideIcon } from 'lucide-react';
-import { useStatistics } from '../_hooks/use-statistics';
-import { type OverallStatistics } from '@/lib/types/statistics/statistics.d';
-
-type StatConfig = {
-  icon: LucideIcon;
-  labelKey: string;
-  valueKey: keyof OverallStatistics;
-  isRevenue?: boolean;
-  lightBg: string;
-  darkBg: string;
-  lightIcon: string;
-  darkIcon: string;
-  lightValue: string;
-  darkValue: string;
-  hoverBg: string;
-};
+import {
+  type OverallStatistics,
+  type StatConfig,
+} from '@/lib/types/statistics/statistics.d';
 
 const STATS: StatConfig[] = [
   {
@@ -78,41 +65,20 @@ const STATS: StatConfig[] = [
   },
 ];
 
-export default function StatsOverview() {
+type StatsOverviewProps = {
+  statistics: OverallStatistics | null;
+};
+
+export default function StatsOverview({ statistics }: StatsOverviewProps) {
   // Translation
   const t = useTranslations('dashboard.stats-overview');
   const format = useFormatter();
-
-  // Queries
-  const { data, isLoading } = useStatistics();
-
-  // Skeleton
-  if (isLoading) {
-    return (
-      <div className="grid grid-cols-2 gap-3">
-        {STATS.map((stat) => (
-          <div
-            key={stat.labelKey}
-            className={cn(
-              'flex animate-pulse flex-col gap-2 rounded-2xl p-4',
-              stat.lightBg,
-              stat.darkBg,
-            )}
-          >
-            <div className="size-7 rounded-lg bg-zinc-300 dark:bg-zinc-600" />
-            <div className="mt-1 h-7 w-20 rounded-md bg-zinc-300 dark:bg-zinc-600" />
-            <div className="h-3 w-24 rounded bg-zinc-200 dark:bg-zinc-700" />
-          </div>
-        ))}
-      </div>
-    );
-  }
 
   return (
     <div className="grid grid-cols-2 gap-3 rounded-2xl bg-background p-6">
       {STATS.map((stat) => {
         const Icon = stat.icon;
-        const rawValue = data?.[stat.valueKey] ?? 0;
+        const rawValue = statistics?.[stat.valueKey] ?? 0;
         const formattedValue = format.number(rawValue, 'numbers');
 
         return (

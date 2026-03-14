@@ -35,10 +35,10 @@ export default function Footer() {
           </div>
           <div className="space-y-1">
             <h3 className="text-xl font-normal text-softpink-300">
-              {t("title")}
+              {t('title')}
             </h3>
             <p className="text-center text-sm text-zinc-100">
-              {t("copyright")}
+              {t('copyright')}
             </p>
           </div>
         </div>
@@ -46,7 +46,7 @@ export default function Footer() {
         {/* Middle Section: Links */}
         <div className="flex flex-col items-center ps-5 md:items-start">
           <h4 className="mb-2 text-lg font-semibold text-softpink-300">
-            {t("discover")}
+            {t('discover')}
           </h4>
           <ul className="grid grid-cols-1 text-center md:text-left">
             {footerLinks.map((link) => (
@@ -66,22 +66,21 @@ export default function Footer() {
         <div className="ms-auto flex flex-col items-center md:items-start">
           <div className="mb-6 text-center md:text-left">
             <h4 className="text-lg font-semibold text-softpink-300">
-              {t("get")} <span className="text-maroon-50">{t("discount")}</span> {t("getDiscount")}
+              {t('get')} <span className="text-maroon-50">{t('discount')}</span>{' '}
+              {t('get-discount')}
             </h4>
-            <p className="mt-1 text-sm text-zinc-500">
-              {t("subscribingWay")}
-            </p>
+            <p className="mt-1 text-sm text-zinc-500">{t('subscribing-way')}</p>
           </div>
 
           <div className="relative w-full max-w-md">
-            <div className="flex items-center rounded-full border border-transparent bg-zinc-600  transition-all">
+            <div className="flex items-center rounded-full border border-transparent bg-zinc-600 transition-all">
               <Input
                 type="email"
-                placeholder={t("emailPlaceholder")}
+                placeholder={t('email-placeholder')}
                 className="h-10 border-none bg-transparent text-white placeholder:text-gray-500 focus-visible:ring-0 focus-visible:ring-offset-0"
               />
               <Button className="group flex h-10 items-center gap-2 rounded-full bg-maroon-50 px-6 py-4 font-medium text-maroon-700 transition-all hover:bg-white">
-                {t("subscribe")}
+                {t('subscribe')}
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
             </div>

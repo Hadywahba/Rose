@@ -330,10 +330,10 @@
     "faqs": "الاسئلة الشائعة",
     "copyright": "جميع الحقوق محفوظة | 2025",
     "get": "احصل على",
-    "getDiscount": " كوبون خصم",
+    "get-discount": " كوبون خصم",
     "discount": "20%",
-    "subscribingWay": "اشترك في مجلتنا",
-    "emailPlaceholder": "اكتب بريدك الإلكتروني",
+    "subscribing-way": "اشترك في مجلتنا",
+    "email-placeholder": "اكتب بريدك الإلكتروني",
     "subscribe": "اشترك"
   }
 }
