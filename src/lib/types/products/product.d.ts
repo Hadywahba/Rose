@@ -1,24 +1,35 @@
 export interface Product {
   _id: string;
+  id?: string;
   title: string;
   slug: string;
   description: string;
   imgCover: string;
   images: string[];
   price: number;
+  discount?: number;
   priceAfterDiscount: number;
   quantity: number;
   category: string;
   occasion: string;
+  isSuperAdmin: boolean;
+  rateAvg: number;
+  rateCount: number;
+  reviews?: unknown[];
   createdAt: string;
   updatedAt: string;
   __v: number;
-  isSuperAdmin: boolean;
-  sold: number;
-  rateAvg: number;
-  rateCount: number;
-  favoriteId: string | null;
-  isInWishlist: boolean;
+  sold?: number;
+  favoriteId?: string | null;
+  isInWishlist?: boolean;
+}
+
+export interface AddProductResponse {
+  product: Product;
+}
+
+export interface UpdateProductResponse {
+  product: Product;
 }
 
 export interface Metadata {

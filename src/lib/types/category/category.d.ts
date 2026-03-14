@@ -1,33 +1,34 @@
-export type Category = {
+export interface Category {
   _id: string;
   name: string;
   slug: string;
   image: string;
-  isSuperAdmin: boolean;
-  productsCount: number;
-    createdAt: string;
+  createdAt: string;
   updatedAt: string;
-} & DataBaseProbs;
-
-export type Categories = {
-  categories: Category[];
-};
-
-
-export interface CurrentCategoryResponse {
-  category: CurrentCategory;
+  isSuperAdmin: boolean;
   productsCount: number;
 }
 
-export interface CategoryMetadata {
+export interface Metadata {
   currentPage: number;
   limit: number;
   totalPages: number;
   totalItems: number;
 }
 
+export type CurrentCategory = Category;
+
+export type Categories = {
+  categories: Category[];
+};
+
+export interface CurrentCategoryResponse {
+  category: CurrentCategory;
+  productsCount: number;
+}
+
 export interface CategoriesResponse {
-  message: string;
-  metadata: CategoryMetadata;
+  message?: string;
+  metadata: Metadata;
   categories: Category[];
 }

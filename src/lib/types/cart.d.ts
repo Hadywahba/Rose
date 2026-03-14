@@ -1,4 +1,3 @@
-
 import type { Product } from '@/lib/types/products/product';
 
 export type AddToCartPayload = {
@@ -11,7 +10,7 @@ export type CartItem = {
   price: number;
   quantity: number;
   _id: string;
-}
+};
 export type AddToCartProps = {
   productId: string;
   quantity: number;
@@ -43,15 +42,22 @@ export type AddToCartResponse = {
   appliedCoupons: string[];
 
   totalPrice: number;
-} & DataBaseProbs;
+};
 
 export type CartResponse = {
-  message: "success";
+  message: 'success';
   cart: Cart;
   numOfCartItems: number;
 };
 
-
+export type GuestCartProductSnapshot = {
+  _id: string;
+  title: string;
+  imgCover?: string;
+  rateAvg?: number;
+  rateCount?: number;
+  quantity: number;
+};
 
 export type GuestCartItem = {
   _id: string; // unique row id
@@ -59,8 +65,6 @@ export type GuestCartItem = {
   price: number; // unit price
   product: GuestCartProductSnapshot;
 };
-
-
 
 export type CartProductSnapshot = {
   _id: string;

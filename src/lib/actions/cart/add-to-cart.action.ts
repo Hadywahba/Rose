@@ -1,29 +1,45 @@
 'use server';
 
 import { JSON_HEADER } from '@/lib/constants/api.constant';
-import { AddToCartProps } from '@/lib/types/cart';
+import {
+  AddToCartPayload,
+  AddToCartProps,
+  AddToCartResponse,
+} from '@/lib/types/cart';
 import { getToken } from '@/lib/utility/manage-token';
 
-export async function addToCartAction({ productId, quantity }: AddToCartProps) {
-  // get-token
+export async function addToCartAction(
+  data: AddToCartPayload | AddToCartProps,
+  clientToken?: string,
+): Promise<ApiResponse<AddToCartResponse> | { guest: true }> {
+  // Token
+  const jwt = await getToken();
+  const token = (jwt?.accessToken as string | undefined) ?? clientToken;
 
-  const token = await getToken();
+  const product = 'product' in data ? data.product : data.productId;
+  const quantity = data.quantity;
 
-  // guard-class
-
+  // Guard
+  // New flow can fallback to guest mode when no token exists.
+  // Legacy flow keeps throwing for non-authenticated users.
   if (!token) {
+    if ('product' in data) {
+      return { guest: true };
+    }
     throw new Error('you must login first');
   }
 
-  const resp = await fetch(`${process.env.API_URL}/cart`, {
+  // Request
+  const response = await fetch(`${process.env.API_URL}/cart`, {
     method: 'POST',
     headers: {
       ...JSON_HEADER,
-      Authorization: `Bearer ${token.accessToken}`,
+      Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ product: productId, quantity }),
+    body: JSON.stringify({ product, quantity }),
   });
 
-  const payload = await resp.json();
+  // Response
+  const payload: ApiResponse<AddToCartResponse> = await response.json();
   return payload;
 }

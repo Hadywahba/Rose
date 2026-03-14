@@ -3,10 +3,13 @@ import type { AddToCartPayload, AddToCartResponse } from '@/lib/types/cart';
 import { Product } from '@/lib/types/products/product';
 
 export async function getProductById(productId: string) {
+  // Request — no-store ensures fresh data on every render (no Next.js cache)
   const response = await fetch(
     `${process.env.API_URL!}/products/${productId}`,
+    { cache: 'no-store' },
   );
 
+  // Response
   const payload = await response.json();
 
   if (payload.error) {
@@ -20,6 +23,7 @@ export const addToCart = async (
   data: AddToCartPayload,
   token?: string | null,
 ) => {
+  // Request
   const response = await fetch(`${process.env.NEXT_PUBLIC_API!}/cart`, {
     method: 'POST',
     headers: {
@@ -29,6 +33,7 @@ export const addToCart = async (
     body: JSON.stringify(data),
   });
 
+  // Response
   const payload: ApiResponse<AddToCartResponse> = await response.json();
   return payload;
 };

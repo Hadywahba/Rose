@@ -441,6 +441,81 @@
       "select-required": "يرجى اختيار جميع العناصر المطلوبة"
     }
   },
+  "products": {
+    "add": {
+      "title": "إضافة منتج جديد",
+      "submit": "إضافة منتج",
+      "submit-loading": "جاري الإضافة...",
+      "fields": {
+        "title": "العنوان",
+        "title-placeholder": "أدخل عنوان المنتج",
+        "description": "الوصف",
+        "description-placeholder": "أدخل وصف المنتج",
+        "price": "السعر",
+        "price-placeholder": "مثال: 5000",
+        "discount": "الخصم",
+        "discount-placeholder": "مثال: 5",
+        "price-after-discount": "السعر بعد الخصم",
+        "price-after-discount-placeholder": "مثال: 5",
+        "quantity": "الكمية",
+        "quantity-placeholder": "مثال: 200",
+        "cover": "صورة غلاف المنتج",
+        "gallery": "معرض المنتج",
+        "upload": "رفع ملف",
+        "category": "الفئة",
+        "category-placeholder": "اختر خياراً",
+        "occasion": "المناسبة",
+        "occasion-placeholder": "اختر خياراً"
+      },
+      "validation": {
+        "title-required": "عنوان المنتج مطلوب",
+        "description-required": "وصف المنتج مطلوب",
+        "description-min": "يجب أن يكون الوصف 10 أحرف على الأقل",
+        "price-invalid": "يرجى إدخال سعر صحيح",
+        "discount-invalid": "يرجى إدخال خصم صحيح (0-100)",
+        "quantity-invalid": "كمية المنتج مطلوبة",
+        "cover-required": "صورة الغلاف مطلوبة",
+        "cover-single": "يجب أن تكون صورة الغلاف صورة واحدة فقط",
+        "gallery-required": "صور معرض المنتج مطلوبة",
+        "images-only": "يُسمح بملفات الصور فقط",
+        "category-required": "يرجى اختيار فئة للمنتج",
+        "occasion-required": "يرجى اختيار مناسبة للمنتج"
+      }
+    },
+    "update": {
+      "title": "تحديث المنتج: {title}",
+      "submit": "تحديث المنتج",
+      "submit-loading": "جاري التحديث...",
+      "fields": {
+        "title": "العنوان",
+        "title-placeholder": "أدخل عنوان المنتج",
+        "description": "الوصف",
+        "description-placeholder": "أدخل وصف المنتج",
+        "price": "السعر",
+        "price-placeholder": "مثال: 5000",
+        "discount": "الخصم",
+        "discount-placeholder": "مثال: 5",
+        "price-after-discount": "السعر بعد الخصم",
+        "price-after-discount-placeholder": "مثال: 5",
+        "quantity": "الكمية",
+        "quantity-placeholder": "مثال: 200",
+        "category": "الفئة",
+        "category-placeholder": "اختر خياراً",
+        "occasion": "المناسبة",
+        "occasion-placeholder": "اختر خياراً"
+      },
+      "validation": {
+        "title-required": "عنوان المنتج مطلوب",
+        "description-required": "وصف المنتج مطلوب",
+        "description-min": "يجب أن يكون الوصف 10 أحرف على الأقل",
+        "price-invalid": "يرجى إدخال سعر صحيح",
+        "discount-invalid": "يرجى إدخال خصم صحيح (0-100)",
+        "quantity-invalid": "كمية المنتج مطلوبة",
+        "category-required": "يرجى اختيار فئة للمنتج",
+        "occasion-required": "يرجى اختيار مناسبة للمنتج"
+      }
+    }
+  },
 
   "my-addresses": {
     "form-title": "أدخل تفاصيل العنوان",
