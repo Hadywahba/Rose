@@ -16,6 +16,7 @@ declare module 'next-intl' {
 // Params Types
 declare type Params = {
   locale: Locale;
+  categoryId: string;
 };
 
 // SearchParams Types

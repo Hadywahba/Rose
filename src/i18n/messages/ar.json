@@ -446,5 +446,28 @@
       "title": "المنتجات منخفضة المخزون",
       "products": "منتج"
     }
-  }
+  },
+  "category-deleted-successfully": "تم حذف الفئة بنجاح",
+  "add-a-new-category": "أضافة فئة جديدة",
+  "all-categories": "جميع الفئات",
+  "show-all": "إظهار الكل",
+  "category-updated-successfully": "تم تحديث الفئة بنجاح",
+  "update-category": "تحديث الفئة",
+  "name-is-required": "الاسم مطلوب",
+  "image-is-required": "الصورة مطلوبة",
+  "image-must-be-valid-type": "يجب أن تكون الصورة من النوع المسموح به",
+  "image": "صورة",
+  "category-image-0": "صورة الفئة",
+  "occassion-image": "صورة المناسبة",
+  "loading": "....تحميل",
+  "view-category-image": "عرض صورة الفئة",
+  "view-occassion-image": "شاهد صورة المناسبة",
+  "enter-category-name-0": "أدخل اسم الفئة",
+  "enter-occassion-name": "أدخل اسم المناسبة",
+  "name": "الاسم",
+  "no-changes": "!لم تحدث أي تغييرات",
+  "category-created-successfully": "تم إنشاء الفئة بنجاح",
+  "add-a-new-category-0": "إضافة فئة جديدة",
+  "upload-file": "تحميل الملف",
+  "update-category-0": " :تحديث الفئة"
 }

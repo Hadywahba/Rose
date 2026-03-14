@@ -450,5 +450,28 @@
       "products": "products",
       "currency": "EGP"
     }
-  }
+  },
+  "category-deleted-successfully": "Category deleted successfully",
+  "add-a-new-category": "Add a new category",
+  "all-categories": "All Categories",
+  "show-all": "Show All",
+  "category-updated-successfully": "Category Updated successfully",
+  "update-category": "Update Category",
+  "name-is-required": "Name is Required",
+  "image-is-required": "Image is Required",
+  "image-must-be-valid-type": "Image must be valid type",
+  "image": "Image",
+  "category-image-0": "Category-image",
+  "occassion-image": "Occassion-image",
+  "loading": "Loading....",
+  "view-category-image": "View Category Image",
+  "view-occassion-image": "View Occassion image",
+  "enter-category-name-0": "Enter Category Name",
+  "enter-occassion-name": "Enter Occassion Name",
+  "name": "Name",
+  "no-changes": "No Changes Happen!",
+  "category-created-successfully": "Category Created Successfully",
+  "add-a-new-category-0": "Add a New Category",
+  "upload-file": "Upload file",
+  "update-category-0": "Update Category:"
 }
