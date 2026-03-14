@@ -18,16 +18,21 @@ export default async function UpdateProductPage({
   const result = await getProductById(id);
 
   // Guard
-  if ('error' in result) notFound();
+  if ('error' in result || !('product' in result) || !result.product)
+    notFound();
 
   // Data
   const product = result.product;
+  const productTitle =
+    typeof product.title === 'string' && product.title.trim().length > 0
+      ? product.title
+      : id;
 
   // View
   return (
-    <div className="bg-zinc-50 px-4 py-10 dark:bg-zinc-800">
+    <div className="bg-zinc-50 dark:bg-zinc-800">
       <h2 className="mb-6 truncate text-2xl font-semibold text-zinc-800 dark:text-zinc-50">
-        {t('products.update.title', { title: product.title })}
+        {t('products.update.title', { title: productTitle })}
       </h2>
 
       <div className="w-full max-w-4xl rounded-2xl bg-white p-8 shadow-sm dark:bg-zinc-800">

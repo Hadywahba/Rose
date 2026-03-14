@@ -45,6 +45,11 @@
     "heading": "نقدّم <span>أجود</span> علب الهدايا من أجل <span>مناسباتك</span> المميزة",
     "description": "اجعل كل لحظة لا تُنسى مع صناديق الهدايا الفاخرة لدينا. كل صندوق مُختار بعناية ومُغلّف بشكلٍ أنيق، ويحتوي على منتجات مُنتقاة بعناية لتُثير الإعجاب. سواءً كانت هدية عيد ميلاد، أو حفل زفاف، أو حتى مجرد كلمة شكر، فإن صناديق هدايانا مُصممة لتترك انطباعًا دائمًا - لأن الهدايا المُدروسة تبدأ من هنا.",
     "discover": "اكتشف",
+    "images": {
+      "violet": "فتح هدية بنفسجية",
+      "orange": "هدية برتقالية",
+      "blue": "هدية زرقاء مع بالونات"
+    },
     "featuresLabel": "مميزات الخدمة",
     "services": [
       "أسعار تنافسية وتجربة تسوق سهلة",
@@ -251,6 +256,7 @@
     "title": "تقييمات المنتج",
     "general-rating": "التقييم العام:",
     "ratings-count": "تقييم",
+    "noReviews": "لا توجد تقييمات بعد. كن أول من يقيّم!",
     "no-reviews": "لا توجد تقييمات بعد. كن أول من يقيّم!",
     "error-loading": "فشل تحميل التقييمات.",
     "related-products": "منتجات ذات صلة"
@@ -270,7 +276,8 @@
   "not-found": {
     "title": "لا توجد صفحة",
     "description": "عذرًا! الصفحة التي تبحث عنها غير موجودة.",
-    "button": "العودة إلى الصفحة الرئيسية"
+    "button": "العودة إلى الصفحة الرئيسية",
+    "back-dashboard": "العودة إلى لوحة التحكم"
   },
   "price-number-currancy-base-0": "{price,number,currency-no-decimals}",
   "product-hot": "تريند",
@@ -369,6 +376,8 @@
       "occasion-added": "إضافة مناسبة",
       "upload-file": "رفع ملف",
       "occasion-add-images": "من فضلك ارفع صورة المناسبة",
+      "occasion-added-successfully": "تمت إضافة المناسبة بنجاح",
+      "occasion-add-failed": "فشل في إضافة المناسبة",
       "occasion-edit-successfully": "تم تعديل المناسبة بنجاح",
       "occasion-edit-failed": "فشل في تعديل المناسبة",
       "occasion-delete-successfully": "تم حذف المناسبة بنجاح",
@@ -387,7 +396,8 @@
     },
     "low-stock": {
       "title": "المنتجات منخفضة المخزون",
-      "products": "منتج"
+      "products": "منتج",
+      "currency": "ج.م"
     }
   },
   "footer": {
@@ -461,11 +471,17 @@
         "quantity-placeholder": "مثال: 200",
         "cover": "صورة غلاف المنتج",
         "gallery": "معرض المنتج",
+        "files-selected": "تم اختيار {count} ملف",
         "upload": "رفع ملف",
+        "loading-options": "جارٍ تحميل الخيارات...",
         "category": "الفئة",
         "category-placeholder": "اختر خياراً",
         "occasion": "المناسبة",
         "occasion-placeholder": "اختر خياراً"
+      },
+      "toast": {
+        "success": "تمت إضافة المنتج بنجاح",
+        "error": "فشل إضافة المنتج"
       },
       "validation": {
         "title-required": "عنوان المنتج مطلوب",
@@ -499,10 +515,15 @@
         "price-after-discount-placeholder": "مثال: 5",
         "quantity": "الكمية",
         "quantity-placeholder": "مثال: 200",
+        "loading-options": "جارٍ تحميل الخيارات...",
         "category": "الفئة",
         "category-placeholder": "اختر خياراً",
         "occasion": "المناسبة",
         "occasion-placeholder": "اختر خياراً"
+      },
+      "toast": {
+        "success": "تم تحديث المنتج بنجاح",
+        "error": "فشل تحديث المنتج"
       },
       "validation": {
         "title-required": "عنوان المنتج مطلوب",
@@ -557,7 +578,7 @@
   "overview": "ملخص",
   "categories": "الاقسام",
   "occasion": "المناسبات",
-  "products": "المنتجات",
+  "dashboard-products": "المنتجات",
   "preview-website": "الذهاب للموقع",
   "my-account": "حسابي",
   "log-out": "تسجيل خروج",
@@ -608,6 +629,7 @@
   "product-added-successfully-0": "تمت إضافة المنتج بنجاح",
   "price-quantity": "{productPrice}",
   "quantity-number-number-base": "{quantity,number,number-base}",
+  "successfully-login": "تم تسجيل الدخول بنجاح",
   "common-table": {
     "delete": "حذف",
     "edit": "تعديل",

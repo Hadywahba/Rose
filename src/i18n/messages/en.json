@@ -257,6 +257,7 @@
     "general-rating": "General rating:",
     "ratings-count": "ratings",
     "noReviews": "No reviews yet. Be the first to review!",
+    "no-reviews": "No reviews yet. Be the first to review!",
     "error-loading": "Failed to load reviews.",
     "related-products": "Related Products"
   },
@@ -275,7 +276,8 @@
   "not-found": {
     "title": "Page not found",
     "description": "Oops! The page you are looking for does not exist.",
-    "button": "Go back home"
+    "button": "Go back home",
+    "back-dashboard": "Back to dashboard"
   },
   "price-number-currancy-base-0": "{price,number,currency-no-decimals}",
   "product-hot": "hot",
@@ -469,11 +471,17 @@
         "quantity-placeholder": "Example: 200",
         "cover": "Product cover",
         "gallery": "Product gallery",
+        "files-selected": "{count} files selected",
         "upload": "Upload file",
+        "loading-options": "Loading options...",
         "category": "Category",
         "category-placeholder": "Select an option",
         "occasion": "Occasion",
         "occasion-placeholder": "Select an option"
+      },
+      "toast": {
+        "success": "Product added successfully",
+        "error": "Failed to add product"
       },
       "validation": {
         "title-required": "Product title is required",
@@ -507,10 +515,15 @@
         "price-after-discount-placeholder": "Example: 5",
         "quantity": "Quantity",
         "quantity-placeholder": "Example: 200",
+        "loading-options": "Loading options...",
         "category": "Category",
         "category-placeholder": "Select an option",
         "occasion": "Occasion",
         "occasion-placeholder": "Select an option"
+      },
+      "toast": {
+        "success": "Product updated successfully",
+        "error": "Failed to update product"
       },
       "validation": {
         "title-required": "Product title is required",
@@ -564,7 +577,7 @@
   "overview": "OverView",
   "categories": "Categories",
   "occasion": "Occasions",
-  "products": "Products",
+  "dashboard-products": "Products",
   "preview-website": "Preview Website",
   "my-account": "My account",
   "log-out": "Log-Out",
