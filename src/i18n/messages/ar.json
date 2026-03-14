@@ -416,5 +416,6 @@
   "no-changes": "!لم تحدث أي تغييرات",
   "category-created-successfully": "تم إنشاء الفئة بنجاح",
   "add-a-new-category-0": "إضافة فئة جديدة",
-  "upload-file": "تحميل الملف"
+  "upload-file": "تحميل الملف",
+  "update-category-0": " :تحديث الفئة"
 }

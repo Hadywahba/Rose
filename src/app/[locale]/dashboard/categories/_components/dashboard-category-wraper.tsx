@@ -8,9 +8,9 @@ import { useDeleteCategory } from '../_hooks/use-delete-category';
 import { SearchParams } from '@/lib/types/global';
 import DashboardHeaderPage from '@/components/dashboard/dashboard-header-page';
 import DashboardSearchInput from '@/components/dashboard/dashboard-search-input';
-import Spinner from '@/components/loader/Spinner';
 import { DashboardTable } from '@/components/dashboard/dashboard-table';
 import DashboardEmptyState from '@/components/dashboard/dashboard-empty-state';
+import DashboardCategoryTableSkeleton from './dashboard-category-skeleton';
 
 export default function DashboardCategoryWraper() {
   // Translations
@@ -50,9 +50,9 @@ export default function DashboardCategoryWraper() {
         path="categories/create"
       />
       {/* Search */}
-      <DashboardSearchInput />
+      <DashboardSearchInput debounceMs={500} queryKey="search" />
       {/* loading */}
-      {isBusy && <Spinner />}
+      {isBusy && <DashboardCategoryTableSkeleton />}
       {/* categories-list-table */}
       {!isBusy && categoriesList.length > 0 && (
         <DashboardTable

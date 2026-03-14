@@ -421,5 +421,6 @@
   "no-changes": "No Changes Happen!",
   "category-created-successfully": "Category Created Successfully",
   "add-a-new-category-0": "Add a New Category",
-  "upload-file": "Upload file"
+  "upload-file": "Upload file",
+  "update-category-0": "Update Category:"
 }
