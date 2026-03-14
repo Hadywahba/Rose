@@ -46,7 +46,8 @@ export default function TopSellingColumn({
               </span>
             </div>
             <p className="text-sm font-bold">
-              {product.sold} <span className="font-medium">{t('sales')}</span>
+              {product.sold ?? 0}{' '}
+              <span className="font-medium">{t('sales')}</span>
             </p>
           </div>
         ))}

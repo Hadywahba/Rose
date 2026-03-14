@@ -1,7 +1,7 @@
 'use server';
 
 import { getToken } from '@/lib/utility/manage-token';
-import { UpdateProductResponse } from '@/lib/types/product/product';
+import { UpdateProductResponse } from '@/lib/types/products/product';
 
 export async function updateProductAction(
   id: string,

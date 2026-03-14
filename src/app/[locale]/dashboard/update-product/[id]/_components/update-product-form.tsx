@@ -25,7 +25,7 @@ import {
   getUpdateProductSchema,
   UpdateProductFormFields,
 } from '@/lib/schema/products/update-product.schema';
-import { Product } from '@/lib/types/product/product';
+import { Product } from '@/lib/types/products/product';
 import { useTranslations } from 'next-intl';
 import useUpdateProduct from '../_hooks/use-update-product';
 import useCategories from '../../../add-product/_hooks/use-categories';

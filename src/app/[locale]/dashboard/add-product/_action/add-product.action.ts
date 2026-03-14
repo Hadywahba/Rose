@@ -1,7 +1,7 @@
 'use server';
 
 import { getToken } from '@/lib/utility/manage-token';
-import { AddProductResponse } from '@/lib/types/product/product';
+import { AddProductResponse } from '@/lib/types/products/product';
 
 export async function addProductAction(formData: FormData) {
   // Token
