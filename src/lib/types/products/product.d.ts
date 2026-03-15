@@ -46,10 +46,10 @@ export interface ProductsResponse {
 
 export type TopProducts = Pick<
   Product,
-  "_id" | "title" | "sold" | "quantity" | "price"
+  "_id" | "title" | "sold" | "quantity" | "price" | "rateAvg" | "rateCount"
 >;
 
-export interface TopProductsResponse {
+export interface DashboardProductsResponse {
   metadata: Metadata;
   products: TopProducts[];
 }

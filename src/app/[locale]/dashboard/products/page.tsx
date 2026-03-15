@@ -1,3 +1,9 @@
-export default function ProductsPage() {
-  return <div>product page</div>;
+import DashboardAllProductsWrapper from "./_components/dashboard-all-products-wrapper";
+
+export default function Page({
+  searchParams,
+}: {
+  searchParams: Record<string, string>;
+}) {
+  return <DashboardAllProductsWrapper searchParams={searchParams} />;
 }
