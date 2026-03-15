@@ -7,6 +7,7 @@ declare module 'next-auth' {
    */
   interface User {
     accessToken: string;
+    rememberMe?: boolean;
     user: {
       _id: string;
       firstName: string;
@@ -17,7 +18,7 @@ declare module 'next-auth' {
       photo: string;
       role: string;
       wishlist: string[];
-      addresses:string[];
+      addresses: string[];
       createdAt: string;
     };
   }

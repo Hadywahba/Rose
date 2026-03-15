@@ -29,7 +29,7 @@ export default function CartHeader() {
     ? (data?.cart?.cartItems.length ?? 0) === 0
     : totalItems === 0;
   const count = session ? (data?.numOfCartItems ?? 0) : totalItems;
-  const n = format.number(count, 'number-base');
+  const n = format.number(count);
 
   // functions
   function handleClearCart() {

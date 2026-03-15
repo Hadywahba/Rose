@@ -1,7 +1,7 @@
 'use client';
 import { useMemo } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { BellRing, Loader } from 'lucide-react';
+import { Bell, Loader } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,6 +15,7 @@ import { useNotifications } from '@/lib/hooks/notifications/use-notifications';
 import EmptyNotifications from './empty-notification';
 import GeneralNotificationsButtons from './general-notifications-button';
 import { useSession } from 'next-auth/react';
+import { Badge } from '@/components/ui/badge';
 
 export default function NotificationsList() {
   // Translation
@@ -48,24 +49,12 @@ export default function NotificationsList() {
           type="button"
           aria-label={`Open notifications (${notifications.length})`}
         >
-          <BellRing aria-hidden="true" focusable="false" />
-
-          {isAuthed && isSessionLoading && (
-            <span
-              aria-hidden="true"
-              className="absolute -right-1 -top-1 flex h-[1.125rem] min-w-[1.125rem] items-center justify-center rounded-full bg-red-600 text-[.625rem] font-bold leading-none text-white"
-            >
-              <Loader size={12} className="animate-spin" />
-            </span>
-          )}
+          <Bell className="h-6 w-6 dark:text-white" />
 
           {isAuthed && !isSessionLoading && (
-            <span
-              aria-hidden="true"
-              className="absolute -right-1 -top-1 flex h-[1.125rem] min-w-[1.125rem] items-center justify-center rounded-full bg-red-600 text-[.625rem] font-bold leading-none text-white"
-            >
+            <Badge className="absolute -right-2 -top-2 flex size-3.5 items-center justify-center bg-red-500 p-0 text-[.625rem] hover:bg-red-500 dark:bg-red-600 dark:text-white">
               {unreadNotificationsCount}
-            </span>
+            </Badge>
           )}
         </button>
       </DropdownMenuTrigger>

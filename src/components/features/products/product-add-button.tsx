@@ -1,13 +1,13 @@
-"use client";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { ShoppingCart } from "lucide-react";
-import { useSession } from "next-auth/react";
-import { toast } from "sonner";
-import { useTranslations } from "next-intl";
-import { Product } from "@/lib/types/end-point-api/products";
-import { useGuestCartContext } from "@/lib/hooks/cart/use-guest-cart-context";
-import { useAddToCart } from "@/lib/hooks/cart/use-add-to-cart";
+'use client';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { ShoppingCart } from 'lucide-react';
+import { useSession } from 'next-auth/react';
+import { toast } from 'sonner';
+import { useTranslations } from 'next-intl';
+import { Product } from '@/lib/types/end-point-api/products';
+import { useGuestCartContext } from '@/lib/hooks/cart/use-guest-cart-context';
+import { useAddToCart } from '@/lib/hooks/cart/use-add-to-cart';
 
 type ProductAddButtonProps = {
   productInfo: Product;
@@ -48,13 +48,13 @@ export default function ProductAddButton({
     if (session) onAddToCard({ productId: productInfo._id, quantity: 1 });
   }
 
-  
   return (
     <div>
       {productInfo?.quantity > 0 ? (
         // if the product is in stock, show the add to cart button
         <Button
-          className="w-fit rounded-full"
+          size="icon"
+          className="flex h-11 w-11 items-center justify-center rounded-full bg-maroon-600"
           onClick={handleAddToCart}
           disabled={isPending}
         >
@@ -62,7 +62,9 @@ export default function ProductAddButton({
         </Button>
       ) : (
         // if the product is out of stock, show the out of stock badge
-        <Badge variant={"secondary"} className="text-sm">Out of Stock</Badge>
+        <Badge variant={'secondary'} className="text-sm">
+         {t('product-out')}
+        </Badge>
       )}
     </div>
   );

@@ -1,7 +1,6 @@
 import { Link } from '@/i18n/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import Image, { StaticImageData } from 'next/image';
-import { Eye,} from 'lucide-react';
 import { RatingStars } from '@/components/ui/ring-stars';
 import ProductCardWhishlistButtons from './product-card-whishlist-button';
 import { Badge } from '@/components/ui/badge';
@@ -23,7 +22,7 @@ type ProductCardProps = {
   createdAt: string;
   showWishListBtn?: boolean;
   quantity: number;
-  productInfo:Product;
+  productInfo: Product;
 };
 const DAYS = 100 * 24 * 60 * 60 * 1000;
 export default function ProductCard({
@@ -35,9 +34,8 @@ export default function ProductCard({
   priceAfterSale,
   priceBeforeSale,
   showWishListBtn = false,
-  quantity,
   createdAt,
-productInfo,
+  productInfo,
   className,
 }: ProductCardProps) {
   // Translations
@@ -67,11 +65,6 @@ productInfo,
           alt={title}
           fill
         />
-
-        {/* Red Overlay */}
-        <div className="pointer-events-none absolute inset-0 z-10 flex translate-y-full items-center justify-center bg-red-600/60 transition-transform delay-300 duration-500 ease-out group-hover:translate-y-0">
-          <Eye className="h-8 w-8 text-white opacity-0 transition-all delay-300 duration-300 group-hover:scale-110 group-hover:opacity-100" />
-        </div>
       </Link>
 
       {/* Titles */}
@@ -108,9 +101,9 @@ productInfo,
             </span>
           </div>
         </div>
-       
-       {/* Add to cart button */}
-       <ProductAddButton productInfo={productInfo}/>
+
+        {/* Add to cart button */}
+        <ProductAddButton productInfo={productInfo} />
       </div>
 
       {/* Badge */}
@@ -122,17 +115,6 @@ productInfo,
               variant={'secondary'}
             >
               {t('product-hot')}
-            </Badge>
-          </div>
-        )}
-
-        {quantity < 0 && (
-          <div>
-            <Badge
-              className="z-10 h-6 w-fit bg-red-600 text-sm font-medium uppercase text-softpink-100 hover:bg-red-700 dark:bg-red-600 dark:hover:bg-red-700"
-              variant={'secondary'}
-            >
-              {t('product-out')}
             </Badge>
           </div>
         )}

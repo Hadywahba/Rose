@@ -1,4 +1,5 @@
 'use client';
+
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import {
@@ -9,16 +10,19 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import useLogin from '../_hooks/use-login';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
-import { LoginFormFields, loginSchema } from '@/lib/schema/login.schema';
 import SubmitButton from '@/components/features/auth/submit-button';
-
+import { Eye, EyeOff } from 'lucide-react';
+import { useLocale } from 'next-intl';
+import { cn } from '@/lib/utility/tailwind-merge';
 import React, { useState } from 'react';
-import RememberMe from './remeber-me';
-
+import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import useLogin from '../_hooks/use-login';
+import RememberMe from './remeber-me';
+import { LoginFormFields, loginSchema } from '@/lib/schema/login.schema';
+
 export default function LoginForm() {
   // Translation
   const t = useTranslations('auth');
@@ -26,11 +30,12 @@ export default function LoginForm() {
   //mutation
   const { isPending, login, error } = useLogin();
 
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
-  const [rememberMe, setRememberMe] = useState(false);
+  // State
+  const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(true);
 
   // Hook
+  const locale = useLocale();
 
   // Form & Validation
   const form = useForm<LoginFormFields>({
@@ -41,20 +46,17 @@ export default function LoginForm() {
       password: '',
     },
   });
+
   // Function
   const onSubmit: SubmitHandler<LoginFormFields> = (values) => {
-  login({
-    values,
-    rememberMe,
-  });
-};
-
+    login(values);
+  };
 
   return (
     <section className="flex w-full flex-1 flex-col justify-center gap-6">
       {/* Title Part */}
 
-      <h1 className="border-b-2 border-zinc-200 pb-4 text-center font-edwardian  font-normal capitalize text-maroon-700 dark:border-zinc-600 dark:text-softpink-300 text-4xl lg:text-5xl">
+      <h1 className="border-b-2 border-zinc-200 pb-4 text-center font-edwardian text-lg font-normal capitalize text-maroon-700 dark:border-zinc-600 dark:text-softpink-300 sm:text-xl md:text-3xl lg:text-5xl">
         {t('login.title')}
       </h1>
 
@@ -97,12 +99,31 @@ export default function LoginForm() {
                     {t('login.password')}
                   </FormLabel>
                   <FormControl>
-                    <Input
-                      className="w-full text-black placeholder:text-zinc-400 dark:text-zinc-50"
-                      placeholder="***********"
-                      {...field}
-                      type="password"
-                    />
+                    <div className="relative">
+                      <Input
+                        className="w-full text-black placeholder:text-zinc-400 dark:text-zinc-50"
+                        placeholder="***********"
+                        {...field}
+                        type={cn(showPassword ? 'password' : 'text')}
+                      />
+                      <div>
+                        <Button
+                          variant={'carousel'}
+                          onClick={() => setShowPassword((prev) => !prev)}
+                          type="button"
+                          className={cn(
+                            'absolute top-1/2 size-5 -translate-y-1/2',
+                            locale === 'ar' ? 'left-0' : 'right-0',
+                          )}
+                        >
+                          {showPassword ? (
+                            <EyeOff className="size-5 text-zinc-400 dark:text-zinc-500" />
+                          ) : (
+                            <Eye className="size-5 text-zinc-400 dark:text-zinc-500" />
+                          )}
+                        </Button>
+                      </div>
+                    </div>
                   </FormControl>
 
                   {/* Feedback */}

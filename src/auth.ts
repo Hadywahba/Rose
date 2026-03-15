@@ -1,5 +1,5 @@
 import { LoginResponse } from '@/lib/types/auth';
-import { NextAuthOptions} from 'next-auth';
+import { NextAuthOptions } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import { JSON_HEADER } from '@/lib/constants/api.constant';
 
@@ -10,6 +10,7 @@ export const authOption: NextAuthOptions = {
       credentials: {
         email: {},
         password: {},
+        rememberMe: {},
       },
 
       authorize: async (credentials) => {
@@ -34,18 +35,24 @@ export const authOption: NextAuthOptions = {
           id: payload.user._id,
           user: payload.user,
           accessToken: payload.token,
+          rememberMe: credentials?.rememberMe === 'true',
         };
       },
     }),
   ],
   session: {
-    strategy: 'jwt'
+    strategy: 'jwt',
+    maxAge: 60 * 60 * 24 * 7, // default 7 days
   },
   callbacks: {
     jwt: ({ token, user }) => {
       if (user) {
         token.accessToken = user.accessToken;
         token.user = user.user;
+        token.rememberMe = user.rememberMe;
+        if (!user.rememberMe) {
+          token.exp = Math.floor(Date.now() / 1000) + 60 * 5; // 5 minutes
+        }
       }
 
       return token;

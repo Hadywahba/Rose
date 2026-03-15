@@ -25,6 +25,7 @@ export const loginSchema = (t: Translations) =>
       .refine((password) => /[!@#$%^&*]/.test(password), {
         message: t('reset-password.form.schema.password-character'),
       }),
+    rememberMe: z.boolean().optional(),
   });
 
 export type LoginFormFields = z.infer<ReturnType<typeof loginSchema>>;

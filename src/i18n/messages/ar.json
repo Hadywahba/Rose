@@ -40,6 +40,16 @@
       }
     }
   },
+  "homepage": {
+    "header": {
+      "home": "الرئيسية",
+      "products": "المنتجات",
+      "categories": "الفئات",
+      "occasions": "المناسبات",
+      "contact": "تواصل معنا",
+      "about": "من نحن"
+    }
+  },
   "about": {
     "title": "من نحن",
     "heading": "نقدّم <span>أجود</span> علب الهدايا من أجل <span>مناسباتك</span> المميزة",
@@ -249,6 +259,10 @@
       "email": "البريد الالكتروني",
       "login-error": "حدث خطأ أثناء تسجيل الدخول . حاول مرة أخرى.",
       "remember me": "تذكرني"
+    },
+    "popover": {
+      "login": "تسجيل الدخول",
+      "register": "إنشاء حساب"
     },
     "successfully-login": "تم تسجيل الدخول بنجاح"
   },

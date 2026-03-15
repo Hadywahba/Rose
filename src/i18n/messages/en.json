@@ -40,6 +40,16 @@
       }
     }
   },
+  "homepage": {
+    "header": {
+      "home": "home",
+      "products": "products",
+      "categories": "categories",
+      "occasions": "occasions",
+      "contact": "contact",
+      "about": "about"
+    }
+  },
   "about": {
     "title": "About",
     "heading": "Delivering the <span>Finest</span> Gift Boxes for Your <span>Special</span> Moments",
@@ -249,6 +259,10 @@
         "success": "Account created successfully",
         "error": "Failed to create account"
       }
+    },
+    "popover": {
+      "login": "login",
+      "register": "register"
     },
     "successfully-login": "successfully login"
   },
@@ -523,7 +537,7 @@
     "Confirm": "Confirm"
   },
 
-    "dashboard": {
+  "dashboard": {
     "stats-overview": {
       "total-products": "Total products",
       "total-orders": "Total orders",
@@ -565,7 +579,7 @@
       "empty-category-title": "No categories found",
       "empty-category-description": "No categories match your search. Try resetting to see all."
     },
-        "products": {
+    "products": {
       "add-a-new-product": "Add a new product",
       "all-products": "All Products",
       "name": "Name",

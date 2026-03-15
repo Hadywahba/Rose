@@ -1,5 +1,5 @@
-import Footer from '@/components/layout/app/footer';
-import Header from '@/components/layout/app/header';
+import Header from '@/components/layout/header/header';
+
 import NextAuthProvider from '@/components/providers/components/next-auth.provider';
 import React from 'react';
 
@@ -8,13 +8,12 @@ export default function layout({ children }: { children: React.ReactNode }) {
     <main>
       {/* Header */}
       <NextAuthProvider>
-      <Header />
+        <Header />
 
-      {/* children Section */}
-      {children}
-</NextAuthProvider>
+        {/* children Section */}
+        {children}
+      </NextAuthProvider>
       {/* Footer */}
-      <Footer />
     </main>
   );
 }
