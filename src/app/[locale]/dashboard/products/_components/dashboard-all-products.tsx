@@ -18,11 +18,14 @@ export default function DashboardAllProducts({
   allProducts: TopProducts[];
   totalPages: number;
 }) {
+  // Translations
   const t = useTranslations('dashboard.products');
   const locale = useLocale();
 
+  // Hook
   const { deleteProduct } = useDeleteProduct();
 
+  // Query
   const rawParams = useSearchParams();
   const searchQuery = Object.fromEntries(rawParams.entries());
   const currentPage = Number(searchQuery['page'] ?? '1');
