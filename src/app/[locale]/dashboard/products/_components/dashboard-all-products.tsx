@@ -37,7 +37,7 @@ export default function DashboardAllProducts({
         path="/dashboard/products"
       />
 
-      <DashboardSearchInput />
+      <DashboardSearchInput queryKey="search" />
 
       {allProducts.length > 0 ? (
         <DashboardTable

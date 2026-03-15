@@ -12,7 +12,7 @@ export const getDashboardProducts = async (params?: Record<string, string>) => {
     `${process.env.NEXT_PUBLIC_API}/products?${query}`,
     {
       headers: { ...JSON_HEADER },
-      cache: 'no-store',
+      next: { tags: ['products'] },
     }
   );
 

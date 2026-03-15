@@ -17,6 +17,7 @@ export default function DashboardEmptyState({
 }: EmptyStateProps) {
   // Translations
   const t = useTranslations();
+  
   // Navigation
   const locale = useLocale();
   const router = useRouter();
