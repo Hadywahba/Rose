@@ -134,6 +134,28 @@
       "error": "حدث خطأ ما",
       "notFound": "المنتج غير موجود",
       "soldOut": "المنتج غير متوفر حالياً"
+    },
+     "filters": {
+      "category": "الفئة",
+      "rating": "التقييم",
+      "reset": "إعادة تعيين",
+      "resetAll": "إعادة تعيين الكل",
+      "loadingCategories": "جاري تحميل الفئات...",
+      "loading-more": "جاري تحميل المزيد...",
+      "failedToLoad": "فشل تحميل الفئات.",
+      "noMore": "لا توجد فئات أخرى",
+      "items": {
+        "flowers": "زهور",
+        "gifts": "هدايا",
+        "cards": "بطاقات",
+        "jewellery": "مجوهرات",
+        "perfumes": "عطور",
+        "watches": "ساعات",
+        "chocolate": "شوكولاتة",
+        "cakes": "كيك",
+        "plants": "نباتات",
+        "candles-diffusers": "شموع ومعطرات"
+      }
     }
   },
   "auth": {

@@ -42,7 +42,7 @@ export default function PriceFilter() {
   };
 
   return (
-    <section className="mb-8 w-full border-b-2 border-zinc-100 dark:border-zinc-600 lg:w-[18.875rem]">
+    <section className="mb-2 w-full border-b-2 border-zinc-100 dark:border-zinc-600 lg:w-[18.875rem]">
       <div className="flex w-full items-center justify-between pt-3">
         {/* Title */}
         <h2 className="text-lg font-semibold capitalize text-zinc-800 dark:text-zinc-50">

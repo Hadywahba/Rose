@@ -134,6 +134,16 @@
       "error": "Something went wrong",
       "notFound": "Product not found",
       "soldOut": "This product is sold out"
+    },
+    "filters": {
+      "category": "Category",
+      "rating": "Rating",
+      "reset": "Reset",
+      "resetAll": "Reset All",
+      "loadingCategories": "Loading categories...",
+      "loading-more": "Loading more...",
+      "failedToLoad": "Failed to load categories.",
+      "noMore": "No more categories"
     }
   },
   "auth": {

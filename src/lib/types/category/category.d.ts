@@ -32,3 +32,9 @@ export interface CategoriesResponse {
   metadata: Metadata;
   categories: Category[];
 }
+
+export type TransFn = {
+  (id: string, params?: Record<string, unknown>): string;
+  has: (id: string) => boolean;
+};
+
