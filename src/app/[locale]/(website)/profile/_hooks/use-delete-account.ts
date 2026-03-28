@@ -2,7 +2,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
-import { deleteAccountAction } from '../_actions/profile-action';
+import { deleteAccountAction } from '../_actions/delete-profile-action';
 
 export const useDeleteAccount = () => {
   const router = useRouter();

@@ -36,7 +36,7 @@ const { data, isLoading, error } = useGetProfile(initialData);
   const [showChangePassword, setShowChangePassword] = useState(false);
 
 // translation
-  const t = useTranslations('profile'); 
+  const t = useTranslations('profile');
 
   const profileForm = useForm<User>({
     defaultValues: {
