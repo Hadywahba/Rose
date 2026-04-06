@@ -5,12 +5,15 @@ import {
   CarouselItem,
 } from '@/components/ui/carousel';
 import { useRef } from 'react';
-import Autoplay from 'embla-carousel-autoplay';
-import { useTranslations, useLocale } from 'next-intl';
-import MainHeading from './main-heading';
-import { TestimonialCard, type Testimonial } from './testimonial-card';
 
-export default function TestimonialsCarousel() {
+import { useTranslations, useLocale } from 'next-intl';
+import Autoplay from 'embla-carousel-autoplay';
+import MainHeading from './main-heading';
+import {  TestimonialCard } from './testimonial-card';
+import { Testimonial } from '@/lib/types/home/testimonials';
+
+
+export default function Testimonials() {
   // Translation
   const t = useTranslations('testimonials');
   const locale = useLocale();
@@ -63,11 +66,14 @@ export default function TestimonialsCarousel() {
   ];
 
   return (
-    <section id="testimonials" className="py-10">
-      <MainHeading heading={t('heading')} paragraph={t('paragraph')} />
+    <section id="testimonials" className="py-6 sm:py-10  lg:px-20">
+      <MainHeading
+        heading="Testimonials"
+        paragraph="Real Words from Happy Customers"
+      />
       {/* use Static Color because wait design system */}
-      <div className="my-11 w-full bg-[#FBEAEA] px-4 py-20 dark:bg-[#3F3F46] md:p-10">
-        <div className="container mx-auto">
+      <div className="my-6 w-full bg-[#FBEAEA] px-2 py-10 dark:bg-[#3F3F46] rounded-3xl sm:my-11 sm:px-4 sm:py-20 md:p-10">
+        <div className="container mx-auto w-full max-w-[19rem] sm:max-w-[25rem] md:max-w-none">
           <Carousel
             plugins={[plugin.current]}
             className="mx-auto w-full max-w-7xl"
@@ -77,11 +83,11 @@ export default function TestimonialsCarousel() {
               direction: isRTL ? 'rtl' : 'ltr',
             }}
           >
-            <CarouselContent className="sm:-ml-1">
+            <CarouselContent className="-ml-2 sm:-ml-1">
               {testimonials.map((testimonial) => (
                 <CarouselItem
                   key={testimonial.id}
-                  className="flex py-4 sm:px-8 md:basis-1/2 lg:basis-1/3"
+                  className="flex py-2 pl-2 sm:py-4 sm:pl-4 sm:pr-4 md:basis-1/2 lg:basis-1/3"
                 >
                   <div className="h-full w-full">
                     <TestimonialCard

@@ -9,9 +9,25 @@ import HeaderSearch from './header-search';
 import { getServerSession } from 'next-auth';
 import { authOption } from '@/auth';
 import { User } from '@/lib/types/auth';
+import { SearchParams } from '@/lib/types/global';
+import catchError from '@/lib/utility/catch-error';
+
+import { fetchAllProductsService } from '@/lib/actions/products/fetch-all-products.service';
+import { ProductsResponse } from '@/lib/types/products/product';
 
 export default async function Header() {
+  // Variable
   const session = await getServerSession(authOption);
+  const nextParams: SearchParams = {
+    page: '1',
+    limit: '200',
+  };
+
+  const [payload] = await catchError<PaginatedResponse<ProductsResponse>>(() =>
+    fetchAllProductsService(nextParams),
+  );
+
+  const products = payload?.products ?? [];
 
   return (
     <header>
@@ -20,19 +36,23 @@ export default async function Header() {
         <div className="flex items-center gap-4">
           <Link href="/">
             <Image
-              src="/assets/images/logo.png"
+              src="/images/logo.png"
               width={60}
               height={60}
               alt="Logo"
               className="hidden lg:flex"
             />
           </Link>
-          <Headerlocation isborder={true} user={(session?.user as User) ?? null}   />
+          <Headerlocation
+            isborder={true}
+            user={(session?.user as User) ?? null}
+          />
         </div>
 
         {/* Search Bar */}
+
         <div className="flex flex-1">
-          <HeaderSearch />
+          <HeaderSearch products={products} />
         </div>
 
         {/* Header Info */}
@@ -43,7 +63,10 @@ export default async function Header() {
       <HeaderDetails />
 
       {/* Header on Mobile */}
-      <HeaderMobile user={(session?.user as User) ?? null} />
+      <HeaderMobile
+        user={(session?.user as User) ?? null}
+        products={products}
+      />
     </header>
   );
 }

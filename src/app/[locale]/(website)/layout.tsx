@@ -1,3 +1,4 @@
+import Footer from '@/components/layout/footer/footer';
 import Header from '@/components/layout/header/header';
 
 import NextAuthProvider from '@/components/providers/components/next-auth.provider';
@@ -14,6 +15,7 @@ export default function layout({ children }: { children: React.ReactNode }) {
         {children}
       </NextAuthProvider>
       {/* Footer */}
+      <Footer/>
     </main>
   );
 }

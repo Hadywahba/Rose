@@ -48,6 +48,28 @@
       "occasions": "occasions",
       "contact": "contact",
       "about": "about"
+    },
+    "footer": {
+      "home": "Home",
+      "products": "Products",
+      "categories": "Categories",
+      "occasions": "Occasions",
+      "contact": "Contact",
+      "about": "About",
+      "terms": "Terms & Conditions",
+      "privacy": "Privacy Policy",
+      "faqs": "FAQs",
+      "faq": {
+        "heading": "Frequently Asked Questions",
+        "paragraph": "Everything you need to know about our service",
+        "search-placeholder": "Search questions...",
+        "no-results": "No questions found. Try a different search.",
+        "contact": {
+          "heading": "Still have questions?",
+          "description": "Can't find the answer you're looking for? Our support team is happy to help.",
+          "button": "Contact Us"
+        }
+      }
     }
   },
   "about": {
@@ -110,6 +132,166 @@
   "companies": {
     "trustedBy": "Trusted by over <span></span> companies"
   },
+  "contact": {
+    "hero": {
+      "subtitle": "Get in touch",
+      "title": "We'd Love to Hear From You",
+      "description": "Have a question or want to work together? Drop us a message and we'll get back to you as soon as possible."
+    },
+    "info": {
+      "phone": "Phone",
+      "email": "Email",
+      "location": "Location"
+    },
+    "team": {
+      "subtitle": "Meet the team",
+      "heading": "The People Behind Rose",
+      "members": [
+        {
+          "name": "Member One",
+          "role": "Frontend Developer",
+          "bio": "Passionate about building beautiful and responsive user interfaces."
+        },
+        {
+          "name": "Member Two",
+          "role": "Backend Developer",
+          "bio": "Loves crafting scalable APIs and robust server-side solutions."
+        },
+        {
+          "name": "Member Three",
+          "role": "UI/UX Designer",
+          "bio": "Turns ideas into elegant and user-friendly design experiences."
+        },
+        {
+          "name": "Member Four",
+          "role": "Full Stack Developer",
+          "bio": "Bridges the gap between design and functionality seamlessly."
+        }
+      ]
+    },
+    "form": {
+      "subtitle": "Send a message",
+      "heading": "Contact Us",
+      "name": "Full Name",
+      "name-placeholder": "Your name",
+      "email": "Email Address",
+      "email-placeholder": "you@example.com",
+      "subject": "Subject",
+      "subject-placeholder": "How can we help?",
+      "message": "Message",
+      "message-placeholder": "Write your message here...",
+      "submit": "Send Message",
+      "success": {
+        "title": "Message Sent!",
+        "description": "Thank you for reaching out. We'll get back to you within 24 hours."
+      }
+    }
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "paragraph": "Everything you need to know about our service",
+    "search-placeholder": "Search questions...",
+    "no-results": "No questions found. Try a different search.",
+    "contact": {
+      "heading": "Still have questions?",
+      "description": "Can't find the answer you're looking for? Our support team is happy to help.",
+      "button": "Contact Us"
+    },
+    "items": [
+      {
+        "question": "What types of gifts do you offer?",
+        "answer": "We offer a wide range of premium gift boxes for all occasions including birthdays, weddings, anniversaries, and more. Each box is carefully curated with handpicked items."
+      },
+      {
+        "question": "How long does delivery take?",
+        "answer": "Standard delivery takes 2-3 business days. Express delivery is available for next-day delivery on orders placed before 2 PM."
+      },
+      {
+        "question": "Do you offer free delivery?",
+        "answer": "Yes! We offer free delivery on all orders above 120 EGP. For orders below that, a small delivery fee applies."
+      },
+      {
+        "question": "Can I customize my gift box?",
+        "answer": "Absolutely! You can personalize your gift box by adding a custom message card. Contact our support team for fully custom orders."
+      },
+      {
+        "question": "What is your return policy?",
+        "answer": "We accept returns within 7 days of delivery for damaged or incorrect items. Please contact our support team with photos of the issue."
+      },
+      {
+        "question": "How can I track my order?",
+        "answer": "Once your order is shipped, you will receive an email with a tracking number. You can also track your order from your account dashboard."
+      }
+    ]
+  },
+  "terms": {
+    "badge": "Terms & Conditions",
+    "title": "Terms of Using Rose Store",
+    "subtitle": "This page explains the rules that govern your use of the website and related services.",
+    "sections": {
+      "acceptance": {
+        "title": "1. Acceptance",
+        "text": "By using the website, you agree to follow these terms."
+      },
+      "accounts": {
+        "title": "2. Accounts",
+        "text": "You are responsible for accurate details and account security."
+      },
+      "orders": {
+        "title": "3. Orders",
+        "text": "Order confirmation depends on product availability and successful payment."
+      },
+      "pricing": {
+        "title": "4. Pricing",
+        "text": "Prices may change and the checkout price is the final applied one."
+      },
+      "shipping": {
+        "title": "5. Shipping",
+        "text": "Delivery timelines are estimates and can vary by location and conditions."
+      },
+      "returns": {
+        "title": "6. Returns",
+        "text": "Returns and exchanges follow the approved store policy."
+      },
+      "usage": {
+        "title": "7. Acceptable Use",
+        "text": "You must not misuse the website or affect service stability."
+      },
+      "updates": {
+        "title": "8. Updates",
+        "text": "We may update these terms at any time and publish the latest version here."
+      }
+    },
+    "note": "Last updated: April 2026",
+    "contact": "Contact Us",
+    "privacy": "Privacy Policy"
+  },
+  "privacy": {
+    "badge": "Privacy Policy",
+    "title": "Your Privacy Is Safe with Rose",
+    "subtitle": "Here is a clear overview of how we handle your data, why we use it, and your rights.",
+    "cards": {
+      "collect": {
+        "title": "What do we collect?",
+        "text": "Name, email, phone, and shipping address to serve your orders."
+      },
+      "why": {
+        "title": "Why do we collect it?",
+        "text": "To improve your experience, process orders, and send updates."
+      },
+      "protect": {
+        "title": "How do we protect it?",
+        "text": "We use suitable safeguards against unauthorized access."
+      },
+      "share": {
+        "title": "Who do we share with?",
+        "text": "We never sell data; only essential sharing with payment and shipping."
+      }
+    },
+    "chips": ["Transparency", "Security", "Control"],
+    "cta1": "Go to Store",
+    "cta2": "Terms & Conditions"
+  },
   "product": {
     "currency": "EGP",
     "inStock": "{count} left in stock",
@@ -144,7 +326,12 @@
       "loading-more": "Loading more...",
       "failedToLoad": "Failed to load categories.",
       "noMore": "No more categories"
-    }
+    },
+    "product-you-may-liked": "products you may like",
+    "product-not-found": "no products found",
+    "search-placeholder": "What awesome gift are you looking for?\n",
+    "no-products-available": "No products available",
+    "no-products-available-subtitle": "We couldn’t find any products right now. Please check back later"
   },
   "auth": {
     "forget-password": {
@@ -371,7 +558,6 @@
     "deliver to": "Deliver to",
     "search": "What awesome gift are you looking for?"
   },
-
   "footer": {
     "title": "Rose E-Commerce App",
     "discover": "Discover our website",
@@ -391,6 +577,100 @@
     "subscribing-way": "By subscribing to our newsletter",
     "email-placeholder": "Enter your email",
     "subscribe": "Subscribe"
+  },
+   "about-page": {
+    "hero": {
+      "badge": "Our Story",
+      "title": "We Believe Every Moment",
+      "title-highlight": "Deserves a Perfect Gift",
+      "description": "Born from a passion for meaningful gifting, Rose is a team of four developers who built something beautiful together."
+    },
+    "stats": {
+      "orders": "Orders Delivered",
+      "rating": "Average Rating",
+      "customers": "Happy Customers",
+      "years": "Years of Experience"
+    },
+    "mission": {
+      "subtitle": "What drives us",
+      "heading": "Our Mission & Values",
+      "description": "We started Rose with one goal: make gifting effortless, beautiful, and personal. Every line of code we write is driven by the belief that a great gift can change someone's day.",
+      "values": [
+        {
+          "title": "Made with Love",
+          "desc": "Every product is handpicked and every feature is crafted with care for the end user."
+        },
+        {
+          "title": "Quality First",
+          "desc": "We never compromise on quality — from the gifts we sell to the code we write."
+        },
+        {
+          "title": "Customer Focused",
+          "desc": "Our customers are at the heart of every decision we make as a team."
+        }
+      ],
+      "timeline": [
+        {
+          "year": "2023",
+          "event": "Rose was founded by four passionate developers."
+        },
+        {
+          "year": "2024",
+          "event": "Launched our first version with 100+ products."
+        },
+        {
+          "year": "2025",
+          "event": "Reached 3,000+ happy customers across Egypt."
+        }
+      ]
+    },
+    "team": {
+      "subtitle": "The builders",
+      "heading": "Meet the Team Behind Rose",
+      "works-on": "Works on",
+      "members": [
+        {
+          "name": "Member One",
+          "role": "Frontend Developer",
+          "bio": "Responsible for crafting the visual experience of Rose. Loves clean UI, smooth animations, and making sure every pixel is in its right place.",
+          "works": [
+            "UI Components",
+            "Animations",
+            "Responsive Design"
+          ]
+        },
+        {
+          "name": "Member Two",
+          "role": "Backend Developer",
+          "bio": "The engine behind Rose. Builds the APIs, manages the database, and makes sure everything runs fast and secure.",
+          "works": [
+            "REST APIs",
+            "Database Design",
+            "Authentication"
+          ]
+        },
+        {
+          "name": "Member Three",
+          "role": "Full Stack Developer",
+          "bio": "Bridges the gap between frontend and backend. Works across the entire stack to deliver seamless features end-to-end.",
+          "works": [
+            "Next.js",
+            "State Management",
+            "Integrations"
+          ]
+        },
+        {
+          "name": "Member Four",
+          "role": "UI/UX & Frontend",
+          "bio": "Turns designs into reality. Focuses on user experience, accessibility, and making Rose feel intuitive for every customer.",
+          "works": [
+            "Design System",
+            "Accessibility",
+            "User Testing"
+          ]
+        }
+      ]
+    }
   },
   "checkout": {
     "checkout-summary": {
@@ -670,6 +950,7 @@
   "product-added-successfully-0": "Product Added Successfully",
   "price-quantity": "{productPrice}",
   "successfully-login": "Successfully Login",
+  "footer-end": "  © 2026 Rose. All rights reserved.",
 
   "common-table": {
     "delete": "delete",

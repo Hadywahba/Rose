@@ -1,5 +1,6 @@
 'use client';
 
+import LoginPopover from '@/app/[locale]/(auth)/login/_components/login-popover';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,13 +9,19 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { ChevronDown } from 'lucide-react';
 import { User } from '@/lib/types/auth';
-import LoginPopover from '@/app/[locale]/(auth)/login/_components/login-popover';
+import { useLocale } from 'next-intl';
+import { cn } from '@/lib/utility/tailwind-merge';
 
 interface HeaderUsernameClientProps {
   user: User | null;
 }
 
-export default function HeaderUsernameClient({ user }: HeaderUsernameClientProps) {
+export default function HeaderUsernameClient({
+  user,
+}: HeaderUsernameClientProps) {
+  // Hook
+  const locale = useLocale();
+
   return (
     <>
       {user ? (
@@ -33,13 +40,20 @@ export default function HeaderUsernameClient({ user }: HeaderUsernameClientProps
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
-        <div className="group relative">
+        <div className="group relative inline-block">
           <button className="px-4 py-2 font-medium dark:text-white">
             login
           </button>
 
           {/* Hover Login */}
-          <LoginPopover />
+          <div
+            className={cn(
+              'pointer-events-none absolute top-8 z-50 mt-2 translate-y-2 rounded-md bg-white opacity-0 shadow-lg transition-all duration-200 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100',
+              locale === 'ar' ? 'left-0' : 'right-0',
+            )}
+          >
+            <LoginPopover />
+          </div>
         </div>
       )}
     </>
