@@ -1,6 +1,6 @@
 'use client';
 
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import React, { useState } from 'react';
 import useLogin from '../_hooks/use-login';
 
@@ -18,7 +18,6 @@ import { Input } from '@/components/ui/input';
 import SubmitButton from '@/components/features/auth/submit-button';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { cn } from '@/lib/utility/tailwind-merge';
 import RememberMe from './remeber-me';
 import { LoginFormFields, loginSchema } from '@/lib/schema/login.schema';
 
@@ -30,7 +29,6 @@ export default function LoginPopover() {
   const [rememberMe, setRememberMe] = useState(true);
 
   // Hook
-  const locale = useLocale();
   const { error, isPending, login } = useLogin();
 
   // Form & Validation
@@ -49,12 +47,7 @@ export default function LoginPopover() {
   };
 
   return (
-    <div
-      className={cn(
-        'absolute top-8 z-30 rounded-md bg-white opacity-0 shadow-lg transition group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100',
-        locale === 'ar' ? 'left-0' : 'right-0',
-      )}
-    >
+    <div>
       <Tabs defaultValue="login">
         <TabsList className="w-full">
           <TabsTrigger value="login" asChild className="w-1/2">
@@ -88,7 +81,7 @@ export default function LoginPopover() {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-zinc-800 dark:text-zinc-50">
+                <FormLabel>
                   {t('login.password')}
                 </FormLabel>
                 <FormControl>
