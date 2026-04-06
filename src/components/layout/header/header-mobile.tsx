@@ -1,5 +1,6 @@
 'use client';
 
+import { homeheadercolumnItems } from '@/lib/constants/home-header';
 import { cn } from '@/lib/utility/tailwind-merge';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
@@ -10,12 +11,14 @@ import HeaderInfo from './header-info';
 import HeaderSearch from './header-search';
 import Headerlocation from './header-location';
 import { User } from '@/lib/types/auth';
-import { homeheadercolumnItems } from '@/lib/constants/home-header';
+import { Product } from '@/lib/types/products/product';
+
 
 interface HeaderInfoProps {
   user: User | null;
+  products: Product[];
 }
-export default function HeaderMobile({ user }: HeaderInfoProps) {
+export default function HeaderMobile({ user, products }: HeaderInfoProps) {
   // Translation
   const t = useTranslations('homepage');
 
@@ -56,8 +59,9 @@ export default function HeaderMobile({ user }: HeaderInfoProps) {
         </div>
 
         <div className="hidden flex-1 sm:flex">
-          <HeaderSearch />
+          <HeaderSearch products={products} />
         </div>
+
         {/* Header Info */}
         <HeaderInfo user={user} />
       </div>
@@ -96,12 +100,7 @@ export default function HeaderMobile({ user }: HeaderInfoProps) {
           {/* Logo */}
           <li className="flex justify-center py-4">
             <Link href="/" className="flex items-center">
-              <Image
-                src="/assets/images/logo.png"
-                width={60}
-                height={60}
-                alt="Logo"
-              />
+              <Image src="/images/logo.png" width={60} height={60} alt="Logo" />
             </Link>
           </li>
 
