@@ -73,6 +73,11 @@ export default function CategoriesFilterList() {
                 <CategoriesFilterSkeleton key={index} />
               ))}
             </div>
+          ) : categories.length == 0 ? (
+            <>
+              {' '}
+              <p>No categories found</p>
+            </>
           ) : (
             <section className="grid grid-cols-1 gap-2">
               {categories.map((item) => {

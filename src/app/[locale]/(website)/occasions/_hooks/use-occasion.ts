@@ -24,7 +24,7 @@ export const useOccasion = () => {
 
       return payload;
     },
-
+    retry: false,
     initialPageParam: 1,
     getNextPageParam: (lastPage: OccasionsResponse) => {
       const { currentPage, totalPages } = lastPage.metadata;

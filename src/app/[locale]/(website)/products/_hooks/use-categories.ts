@@ -23,7 +23,7 @@ export const useInfiniteCategories = () => {
 
       return payload;
     },
-
+    retry: false,
     initialPageParam: 1,
     getNextPageParam: (lastPage: CategoriesResponse) => {
       const { currentPage, totalPages } = lastPage.metadata;

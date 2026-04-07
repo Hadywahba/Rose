@@ -59,7 +59,8 @@ export default function OccasionFilterList() {
             </div>
           }
           endMessage={
-            !error && (
+            !error &&
+            occasionItems.length > 0 && (
               <div className="py-4 text-center text-gray-500">
                 {t('occasion-error')}
               </div>
@@ -73,6 +74,8 @@ export default function OccasionFilterList() {
                 <OccasionFilterSkeleton key={index} />
               ))}
             </div>
+          ) : occasionItems.length === 0 ? (
+            <p>No occasions found</p>
           ) : (
             <section className="grid grid-cols-2 gap-2">
               {occasionItems.map((item) => {

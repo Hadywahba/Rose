@@ -344,7 +344,10 @@
     "product-not-found": "لا توجد منتجات",
     "search-placeholder": "ما هي الهدية الرائعة التي تبحث عنها؟",
     "no-products-available": "لا يوجد منتجات متاحة في الوقت الحالي",
-    "no-products-available-subtitle": "لا يمكننا العثور على أي منتجات حالياً. الرجاء المحاولة لاحقاً"
+    "no-products-available-subtitle": "لا يمكننا العثور على أي منتجات حالياً. الرجاء المحاولة لاحقاً",
+    "product-notfound-title": "لم يتم العثور على منتجات",
+    "product-notfound-subtitle": "لم نتمكن من العثور على أي منتجات حالياً. حاول مرة أخرى لاحقاً أو تصفح أقسام أخرى.",
+    "product-notfound-btntitle": "عرض جميع المنتجات"
   },
   "auth": {
     "forget-password": {
@@ -476,7 +479,7 @@
     },
     "successfully-login": "تم تسجيل الدخول بنجاح"
   },
-   "about-page": {
+  "about-page": {
     "hero": {
       "badge": "قصتنا",
       "title": "نؤمن أن كل لحظة",

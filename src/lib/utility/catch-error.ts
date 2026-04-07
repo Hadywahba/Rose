@@ -1,6 +1,6 @@
 export default async function catchError<T>(
   callback: () => Promise<ApiResponse<T>>,
-): Promise<[SuccessResponse<T>, null] | [null, string]> {
+): Promise<[SuccessResponse<T>, null] | [null, Error]> {
   try {
     const payload = await callback();
 
@@ -8,6 +8,6 @@ export default async function catchError<T>(
 
     return [payload, null];
   } catch (error) {
-    return [null, (error as Error).message];
+    return [null, error as Error];
   }
 }
