@@ -18,7 +18,7 @@ export default function Empty({
   const locale = useLocale();
 
   return (
-    <p className="flex min-h-[400px] flex-col items-center justify-center gap-4 text-center text-sm text-zinc-700 dark:text-zinc-400 sm:text-base">
+    <p className="flex min-h-[400px] flex-col items-center justify-center gap-4 text-center text-sm text-zinc-700 dark:text-zinc-400 sm:text-base ">
       <span className="text-xl font-semibold text-zinc-700 dark:text-zinc-300">
         {t(title)}
       </span>
