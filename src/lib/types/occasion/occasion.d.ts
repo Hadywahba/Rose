@@ -9,15 +9,8 @@ export interface Occasion {
   productsCount: number;
 }
 
-export interface Metadata {
-  currentPage: number;
-  limit: number;
-  totalPages: number;
-  totalItems: number;
-}
-
 export interface OccasionsResponse {
-  metadata: Metadata;
+  metadata: MetaData
   occasions: Occasion[];
 }
 
