@@ -11,11 +11,11 @@ const footercolumnItems: Omit<PublicFooter, 'id'>[] = [
   },
   {
     name: 'footer.products',
-    link: '/product',
+    link: '/products',
   },
   {
     name: 'footer.occasions',
-    link: '/occasion',
+    link: '/occasions',
   },
   {
     name: 'footer.contact',

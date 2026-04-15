@@ -37,7 +37,7 @@ export default async function OccasionList({
 
   return (
     <ListError errors={error}>
-      <div className="container mx-auto px-4 py-8 ">
+      <div className="container mx-auto px-4 py-8">
         {/* Grid Layout */}
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {occasion.length > 0 &&
@@ -66,7 +66,7 @@ export default async function OccasionList({
         {totalPages > 1 && (
           <div className="mt-8 flex justify-center">
             <AppPagination
-              pathname={'/occasion'}
+              pathname={'/occasions'}
               searchParams={searchParams}
               currentPage={currentPage}
               totalPages={totalPages}

@@ -17,8 +17,9 @@ import { Product } from '@/lib/types/products/product';
 interface HeaderInfoProps {
   user: User | null;
   products: Product[];
+   cartdata: number;
 }
-export default function HeaderMobile({ user, products }: HeaderInfoProps) {
+export default function HeaderMobile({ user, products , cartdata }: HeaderInfoProps) {
   // Translation
   const t = useTranslations('homepage');
 
@@ -63,7 +64,7 @@ export default function HeaderMobile({ user, products }: HeaderInfoProps) {
         </div>
 
         {/* Header Info */}
-        <HeaderInfo user={user} />
+        <HeaderInfo user={user} cartdata={cartdata} />
       </div>
 
       {/* Mobile sliding menu */}

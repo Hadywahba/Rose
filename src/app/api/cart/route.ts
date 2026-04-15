@@ -9,7 +9,7 @@ export async function GET(req: NextRequest) {
     if (!token) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
-
+    console.log(token.accessToken);
     const API_URL = 'https://flower.elevateegy.com/api/v1/cart';
 
     const response = await fetch(API_URL, {

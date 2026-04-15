@@ -14,6 +14,7 @@ import catchError from '@/lib/utility/catch-error';
 
 import { fetchAllProductsService } from '@/lib/actions/products/fetch-all-products.service';
 import { ProductsResponse } from '@/lib/types/products/product';
+import { getCartItems } from '@/app/[locale]/(website)/(checkout)/cart/_hooks/get-cart';
 
 export default async function Header() {
   // Variable
@@ -28,6 +29,12 @@ export default async function Header() {
   );
 
   const products = payload?.products ?? [];
+
+  let data = { numOfCartItems: 0 };
+
+  if (session?.user) {
+    data = await getCartItems();
+  }
 
   return (
     <header>
@@ -56,7 +63,10 @@ export default async function Header() {
         </div>
 
         {/* Header Info */}
-        <HeaderInfo user={(session?.user as User) ?? null} />
+        <HeaderInfo
+          user={(session?.user as User) ?? null}
+          cartdata={data.numOfCartItems}
+        />
       </div>
 
       {/* Header Details  */}
@@ -66,6 +76,7 @@ export default async function Header() {
       <HeaderMobile
         user={(session?.user as User) ?? null}
         products={products}
+        cartdata={data.numOfCartItems}
       />
     </header>
   );

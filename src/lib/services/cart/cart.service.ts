@@ -13,8 +13,8 @@ export const addToCart = async (data: AddToCartPayload) => {
   });
 
   const payload: ApiResponse<AddToCartResponse> = await response.json();
- return payload;
-}
+  return payload;
+};
 // Display Cart
 export const getCart = async () => {
   const response = await fetch('/api/cart', {
@@ -28,3 +28,5 @@ export const getCart = async () => {
   const payload: ApiResponse<CartResponse> = await response.json();
   return payload;
 };
+
+
