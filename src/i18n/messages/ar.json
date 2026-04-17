@@ -70,6 +70,9 @@
           "button": "تواصل معنا"
         }
       }
+    },
+    "most-popular": {
+      "most-popular-product": "الأكثر شعبية"
     }
   },
   "about": {

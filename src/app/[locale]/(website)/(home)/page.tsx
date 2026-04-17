@@ -5,8 +5,14 @@ import TestimonialsCarousel from './_components/testimonials';
 import Hero from './_components/hero';
 import OccasionSection from './_components/occasion-section';
 import HeroServiceSection from './_components/hero-service-section';
+import { SearchParams } from '@/lib/types/global';
+import MostPopular from './_components/most-popular';
 
-export default function Home() {
+type HomeProps = {
+  searchParams: SearchParams;
+};
+
+export default function Home({ searchParams }: HomeProps) {
   return (
     <main className="mx-auto flex flex-col items-center justify-center">
       {/* Hero Section */}
@@ -17,6 +23,9 @@ export default function Home() {
 
       {/* Hero Service */}
       <HeroServiceSection />
+
+       {/* Most Popular */}
+      <MostPopular searchParams={searchParams} />
 
       {/* About Section */}
       <About />
