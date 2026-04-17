@@ -9,7 +9,7 @@ import { cn } from '@/lib/utility/tailwind-merge';
 import { useFilters } from '../_hooks/use-filter';
 import ListError from '@/components/error/list-error';
 import { useTranslations } from 'use-intl';
-import OccasionFilterSkeleton from '@/components/skeletons/occasion/occasion-filter-skeleton';
+import OccasionFilterCardSkeleton from '@/components/skeletons/occasion/occasion-filter-card-skeleton';
 
 const OCCASIONS_PER_PAGE = 6;
 
@@ -71,7 +71,7 @@ export default function OccasionFilterList() {
           {isLoading ? (
             <div className="grid grid-cols-2 gap-2">
               {Array.from({ length: OCCASIONS_PER_PAGE }).map((_, index) => (
-                <OccasionFilterSkeleton key={index} />
+                <OccasionFilterCardSkeleton key={index} />
               ))}
             </div>
           ) : occasionItems.length === 0 ? (

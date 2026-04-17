@@ -44,7 +44,7 @@ export default async function ProductsList({
   const totalPages = safeTotalPages;
 
   const products = payload?.products ?? [];
-
+console.log(products)
   return (
     <div className="col-span-9">
       <ListError errors={error}>

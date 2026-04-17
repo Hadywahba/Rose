@@ -6,7 +6,8 @@ import ProductCardWhishlistButtons from './product-card-whishlist-button';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utility/tailwind-merge';
 import ProductAddButton from './product-add-button';
-import { Product } from '@/lib/types/end-point-api/products';
+import { Product } from '@/lib/types/products/product';
+
 
 // Types
 type ProductCardProps = {

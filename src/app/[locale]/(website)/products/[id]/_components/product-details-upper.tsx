@@ -3,11 +3,12 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { ShoppingCart, Star, Package, HeartPlus } from 'lucide-react';
-import type { Product } from '@/lib/types/products/product';
 import { cn } from '@/lib/utility/tailwind-merge';
 import { Button } from '@/components/ui/button';
 import { FaSpinner } from 'react-icons/fa';
-import { useAddToCart } from '@/lib/hooks/cart/use-add-to-cart';
+import { useAddToCart } from '../_hooks/use-add-to-cart';
+import { Product } from '@/lib/types/products/product';
+
 
 export default function ProductDetailsUpper({ product }: { product: Product }) {
   // Translation
@@ -18,7 +19,7 @@ export default function ProductDetailsUpper({ product }: { product: Product }) {
   const [isWishlisted, setIsWishlisted] = useState(product.isInWishlist);
 
   // Hooks
-  const { onAddToCard, isPending: isAddingToCart } = useAddToCart();
+  const { addToCart, isPending: isAddingToCart } = useAddToCart();
 
   // Variables => This is a flexible choice
   const gallery = [product.imgCover, ...product.images].filter(Boolean);
@@ -29,26 +30,24 @@ export default function ProductDetailsUpper({ product }: { product: Product }) {
       {/* Gallery */}
       <div className="space-y-4">
         {/* Main Image */}
-        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl">
+        <div className="relative aspect-square md:aspect-[4/3] w-full overflow-hidden ">
           <Image
             src={gallery[selectedIndex]}
             alt={product.title}
             fill
-            // Use contain to ensure the entire image is visible without cropping ✅
-            className="object-contain"
+            className="object-contain rounded-2xl"
             priority
           />
         </div>
 
         {/* Thumbnails */}
-        <div className="flex justify-center gap-3">
+        <div className="flex justify-center gap-1">
           {gallery.map((url, idx) => (
             <button
-              aria-label={`view image ${idx + 1}`}
               key={idx}
               onClick={() => setSelectedIndex(idx)}
               className={cn(
-                'relative size-20 flex-shrink-0 overflow-hidden rounded-xl border-2 opacity-80 transition-all duration-300 hover:opacity-100',
+                'relative size-16 md:size-20 flex-shrink-0 overflow-hidden rounded-xl border-2 opacity-80 transition-all duration-300 hover:opacity-100',
                 idx === selectedIndex
                   ? 'border-maroon-600 opacity-100 dark:border-softpink-300'
                   : 'border-zinc-200 hover:border-maroon-400 dark:border-zinc-700',
@@ -66,10 +65,10 @@ export default function ProductDetailsUpper({ product }: { product: Product }) {
       </div>
 
       {/* Product Info */}
-      <div className="flex flex-col justify-between space-y-2">
+      <section >
         <div>
           {/* Title */}
-          <h1 className="text-2xl font-semibold text-zinc-800 dark:text-white md:text-3xl">
+          <h1 className="text-2xl font-semibold text-zinc-800 dark:text-white md:text-3xl mb-4">
             {product.title}
           </h1>
 
@@ -104,14 +103,14 @@ export default function ProductDetailsUpper({ product }: { product: Product }) {
           </div>
 
           {/* Description - Scrollable */}
-          <div className="overflow-y-auto md:max-h-48">
+          <div className="overflow-y-auto ">
             <p className="leading-relaxed text-zinc-600 dark:text-zinc-300">
               {product.description}
             </p>
           </div>
         </div>
         {/* Actions */}
-        <div className="flex gap-3 pt-2">
+        <div className="flex gap-3 pt-20 ">
           <Button
             variant="Subtle"
             size="icon"
@@ -133,7 +132,7 @@ export default function ProductDetailsUpper({ product }: { product: Product }) {
             variant="primary"
             className="h-12 flex-1 bg-maroon-600 transition-colors hover:bg-maroon-700 disabled:cursor-not-allowed disabled:bg-zinc-300 disabled:text-zinc-500 dark:bg-softpink-300 dark:hover:bg-softpink-400"
             disabled={!inStock || isAddingToCart}
-            onClick={() => onAddToCard({ productId: product._id, quantity: 1 })}
+            onClick={() => addToCart({ product: product._id, quantity: 1 })}
           >
             {isAddingToCart ? (
               <FaSpinner className="size-6 animate-spin" />
@@ -145,7 +144,7 @@ export default function ProductDetailsUpper({ product }: { product: Product }) {
             )}
           </Button>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

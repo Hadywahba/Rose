@@ -12,7 +12,6 @@ export interface Product {
   quantity: number;
   category: string;
   occasion: string;
-  isSuperAdmin: boolean;
   rateAvg: number;
   rateCount: number;
   reviews?: unknown[];

@@ -28,7 +28,7 @@ const headercolumnItems: Omit<HomeMenuHeader, 'id'>[] = [
   },
   {
     name: 'header.occasions',
-    link: '/occasion',
+    link: '/occasions',
     Icon: PartyPopper,
   },
   {

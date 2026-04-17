@@ -5,9 +5,9 @@ import { ShoppingCart } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import { toast } from 'sonner';
 import { useTranslations } from 'next-intl';
-import { Product } from '@/lib/types/end-point-api/products';
 import { useGuestCartContext } from '@/lib/hooks/cart/use-guest-cart-context';
 import { useAddToCart } from '@/lib/hooks/cart/use-add-to-cart';
+import { Product } from '@/lib/types/products/product';
 
 type ProductAddButtonProps = {
   productInfo: Product;
