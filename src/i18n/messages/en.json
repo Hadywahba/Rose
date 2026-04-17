@@ -70,6 +70,9 @@
           "button": "Contact Us"
         }
       }
+    },
+    "most-popular": {
+      "most-popular-product": "most popular"
     }
   },
   "about": {
