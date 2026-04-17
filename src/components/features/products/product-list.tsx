@@ -2,12 +2,12 @@ import { SearchParams } from '@/lib/types/global';
 import catchError from '@/lib/utility/catch-error';
 import { getLocale } from 'next-intl/server';
 import ProductCard from './product-card';
-import { Product, ProductsResponse } from '@/lib/types/end-point-api/products';
 import { fetchAllProductsService } from '@/lib/actions/products/fetch-all-products.service';
 import AppPagination from '@/components/shared/app-pagination';
 import { cn } from '@/lib/utility/tailwind-merge';
 import Empty from '@/components/shared/empty';
 import ListError from '@/components/error/list-error';
+import { Product, ProductsResponse } from '@/lib/types/products/product';
 
 type ProductsListProps = {
   searchParams: SearchParams;
@@ -62,7 +62,7 @@ console.log(products)
                 productId={product._id}
                 priceAfterSale={product.priceAfterDiscount!}
                 rate={product.rateAvg}
-                salesCount={product.sold}
+                salesCount={Number(product.sold)}
                 src={product.imgCover}
                 title={product.title}
                 showWishListBtn={true}
