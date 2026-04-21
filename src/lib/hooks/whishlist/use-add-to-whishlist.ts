@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { addToWhishlistAction } from "@/lib/actions/whishlist/add-to-whishlist.action";
-import { WhishlistCheck } from "@/lib/types/whishlist";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useTranslations } from "next-intl";
-import { toast } from "sonner";
+import { addToWhishlistAction } from '@/lib/actions/whishlist/add-to-whishlist.action';
+import { WhishlistCheck } from '@/lib/types/products/product';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useTranslations } from 'next-intl';
+import { toast } from 'sonner';
 
-type WishlistCheckCache = Pick<WhishlistCheck, "message" | "isInWishlist">;
+type WishlistCheckCache = Pick<WhishlistCheck, 'message' | 'isInWishlist'>;
 
 export function useAddToWhishlist(productId: string) {
   // Translations
@@ -20,27 +20,25 @@ export function useAddToWhishlist(productId: string) {
       mutationFn: async () => {
         const payload = await addToWhishlistAction(productId);
 
-        if ("error" in payload) {
-          throw new Error(
-            payload.error || "error during add product to whishlist!",
-          );
+        if (payload.status === false) {
+          throw new Error(payload.message);
         }
 
         return payload;
       },
-// optimistic
+      // optimistic
       onMutate: async () => {
         // 1️⃣ Stop any active refetch for this query.
         // We are about to change the cache manually (optimistic update),
         // so we must prevent background refetches from overwriting it.
         await queryClient.cancelQueries({
-          queryKey: ["wishlist-check", productId],
+          queryKey: ['wishlist-check', productId],
         });
 
         // 2️⃣ Save the current cache state BEFORE changing it.
         // This snapshot is critical for rollback if the server request fails.
         const previous = queryClient.getQueryData<WishlistCheckCache>([
-          "wishlist-check",
+          'wishlist-check',
           productId,
         ]);
 
@@ -48,9 +46,9 @@ export function useAddToWhishlist(productId: string) {
         // Immediately update the cache to the expected final state.
         // The UI reacts instantly (heart icon switches without waiting).
         queryClient.setQueryData<WishlistCheckCache>(
-          ["wishlist-check", productId],
+          ['wishlist-check', productId],
           {
-            message: "success",
+            message: 'success',
             isInWishlist: true,
           },
         );
@@ -65,7 +63,7 @@ export function useAddToWhishlist(productId: string) {
         // This reverts the UI back to the original value.
         if (context?.previous) {
           queryClient.setQueryData(
-            ["wishlist-check", productId],
+            ['wishlist-check', productId],
             context.previous,
           );
         }
@@ -81,12 +79,12 @@ export function useAddToWhishlist(productId: string) {
         // Ensure the cache is fully aligned with the server state.
         // Revalidate the wishlist status for this product
         await queryClient.invalidateQueries({
-          queryKey: ["wishlist-check", productId],
+          queryKey: ['wishlist-check', productId],
         });
 
         // Revalidate the wishlist items list
         await queryClient.invalidateQueries({
-          queryKey: ["wishlist-items"],
+          queryKey: ['wishlist-items'],
         });
       },
     });

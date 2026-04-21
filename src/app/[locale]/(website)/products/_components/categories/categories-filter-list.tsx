@@ -26,7 +26,7 @@ export default function CategoriesFilterList() {
   });
 
   // Variables
-  const categories = category?.pages.flatMap((page) => page.categories) || [];
+  const categories = category?.pages.flatMap((page) => page.data) || [];
   const active = filters.category;
 
   return (
@@ -59,6 +59,7 @@ export default function CategoriesFilterList() {
           }
           endMessage={
             !error &&
+            !hasNextPage &&
             categories.length > 0 && (
               <div className="py-2 text-center text-xs text-gray-400">
                 {t('noMore')}
@@ -81,29 +82,32 @@ export default function CategoriesFilterList() {
           ) : (
             <section className="grid grid-cols-1 gap-2">
               {categories.map((item) => {
+                const imageUrl = item.image?.startsWith('http')
+                  ? item.image
+                  : `https://rose-app.elevateegy.com/uploads/${item.image}`;
                 return (
                   <Button
-                    onClick={() => setFilter('category', item._id)}
-                    key={item._id}
+                    onClick={() => setFilter('category', item.id)}
+                    key={item.id}
                     variant="carousel"
                     className={cn(
                       'group relative flex w-full items-center justify-start gap-3 overflow-hidden rounded-sm p-2 text-left',
                       'before:absolute before:inset-0',
-                      active === item._id
+                      active === item.id
                         ? 'before:bg-[linear-gradient(to_bottom,rgba(0,0,0,0.25),rgba(166,37,42,0.8))]'
                         : 'before:bg-black before:opacity-40 hover:before:bg-black/35 hover:before:bg-opacity-40',
                     )}
                   >
                     <Image
-                      src={item.image ?? ''}
+                      src={imageUrl}
                       width={25}
                       height={25}
-                      alt={item.name}
+                      alt={item.title}
                       priority
                       className="relative z-10 h-6 w-6 object-contain"
                     />
                     <span className="relative z-10 text-sm font-medium text-zinc-50">
-                      {item.name}
+                      {item.title}
                     </span>
                   </Button>
                 );

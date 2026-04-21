@@ -265,7 +265,6 @@
       "galleryGrid6": "خاتم خطوبة مع بطاقة هدية بيضاء"
     }
   },
-
   "testimonials": {
     "heading": "ماذا يقول عملاؤنا",
     "paragraph": "كلمات حقيقية من عملاء سعداء",
@@ -350,7 +349,11 @@
     "no-products-available-subtitle": "لا يمكننا العثور على أي منتجات حالياً. الرجاء المحاولة لاحقاً",
     "product-notfound-title": "لم يتم العثور على منتجات",
     "product-notfound-subtitle": "لم نتمكن من العثور على أي منتجات حالياً. حاول مرة أخرى لاحقاً أو تصفح أقسام أخرى.",
-    "product-notfound-btntitle": "عرض جميع المنتجات"
+    "product-notfound-btntitle": "عرض جميع المنتجات",
+    "price-number-currancy-base-0": "{price,number,currency-no-decimals}",
+    "product-removed-successfully-0": "تمت إزالة المنتج بنجاح",
+    "remove-from-whishlist": "إزالة من قائمة المفضلة",
+    "product-added-successfully": "تمت إضافة المنتج بنجاح"
   },
   "auth": {
     "forget-password": {
@@ -474,7 +477,10 @@
       "password": "كلمة المرور",
       "email": "البريد الالكتروني",
       "login-error": "حدث خطأ أثناء تسجيل الدخول . حاول مرة أخرى.",
-      "remember me": "تذكرني"
+      "remember me": "تذكرني",
+      "username-required": "اسم المستخدم مطلوب",
+      "username-min-required": "يجب ألا يقل الطول عن 3 أحرف",
+      "username-regex-required": "مسموح فقط بالحروف والمسافات الفردية"
     },
     "popover": {
       "login": "تسجيل الدخول",
@@ -772,7 +778,6 @@
       }
     }
   },
-
   "my-addresses": {
     "form-title": "أدخل تفاصيل العنوان",
     "back-button": "رجوع",
@@ -810,7 +815,6 @@
     "Cancel": "الغاء",
     "Confirm": "تأكيد"
   },
-
   "dashboard": {
     "stats-overview": {
       "total-products": "إجمالي المنتجات",
@@ -876,7 +880,6 @@
       "currency": "ج.م"
     }
   },
-
   "overview": "ملخص",
   "categories": "الاقسام",
   "occasion": "المناسبات",
@@ -937,5 +940,6 @@
     "delete": "حذف",
     "edit": "تعديل",
     "actions": "إجراءات"
-  }
+  },
+  "please-login-first": "يرجى تسجيل الدخول أولاً"
 }

@@ -1,28 +1,42 @@
-export interface RelatedProductsResponse {
-  message: string
-  count: number
-  relatedProducts: RelatedProduct[]
-}
-
 export interface RelatedProduct {
-  _id: string;
+  id: string;
   title: string;
-  slug: string;
   description: string;
-  imgCover: string;
-  images: string[];
-  price: number;
-  priceAfterDiscount: number;
-  quantity: number;
-  category: string;
-  occasion: string;
+  rating: number;
+  ratings: number;
+  stock: number;
+  price: string;
+  discountType: 'PERCENT' | 'FIXED';
+  discountValue: string;
+  cover: string;
+  gallery: string;
+  categoryId: string;
+  subCategoryId: string | null;
+  immutable: boolean;
   createdAt: string;
   updatedAt: string;
-  __v: number;
-  isSuperAdmin?: boolean;
-  sold: number;
-  rateAvg: number;
-  rateCount: number;
-  favoriteId: string | null;
-  isInWishlist: boolean;
+  category: ProductCategory;
+  subCategory: ProductCategory | null;
+  occasions: unknown[];
+  _count: ProductCount;
+}
+
+export interface RelatedProductsResponse {
+  category: CategoryWithProducts;
+}
+
+export interface CategoryWithProducts {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  immutable: boolean;
+  createdAt: string;
+  updatedAt: string;
+  subCategories: unknown[];
+  products: RelatedProduct[];
+  _count: {
+    products: number;
+    subCategories: number;
+  };
 }

@@ -3,7 +3,16 @@ import { Rating } from '@/components/ui/rating';
 import { Review } from '@/lib/types/products/reviews/reviews-response';
 import { useLocale } from 'next-intl';
 
-export default function ReviewItem({ review, formatNumber }: { review: Review, formatNumber: (num: number) => string }) {
+export default function ReviewItem({
+  review,
+  formatNumber,
+  currentUser,
+}: {
+  review: Review;
+  formatNumber: (num: number) => string;
+  currentUser: UserResponsePayload;
+}) {
+  // Translate
   const locale = useLocale();
 
   // Format date based on locale
@@ -18,13 +27,17 @@ export default function ReviewItem({ review, formatNumber }: { review: Review, f
     );
   };
 
+  // variables
+  const isOwner = review.user.id === currentUser.user.id;
+  const avatarSrc = isOwner ? currentUser.user.photo : null;
+
   return (
     <div className="space-y-2">
       {/* Author */}
       <div className="flex items-center gap-3">
         <Avatar className="size-11">
           <AvatarImage
-            src={review.user.photo}
+            src={avatarSrc!}
             alt={`${review.user.firstName} ${review.user.lastName}`}
           />
           <AvatarFallback className="text-xs">
@@ -50,9 +63,9 @@ export default function ReviewItem({ review, formatNumber }: { review: Review, f
 
       {/* Title & Content */}
       <div className="space-y-1">
-        <h3 className="font-medium">{review.title}</h3>
+        <h3 className="font-medium">{review.headline}</h3>
         <p className="text-sm leading-relaxed text-muted-foreground">
-          {review.comment}
+          {review.content}
         </p>
       </div>
     </div>

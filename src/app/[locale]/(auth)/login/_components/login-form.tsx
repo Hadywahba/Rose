@@ -42,7 +42,7 @@ export default function LoginForm() {
     mode: 'all',
     resolver: zodResolver(loginSchema(t)),
     defaultValues: {
-      email: '',
+      username: '',
       password: '',
     },
   });
@@ -66,19 +66,19 @@ export default function LoginForm() {
           className="flex flex-col justify-center"
         >
           <div className="space-y-3">
-            {/* Email */}
+            {/* username */}
             <FormField
               control={form.control}
-              name="email"
+              name="username"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-zinc-800 dark:text-zinc-50">
-                    {t('login.email')}
+                    username
                   </FormLabel>
                   <FormControl>
                     <Input
                       className="w-full text-black placeholder:text-zinc-400 dark:text-zinc-50"
-                      placeholder="user@example.com"
+                      placeholder="enter your name"
                       {...field}
                     />
                   </FormControl>

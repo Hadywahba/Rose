@@ -337,7 +337,11 @@
     "no-products-available-subtitle": "We couldn’t find any products right now. Please check back later",
     "product-notfound-title": " No products found.",
     "product-notfound-subtitle": " We couldn't find any products right now. Try again later or explore other sections.",
-    "product-notfound-btntitle": " View All Products"
+    "product-notfound-btntitle": " View All Products",
+    "price-number-currancy-base-0": "{price,number,currency-no-decimals}",
+    "product-removed-successfully-0": "Product Removed Successfully",
+    "remove-from-whishlist": "Remove From Whishlist",
+    "product-added-successfully": "Product Added successfully"
   },
   "auth": {
     "forget-password": {
@@ -409,7 +413,10 @@
       "email": "Email",
       "submit": "Login",
       "login-error": "An error occurred during login. Please try again.",
-      "remember me": "Remember me"
+      "remember me": "Remember me",
+      "username-required": "your name is required",
+      "username-min-required": "length must be at least 3 characters",
+      "username-regex-required": "Only letters and single spaces allowed"
     },
     "register": {
       "title": "Become part of our family!",
@@ -816,7 +823,6 @@
     "Cancel": "Cancel",
     "Confirm": "Confirm"
   },
-
   "dashboard": {
     "stats-overview": {
       "total-products": "Total products",
@@ -884,7 +890,6 @@
       "currency": "EGP"
     }
   },
-
   "overview": "OverView",
   "categories": "Categories",
   "occasion": "Occasions",
@@ -941,10 +946,10 @@
   "price-quantity": "{productPrice}",
   "successfully-login": "Successfully Login",
   "footer-end": "  © 2026 Rose. All rights reserved.",
-
   "common-table": {
     "delete": "delete",
     "edit": "edit",
     "actions": "actions"
-  }
+  },
+  "please-login-first": "please login first"
 }

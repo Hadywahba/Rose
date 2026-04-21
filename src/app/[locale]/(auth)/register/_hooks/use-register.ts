@@ -16,8 +16,8 @@ export default function useRegister() {
   const { isPending, error, mutate } = useMutation({
     mutationFn: async (fields: RegisterFormFields) => {
       const payload = await registerService(fields);
-      if ('error' in payload) {
-        throw new Error(payload.error);
+      if (payload.status === false) {
+        throw new Error(payload.message);
       }
       return payload;
     },

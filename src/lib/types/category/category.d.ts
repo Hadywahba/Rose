@@ -1,19 +1,15 @@
+export interface CategoryCount {
+  products: number;
+}
 export interface Category {
-  _id: string;
-  name: string;
-  slug: string;
+  id: string;
+  title: string;
+  description: string;
   image: string;
   createdAt: string;
   updatedAt: string;
-  isSuperAdmin: boolean;
-  productsCount: number;
-}
-
-export interface Metadata {
-  currentPage: number;
-  limit: number;
-  totalPages: number;
-  totalItems: number;
+  immutable: boolean;
+  _count: CategoryCount;
 }
 
 export type CurrentCategory = Category;
@@ -28,13 +24,11 @@ export interface CurrentCategoryResponse {
 }
 
 export interface CategoriesResponse {
-  message?: string;
   metadata: Metadata;
-  categories: Category[];
+  data: Category[];
 }
 
 export type TransFn = {
   (id: string, params?: Record<string, unknown>): string;
   has: (id: string) => boolean;
 };
-

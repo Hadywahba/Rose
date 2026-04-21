@@ -3,12 +3,14 @@ import { Translations } from '../types/global';
 
 export const loginSchema = (t: Translations) =>
   z.object({
-    email: z.email({
-      error: (issue) =>
-        issue.input
-          ? t('forget-password.form.schema.email-invalid')
-          : t('forget-password.form.schema.email-required'),
-    }),
+    username: z
+      .string()
+      .min(3, t('login.username-min-required'))
+      .nonempty(t('login.username-required'))
+      .regex(
+        /^[A-Za-z]+(?:\s[A-Za-z]+){0,2}$/,
+        (t('login.username-regex-required')),
+      ),
     password: z
       .string()
       .nonempty(t('reset-password.form.schema.password-required'))

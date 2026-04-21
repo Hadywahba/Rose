@@ -6,17 +6,16 @@ export type ForgotPasswordStep =
 
 export type RegisterFields = z.infer<typeof registerSchema>;
 export interface User {
-  _id: string;
+  id: string;
   firstName: string;
+  username: string;
   lastName: string;
   email: string;
   gender: string;
   phone: string;
-  photo: string;
   role: string;
-  wishlist: string[];
-  addresses: string[];
-  createdAt: string;
+  emailVerified: boolean;
+  phoneVerified: boolean;
 }
 
 export interface LoginResponse {
@@ -29,7 +28,6 @@ export interface RegisterResponse {
   user: User;
   token: string;
 }
-
 
 // Checkout step type
 export type CheckoutStep = (typeof CHECKOUT_STEPS)[keyof typeof CHECKOUT_STEPS];

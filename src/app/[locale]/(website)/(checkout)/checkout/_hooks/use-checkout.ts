@@ -14,8 +14,8 @@ export const useAddress = () => {
     queryFn: async () => {
       const payload = await getAddress(LIMIT);
 
-      if ('error' in payload) {
-        throw new Error(payload.error);
+      if (payload.status===false) {
+        throw new Error(payload.message);
       }
 
       return payload;

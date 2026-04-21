@@ -1,7 +1,7 @@
 'use client';
 
 import { removeFromWhishlistAction } from '@/lib/actions/whishlist/remove-from-whishlist.action';
-import { WhishlistCheck } from '@/lib/types/whishlist';
+import { WhishlistCheck } from '@/lib/types/products/product';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
@@ -16,10 +16,8 @@ export function useRemoveFromWhishlist(productId: string) {
       mutationFn: async () => {
         const payload = await removeFromWhishlistAction(productId);
 
-        if ('error' in payload) {
-          throw new Error(
-            payload.error || 'error during remove product from whishlist!',
-          );
+         if (payload.status === false) {
+          throw new Error(payload.message);
         }
 
         return payload;

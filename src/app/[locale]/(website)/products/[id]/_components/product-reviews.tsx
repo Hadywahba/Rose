@@ -1,25 +1,30 @@
 import { Rating } from '@/components/ui/rating';
 import { Separator } from '@/components/ui/separator';
 import { Star } from 'lucide-react';
-
-import ReviewForm from './review-form';
 import ReviewItem from './review-item';
 import { getLocale, getTranslations } from 'next-intl/server';
-import { getReviews } from '@/lib/services/reviews/get-product-reviews';
 import MainHeading from '@/app/[locale]/(website)/(home)/_components/main-heading';
+import { getReviewProduct } from '../_hooks/get-review';
+import { displayUserProfile } from '../../../profile/_hooks/get-profile';
+import AddReview from './add-review';
 
 export async function ProductsReviews({ productId }: { productId: string }) {
   // Translations
   const t = await getTranslations('reviews');
   const locale = await getLocale();
 
-  
-  const fetchedReviews = await getReviews(productId);
+  // Query (Product)
+  const fetchedReviews = await getReviewProduct(productId);
+
+  // Query (Profile)
+  const currentUser = await displayUserProfile();
+
+  // Variables
+  const reviews = fetchedReviews?.data ?? [];
 
   const averageRating =
-    fetchedReviews && fetchedReviews.length > 0
-      ? fetchedReviews.reduce((sum, review) => sum + review.rating, 0) /
-        fetchedReviews.length
+    fetchedReviews && reviews.length > 0
+      ? reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length
       : 0;
 
   // Format numbers based on locale
@@ -52,7 +57,7 @@ export async function ProductsReviews({ productId }: { productId: string }) {
           paragraph={t('title')}
         />
 
-        {fetchedReviews && fetchedReviews.length > 0 ? (
+        {fetchedReviews && reviews.length > 0 ? (
           <>
             {/* Rating Summary */}
             <div className="mb-8">
@@ -63,7 +68,7 @@ export async function ProductsReviews({ productId }: { productId: string }) {
                 <span className="text-2xl font-bold text-zinc-800 dark:text-zinc-50">
                   {formatNumber(averageRating)}{' '}
                   <span className="text-sm font-medium text-zinc-500 dark:text-zinc-200">
-                    ({formatCount(fetchedReviews.length)} {t('ratings-count')})
+                    ({formatCount(reviews.length)} {t('ratings-count')})
                   </span>
                 </span>
                 <Rating rate={averageRating} className="[&_svg]:size-5" />
@@ -74,18 +79,22 @@ export async function ProductsReviews({ productId }: { productId: string }) {
             <div className="grid grid-cols-1 gap-8 border-t pt-4 dark:border-zinc-50 lg:grid-cols-2">
               {/* Reviews List - Scrollable */}
               <div className="max-h-96 space-y-2 overflow-y-auto pe-4">
-                {fetchedReviews.map((review, index) => (
-                  <div key={review._id}>
+                {reviews.map((review, index) => (
+                  <div key={review.id}>
                     {index > 0 && (
                       <Separator className="mb-6 dark:bg-zinc-50" />
                     )}
-                    <ReviewItem review={review} formatNumber={formatNumber} />
+                    <ReviewItem
+                      review={review}
+                      formatNumber={formatNumber}
+                      currentUser={currentUser}
+                    />
                   </div>
                 ))}
               </div>
 
               {/* Review Form */}
-              <ReviewForm productId={productId} />
+              <AddReview productId={productId} />
             </div>
           </>
         ) : (
@@ -95,7 +104,7 @@ export async function ProductsReviews({ productId }: { productId: string }) {
               {t('noReviews')}
               <Star className="size-4 fill-orange-400 stroke-orange-400" />
             </p>
-            <ReviewForm productId={productId} />
+            <AddReview productId={productId} />
           </div>
         )}
       </div>

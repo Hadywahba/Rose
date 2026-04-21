@@ -1,12 +1,13 @@
 'use server';
 
 import { JSON_HEADER } from '@/lib/constants/api.constant';
+import { ApiWishlistResponseResponse } from '@/lib/types/wishlist/wishlist';
 import { getToken } from '@/lib/utility/manage-token';
 import { revalidateTag } from 'next/cache';
 
-const API = (productId: string) => `/wishlist/${productId}`;
+const API = (id: string) => `/wishlist/${id}`;
 
-export async function removeFromWhishlistAction(productId: string) {
+export async function removeFromWhishlistAction(id: string) {
   // get-token
   const token = await getToken();
 
@@ -15,7 +16,7 @@ export async function removeFromWhishlistAction(productId: string) {
     throw new Error('you must login first');
   }
 
-  const resp = await fetch(`${process.env.API_URL}${API(productId)}`, {
+  const resp = await fetch(`${process.env.API_URL}${API(id)}`, {
     method: 'DELETE',
     headers: {
       ...JSON_HEADER,
@@ -23,7 +24,7 @@ export async function removeFromWhishlistAction(productId: string) {
     },
   });
 
-  const payload = await resp.json();
+  const payload: ApiWishlistResponseResponse = await resp.json();
 
   //To refetch Check Product Function Again
   revalidateTag('check-whishlist');

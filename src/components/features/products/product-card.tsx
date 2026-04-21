@@ -15,8 +15,8 @@ type ProductCardProps = {
   title?: string;
   rate: number;
   rateCount?: number;
-  priceBeforeSale: number;
-  priceAfterSale?: number;
+  priceBeforeSale: string;
+  priceAfterSale: number;
   salesCount: number;
   productId: string;
   className?: string;
