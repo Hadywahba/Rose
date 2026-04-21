@@ -20,15 +20,14 @@ export default function CartHeader() {
 
   // Mutation
   const { onClearCart, clearCartIsPending } = useClearCart();
+
   // Hooks
   const { totalItems, clear } = useGuestCartContext();
 
   // Variables
   const { data: session } = useSession();
-  const isBtnDisabled = session
-    ? (data?.cart?.cartItems.length ?? 0) === 0
-    : totalItems === 0;
-  const count = session ? (data?.numOfCartItems ?? 0) : totalItems;
+  const isBtnDisabled = session ? (data?.length ?? 0) === 0 : totalItems === 0;
+  const count = session ? (data?.length ?? 0) : totalItems;
   const n = format.number(count);
 
   // functions

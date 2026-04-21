@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
     console.log(token.accessToken);
-    const API_URL = 'https://flower.elevateegy.com/api/v1/cart';
+    const API_URL = 'https://rose-app.elevate-bootcamp.cloud/api/cart';
 
     const response = await fetch(API_URL, {
       headers: {

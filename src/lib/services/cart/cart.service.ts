@@ -1,6 +1,9 @@
 import { JSON_HEADER } from '@/lib/constants/api.constant';
-import type { AddToCartPayload, AddToCartResponse } from '@/lib/types/cart';
-import { CartResponse } from '@/lib/types/cart/cart';
+import {
+  AddToCartPayload,
+  AddToCartResponse,
+  CartPayload,
+} from '@/lib/types/cart/cart';
 
 // Add To Cart
 export const addToCart = async (data: AddToCartPayload) => {
@@ -15,6 +18,7 @@ export const addToCart = async (data: AddToCartPayload) => {
   const payload: ApiResponse<AddToCartResponse> = await response.json();
   return payload;
 };
+
 // Display Cart
 export const getCart = async () => {
   const response = await fetch('/api/cart', {
@@ -25,8 +29,6 @@ export const getCart = async () => {
     throw new Error(`Failed to fetch cart: ${response.statusText}`);
   }
 
-  const payload: ApiResponse<CartResponse> = await response.json();
+  const payload: ApiResponse<CartPayload> = await response.json();
   return payload;
 };
-
-

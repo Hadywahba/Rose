@@ -1,12 +1,9 @@
-import { getUserAddresses } from '@/lib/services/addresses/get-user-addresses';
+
+import { getAddresses } from '../_hooks/get-address';
 import { AddressesModalFlow } from './addresses-modal-flow';
 
 export default async function MyAddresses() {
-  const userAddresses = await getUserAddresses();  
+  const {data , error} = await getAddresses();
 
-  return (
-    <AddressesModalFlow
-      userAddresses={userAddresses}
-    />
-  );
+  return <AddressesModalFlow userAddresses={data} addressError={error} />;
 }

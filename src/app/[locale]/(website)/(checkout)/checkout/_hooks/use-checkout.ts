@@ -1,7 +1,7 @@
 import { getAddress } from '@/lib/services/address/address.service';
 import { useQuery } from '@tanstack/react-query';
 
-const LIMIT = 3;
+
 
 export const useAddress = () => {
   const {
@@ -9,16 +9,16 @@ export const useAddress = () => {
     isLoading,
     error,
   } = useQuery({
-    queryKey: ['address', LIMIT],
+    queryKey: ['address'],
 
     queryFn: async () => {
-      const payload = await getAddress(LIMIT);
+      const payload = await getAddress();
 
       if (payload.status===false) {
         throw new Error(payload.message);
       }
 
-      return payload;
+      return payload.payload;
     },
   });
 

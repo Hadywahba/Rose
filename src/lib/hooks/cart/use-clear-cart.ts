@@ -14,9 +14,9 @@ export function useClearCart() {
 
       // catch-error
 
-      if ('error' in payload) {
+      if (payload.status===false) {
         throw new Error(
-          payload.error || 'error during update product in cart!',
+          payload.message,
         );
       }
       return payload;

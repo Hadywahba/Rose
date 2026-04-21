@@ -1,11 +1,14 @@
-"use server";
+'use server';
 
 import { JSON_HEADER } from '@/lib/constants/api.constant';
-import { AddressFormSchema } from '@/lib/schema/address.schema';
+import { UpdateAddressFormSchema } from '@/lib/schema/address.schema';
+import { UpdateAddressPayload } from '@/lib/types/address/address';
 import { getToken } from '@/lib/utility/manage-token';
 
-export const updateAddressAction = async (id:string,data: AddressFormSchema) => {
-  
+export const updateAddressAction = async (
+  id: string,
+  data: UpdateAddressFormSchema,
+) => {
   const token = await getToken();
 
   const response = await fetch(`${process.env.API_URL}/addresses/${id}`, {
@@ -17,7 +20,7 @@ export const updateAddressAction = async (id:string,data: AddressFormSchema) => 
     body: JSON.stringify(data),
   });
 
-  const payload = await response.json();  
+  const payload: ApiResponse<UpdateAddressPayload> = await response.json();
 
   return payload;
 };

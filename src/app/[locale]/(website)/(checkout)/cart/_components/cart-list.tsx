@@ -26,7 +26,7 @@ export default function CartList() {
   // Variables
   const { data: session } = useSession();
   const isBusy = isLoading || isFetching;
-  const cartItems = data?.cart?.cartItems ?? [];
+  const cartItems = data ?? [];
 
   const displayedCartItems = session ? cartItems : localeStorageList;
 

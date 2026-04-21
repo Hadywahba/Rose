@@ -1,7 +1,7 @@
-import { deleteProductFromCartAction } from "@/lib/actions/cart/delete-product-from-cart.action";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useTranslations } from "next-intl";
-import { toast } from "sonner";
+import { deleteProductFromCartAction } from '@/lib/actions/cart/delete-product-from-cart.action';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useTranslations } from 'next-intl';
+import { toast } from 'sonner';
 
 export function useDeleteProductFromCart() {
   // Translations
@@ -15,16 +15,14 @@ export function useDeleteProductFromCart() {
 
         // catch-error
 
-        if ("error" in payload) {
-          throw new Error(
-            payload.error || "error during update product in cart!",
-          );
+        if (payload.status === false) {
+          throw new Error(payload.message);
         }
         return payload;
       },
       onSuccess: async () => {
         toast.success(t('product-deleted-successfully'));
-        await queryClient.invalidateQueries({ queryKey: ["cart"] });
+        await queryClient.invalidateQueries({ queryKey: ['cart'] });
       },
       onError: (error) => {
         toast.error(error.message);

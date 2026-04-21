@@ -1,9 +1,8 @@
-import { useMutation } from "@tanstack/react-query";
-import { useTranslations } from "next-intl";
-import { toast } from "sonner";
-import { deleteAddressAction } from "../_action/delete-address.action";
-import { useRouter } from "@/i18n/navigation";
-
+import { useMutation } from '@tanstack/react-query';
+import { useTranslations } from 'next-intl';
+import { toast } from 'sonner';
+import { deleteAddressAction } from '../_action/delete-address.action';
+import { useRouter } from '@/i18n/navigation';
 
 export const useDeleteAddress = () => {
   // Translations
@@ -12,26 +11,26 @@ export const useDeleteAddress = () => {
   const router = useRouter();
   // Mutation
   const { isPending, error, mutate } = useMutation({
-    mutationFn: async (id:string) => {
+    mutationFn: async (id: string) => {
       const res = await deleteAddressAction(id);
 
-      if ("error" in res) {
-        throw new Error(res.error);
+      if (res.status === false) {
+        throw new Error(res.message);
       }
     },
 
     onSuccess: () => {
       toast.success(t('success-delete-message'));
-        router.refresh();
+      router.refresh();
     },
     onError: (error: Error) => {
       toast.error(t('error-delete-message', { message: error.message }));
-    }
+    },
   });
 
   return {
     deleteAddress: mutate,
-    pendingDelete:isPending,
-    errorDelete:error,
+    pendingDelete: isPending,
+    errorDelete: error,
   };
-}
+};

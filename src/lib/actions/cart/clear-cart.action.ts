@@ -21,6 +21,6 @@ export async function clearCartAction() {
     },
   });
 
-  const payload = await resp.json();
+  const payload: DeleteApiResponse = await resp.json();
   return payload;
 }

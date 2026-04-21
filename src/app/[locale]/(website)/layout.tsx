@@ -9,7 +9,7 @@ export default function layout({ children }: { children: React.ReactNode }) {
   return (
     <main>
       {/* Header */}
-     
+      <Header />
       <NextAuthProvider>
         {/* children Section */}
         {children}

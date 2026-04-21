@@ -5,15 +5,31 @@ import { useState } from 'react';
 import CheckOutContent from './checkout-content';
 import PaymentMethods from './payment-methods';
 import { CheckoutStep } from '@/lib/types/checkout/checkout';
+import { Address } from '@/lib/types/address/address';
 
-export default function CheckoutLayout(myAddresses : { myAddresses: React.ReactNode }) {
-  // Stste
+type Props = {
+  myAddresses: React.ReactNode;
+  address: Address[];
+  addressError: Error | null;
+};
+
+export default function CheckoutLayout({
+  myAddresses,
+  address,
+  addressError,
+}: Props) {
   const [step, setStep] = useState<CheckoutStep>(CHECKOUT_STEPS.address);
 
-  // Variable
   const steps = {
     [CHECKOUT_STEPS.address]: {
-      checkout: <CheckOutContent myAddresses={myAddresses.myAddresses} setStep={setStep} />,
+      checkout: (
+        <CheckOutContent
+          myAddresses={myAddresses}
+          setStep={setStep}
+          address={address}
+          addressError={addressError}
+        />
+      ),
     },
     [CHECKOUT_STEPS.payment]: {
       checkout: <PaymentMethods setStep={setStep} />,

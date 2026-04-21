@@ -29,12 +29,12 @@ export default async function ProductYouMayLiked({
     return null;
   }
 
-  const products = payload?.products ?? [];
+  const products = payload?.payload.data ?? [];
   return (
-    <div className="container p-8">
+    <div className="container p-8 mb-4">
       {/* Title */}
       <MainHeading
-        className="mb-5 items-start text-start"
+        className="mb-8 items-start text-start"
         paragraph={t('product-you-may-liked')}
       />
       <ProductsCarousel products={products} />

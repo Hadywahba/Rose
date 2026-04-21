@@ -8,6 +8,7 @@ import { cn } from '@/lib/utility/tailwind-merge';
 import Empty from '@/components/shared/empty';
 import ListError from '@/components/error/list-error';
 import { Product, ProductsResponse } from '@/lib/types/products/product';
+import { getFinalPrice } from '@/lib/utility/pricing';
 
 type ProductsListProps = {
   searchParams: SearchParams;
@@ -44,7 +45,7 @@ export default async function ProductsList({
   const totalPages = safeTotalPages;
 
   const products = payload?.payload.data ?? [];
-  console.log(products);
+
   return (
     <div className="col-span-9">
       <ListError errors={error}>
@@ -55,22 +56,29 @@ export default async function ProductsList({
           )}
         >
           {products.length > 0 &&
-            products.map((product: Product) => (
-              <ProductCard
-                key={product.id}
-                productId={product.id}
-                priceAfterSale={Number(product.price)}
-                rate={product.rating}
-                salesCount={Number(product.discountValue)}
-                src={product.cover}
-                title={product.title}
-                showWishListBtn={true}
-                quantity={product.stock}
-                createdAt={product.createdAt}
-                productInfo={product}
-                priceBeforeSale={product.discountValue}
-              />
-            ))}
+            products.map((product: Product) => {
+              const finalPrice = getFinalPrice({
+                price: product.price,
+                discountType: product.discountType,
+                discountValue: product.discountValue,
+              });
+              return (
+                <ProductCard
+                  key={product.id}
+                  productId={product.id}
+                  priceAfterSale={finalPrice}
+                  rate={product.rating}
+                  salesCount={Number(product.discountValue)}
+                  src={product.cover}
+                  title={product.title}
+                  showWishListBtn={true}
+                  quantity={product.stock}
+                  createdAt={product.createdAt}
+                  productInfo={product}
+                  priceBeforeSale={product.price}
+                />
+              );
+            })}
         </div>
 
         {products.length === 0 && (

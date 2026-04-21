@@ -17,7 +17,7 @@ export const useCart = () => {
         throw new Error(payload.message);
       }
 
-      return payload;
+      return payload.payload.cartItems;
     },
   });
 

@@ -4,8 +4,14 @@ export const getCartItems = async () => {
   const data = await getCarts();
 
   if (data.status === false) {
-    throw new Error(data.message);
+    return {
+      error: new Error(data.message),
+      data: [],
+    };
   }
 
-  return data;
+  return {
+    error: null,
+    data: data.payload.cartItems,
+  };
 };

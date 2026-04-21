@@ -1,11 +1,11 @@
 'use server';
 
 import { JSON_HEADER } from '@/lib/constants/api.constant';
-import { AddToCartProps, AddToCartResponse } from '@/lib/types/cart';
+import { AddToCartProps, AddToCartResponse } from '@/lib/types/cart/cart';
 import { getToken } from '@/lib/utility/manage-token';
-
+import { revalidatePath } from 'next/cache';
 export const addToCartAction = async (data: AddToCartProps) => {
-  const product = data.productId;
+  const productId = data.productId;
   const quantity = data.quantity;
   const token = await getToken();
 
@@ -16,10 +16,11 @@ export const addToCartAction = async (data: AddToCartProps) => {
       ...JSON_HEADER,
       Authorization: `Bearer ${token?.accessToken}`,
     },
-    body: JSON.stringify({ product, quantity }),
+    body: JSON.stringify({ productId, quantity }),
   });
 
   // Response
   const payload: ApiResponse<AddToCartResponse> = await response.json();
+  revalidatePath(`/cart`);
   return payload;
 };

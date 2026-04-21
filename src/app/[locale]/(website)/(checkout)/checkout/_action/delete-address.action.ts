@@ -1,10 +1,9 @@
-"use server";
+'use server';
 
 import { JSON_HEADER } from '@/lib/constants/api.constant';
 import { getToken } from '@/lib/utility/manage-token';
 
-export const deleteAddressAction = async (id:string) => {
-  
+export const deleteAddressAction = async (id: string) => {
   const token = await getToken();
 
   const response = await fetch(`${process.env.API_URL}/addresses/${id}`, {
@@ -15,7 +14,7 @@ export const deleteAddressAction = async (id:string) => {
     },
   });
 
-  const payload = await response.json();  
+  const payload: DeleteApiResponse = await response.json();
 
   return payload;
 };

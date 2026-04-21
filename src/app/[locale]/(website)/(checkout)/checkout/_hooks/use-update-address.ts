@@ -1,10 +1,9 @@
-import { useMutation } from "@tanstack/react-query";
-import { useTranslations } from "next-intl";
-import { toast } from "sonner";
-import { useRouter } from "@/i18n/navigation";
-import { updateAddressAction } from "../_action/update-address.action";
-import { AddressFormSchema } from "@/lib/schema/address.schema";
-
+import { useMutation } from '@tanstack/react-query';
+import { useTranslations } from 'next-intl';
+import { toast } from 'sonner';
+import { useRouter } from '@/i18n/navigation';
+import { updateAddressAction } from '../_action/update-address.action';
+import { AddressFormSchema } from '@/lib/schema/address.schema';
 
 export const useUpdateAddress = () => {
   // Translations
@@ -16,8 +15,8 @@ export const useUpdateAddress = () => {
     mutationFn: async (params: { id: string; data: AddressFormSchema }) => {
       const res = await updateAddressAction(params.id, params.data);
 
-      if ("error" in res) {
-        throw new Error(res.error);
+      if (res.status === false) {
+        throw new Error(res.message);
       }
     },
 
@@ -27,7 +26,7 @@ export const useUpdateAddress = () => {
     },
     onError: (error: Error) => {
       toast.error(t('error-update-message', { message: error.message }));
-    }
+    },
   });
 
   return {
@@ -35,4 +34,4 @@ export const useUpdateAddress = () => {
     pendingUpdate: isPending,
     errorUpdate: error,
   };
-}
+};

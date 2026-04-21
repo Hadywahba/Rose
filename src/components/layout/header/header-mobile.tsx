@@ -12,14 +12,16 @@ import HeaderSearch from './header-search';
 import Headerlocation from './header-location';
 import { User } from '@/lib/types/auth';
 import { Product } from '@/lib/types/products/product';
+import { Address } from '@/lib/types/address/address';
 
 
 interface HeaderInfoProps {
   user: User | null;
   products: Product[];
    cartdata: number;
+     address: Address[];
 }
-export default function HeaderMobile({ user, products , cartdata }: HeaderInfoProps) {
+export default function HeaderMobile({ user, products , cartdata , address }: HeaderInfoProps) {
   // Translation
   const t = useTranslations('homepage');
 
@@ -56,7 +58,7 @@ export default function HeaderMobile({ user, products , cartdata }: HeaderInfoPr
           </svg>
         </button>
         <div className="hidden sm:flex">
-          <Headerlocation isborder={true} user={user} />
+          <Headerlocation isborder={true} address={address} />
         </div>
 
         <div className="hidden flex-1 sm:flex">

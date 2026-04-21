@@ -291,7 +291,11 @@
         "text": "We never sell data; only essential sharing with payment and shipping."
       }
     },
-    "chips": ["Transparency", "Security", "Control"],
+    "chips": [
+      "Transparency",
+      "Security",
+      "Control"
+    ],
     "cta1": "Go to Store",
     "cta2": "Terms & Conditions"
   },
@@ -646,25 +650,41 @@
           "name": "Member One",
           "role": "Frontend Developer",
           "bio": "Responsible for crafting the visual experience of Rose. Loves clean UI, smooth animations, and making sure every pixel is in its right place.",
-          "works": ["UI Components", "Animations", "Responsive Design"]
+          "works": [
+            "UI Components",
+            "Animations",
+            "Responsive Design"
+          ]
         },
         {
           "name": "Member Two",
           "role": "Backend Developer",
           "bio": "The engine behind Rose. Builds the APIs, manages the database, and makes sure everything runs fast and secure.",
-          "works": ["REST APIs", "Database Design", "Authentication"]
+          "works": [
+            "REST APIs",
+            "Database Design",
+            "Authentication"
+          ]
         },
         {
           "name": "Member Three",
           "role": "Full Stack Developer",
           "bio": "Bridges the gap between frontend and backend. Works across the entire stack to deliver seamless features end-to-end.",
-          "works": ["Next.js", "State Management", "Integrations"]
+          "works": [
+            "Next.js",
+            "State Management",
+            "Integrations"
+          ]
         },
         {
           "name": "Member Four",
           "role": "UI/UX & Frontend",
           "bio": "Turns designs into reality. Focuses on user experience, accessibility, and making Rose feel intuitive for every customer.",
-          "works": ["Design System", "Accessibility", "User Testing"]
+          "works": [
+            "Design System",
+            "Accessibility",
+            "User Testing"
+          ]
         }
       ]
     }
@@ -813,7 +833,7 @@
     "map-title": "Find Your Location",
     "adding-address": "Adding Address...",
     "add-address-button": "Add Address",
-    "label-required": "Label is required",
+    "label-required": "title is required",
     "city-required": "City is required",
     "address-required": "Address is required",
     "phone-required": "Valid phone number is required",

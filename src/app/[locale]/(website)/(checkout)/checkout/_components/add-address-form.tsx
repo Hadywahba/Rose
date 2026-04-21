@@ -41,9 +41,11 @@ export default function AddressForm({
 
   // Form Hook
   const form = useForm<AddressFormData>({
-    resolver: zodResolver(addressSchema(t).omit({ lat: true, long: true })),
+    resolver: zodResolver(
+      addressSchema(t).omit({ latitude: true, longitude: true }),
+    ),
     defaultValues: {
-      username: data?.username || '',
+      title: data?.title || '',
       city: data?.city || '',
       street: data?.street || '',
       phone: data?.phone || '',
@@ -90,7 +92,7 @@ export default function AddressForm({
         {/* Username / Category Field */}
         <FormField
           control={form.control}
-          name="username"
+          name="title"
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-sm font-normal text-zinc-800 dark:text-zinc-50">

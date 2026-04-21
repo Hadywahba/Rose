@@ -1,18 +1,19 @@
 import { ConfirmDelete } from '@/components/shared/confirm-delete';
-import { Address } from '@/lib/types/user-addresses';
+import { Address } from '@/lib/types/address/address';
+
 import { MapPin, PencilLine, Phone } from 'lucide-react';
 
 type AddressCardProps = {
   address: Address;
   handleDeleteAddress: (id: string) => void;
-  onEditAddress: (address: Address) => void; 
+  onEditAddress: (address: Address) => void;
   pendingDelete: boolean;
 };
 
 export default function AddressCard({
   address,
   handleDeleteAddress,
-  onEditAddress, 
+  onEditAddress,
   pendingDelete,
 }: AddressCardProps) {
   return (
@@ -47,7 +48,7 @@ export default function AddressCard({
           </button>
 
           <ConfirmDelete
-            id={address._id}
+            id={address.id}
             handleDeleteAddress={handleDeleteAddress}
             pendingDelete={pendingDelete}
           />

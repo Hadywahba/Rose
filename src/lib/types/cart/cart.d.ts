@@ -1,27 +1,67 @@
-import { Product } from '../product/product';
+import { Product } from '../products/product';
 
 export type CartItem = {
+  id: string;
+  userId: string;
+  productId: string;
+  quantity: number;
+  createdAt: string;
+  updatedAt: string;
+  product: Product;
+};
+
+export type CartPayload = {
+  cartItems: CartItem[];
+};
+
+export type AddToCartPayload = {
+  product: string;
+  quantity: number;
+};
+
+export type AddToCartProps = {
+  productId: string;
+  quantity: number;
+};
+
+export type UpdateCartProps = {
+  cartItemId: string;
+  quantity: number;
+};
+
+export type CartItemResponse = {
+  _id: string;
   product: Product;
   price: number;
   quantity: number;
-  _id: string;
 };
 
-export type Cart = {
-  _id: string;
-  user: string;
-  cartItems: CartItem[];
-  appliedCoupons: string[];
-  discount: number;
-  totalPrice: number;
-  totalPriceAfterDiscount: number;
+export type AddToCartResponse = {
+  cartItem: CartItem;
+};
+
+export type UpdateCartPayload = {
+  cartItem: UpdatedCartItem;
+};
+
+export type CartItemUI = {
+  id: string;
+  productId: string;
+  title: string;
+  cover: string;
+  price: number;
+  rating: number;
+  ratings: number;
+  stock: number;
+  quantity: number;
+};
+
+export type CartItemsUI = {
+  id: string;
+  userId: string;
+  productId: string;
+  quantity: number;
   createdAt: string;
   updatedAt: string;
-  __v: number;
-};
-
-export type CartResponse = {
-  numOfCartItems: number;
-  cart: Cart;
-  message: string;
+  product: Product;
 };

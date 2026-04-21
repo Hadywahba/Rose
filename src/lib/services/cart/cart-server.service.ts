@@ -1,8 +1,8 @@
-import { CartResponse } from '@/lib/types/cart/cart';
+import { CartPayload } from '@/lib/types/cart/cart';
 import { headers } from 'next/headers';
 
 // Display Cart
-const baseUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000';
+const baseUrl = process.env.NEXTAUTH_URL;
 export const getCarts = async () => {
   const cookie = headers().get('cookie') || '';
   const response = await fetch(`${baseUrl}/api/cart`, {
@@ -12,6 +12,6 @@ export const getCarts = async () => {
     },
   });
 
-  const payload: ApiResponse<CartResponse> = await response.json();
+  const payload: ApiResponse<CartPayload> = await response.json();
   return payload;
 };

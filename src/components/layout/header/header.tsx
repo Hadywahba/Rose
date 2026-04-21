@@ -11,10 +11,11 @@ import { authOption } from '@/auth';
 import { User } from '@/lib/types/auth';
 import { SearchParams } from '@/lib/types/global';
 import catchError from '@/lib/utility/catch-error';
-
 import { fetchAllProductsService } from '@/lib/actions/products/fetch-all-products.service';
 import { ProductsResponse } from '@/lib/types/products/product';
 import { getCartItems } from '@/app/[locale]/(website)/(checkout)/cart/_hooks/get-cart';
+import { getAddresses } from '@/app/[locale]/(website)/(checkout)/checkout/_hooks/get-address';
+
 
 export default async function Header() {
   // Variable
@@ -28,13 +29,15 @@ export default async function Header() {
     fetchAllProductsService(nextParams),
   );
 
-  const products = payload?.products ?? [];
+  // Display DataS
+  const data = await getCartItems();
 
-  let data = { numOfCartItems: 0 };
+    const address=await getAddresses()
 
-  if (session?.user) {
-    data = await getCartItems();
-  }
+  // Variables
+  const products = payload?.payload.data ?? [];
+
+
 
   return (
     <header>
@@ -52,7 +55,7 @@ export default async function Header() {
           </Link>
           <Headerlocation
             isborder={true}
-            user={(session?.user as User) ?? null}
+           address={address.data}
           />
         </div>
 
@@ -65,7 +68,7 @@ export default async function Header() {
         {/* Header Info */}
         <HeaderInfo
           user={(session?.user as User) ?? null}
-          cartdata={data.numOfCartItems}
+          cartdata={data.data.length}
         />
       </div>
 
@@ -76,7 +79,8 @@ export default async function Header() {
       <HeaderMobile
         user={(session?.user as User) ?? null}
         products={products}
-        cartdata={data.numOfCartItems}
+        cartdata={data.data.length}
+         address={address.data}
       />
     </header>
   );

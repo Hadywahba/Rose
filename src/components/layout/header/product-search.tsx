@@ -13,7 +13,7 @@ type SearchProps = {
   rate: number;
   rateCount?: number;
   priceBeforeSale: number;
-  priceAfterSale?: number;
+  priceAfterSale: number;
   salesCount: number;
   productId: string;
   className?: string;

@@ -18,7 +18,11 @@ export default function CartPrice() {
   // Variables
   const arabic = locale === 'ar';
 
-  const totalPrice = cart?.cart?.totalPrice ?? 0;
+  const totalPrice =
+    cart?.reduce((acc, item) => {
+      const price = Number(item.product.price) || 0;
+      return acc + price * item.quantity;
+    }, 0) ?? 0;
 
   const cartPrice = format.number(totalPrice, 'decimals');
   const currencyLabel = arabic ? 'ج.م' : CURRENCY;

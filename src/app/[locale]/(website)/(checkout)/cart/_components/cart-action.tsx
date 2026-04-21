@@ -3,26 +3,23 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useDeleteProductFromCart } from '@/lib/hooks/cart/use-delete-product-from-cart';
-import { useGuestCartContext } from '@/lib/hooks/cart/use-guest-cart-context';
 import { useUpdateCart } from '@/lib/hooks/cart/use-update-cart';
 import { useValidateCartInput } from '@/lib/hooks/cart/use-validate-cart-input';
 import { Minus, Plus, Trash2 } from 'lucide-react';
-import { useSession } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
-import { toast } from 'sonner';
 import { useDebouncedCallback } from 'use-debounce';
 
 type CartActionProps = {
-  productId: string;
   productQuantity: number;
   quantityInCart: number;
+  cartItemId: string;
 };
 
 export default function CartAction({
-  productId,
   productQuantity,
   quantityInCart,
+  cartItemId,
 }: CartActionProps) {
   // Translations
   const t = useTranslations();
@@ -31,16 +28,11 @@ export default function CartAction({
   const [count, setCount] = useState<string>(() => String(quantityInCart));
   const [error, setError] = useState<string | null>(null);
 
-  // Session
-  const { data: session } = useSession();
-
   // Mutation (session case)
   const { onUpdateCart, isPending } = useUpdateCart();
+
   const { onDeleteProductFromCart, deleteProductIsPending } =
     useDeleteProductFromCart();
-
-  // Guest cart (no session case)
-  const { removeItem, setQuantity } = useGuestCartContext();
 
   // Refs
   const updateCartRef = useRef(onUpdateCart);
@@ -61,15 +53,8 @@ export default function CartAction({
 
   // ONE debounced function for both cases
   const debouncedUpdateCart = useDebouncedCallback((nextValue: number) => {
-    if (!session) {
-      // guest: update local storage via context
-      setQuantity(productId, nextValue);
-      toast.success(t("product-updated-successfully"))
-      return;
-    }
-
     // session: call API to update cart
-    updateCartRef.current({ productId, quantity: nextValue });
+    updateCartRef.current({ cartItemId, quantity: nextValue });
   }, 500);
 
   // Functions
@@ -122,13 +107,7 @@ export default function CartAction({
   }
 
   function handleDeleteProduct() {
-    if (!session) {
-      removeItem(productId);
-      toast.success(t('product-removed-from-cart-successfully'));
-      return;
-    }
-
-    onDeleteProductFromCart(productId);
+    onDeleteProductFromCart(cartItemId);
   }
 
   return (
@@ -141,7 +120,7 @@ export default function CartAction({
       >
         <Trash2 /> <span className="capitalize">{t('remove')}</span>
       </Button>
-      <div className='mb-4 space-y-3'>
+      <div className="mb-4 space-y-3">
         <div className="update-btn flex gap-2">
           <Button
             className="w-fit p-6"

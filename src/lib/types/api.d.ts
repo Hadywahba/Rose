@@ -10,6 +10,18 @@ declare type SuccessResponse<T> = {
   payload: T;
 };
 
+declare type DeleteErrorResponse = {
+  message: string;
+  status: false;
+  code: number;
+};
+
+declare type DeleteSuccessResponse = {
+  status: true;
+  code: number;
+  message: string;
+};
+
 declare type ApiResponse<T> = ErrorResponse | SuccessResponse<T>;
 
 declare type MetaData = {
@@ -28,3 +40,5 @@ declare type PaginatedResponse<T> = {
     nextPage?: number;
   };
 } & T;
+
+declare type DeleteApiResponse = DeleteErrorResponse | DeleteSuccessResponse;

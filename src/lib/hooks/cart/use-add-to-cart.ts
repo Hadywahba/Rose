@@ -1,5 +1,5 @@
 import { addToCartAction } from '@/lib/actions/cart/add-to-cart.action';
-import { AddToCartProps } from '@/lib/types/cart';
+import { AddToCartProps } from '@/lib/types/cart/cart';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';

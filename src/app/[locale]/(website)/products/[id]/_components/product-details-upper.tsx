@@ -2,33 +2,24 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-import { useLocale, useTranslations } from 'next-intl';
-import {
-  ShoppingCart,
-  Star,
-  Package,
-  HeartPlus,
-  HeartMinus,
-  Heart,
-} from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { ShoppingCart, Star, Package, HeartPlus, Heart } from 'lucide-react';
 import { cn } from '@/lib/utility/tailwind-merge';
 import { Button } from '@/components/ui/button';
 import { FaSpinner } from 'react-icons/fa';
-import { useAddToCart } from '../_hooks/use-add-to-cart';
 import { Product } from '@/lib/types/products/product';
 import { getFinalPrice } from '@/lib/utility/pricing';
-
 import { useSession } from 'next-auth/react';
 import { useLocalWishlist } from '@/lib/hooks/local-storage/use-local-storage-whishlist';
 import { useAddToWhishlist } from '@/lib/hooks/whishlist/use-add-to-whishlist';
 import { useRemoveFromWhishlist } from '@/lib/hooks/whishlist/use-remove-from-whishlist';
 import { useWishlistStatus } from '@/lib/hooks/whishlist/use-whishlist-status';
 import { toast } from 'sonner';
+import { useAddToCart } from '@/lib/hooks/cart/use-add-to-cart';
 
 export default function ProductDetailsUpper({ product }: { product: Product }) {
   // Translation
   const t = useTranslations('product');
-  const locale = useLocale();
 
   // Session
   const session = useSession();
@@ -40,7 +31,6 @@ export default function ProductDetailsUpper({ product }: { product: Product }) {
   const { data } = useWishlistStatus();
 
   const wishlistItems = data?.payload?.wishlistItems ?? [];
-
 
   const inServerWishlist = wishlistItems.some(
     (item: { productId: string }) => item.productId === product.id,
@@ -62,7 +52,7 @@ export default function ProductDetailsUpper({ product }: { product: Product }) {
   const isLoading = addWhishlistPending || removeWhishlistPending;
 
   // Cart
-  const { addToCart, isPending: isAddingToCart } = useAddToCart();
+  const { isPending, onAddToCard } = useAddToCart();
 
   // State
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -187,10 +177,10 @@ export default function ProductDetailsUpper({ product }: { product: Product }) {
           <Button
             variant="primary"
             className="h-12 flex-1"
-            disabled={!inStock || isAddingToCart}
-            onClick={() => addToCart({ product: product.id, quantity: 1 })}
+            disabled={!inStock || isPending}
+            onClick={() => onAddToCard({ productId: product.id, quantity: 1 })}
           >
-            {isAddingToCart ? (
+            {isPending ? (
               <FaSpinner className="animate-spin" />
             ) : (
               <span className="flex items-center gap-2">
