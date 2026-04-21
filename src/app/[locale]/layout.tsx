@@ -70,12 +70,12 @@ export default function LocaleLayout({
   setRequestLocale(locale);
 
   return (
-    <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <body
-        className={` ${locale === 'ar' ? tajawal.className : sarabun.className} ${zain.variable} ${mulish.variable} ${inter.variable} antialiased [@media(min-width:1920px)]:container dark:bg-zinc-800 [@media(min-width:1920px)]:mx-auto`}
-      >
-        <Providers locale={locale}>{children}</Providers>
-      </body>
-    </html>
+   <div
+      dir={locale === 'ar' ? 'rtl' : 'ltr'}
+      className={`${locale === 'ar' ? tajawal.className : sarabun.className} ${zain.variable} ${mulish.variable} ${inter.variable} antialiased dark:bg-zinc-800 [@media(min-width:1920px)]:container [@media(min-width:1920px)]:mx-auto`}
+    >
+      <Providers locale={locale}>{children}</Providers>
+    </div>
+   
   );
 }
