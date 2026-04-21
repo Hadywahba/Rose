@@ -50,7 +50,7 @@ export default function CheckoutAddress({
             key={add.id}
             className={cn(
               'mb-3 flex w-full cursor-pointer flex-col rounded-2xl border-[.0625rem] border-zinc-300 px-4',
-              address?._id === add.id
+              address?.id === add.id
                 ? 'bg-maroon-600 dark:bg-softpink-500'
                 : 'group hover:bg-maroon-300 dark:bg-zinc-50 dark:hover:bg-zinc-400',
             )}
@@ -60,7 +60,7 @@ export default function CheckoutAddress({
               <h2
                 className={cn(
                   'text-2xl font-semibold capitalize',
-                  address?._id === add.id
+                  address?.id === add.id
                     ? 'text-zinc-50'
                     : 'dark:text-zinc-800',
                 )}
@@ -73,13 +73,13 @@ export default function CheckoutAddress({
                 <div
                   className={cn(
                     'flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-maroon-600',
-                    address?._id === add.id ? 'bg-zinc-50' : 'bg-maroon-600',
+                    address?.id === add.id ? 'bg-zinc-50' : 'bg-maroon-600',
                   )}
                 >
                   <Phone
                     className={cn(
                       'h-5 w-5',
-                      address?._id === add.id
+                      address?.id === add.id
                         ? 'text-maroon-600'
                         : 'text-white',
                     )}
@@ -89,7 +89,7 @@ export default function CheckoutAddress({
                   className={cn(
                     'text-lg text-zinc-500 dark:text-zinc-50',
 
-                    address?._id === add.id
+                    address?.id === add.id
                       ? 'text-zinc-50'
                       : 'group-hover:text-white dark:text-zinc-800 dark:group-hover:text-zinc-900',
                   )}
@@ -103,7 +103,7 @@ export default function CheckoutAddress({
             <p
               className={cn(
                 'mb-4 w-fit rounded-full px-3 font-medium',
-                address?._id === add.id
+                address?.id === add.id
                   ? 'bg-zinc-800 text-zinc-50'
                   : 'bg-zinc-100 dark:bg-zinc-600',
               )}

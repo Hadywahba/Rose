@@ -1,7 +1,8 @@
 'use client';
 
 import { PaymentMethods } from '@/lib/enums/payment-method.enum';
-import { Addresses } from '@/lib/types/address/address';
+import { Address } from '@/lib/types/address/address';
+
 import {
   createContext,
   useState,
@@ -11,9 +12,9 @@ import {
 } from 'react';
 
 type PaymentContextType = {
-  address: Addresses | null;
+  address: Address | null;
   paymentMethod: PaymentMethods | null;
-  setAddress: (address: Addresses | null) => void;
+  setAddress: (address: Address | null) => void;
   setPaymentMethod: (method: PaymentMethods | null) => void;
 };
 
@@ -23,7 +24,7 @@ export const CheckoutContext = createContext<PaymentContextType | undefined>(
 
 export const CheckoutProvider = ({ children }: { children: ReactNode }) => {
   // State
-  const [address, setAddressState] = useState<Addresses | null>(null);
+  const [address, setAddressState] = useState<Address | null>(null);
 
   const [paymentMethod, setPaymentState] = useState<PaymentMethods | null>(
     null,
@@ -32,7 +33,7 @@ export const CheckoutProvider = ({ children }: { children: ReactNode }) => {
   // Fumctions
 
   //   Is Used to save payment address
-  const setAddress = (add: Addresses | null) => {
+  const setAddress = (add: Address | null) => {
     setAddressState(add);
     if (add) {
       sessionStorage.setItem('checkout-addresses', JSON.stringify(add));
