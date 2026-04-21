@@ -54,7 +54,7 @@ export type VisaPayload = {
     street: string;
     phone: string;
     city: string;
-    lat: string;
-    long: string;
+    latitude: string;
+    longitude: string;
   };
 };

@@ -87,7 +87,7 @@ export async function ProductsReviews({ productId }: { productId: string }) {
                     <ReviewItem
                       review={review}
                       formatNumber={formatNumber}
-                      currentUser={currentUser}
+                      currentUser={currentUser.data}
                     />
                   </div>
                 ))}

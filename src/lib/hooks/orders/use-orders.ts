@@ -11,8 +11,8 @@ export function useOrders() {
       const payload: ApiResponse<GetUserOrdersResponse> =
         await getUserOrdersAction();
 
-      if ('error' in payload) {
-        throw new Error(payload.error || 'error during fetch orders');
+      if (payload.status===false) {
+        throw new Error(payload.message);
       }
 
       return payload;

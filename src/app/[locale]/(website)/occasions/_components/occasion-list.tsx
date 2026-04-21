@@ -30,10 +30,10 @@ export default async function OccasionList({
     PaginatedResponse<OccasionsResponse>
   >(() => fetchAllOccasions(nextParams));
 
-  const metadata = payload?.metadata ?? { totalPages: 0, currentPage: 1 };
+  const metadata = payload?.payload.metadata ?? { totalPages: 0, currentPage: 1 };
   const totalPages = Number(metadata.totalPages);
   const currentPage = Number(metadata.currentPage);
-  const occasion = payload?.occasions ?? [];
+  const occasion = payload?.payload.data ?? [];
 
   return (
     <ListError errors={error}>
@@ -43,13 +43,13 @@ export default async function OccasionList({
           {occasion.length > 0 &&
             occasion.map((occ: Occasion) => (
               <OccasionsCard
-                key={occ._id}
-                name={occ.name}
+                key={occ.id}
+                name={occ.title}
                 image={occ.image}
-                productsCount={occ.productsCount}
+              
                 createdAt={occ.createdAt}
                 updatedAt={occ.updatedAt}
-                id={occ._id}
+                id={occ.id}
               />
             ))}
         </div>

@@ -1,332 +1,333 @@
-"use client";
+// "use client";
 
-import { CartItemUI } from "@/lib/types/cart";
-import React, {
-  createContext,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
 
-//product snapshot stored in localStorage
-export type GuestCartProductSnapshot = {
-  _id: string;
-  title: string;
-  imgCover?: string;
-  rateAvg?: number;
-  rateCount?: number;
-  quantity: number; // stock
-};
+// import { CartItemUI } from "@/lib/types/cart/cart";
+// import React, {
+//   createContext,
+//   useCallback,
+//   useEffect,
+//   useMemo,
+//   useState,
+// } from "react";
 
-type StoredProduct = {
-  _id?: string;
-  title?: string;
-  imgCover?: string;
-  rateAvg?: number;
-  rateCount?: number;
-  quantity?: number; // stock
-};
+// //product snapshot stored in localStorage
+// export type GuestCartProductSnapshot = {
+//   _id: string;
+//   title: string;
+//   imgCover?: string;
+//   rateAvg?: number;
+//   rateCount?: number;
+//   quantity: number; // stock
+// };
 
-type StoredCartItem = {
-  _id?: string;
-  quantity?: number; // cart quantity
-  price?: number; // unit price
-  product?: StoredProduct;
-};
+// type StoredProduct = {
+//   _id?: string;
+//   title?: string;
+//   imgCover?: string;
+//   rateAvg?: number;
+//   rateCount?: number;
+//   quantity?: number; // stock
+// };
 
-// ===== Context Types =====
-type GuestCartContextValue = {
-  cartItems: CartItemUI[];
-  totalItems: number;
-  totalQuantity: number;
-  totalPrice: number;
-  getQuantity: (productId: string) => number;
+// type StoredCartItem = {
+//   id?: string;
+//   stock?: number; // cart quantity
+//   price?: number; // unit price
+//   product?: StoredProduct;
+// };
 
-  addItem: (
-    product: GuestCartProductSnapshot,
-    quantity?: number,
-    price?: number,
-  ) => void;
+// // ===== Context Types =====
+// type GuestCartContextValue = {
+//   cartItems: CartItemUI[];
+//   totalItems: number;
+//   totalQuantity: number;
+//   totalPrice: number;
+//   getQuantity: (productId: string) => number;
 
-  setQuantity: (productId: string, quantity: number) => void;
-  increase: (productId: string, step?: number) => void;
-  decrease: (productId: string, step?: number) => void;
+//   addItem: (
+//     product: GuestCartProductSnapshot,
+//     quantity?: number,
+//     price?: number,
+//   ) => void;
 
-  removeItem: (productId: string) => void;
-  clear: () => void;
+//   setQuantity: (productId: string, quantity: number) => void;
+//   increase: (productId: string, step?: number) => void;
+//   decrease: (productId: string, step?: number) => void;
 
-  isReady: boolean;
-};
+//   removeItem: (productId: string) => void;
+//   clear: () => void;
 
-export const GuestCartContext = createContext<GuestCartContextValue | null>(
-  null,
-);
+//   isReady: boolean;
+// };
 
-type GuestCartProviderProps = {
-  children: React.ReactNode;
-  storageKey?: string; // default: "guest_cart"
-};
+// export const GuestCartContext = createContext<GuestCartContextValue | null>(
+//   null,
+// );
 
-// ===== Utils =====
-function safeParse<T>(value: string | null, fallback: T): T {
-  if (!value) return fallback;
-  try {
-    return JSON.parse(value) as T;
-  } catch {
-    return fallback;
-  }
-}
+// type GuestCartProviderProps = {
+//   children: React.ReactNode;
+//   storageKey?: string; // default: "guest_cart"
+// };
 
-function clampInt(n: number, min = 1) {
-  const v = Math.trunc(Number(n));
-  if (Number.isNaN(v)) return min;
-  return Math.max(min, v);
-}
+// // ===== Utils =====
+// function safeParse<T>(value: string | null, fallback: T): T {
+//   if (!value) return fallback;
+//   try {
+//     return JSON.parse(value) as T;
+//   } catch {
+//     return fallback;
+//   }
+// }
 
-// ✅ product guard
-function isStoredProduct(
-  p: StoredProduct | undefined,
-): p is Required<Pick<StoredProduct, "_id" | "title" | "quantity">> &
-  StoredProduct {
-  return (
-    !!p &&
-    typeof p._id === "string" &&
-    typeof p.title === "string" &&
-    typeof p.quantity === "number"
-  );
-}
+// function clampInt(n: number, min = 1) {
+//   const v = Math.trunc(Number(n));
+//   if (Number.isNaN(v)) return min;
+//   return Math.max(min, v);
+// }
 
-// ✅ cart item guard
-type StoredCartItemValid = Required<
-  Pick<StoredCartItem, "quantity" | "price" | "product">
-> & {
-  _id?: string;
-  product: Required<Pick<StoredProduct, "_id" | "title" | "quantity">> &
-    StoredProduct;
-};
+// // ✅ product guard
+// function isStoredProduct(
+//   p: StoredProduct | undefined,
+// ): p is Required<Pick<StoredProduct, "_id" | "title" | "quantity">> &
+//   StoredProduct {
+//   return (
+//     !!p &&
+//     typeof p._id === "string" &&
+//     typeof p.title === "string" &&
+//     typeof p.quantity === "number"
+//   );
+// }
 
-function isStoredCartItemValid(x: StoredCartItem): x is StoredCartItemValid {
-  return (
-    typeof x.quantity === "number" &&
-    typeof x.price === "number" &&
-    isStoredProduct(x.product)
-  );
-}
+// // ✅ cart item guard
+// type StoredCartItemValid = Required<
+//   Pick<StoredCartItem, "stock" | "price" | "product">
+// > & {
+//   _id?: string;
+//   product: Required<Pick<StoredProduct, "_id" | "title" | "quantity">> &
+//     StoredProduct;
+// };
 
-function normalize(items: StoredCartItem[]): CartItemUI[] {
-  return items.filter(isStoredCartItemValid).map((x) => {
-    const id = x.product._id;
+// function isStoredCartItemValid(x: StoredCartItem): x is StoredCartItemValid {
+//   return (
+//     typeof x.quantity === "number" &&
+//     typeof x.price === "number" &&
+//     isStoredProduct(x.product)
+//   );
+// }
 
-    return {
-      _id: x._id ?? `guest-${id}`,
-      quantity: clampInt(x.quantity, 1),
-      price: x.price,
-      product: {
-        _id: id,
-        title: x.product.title,
-        imgCover: x.product.imgCover,
-        rateAvg: x.product.rateAvg ?? 0,
-        rateCount: x.product.rateCount ?? 0,
-        quantity: clampInt(x.product.quantity, 0),
-      },
-    };
-  });
-}
+// function normalize(items: StoredCartItem[]): CartItemUI[] {
+//   return items.filter(isStoredCartItemValid).map((x) => {
+//     const id = x.product._id;
 
-// ===== Provider =====
-export function GuestCartProvider({
-  children,
-  storageKey = "guest_cart",
-}: GuestCartProviderProps) {
-  const [cartItems, setCartItems] = useState<CartItemUI[]>([]);
-  const [isReady, setIsReady] = useState(false);
+//     return {
+//       _id: x._id ?? `guest-${id}`,
+//       quantity: clampInt(x.quantity, 1),
+//       price: x.price,
+//       product: {
+//         _id: id,
+//         title: x.product.title,
+//         imgCover: x.product.imgCover,
+//         rateAvg: x.product.rateAvg ?? 0,
+//         rateCount: x.product.rateCount ?? 0,
+//         quantity: clampInt(x.product.quantity, 0),
+//       },
+//     };
+//   });
+// }
 
-  // Load once
-  useEffect(() => {
-    const stored = safeParse<StoredCartItem[]>(
-      localStorage.getItem(storageKey),
-      [],
-    );
-    setCartItems(normalize(stored));
-    setIsReady(true);
-  }, [storageKey]);
+// // ===== Provider =====
+// export function GuestCartProvider({
+//   children,
+//   storageKey = "guest_cart",
+// }: GuestCartProviderProps) {
+//   const [cartItems, setCartItems] = useState<CartItemUI[]>([]);
+//   const [isReady, setIsReady] = useState(false);
 
-  // Persist after ready
-  useEffect(() => {
-    if (!isReady) return;
-    localStorage.setItem(storageKey, JSON.stringify(cartItems));
-  }, [cartItems, storageKey, isReady]);
+//   // Load once
+//   useEffect(() => {
+//     const stored = safeParse<StoredCartItem[]>(
+//       localStorage.getItem(storageKey),
+//       [],
+//     );
+//     setCartItems(normalize(stored));
+//     setIsReady(true);
+//   }, [storageKey]);
 
-  // Sync across tabs
-  useEffect(() => {
-    function onStorage(e: StorageEvent) {
-      if (e.key !== storageKey) return;
+//   // Persist after ready
+//   useEffect(() => {
+//     if (!isReady) return;
+//     localStorage.setItem(storageKey, JSON.stringify(cartItems));
+//   }, [cartItems, storageKey, isReady]);
 
-      const next = safeParse<StoredCartItem[]>(e.newValue, []);
-      setCartItems(normalize(next));
-    }
+//   // Sync across tabs
+//   useEffect(() => {
+//     function onStorage(e: StorageEvent) {
+//       if (e.key !== storageKey) return;
 
-    window.addEventListener("storage", onStorage);
-    return () => window.removeEventListener("storage", onStorage);
-  }, [storageKey]);
+//       const next = safeParse<StoredCartItem[]>(e.newValue, []);
+//       setCartItems(normalize(next));
+//     }
 
-  // Helpers
-  const getQuantity = useCallback(
-    (productId: string) =>
-      cartItems.find((x) => x.product._id === String(productId))?.quantity ?? 0,
-    [cartItems],
-  );
+//     window.addEventListener("storage", onStorage);
+//     return () => window.removeEventListener("storage", onStorage);
+//   }, [storageKey]);
 
-  // Actions
-  const addItem = useCallback(
-    (product: GuestCartProductSnapshot, quantity = 1, price = 0) => {
-      const id = String(product._id);
-      const q = clampInt(quantity, 1);
-      const p = Number.isFinite(price) ? price : 0;
+//   // Helpers
+//   const getQuantity = useCallback(
+//     (productId: string) =>
+//       cartItems.find((x) => x.product._id === String(productId))?.quantity ?? 0,
+//     [cartItems],
+//   );
 
-      setCartItems((prev) => {
-        const idx = prev.findIndex((x) => x.product._id === id);
+//   // Actions
+//   const addItem = useCallback(
+//     (product: GuestCartProductSnapshot, quantity = 1, price = 0) => {
+//       const id = String(product._id);
+//       const q = clampInt(quantity, 1);
+//       const p = Number.isFinite(price) ? price : 0;
 
-        if (idx === -1) {
-          return [
-            ...prev,
-            {
-              _id: `guest-${id}`,
-              quantity: q,
-              price: p,
-              product: {
-                _id: id,
-                title: product.title,
-                imgCover: product.imgCover,
-                rateAvg: product.rateAvg ?? 0,
-                rateCount: product.rateCount ?? 0,
-                quantity: product.quantity,
-              },
-            },
-          ];
-        }
+//       setCartItems((prev) => {
+//         const idx = prev.findIndex((x) => x.product._id === id);
 
-        const next = [...prev];
-        next[idx] = {
-          ...next[idx],
-          quantity: next[idx].quantity + q,
-          price: p,
-          product: {
-            ...next[idx].product,
-            title: product.title,
-            imgCover: product.imgCover,
-            rateAvg: product.rateAvg ?? 0,
-            rateCount: product.rateCount ?? 0,
-            quantity: product.quantity,
-          },
-        };
-        return next;
-      });
-    },
-    [],
-  );
+//         if (idx === -1) {
+//           return [
+//             ...prev,
+//             {
+//               _id: `guest-${id}`,
+//               quantity: q,
+//               price: p,
+//               product: {
+//                 _id: id,
+//                 title: product.title,
+//                 imgCover: product.imgCover,
+//                 rateAvg: product.rateAvg ?? 0,
+//                 rateCount: product.rateCount ?? 0,
+//                 quantity: product.quantity,
+//               },
+//             },
+//           ];
+//         }
 
-  const setQuantity = useCallback((productId: string, quantity: number) => {
-    const id = String(productId);
-    const q = clampInt(quantity, 1);
+//         const next = [...prev];
+//         next[idx] = {
+//           ...next[idx],
+//           quantity: next[idx].quantity + q,
+//           price: p,
+//           product: {
+//             ...next[idx].product,
+//             title: product.title,
+//             imgCover: product.imgCover,
+//             rateAvg: product.rateAvg ?? 0,
+//             rateCount: product.rateCount ?? 0,
+//             quantity: product.quantity,
+//           },
+//         };
+//         return next;
+//       });
+//     },
+//     [],
+//   );
 
-    setCartItems((prev) => {
-      const idx = prev.findIndex((x) => x.product._id === id);
-      if (idx === -1) return prev;
+//   const setQuantity = useCallback((productId: string, quantity: number) => {
+//     const id = String(productId);
+//     const q = clampInt(quantity, 1);
 
-      const next = [...prev];
-      next[idx] = { ...next[idx], quantity: q };
-      return next;
-    });
-  }, []);
+//     setCartItems((prev) => {
+//       const idx = prev.findIndex((x) => x.product._id === id);
+//       if (idx === -1) return prev;
 
-  const increase = useCallback((productId: string, step = 1) => {
-    const id = String(productId);
-    const s = clampInt(step, 1);
+//       const next = [...prev];
+//       next[idx] = { ...next[idx], quantity: q };
+//       return next;
+//     });
+//   }, []);
 
-    setCartItems((prev) => {
-      const idx = prev.findIndex((x) => x.product._id === id);
-      if (idx === -1) return prev;
+//   const increase = useCallback((productId: string, step = 1) => {
+//     const id = String(productId);
+//     const s = clampInt(step, 1);
 
-      const next = [...prev];
-      next[idx] = { ...next[idx], quantity: next[idx].quantity + s };
-      return next;
-    });
-  }, []);
+//     setCartItems((prev) => {
+//       const idx = prev.findIndex((x) => x.product._id === id);
+//       if (idx === -1) return prev;
 
-  const decrease = useCallback((productId: string, step = 1) => {
-    const id = String(productId);
-    const s = clampInt(step, 1);
+//       const next = [...prev];
+//       next[idx] = { ...next[idx], quantity: next[idx].quantity + s };
+//       return next;
+//     });
+//   }, []);
 
-    setCartItems((prev) => {
-      const idx = prev.findIndex((x) => x.product._id === id);
-      if (idx === -1) return prev;
+//   const decrease = useCallback((productId: string, step = 1) => {
+//     const id = String(productId);
+//     const s = clampInt(step, 1);
 
-      const nextQty = prev[idx].quantity - s;
-      if (nextQty <= 0) return prev.filter((x) => x.product._id !== id);
+//     setCartItems((prev) => {
+//       const idx = prev.findIndex((x) => x.product._id === id);
+//       if (idx === -1) return prev;
 
-      const next = [...prev];
-      next[idx] = { ...next[idx], quantity: nextQty };
-      return next;
-    });
-  }, []);
+//       const nextQty = prev[idx].quantity - s;
+//       if (nextQty <= 0) return prev.filter((x) => x.product._id !== id);
 
-  const removeItem = useCallback((productId: string) => {
-    const id = String(productId);
-    setCartItems((prev) => prev.filter((x) => x.product._id !== id));
-  }, []);
+//       const next = [...prev];
+//       next[idx] = { ...next[idx], quantity: nextQty };
+//       return next;
+//     });
+//   }, []);
 
-  const clear = useCallback(() => {
-    setCartItems([]);
-    localStorage.removeItem(storageKey);
-  }, [storageKey]);
+//   const removeItem = useCallback((productId: string) => {
+//     const id = String(productId);
+//     setCartItems((prev) => prev.filter((x) => x.product._id !== id));
+//   }, []);
 
-  // Derived
-  const totalItems = useMemo(() => cartItems.length, [cartItems]);
-  const totalQuantity = useMemo(
-    () => cartItems.reduce((sum, x) => sum + x.quantity, 0),
-    [cartItems],
-  );
-  const totalPrice = useMemo(
-    () => cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0),
-    [cartItems],
-  );
+//   const clear = useCallback(() => {
+//     setCartItems([]);
+//     localStorage.removeItem(storageKey);
+//   }, [storageKey]);
 
-  const value = useMemo<GuestCartContextValue>(
-    () => ({
-      cartItems,
-      totalItems,
-      totalQuantity,
-      getQuantity,
-      addItem,
-      setQuantity,
-      increase,
-      decrease,
-      removeItem,
-      totalPrice,
-      clear,
-      isReady,
-    }),
-    [
-      cartItems,
-      totalItems,
-      totalQuantity,
-      getQuantity,
-      addItem,
-      setQuantity,
-      increase,
-      decrease,
-      removeItem,
-      clear,
-      isReady,
-      totalPrice,
-    ],
-  );
+//   // Derived
+//   const totalItems = useMemo(() => cartItems.length, [cartItems]);
+//   const totalQuantity = useMemo(
+//     () => cartItems.reduce((sum, x) => sum + x.quantity, 0),
+//     [cartItems],
+//   );
+//   const totalPrice = useMemo(
+//     () => cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0),
+//     [cartItems],
+//   );
 
-  return (
-    <GuestCartContext.Provider value={value}>
-      {children}
-    </GuestCartContext.Provider>
-  );
-}
+//   const value = useMemo<GuestCartContextValue>(
+//     () => ({
+//       cartItems,
+//       totalItems,
+//       totalQuantity,
+//       getQuantity,
+//       addItem,
+//       setQuantity,
+//       increase,
+//       decrease,
+//       removeItem,
+//       totalPrice,
+//       clear,
+//       isReady,
+//     }),
+//     [
+//       cartItems,
+//       totalItems,
+//       totalQuantity,
+//       getQuantity,
+//       addItem,
+//       setQuantity,
+//       increase,
+//       decrease,
+//       removeItem,
+//       clear,
+//       isReady,
+//       totalPrice,
+//     ],
+//   );
+
+//   return (
+//     <GuestCartContext.Provider value={value}>
+//       {children}
+//     </GuestCartContext.Provider>
+//   );
+// }

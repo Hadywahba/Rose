@@ -16,13 +16,13 @@ export function useDeleteSingleNotification() {
         await deleteSingleNotificationAction(notificationId);
 
       // check-error
-      if ("error" in payload) {
-        throw new Error(payload.error || "Failed to delete notification");
+      if (payload.status===false) {
+        throw new Error(payload.message);
       }
       return payload;
     },
     onSuccess: (data) => {
-      toast.success(data.message || "Notification deleted");
+      toast.success(data.payload.message);
       // Invalidate and refetch notifications
       queryClient.invalidateQueries({ queryKey: ["notifications"] });
     },

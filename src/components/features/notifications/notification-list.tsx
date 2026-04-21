@@ -28,7 +28,7 @@ export default function NotificationsList() {
 
   // Variables
   const pages = data?.pages ?? [];
-  const notifications = pages.flatMap((page) => page.notifications);
+  const notifications = pages.flatMap((page) => page.payload.notifications);
   const isAuthed = status === 'authenticated';
   const isSessionLoading = status === 'loading';
   const isEmpty = useMemo(() => notifications.length === 0, [notifications]);

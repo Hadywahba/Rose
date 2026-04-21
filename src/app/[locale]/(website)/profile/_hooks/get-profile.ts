@@ -4,8 +4,14 @@ export const displayUserProfile = async () => {
   const payload = await userProfile();
 
   if (payload.status === false) {
-    throw new Error(payload.message);
+    return {
+      error: new Error(payload.message),
+      data: null,
+    };
   }
 
-  return payload.payload;
+  return {
+    error: null,
+    data: payload.payload.user,
+  };
 };

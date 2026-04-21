@@ -10,7 +10,7 @@ export default function ReviewItem({
 }: {
   review: Review;
   formatNumber: (num: number) => string;
-  currentUser: UserResponsePayload;
+  currentUser: User | null;
 }) {
   // Translate
   const locale = useLocale();
@@ -28,8 +28,9 @@ export default function ReviewItem({
   };
 
   // variables
-  const isOwner = review.user.id === currentUser.user.id;
-  const avatarSrc = isOwner ? currentUser.user.photo : null;
+  const isOwner = currentUser ? review.user.id === currentUser.id : false;
+
+  const avatarSrc = isOwner ? currentUser?.photo : null;
 
   return (
     <div className="space-y-2">

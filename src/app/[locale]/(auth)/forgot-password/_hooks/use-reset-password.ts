@@ -21,8 +21,8 @@ export const useResetPassword = () => {
     mutationFn: async (data: ResetPasswordPayload) => {
       const payload = await resetPassword(data);
 
-      if ('error' in payload) {
-        throw new Error(payload.error);
+      if (payload.status===false) {
+        throw new Error(payload.message);
       }
 
       return payload;

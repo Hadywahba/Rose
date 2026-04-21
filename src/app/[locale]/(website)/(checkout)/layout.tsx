@@ -1,15 +1,15 @@
 import ProductYouMayLiked from '@/components/shared/product-you-may-liked';
-import { SearchParams } from '@/lib/types/global';
+
 import React from 'react';
 
 export default async function layout({
   children,
   summary,
-  searchParams,
+ 
 }: Readonly<{
   children: React.ReactNode;
   summary: React.ReactNode;
-  searchParams: SearchParams;
+ 
 }>) {
   return (
     <main>
@@ -26,7 +26,7 @@ export default async function layout({
       </div>
 
       <div>
-        <ProductYouMayLiked searchParams={searchParams} />
+        <ProductYouMayLiked  />
       </div>
     </main>
   );

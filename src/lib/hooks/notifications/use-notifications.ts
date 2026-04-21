@@ -4,29 +4,27 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 
 export function useNotifications() {
-  // Session state from NextAuth 
-  const { status,} = useSession();
+  // Session state from NextAuth
+  const { status } = useSession();
 
-  
   // { This prevents 401 Unauthorized requests }
-  const isAuthed = status === "authenticated";
+  const isAuthed = status === 'authenticated';
   // ToDo
-  // Infinite notifications query 
+  // Infinite notifications query
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
     useInfiniteQuery({
-      // Cache key for notifications 
-      queryKey: ["notifications"],
+      // Cache key for notifications
+      queryKey: ['notifications'],
 
-      // Fetch notifications page by page 
+      // Fetch notifications page by page
       queryFn: async ({ pageParam }) => {
         // { Call notifications API with pagination }
         const payload: ApiResponse<PaginatedResponse<Notifications>> =
           await fetchNotificationsAction(pageParam, 6);
 
         // { Handle API error responses }
-        if ("error" in payload ) {
-          
-          throw new Error(payload.error);
+        if (payload.status === false) {
+          throw new Error(payload.message);
         }
 
         // { Return successful page response }
@@ -38,7 +36,7 @@ export function useNotifications() {
 
       // { Determine next page number }
       getNextPageParam: (lastPage) => {
-        const { currentPage, totalPages } = lastPage.metadata;
+        const { currentPage, totalPages } = lastPage.payload.metadata;
 
         // { Load next page if more pages exist }
         if (currentPage < totalPages) {
@@ -50,7 +48,7 @@ export function useNotifications() {
       },
 
       // { Stop fetching when user is not authenticated }
-      enabled: isAuthed ,
+      enabled: isAuthed,
 
       // { Disable automatic retries to avoid repeated 401 errors }
       retry: false,

@@ -20,17 +20,17 @@ export default async function MostPopularButton({ searchParams }: HomeProps) {
     fetchAllOccasions(nextParams),
   );
 
-  const occasions = payload?.occasions ?? [];
+  const occasions = payload?.payload.data ?? [];
   const activeOccasionId = searchParams.occasion;
 
   return (
     <ul className="flex flex-wrap gap-4 px-4 py-4">
       {occasions.map((occ) => {
-        const isActive = activeOccasionId === occ._id;
+        const isActive = activeOccasionId === occ.id;
 
         return (
           <li
-            key={occ._id}
+            key={occ.id}
             className={cn(
               'cursor-pointer rounded-full border px-4 py-2 text-base font-medium transition-colors mx-auto',
               isActive
@@ -38,7 +38,7 @@ export default async function MostPopularButton({ searchParams }: HomeProps) {
                 : 'border-zinc-200 text-zinc-600 hover:border-red-300 hover:text-red-600 dark:border-zinc-700 dark:text-zinc-100',
             )}
           >
-            {occ.name}
+            {occ.title}
           </li>
         );
       })}

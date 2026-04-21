@@ -1,5 +1,5 @@
 import { JSON_HEADER } from '@/lib/constants/api.constant';
-import type { AddToCartPayload, AddToCartResponse } from '@/lib/types/cart';
+import { AddToCartPayload, AddToCartResponse } from '@/lib/types/cart/cart';
 import { Product } from '@/lib/types/products/product';
 
 export async function getProductById(productId: string) {

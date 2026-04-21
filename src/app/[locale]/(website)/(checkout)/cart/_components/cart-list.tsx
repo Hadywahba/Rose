@@ -1,11 +1,11 @@
 'use client';
+
 import { MoveLeft, MoveRight } from 'lucide-react';
 import EmptyCart from './empty-cart';
 import { Button } from '@/components/ui/button';
 import { useRouter } from '@/i18n/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { useSession } from 'next-auth/react';
-import { useGuestCartContext } from '@/lib/hooks/cart/use-guest-cart-context';
 import { useCart } from '@/lib/hooks/cart/use-cart';
 import CartItemSkeleton from '@/components/skeletons/cart/cart-item-skeleton';
 import CartItem from './cart-item';
@@ -15,23 +15,26 @@ export default function CartList() {
   const locale = useLocale();
   const t = useTranslations();
 
-  // Navigations
+  // Navigation
   const router = useRouter();
-  // Hooks
-  const { cartItems: localeStorageList } = useGuestCartContext();
+
+  // Session
+  const { data: session } = useSession();
 
   // Query
   const { data, isFetching, isLoading } = useCart();
 
-  // Variables
-  const { data: session } = useSession();
+  // States
   const isBusy = isLoading || isFetching;
+
   const cartItems = data ?? [];
 
-  const displayedCartItems = session ? cartItems : localeStorageList;
+  // Always array to avoid runtime errors
+  const displayedCartItems = session?.user ? cartItems : [];
 
   const isEmpty = !isBusy && displayedCartItems.length === 0;
-  // busy state with skeleton
+
+  // Loading state (skeleton)
   if (isBusy) {
     return (
       <div className="my-6 rounded-md border border-zinc-200 px-5 pb-5">
@@ -45,30 +48,26 @@ export default function CartList() {
     );
   }
 
-  // if the cart is empty, show the empty cart component
+  // Empty state
   if (isEmpty) return <EmptyCart />;
 
   return (
     <>
       {/* cart items */}
-      {!isBusy && displayedCartItems.length > 0 && (
-        <div className="my-6 rounded-md border border-zinc-200 px-5 pb-5">
-          {displayedCartItems.map((cart) => (
-            <CartItem
-              cartInfo={cart}
-              key={cart._id}
-              className="border-b border-zinc-200 last:border-b-0"
-            />
-          ))}
-        </div>
-      )}
+      <div className="my-6 rounded-md border border-zinc-200 px-5 pb-5">
+        {displayedCartItems.map((cart) => (
+          <CartItem
+            key={cart.id}
+            cartInfo={cart}
+            className="border-b border-zinc-200 last:border-b-0"
+          />
+        ))}
+      </div>
 
-      {/* continue-shopping-btn */}
+      {/* continue shopping button */}
       <Button
-        className="my-4 flex items-center"
-        onClick={() => {
-          router.push('/products', { locale });
-        }}
+        className="my-4 flex items-center gap-2"
+        onClick={() => router.push('/products', { locale })}
       >
         {locale === 'ar' ? <MoveRight /> : <MoveLeft />}
         <span>{t('continue-shopping')}</span>

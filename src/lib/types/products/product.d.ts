@@ -49,7 +49,7 @@ export interface ProductsResponse {
 
 export type TopProducts = Pick<
   Product,
-  '_id' | 'title' | 'sold' | 'quantity' | 'price' | 'rateAvg' | 'rateCount'
+  'id' | 'title' | 'sold' | 'stock' | 'price' | 'rating' | 'ratings'
 >;
 
 export interface DashboardProductsResponse {
