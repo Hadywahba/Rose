@@ -7,36 +7,38 @@ import catchError from '@/lib/utility/catch-error';
 import { ProductsResponse } from '@/lib/types/products/product';
 
 type ProductsListProps = {
-  searchParams: SearchParams;
+  searchParams?: SearchParams;
 };
 
 export default async function ProductYouMayLiked({
-  searchParams,
+  searchParams = {},
 }: ProductsListProps) {
   // Translations
   const t = await getTranslations('product');
 
   const nextParams: SearchParams = {
     ...searchParams,
-    page: searchParams?.page ?? '1', //default
+    page: searchParams?.page ?? '1',
     limit: searchParams?.limit ?? '8',
   };
 
   const [payload] = await catchError<PaginatedResponse<ProductsResponse>>(() =>
     fetchAllProductsService(nextParams),
   );
+
   if (!payload) {
     return null;
   }
 
-  const products = payload?.products ?? [];
+  const products = payload?.payload.data ?? [];
+
   return (
-    <div className="container p-8">
-      {/* Title */}
+    <div className="container mb-4 p-8">
       <MainHeading
-        className="mb-5 items-start text-start"
+        className="mb-8 items-start text-start"
         paragraph={t('product-you-may-liked')}
       />
+
       <ProductsCarousel products={products} />
     </div>
   );

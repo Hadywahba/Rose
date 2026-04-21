@@ -1,32 +1,31 @@
 export interface Occasion {
-  _id: string;
-  name: string;
-  slug: string;
+  id: string;
+  title: string;
+  description: string;
   image: string;
   createdAt: string;
   updatedAt: string;
-  isSuperAdmin: boolean;
-  productsCount: number;
+  immutable: boolean;
 }
 
 export interface OccasionsResponse {
-  metadata: MetaData
-  occasions: Occasion[];
+  metadata: MetaData;
+   data: Occasion[];
 }
 
-export interface OccasionResponse {
-  message: string;
-  occasion: Occasion;
-}
+// export interface OccasionResponse {
+//   message: string;
+//   occasion: Occasion;
+// }
 
 export interface OccasionDocument {
-  _id: string;
-  name: string;
-  slug: string;
+  id: string;
+  title: string;
+  description: string;
   image: string;
-  isSuperAdmin: boolean;
   createdAt: string;
   updatedAt: string;
+  immutable: boolean;
 }
 
 export interface DeleteOccasionResponse {

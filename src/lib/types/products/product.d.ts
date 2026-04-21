@@ -1,28 +1,40 @@
-export interface Product {
-  _id: string;
-  id?: string;
+export interface ProductCategory {
+  id: string;
   title: string;
-  slug: string;
-  description: string;
-  imgCover: string;
-  images: string[];
-  price: number;
-  discount?: number;
-  priceAfterDiscount: number;
-  quantity: number;
-  category: string;
-  occasion: string;
-  rateAvg: number;
-  rateCount: number;
-  reviews?: unknown[];
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-  sold?: number;
-  favoriteId?: string | null;
-  isInWishlist?: boolean;
 }
 
+export interface ProductCount {
+  reviews: number;
+  cartItems: number;
+  wishlistItems: number;
+}
+export type WhishlistCheck = {
+  message: string;
+  isInWishlist: boolean;
+};
+
+export interface Product {
+  id: string;
+  title: string;
+  description: string;
+  rating: number;
+  ratings: number;
+  stock: number;
+  price: string;
+  discountType: 'PERCENT' | 'FIXED';
+  discountValue: string;
+  cover: string;
+  gallery: string;
+  categoryId: string;
+  subCategoryId: string | null;
+  immutable: boolean;
+  createdAt: string;
+  updatedAt: string;
+  category: ProductCategory;
+  subCategory: ProductCategory | null;
+  occasions: unknown[];
+  _count: ProductCount;
+}
 export interface AddProductResponse {
   product: Product;
 }
@@ -30,25 +42,21 @@ export interface AddProductResponse {
 export interface UpdateProductResponse {
   product: Product;
 }
-
-export interface Metadata {
-  currentPage: number;
-  limit: number;
-  totalPages: number;
-  totalItems: number;
-}
-
 export interface ProductsResponse {
-  metadata: Metadata;
-  products: Product[];
+  metadata: MetaData;
+  data: Product[];
 }
 
 export type TopProducts = Pick<
   Product,
-  "_id" | "title" | "sold" | "quantity" | "price" | "rateAvg" | "rateCount"
+  'id' | 'title' | 'sold' | 'stock' | 'price' | 'rating' | 'ratings'
 >;
 
 export interface DashboardProductsResponse {
   metadata: Metadata;
   products: TopProducts[];
+}
+
+export interface ProductIdResponse {
+  product: Product;
 }

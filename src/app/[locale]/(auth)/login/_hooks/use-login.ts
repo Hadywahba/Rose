@@ -4,17 +4,16 @@ import { LoginFormFields } from '@/lib/schema/login.schema';
 import { useMutation } from '@tanstack/react-query';
 import { signIn } from 'next-auth/react';
 import { toast } from 'sonner';
-import { useSyncGuestCartToServer } from '@/lib/hooks/cart/use-sync-guest-cart-to-server';
 
 export default function useLogin() {
   // Hooks
   const { sendWhishlistProductsFromStorageToServer } =
     useSyncLocalWishlistToServer();
-  const { sendCartItemsFromStorageToServer } = useSyncGuestCartToServer();
+
   const { isPending, error, mutate } = useMutation({
     mutationFn: async (credentials: LoginFormFields) => {
       const response = await signIn('credentials', {
-        email: credentials.email,
+        username: credentials.username,
         password: credentials.password,
         redirect: false,
         rememberMe: credentials.rememberMe ? 'true' : 'false',
@@ -34,9 +33,6 @@ export default function useLogin() {
     onSuccess: async () => {
       // ✅ transfer local wishlist to server
       await sendWhishlistProductsFromStorageToServer();
-
-      // ✅ transfer guest cart to server
-      await sendCartItemsFromStorageToServer();
     },
 
     onError: (error) => {

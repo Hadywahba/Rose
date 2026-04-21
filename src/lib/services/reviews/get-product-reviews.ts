@@ -1,15 +1,15 @@
-import { JSON_HEADER } from "@/lib/constants/api.constant";
-import { ReviewsResponse } from "@/lib/types/products/reviews/reviews-response";
+import { JSON_HEADER } from '@/lib/constants/api.constant';
+import { ReviewsResponse } from '@/lib/types/products/reviews/reviews-response';
 
 export const getReviews = async (productId: string) => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API}/products/${productId}/reviews`,
+    `${process.env.API_URL}/reviews?productId=${productId}`,
     {
       method: 'GET',
       headers: { ...JSON_HEADER },
     },
   );
-  const payload: ReviewsResponse = await response.json();
-  
-  return payload.reviews;
+  const payload: ApiResponse<ReviewsResponse> = await response.json();
+
+  return payload;
 };

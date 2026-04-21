@@ -4,7 +4,7 @@ export default async function catchError<T>(
   try {
     const payload = await callback();
 
-    if ('error' in payload) throw new Error(payload.error);
+    if (payload.status === false) throw new Error(payload.message);
 
     return [payload, null];
   } catch (error) {

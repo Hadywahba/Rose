@@ -9,17 +9,16 @@ declare module 'next-auth' {
     accessToken: string;
     rememberMe?: boolean;
     user: {
-      _id: string;
+      id: string;
       firstName: string;
+      username: string;
       lastName: string;
       email: string;
       gender: string;
-      phone: number | string;
-      photo: string;
+      phone: string;
       role: string;
-      wishlist: string[];
-      addresses: string[];
-      createdAt: string;
+      emailVerified: boolean;
+      phoneVerified: boolean;
     };
   }
   /**

@@ -1,12 +1,17 @@
-import { getCarts } from "@/lib/services/cart/cart-server.service";
-
+import { getCarts } from '@/lib/services/cart/cart-server.service';
 
 export const getCartItems = async () => {
   const data = await getCarts();
 
-  if ('error' in data) {
-    throw new Error(data.error);
+  if (data.status === false) {
+    return {
+      error: new Error(data.message),
+      data: [],
+    };
   }
 
-  return data;
+  return {
+    error: null,
+    data: data.payload.cartItems,
+  };
 };

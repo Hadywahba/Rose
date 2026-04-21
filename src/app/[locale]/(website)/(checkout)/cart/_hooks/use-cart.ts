@@ -1,4 +1,3 @@
-
 import { getCart } from '@/lib/services/cart/cart.service';
 import { useQuery } from '@tanstack/react-query';
 
@@ -14,11 +13,11 @@ export const useCart = () => {
     queryFn: async () => {
       const payload = await getCart();
 
-      if ('error' in payload) {
-        throw new Error(payload.error);
+      if (payload.status === false) {
+        throw new Error(payload.message);
       }
 
-      return payload;
+      return payload.payload.cartItems;
     },
   });
 

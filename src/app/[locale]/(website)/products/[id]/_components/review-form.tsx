@@ -1,4 +1,4 @@
-'use client';
+import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Field, FieldError, FieldLabel } from '@/components/ui/field';
 import { Form } from '@/components/ui/form';
@@ -10,110 +10,102 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import { Controller, useForm } from 'react-hook-form';
 import { useAddReview } from '../_hooks/use-add-review';
-import { useSession } from 'next-auth/react';
 
 interface ReviewFormProps {
   productId: string;
 }
-
 export default function ReviewForm({ productId }: ReviewFormProps) {
   // Translations
   const t = useTranslations('review-form');
 
   // Hook
-  const { isPending, addReview } = useAddReview();
-  const { status } = useSession();
+  const { isPending, addReview } = useAddReview(productId);
 
-  // Hook Form
+  // Form
   const form = useForm<RatingFormSchema>({
     resolver: zodResolver(ratingFormSchema),
     defaultValues: {
-      product: productId,
+      productId: productId,
       rating: 0,
-      title: '',
-      comment: '',
+      headline: '',
+      content: '',
     },
   });
 
-  // Function
+  // Submit
   function onSubmit(values: RatingFormSchema) {
     addReview(values);
+    form.reset({
+      content: '',
+      headline: '',
+      rating: 0,
+    });
   }
 
-  const isDisabled = status !== 'authenticated';
-
   return (
-    <div className="relative col-span-1 border-s ps-4 dark:border-zinc-50">
-      {/* Optional overlay message */}
-      {isDisabled && (
-        <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center font-semibold text-zinc-800 dark:text-zinc-50">
-          {t('login-to-review')}
-        </div>
-      )}
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="max-w-xl space-y-4"
+      >
+        {/* Rating */}
+        <div className="space-y-1">
+          <div className="flex items-center gap-4">
+            <FieldLabel className="dark:text-zinc-50">
+              {t('your-rating')}
+            </FieldLabel>
 
-      {/* Form container */}
-      <div className={isDisabled ? 'pointer-events-none blur-sm' : ''}>
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="max-w-xl space-y-4"
-          >
-            {/* Rating */}
-            <div className="space-y-1">
-              <div className="flex items-center gap-4">
-                <FieldLabel className="dark:text-zinc-50">
-                  {t('your-rating')}
-                </FieldLabel>
-                <Controller
-                  name="rating"
-                  control={form.control}
-                  render={({ field }) => (
-                    <InteractiveRating
-                      rating={field.value}
-                      onRatingChange={field.onChange}
-                      className="[&_svg]:size-6"
-                    />
-                  )}
+            <Controller
+              name="rating"
+              control={form.control}
+              render={({ field }) => (
+                <InteractiveRating
+                  rating={field.value}
+                  onRatingChange={field.onChange}
+                  className="[&_svg]:size-6"
                 />
-              </div>
-              <FieldError>{form.formState.errors.rating?.message}</FieldError>
-            </div>
+              )}
+            />
+          </div>
 
-            {/* Title */}
-            <Field>
-              <FieldLabel className="dark:text-zinc-50" htmlFor="title">
-                {t('title-label')}
-              </FieldLabel>
-              <Input
-                className="w-full dark:text-zinc-50"
-                id="title"
-                placeholder={t('title-placeholder')}
-                {...form.register('title')}
-              />
-              <FieldError>{form.formState.errors.title?.message}</FieldError>
-            </Field>
+          <FieldError>{form.formState.errors.rating?.message}</FieldError>
+        </div>
 
-            {/* Comment */}
-            <Field>
-              <FieldLabel className="dark:text-zinc-50" htmlFor="comment">
-                {t('review-label')}
-              </FieldLabel>
-              <Textarea
-                className="min-h-36 dark:text-zinc-50"
-                id="comment"
-                placeholder={t('review-placeholder')}
-                {...form.register('comment')}
-              />
-              <FieldError>{form.formState.errors.comment?.message}</FieldError>
-            </Field>
+        {/* Title */}
+        <Field>
+          <FieldLabel className="dark:text-zinc-50">
+            {t('title-label')}
+          </FieldLabel>
 
-            {/* Submit */}
-            <Button disabled={isPending} className="w-full" type="submit">
-              {isPending ? t('submitting') : t('submit-button')}
-            </Button>
-          </form>
-        </Form>
-      </div>
-    </div>
+          <Input
+            className="w-full dark:text-zinc-50"
+            placeholder={t('title-placeholder')}
+            {...form.register('headline')}
+          />
+
+          <FieldError>{form.formState.errors.headline?.message}</FieldError>
+        </Field>
+
+        {/* Comment */}
+        <Field>
+          <FieldLabel className="dark:text-zinc-50">
+            {t('review-label')}
+          </FieldLabel>
+
+          <Textarea
+            className="min-h-36 dark:text-zinc-50"
+            placeholder={t('review-placeholder')}
+            {...form.register('content')}
+          />
+
+          <FieldError>{form.formState.errors.content?.message}</FieldError>
+        </Field>
+
+        {/* Submit */}
+        <Button disabled={isPending} className="w-full" type="submit">
+          {isPending ? t('submitting') : t('submit-button')}
+        </Button>
+      </form>
+    </Form>
   );
 }

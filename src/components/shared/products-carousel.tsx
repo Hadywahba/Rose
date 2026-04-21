@@ -9,6 +9,7 @@ import {
 } from '@/components/ui/carousel';
 import { Product } from '@/lib/types/products/product';
 import { RelatedProduct } from '@/lib/types/products/reviews/related-products';
+import { getFinalPrice } from '@/lib/utility/pricing';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import { useState } from 'react';
@@ -27,8 +28,9 @@ export default function ProductsCarousel({
   const [api, setApi] = useState<CarouselApi | null>(null);
 
   // استخدم relatedProducts لو موجودة وإلا استخدم products
-  const itemsToShow =
-    relatedProducts && relatedProducts.length > 0 ? relatedProducts : products;
+  const itemsToShow = relatedProducts?.length
+    ? relatedProducts
+    : (products ?? []);
 
   return (
     <Carousel
@@ -42,27 +44,35 @@ export default function ProductsCarousel({
       className="relative w-full"
     >
       <CarouselContent>
-        {itemsToShow?.map((product) => (
-          <CarouselItem
-            key={product._id}
-            className="basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"
-          >
-            <ProductCard
-              src={product.imgCover}
-              title={product.title}
-              rate={product.rateAvg}
-              rateCount={product.rateCount}
-              priceBeforeSale={product.price}
-              priceAfterSale={product.priceAfterDiscount}
-              salesCount={Number(product.sold)}
-              productId={product._id}
-              createdAt={product.createdAt}
-              quantity={product.quantity}
-              showWishListBtn={true}
-              productInfo={product}
-            />
-          </CarouselItem>
-        ))}
+        {itemsToShow?.map((product) => {
+          // Function
+          const finalPrice = getFinalPrice({
+            price: product.price,
+            discountType: product.discountType,
+            discountValue: product.discountValue,
+          });
+          return (
+            <CarouselItem
+              key={product.id}
+              className="basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"
+            >
+              <ProductCard
+                src={product.cover}
+                title={product.title}
+                rate={product.rating}
+                rateCount={product.ratings}
+                priceBeforeSale={product.price}
+                priceAfterSale={finalPrice}
+                salesCount={Number(product.stock)}
+                productId={product.id}
+                createdAt={product.createdAt}
+                quantity={product.stock}
+                showWishListBtn={true}
+                productInfo={product}
+              />
+            </CarouselItem>
+          );
+        })}
       </CarouselContent>
 
       {itemsToShow

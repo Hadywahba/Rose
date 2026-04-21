@@ -5,6 +5,7 @@ import HeaderMobile from './header-mobile';
 import { User } from '@/lib/types/auth';
 import { Product } from '@/lib/types/products/product';
 import { getCartItems } from '@/app/[locale]/(website)/(checkout)/cart/_hooks/get-cart';
+import { getAddresses } from '@/app/[locale]/(website)/(checkout)/checkout/_hooks/get-address';
 
 interface HeaderUserNameProps {
   products: Product[];
@@ -15,18 +16,17 @@ export default async function HeaderUserName({
 }: HeaderUserNameProps) {
   const session = await getServerSession(authOption);
 
-  let data = { numOfCartItems: 0 };
+  const data = await getCartItems();
 
-  if (session?.user) {
-    data = await getCartItems();
-  }
+  const address = await getAddresses();
 
   return (
     <>
       <HeaderMobile
         user={(session?.user as User) ?? null}
         products={products}
-        cartdata={data.numOfCartItems}
+        cartdata={data.data.length}
+        address={address.data}
       />
     </>
   );

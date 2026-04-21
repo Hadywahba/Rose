@@ -36,7 +36,7 @@ export default function LoginPopover() {
     mode: 'all',
     resolver: zodResolver(loginSchema(t)),
     defaultValues: {
-      email: '',
+      username: '',
       password: '',
     },
   });
@@ -63,7 +63,7 @@ export default function LoginPopover() {
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 p-4">
           <FormField
             control={form.control}
-            name="email"
+            name="username"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>{t('login.email')}</FormLabel>

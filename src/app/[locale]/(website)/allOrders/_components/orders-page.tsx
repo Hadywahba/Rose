@@ -15,7 +15,7 @@ export default function OrdersPage() {
   const { data, isLoading, isFetching } = useOrders();
 
   // Variables
-  const orders = data?.orders ?? [];
+  const orders = data?.payload.orders ?? [];
 
   return (
     <section className="container mx-auto px-4 py-8">

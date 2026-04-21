@@ -8,6 +8,7 @@ import ProductSearch from './product-search';
 import { useDebounce } from 'use-debounce';
 import { useTranslations } from 'next-intl';
 import { Product } from '@/lib/types/products/product';
+import { getFinalPrice } from '@/lib/utility/pricing';
 
 interface SearchProps {
   products: Product[];
@@ -82,22 +83,29 @@ export default function HeaderSearch({ products }: SearchProps) {
                 {t('no-products-available')}
               </p>
             ) : filteredProducts.length > 0 ? (
-              filteredProducts.map((product: Product) => (
-                <ProductSearch
-                  key={product._id}
-                  priceBeforeSale={product.price}
-                  productId={product._id}
-                  priceAfterSale={product.priceAfterDiscount!}
-                  rate={product.rateAvg}
-                  salesCount={Number(product.sold)}
-                  src={product.imgCover}
-                  title={product.title}
-                  showWishListBtn={true}
-                  quantity={product.quantity}
-                  createdAt={product.createdAt}
-                  product={product}
-                />
-              ))
+              filteredProducts.map((product: Product) => {
+                const finalPrice = getFinalPrice({
+                  price: product.price,
+                  discountType: product.discountType,
+                  discountValue: product.discountValue,
+                });
+                return (
+                  <ProductSearch
+                    key={product.id}
+                    priceBeforeSale={Number(product.price)}
+                    productId={product.id}
+                    priceAfterSale={finalPrice}
+                    rate={product.rating}
+                    salesCount={Number(product.discountValue)}
+                    src={product.cover}
+                    title={product.title}
+                    showWishListBtn={true}
+                    quantity={product.stock}
+                    createdAt={product.createdAt}
+                    product={product}
+                  />
+                );
+              })
             ) : (
               <p className="p-3 text-zinc-500 dark:text-zinc-100">
                 {t('product-not-found')}

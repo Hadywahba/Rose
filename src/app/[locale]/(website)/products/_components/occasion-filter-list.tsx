@@ -26,10 +26,11 @@ export default function OccasionFilterList() {
   });
 
   // Variable
-  const occasionItems = occasion?.pages.flatMap((page) => page.occasions) || [];
+  const occasionItems =
+    occasion?.pages.flatMap((page) => page.data).filter(Boolean) || [];
 
   const active = filters.occasion;
-
+  console.log(occasionItems);
   return (
     <ListError errors={error}>
       <div
@@ -60,6 +61,7 @@ export default function OccasionFilterList() {
           }
           endMessage={
             !error &&
+            !hasNextPage &&
             occasionItems.length > 0 && (
               <div className="py-4 text-center text-gray-500">
                 {t('occasion-error')}
@@ -79,16 +81,18 @@ export default function OccasionFilterList() {
           ) : (
             <section className="grid grid-cols-2 gap-2">
               {occasionItems.map((item) => {
-                const imageUrl = `https://flower.elevateegy.com/uploads/${item.image}`;
+                const imageUrl = item.image?.startsWith('http')
+                  ? item.image
+                  : `https://rose-app.elevateegy.com/uploads/${item.image}`;
                 return (
                   <Button
-                    onClick={() => setFilter('occasion', item._id)}
-                    key={item._id}
+                    onClick={() => setFilter('occasion', item.id)}
+                    key={item.id}
                     variant="carousel"
                     className={cn(
                       'group relative h-auto w-auto overflow-hidden rounded-sm p-0',
                       'before:absolute before:inset-0',
-                      active === item._id
+                      active === item?.id
                         ? 'before:bg-[linear-gradient(to_bottom,rgba(0,0,0,0.25),rgba(166,37,42,0.8))]'
                         : 'before:bg-black before:opacity-40 hover:before:bg-black/35 hover:before:bg-opacity-40',
                     )}
@@ -97,12 +101,12 @@ export default function OccasionFilterList() {
                       src={imageUrl}
                       width={302}
                       height={74}
-                      alt={item.name}
+                      alt={item.title}
                       priority
                       className="h-[6.25rem] w-full object-cover lg:h-[4.625rem] lg:w-[18.875rem]"
                     />
                     <span className="absolute inset-10 z-10 flex items-center justify-center text-base font-medium text-zinc-50">
-                      {item.name}
+                      {item.title}
                     </span>
                   </Button>
                 );

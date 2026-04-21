@@ -16,13 +16,13 @@ export function useSingleNotificationAsRead() {
         await markSingleNotificationsAsReadAction(notificationId);
 
       // check-error
-      if ("error" in payload) {
-        throw new Error(payload.error || "Failed to mark notification as read");
+      if (payload.status===false) {
+        throw new Error(payload.message);
       }
       return payload;
     },
     onSuccess: (data) => {
-      toast.success(data.message || "Notification marked as read");
+      toast.success(data.payload.message);
       // Invalidate and refetch notifications
       queryClient.invalidateQueries({ queryKey: ["notifications"] });
     },

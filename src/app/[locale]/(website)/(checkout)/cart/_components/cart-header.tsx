@@ -2,12 +2,11 @@
 import { Button } from '@/components/ui/button';
 import { useCart } from '@/lib/hooks/cart/use-cart';
 import { useClearCart } from '@/lib/hooks/cart/use-clear-cart';
-import { useGuestCartContext } from '@/lib/hooks/cart/use-guest-cart-context';
 import { cn } from '@/lib/utility/tailwind-merge';
 import { BrushCleaning, Loader } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import { useFormatter, useLocale, useTranslations } from 'next-intl';
-import { toast } from 'sonner';
+
 
 export default function CartHeader() {
   // Translations
@@ -20,25 +19,16 @@ export default function CartHeader() {
 
   // Mutation
   const { onClearCart, clearCartIsPending } = useClearCart();
-  // Hooks
-  const { totalItems, clear } = useGuestCartContext();
 
   // Variables
   const { data: session } = useSession();
-  const isBtnDisabled = session
-    ? (data?.cart?.cartItems.length ?? 0) === 0
-    : totalItems === 0;
-  const count = session ? (data?.numOfCartItems ?? 0) : totalItems;
+  const isBtnDisabled = session ? (data?.length ?? 0) === 0 : null;
+  const count = session ? (data?.length ?? 0) : 0;
   const n = format.number(count);
 
   // functions
   function handleClearCart() {
-    if (!session) {
-      clear();
-      toast.success(t('cart-cleared-successfully'));
-    } else {
-      onClearCart();
-    }
+    onClearCart();
   }
 
   return (
@@ -76,7 +66,7 @@ export default function CartHeader() {
       {/* clear-cart-button */}
       <Button
         onClick={handleClearCart}
-        disabled={isBtnDisabled}
+        disabled={isBtnDisabled!}
         variant={'secondary'}
         className="clear-cart text-sm font-semibold text-maroon-600"
       >

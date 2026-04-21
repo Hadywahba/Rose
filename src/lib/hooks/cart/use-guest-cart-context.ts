@@ -1,14 +1,14 @@
-"use client";
+// "use client";
 
-import { GuestCartContext } from "@/components/providers/cart/guest-cart.provider";
-import { useContext } from "react";
+// import { GuestCartContext } from "@/components/providers/cart/guest-cart.provider";
+// import { useContext } from "react";
 
-export function useGuestCartContext() {
-  const context = useContext(GuestCartContext);
-  if (!context) {
-    throw new Error(
-      "useGuestCartContext must be used within GuestCartProvider",
-    );
-  }
-  return context;
-}
+// export function useGuestCartContext() {
+//   const context = useContext(GuestCartContext);
+//   if (!context) {
+//     throw new Error(
+//       "useGuestCartContext must be used within GuestCartProvider",
+//     );
+//   }
+//   return context;
+// }

@@ -8,11 +8,19 @@ import AddressButton from './address-button';
 import { CHECKOUT_STEPS } from '@/lib/constants/checkout.constant';
 import SharedProgress from '@/components/shared/shared-progress';
 import { CheckoutMethodProps } from '@/lib/types/checkout/checkout';
+import { Address } from '@/lib/types/address/address';
 
 interface Props extends CheckoutMethodProps {
   myAddresses: React.ReactNode;
+  address: Address[];
+  addressError: Error | null;
 }
-export default function CheckOutContent({ setStep, myAddresses }: Props) {
+export default function CheckOutContent({
+  setStep,
+  myAddresses,
+  address,
+  addressError,
+}: Props) {
   // Translation
   const t = useTranslations('checkout');
 
@@ -39,7 +47,7 @@ export default function CheckOutContent({ setStep, myAddresses }: Props) {
       </h1>
 
       {/* Adresses */}
-      <CheckoutAddress />
+      <CheckoutAddress displayAddress={address} addressError={addressError} />
 
       {/* Added New Adress */}
       <AddressButton />

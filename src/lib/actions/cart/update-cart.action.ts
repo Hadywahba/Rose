@@ -1,13 +1,13 @@
 'use server';
 
 import { JSON_HEADER } from '@/lib/constants/api.constant';
-import { AddToCartProps } from '@/lib/types/cart';
+import {  UpdateCartPayload, UpdateCartProps } from '@/lib/types/cart/cart';
 import { getToken } from '@/lib/utility/manage-token';
-
+import { revalidatePath } from 'next/cache';
 export async function updateCartAction({
-  productId,
+  cartItemId,
   quantity,
-}: AddToCartProps) {
+}: UpdateCartProps) {
   // get-token
   const token = await getToken();
 
@@ -17,8 +17,8 @@ export async function updateCartAction({
     throw new Error('you must login first');
   }
 
-  const resp = await fetch(`${process.env.API_URL}/cart/${productId}`, {
-    method: 'PUT',
+  const resp = await fetch(`${process.env.API_URL}/cart/${cartItemId}`, {
+    method: 'PATCH',
     headers: {
       ...JSON_HEADER,
       Authorization: `Bearer ${token.accessToken}`,
@@ -26,6 +26,7 @@ export async function updateCartAction({
     body: JSON.stringify({ quantity }),
   });
 
-  const payload = await resp.json();
+  const payload:ApiResponse<UpdateCartPayload> = await resp.json();
+   revalidatePath(`/cart`);
   return payload;
 }

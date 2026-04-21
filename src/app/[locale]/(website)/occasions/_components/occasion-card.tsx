@@ -9,13 +9,12 @@ import {
   CardFooter,
 } from '@/components/ui/card';
 import Image from 'next/image';
-import { Calendar, Package } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 
 interface OccasionProps {
   name: string;
   image: string;
-  productsCount: number;
   createdAt: string;
   updatedAt: string;
   id: string;
@@ -24,7 +23,7 @@ interface OccasionProps {
 export default function OccasionsCard({
   name,
   image,
-  productsCount,
+
   createdAt,
   id,
 }: OccasionProps) {
@@ -56,10 +55,10 @@ export default function OccasionsCard({
         </CardTitle>
 
         <CardDescription className="flex flex-col gap-2 text-sm sm:text-base">
-          <div className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400">
+          {/* <div className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400">
             <Package className="h-4 w-4 sm:h-5 sm:w-5" />
             <span>{productsCount} Products Available</span>
-          </div>
+          </div> */}
 
           <div className="flex items-center gap-2 text-zinc-500 dark:text-zinc-500">
             <Calendar className="h-4 w-4 sm:h-5 sm:w-5" />

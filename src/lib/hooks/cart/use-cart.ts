@@ -1,19 +1,18 @@
-"use client";
+'use client';
 
-import { fetchCartService } from "@/lib/actions/cart/fetch-cart.service";
-import { CartResponse } from "@/lib/types/cart";
-import { useQuery } from "@tanstack/react-query";
+import { getCart } from '@/lib/services/cart/cart.service';
+import { useQuery } from '@tanstack/react-query';
 
 export function useCart() {
   const { data, isLoading, isFetching } = useQuery({
-    queryKey: ["cart"],
+    queryKey: ['cart'],
     queryFn: async () => {
-      const payload: ApiResponse<CartResponse> = await fetchCartService();
+      const payload = await getCart();
       // check-error
-      if ("error" in payload) {
-        throw new Error(payload.error || "error during fetch cart");
+      if (payload.status === false) {
+        throw new Error(payload.message);
       }
-      return payload;
+      return payload.payload.cartItems;
     },
 
     staleTime: 30_000, //30Second

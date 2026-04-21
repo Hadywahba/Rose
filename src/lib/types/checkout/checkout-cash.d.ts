@@ -7,7 +7,7 @@ type CashPayload = {
     street: string;
     phone: string;
     city: string;
-    lat: string;
-    long: string;
+    longitude: string;
+    latitude: string;
   };
 };

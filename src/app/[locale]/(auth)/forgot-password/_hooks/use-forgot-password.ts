@@ -5,8 +5,8 @@ import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 
 export const useForgot = () => {
-    // Translation
-    const t = useTranslations('auth');
+  // Translation
+  const t = useTranslations('auth');
 
   // Mutation
   const {
@@ -17,8 +17,8 @@ export const useForgot = () => {
     mutationFn: async (data: ForgotPasswordFormFields) => {
       const payload = await forgetPassword(data);
 
-      if ('error' in payload) {
-        throw new Error(payload.error);
+      if (payload.status === false) {
+        throw new Error(payload.message);
       }
 
       return payload;

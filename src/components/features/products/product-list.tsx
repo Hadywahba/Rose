@@ -8,6 +8,7 @@ import { cn } from '@/lib/utility/tailwind-merge';
 import Empty from '@/components/shared/empty';
 import ListError from '@/components/error/list-error';
 import { Product, ProductsResponse } from '@/lib/types/products/product';
+import { getFinalPrice } from '@/lib/utility/pricing';
 
 type ProductsListProps = {
   searchParams: SearchParams;
@@ -31,8 +32,8 @@ export default async function ProductsList({
   >(() => fetchAllProductsService(nextParams));
 
   const limit = Number(nextParams.limit);
-  const totalProducts = payload?.products ?? [];
-  const metadata = payload?.metadata ?? { currentPage: 1 };
+  const totalProducts = payload?.payload.data ?? [];
+  const metadata = payload?.payload.metadata ?? { currentPage: 1 };
 
   const productsCount = totalProducts.length;
   const isLastPage = productsCount < limit;
@@ -43,8 +44,8 @@ export default async function ProductsList({
 
   const totalPages = safeTotalPages;
 
-  const products = payload?.products ?? [];
-console.log(products)
+  const products = payload?.payload.data ?? [];
+
   return (
     <div className="col-span-9">
       <ListError errors={error}>
@@ -55,22 +56,29 @@ console.log(products)
           )}
         >
           {products.length > 0 &&
-            products.map((product: Product) => (
-              <ProductCard
-                key={product._id}
-                priceBeforeSale={product.price}
-                productId={product._id}
-                priceAfterSale={product.priceAfterDiscount!}
-                rate={product.rateAvg}
-                salesCount={Number(product.sold)}
-                src={product.imgCover}
-                title={product.title}
-                showWishListBtn={true}
-                quantity={product.quantity}
-                createdAt={product.createdAt}
-                productInfo={product}
-              />
-            ))}
+            products.map((product: Product) => {
+              const finalPrice = getFinalPrice({
+                price: product.price,
+                discountType: product.discountType,
+                discountValue: product.discountValue,
+              });
+              return (
+                <ProductCard
+                  key={product.id}
+                  productId={product.id}
+                  priceAfterSale={finalPrice}
+                  rate={product.rating}
+                  salesCount={Number(product.discountValue)}
+                  src={product.cover}
+                  title={product.title}
+                  showWishListBtn={true}
+                  quantity={product.stock}
+                  createdAt={product.createdAt}
+                  productInfo={product}
+                  priceBeforeSale={product.price}
+                />
+              );
+            })}
         </div>
 
         {products.length === 0 && (
@@ -78,7 +86,7 @@ console.log(products)
             buttontitle="product.product-notfound-btntitle"
             subtitle="product.product-notfound-subtitle"
             title="product.product-notfound-title"
-            link="/product"
+            link="/products"
           />
         )}
 
@@ -87,7 +95,7 @@ console.log(products)
             <AppPagination
               pathname={'/products'}
               searchParams={searchParams}
-              currentPage={payload?.metadata?.currentPage ?? 1}
+              currentPage={payload?.payload.metadata?.currentPage ?? 1}
               totalPages={totalPages}
               show={products.length > 0}
               locale={locale}

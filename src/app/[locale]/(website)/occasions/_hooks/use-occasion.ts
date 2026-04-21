@@ -18,19 +18,19 @@ export const useOccasion = () => {
     queryFn: async ({ pageParam = 1 }: { pageParam?: number }) => {
       const payload = await getOccasion(LIMIT, pageParam);
 
-      if ('error' in payload) {
-        throw new Error(payload.error);
+      if (payload.status===false) {
+        throw new Error(payload.message);
       }
 
-      return payload;
+      return payload.payload;
     },
     retry: false,
     initialPageParam: 1,
     getNextPageParam: (lastPage: OccasionsResponse) => {
-      const { currentPage, totalPages } = lastPage.metadata;
+      const { page, totalPages } = lastPage.metadata;
 
-      if (currentPage < totalPages) {
-        return currentPage + 1;
+      if (page < totalPages) {
+        return page + 1;
       }
 
       return undefined;

@@ -10,56 +10,58 @@ import {
 } from '@/components/ui/dialog';
 import { useRouter } from '@/i18n/navigation';
 import { AddressFormSchema } from '@/lib/schema/address.schema';
-import { Address } from '@/lib/types/user-addresses';
 import { cn } from '@/lib/utility/tailwind-merge';
 import { useTranslations } from 'next-intl';
 import React, { useState } from 'react';
+
 import { useAddAddress } from '../_hooks/use-add-address';
 import { useDeleteAddress } from '../_hooks/use-delete-address';
 import { useUpdateAddress } from '../_hooks/use-update-address';
+
 import AddressForm from './add-address-form';
 import AddressSelector from './address-selector';
 import MapSelector from './map-selector';
 
+import { Address } from '@/lib/types/address/address';
+
 interface AddressesModalProps {
   userAddresses: Address[];
   trigger?: React.ReactNode;
+  addressError: Error | null;
 }
 
 type DialogStep = 'list' | 'form' | 'map';
 
 const emptyFormData: Partial<AddressFormSchema> = {
-  username: '',
+  title: '',
   city: '',
   street: '',
   phone: '',
-  lat: '',
-  long: '',
+  latitude: undefined,
+  longitude: undefined,
 };
 
 export function AddressesModalFlow({
   userAddresses,
   trigger,
+  addressError,
 }: AddressesModalProps) {
-  // Translations
   const t = useTranslations('my-addresses');
 
-  // State
   const [step, setStep] = useState<DialogStep>('list');
   const [open, setOpen] = useState(false);
   const [editingAddressId, setEditingAddressId] = useState<string | null>(null);
   const [formData, setFormData] =
     useState<Partial<AddressFormSchema>>(emptyFormData);
 
-  // Hooks
   const router = useRouter();
+
   const { isPending: isAddPending, addAddress } = useAddAddress();
   const { pendingUpdate, updateAddress } = useUpdateAddress();
   const { pendingDelete, deleteAddress } = useDeleteAddress();
 
   const isPending = [isAddPending, pendingUpdate].some(Boolean);
 
-  // Functions
   const resetForm = () => {
     setFormData(emptyFormData);
     setEditingAddressId(null);
@@ -75,17 +77,18 @@ export function AddressesModalFlow({
 
   const handleEditAddress = (address: Address) => {
     setFormData({
-      username: address.username,
+      title: address.title,
       city: address.city,
       street: address.street,
       phone: address.phone,
     });
-    setEditingAddressId(address._id);
+
+    setEditingAddressId(address.id);
     setStep('form');
   };
 
   const handleFormComplete = (
-    data: Omit<AddressFormSchema, 'lat' | 'long'>,
+    data: Omit<AddressFormSchema, 'latitude' | 'longitude'>,
   ) => {
     setFormData((prev) => ({ ...prev, ...data }));
     setStep('map');
@@ -94,8 +97,8 @@ export function AddressesModalFlow({
   const handleMapSubmit = (location: { lat: number; lng: number }) => {
     const completeData: AddressFormSchema = {
       ...formData,
-      lat: location.lat.toString(),
-      long: location.lng.toString(),
+      latitude: location.lat,
+      longitude: location.lng,
     } as AddressFormSchema;
 
     const onSuccess = () => {
@@ -116,12 +119,12 @@ export function AddressesModalFlow({
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      {/* Modal Button */}
+      {/* Trigger */}
       <DialogTrigger asChild>
         {trigger || (
           <Button
             className="mb-9 w-full rounded-xl py-6 text-base font-medium dark:bg-softpink-300 dark:text-black dark:hover:bg-softpink-400"
-            variant={'secondary'}
+            variant="secondary"
           >
             {t('open-address-book')}
           </Button>
@@ -135,7 +138,7 @@ export function AddressesModalFlow({
           step === 'list' && 'h-[75vh]',
         )}
       >
-        {/* Dialog Header */}
+        {/* Header */}
         <DialogHeader className="mt-2 flex flex-row items-start justify-between gap-4 space-y-0">
           <DialogTitle className="text-start text-2xl font-bold">
             {step === 'list' && t('my-addresses')}
@@ -163,6 +166,7 @@ export function AddressesModalFlow({
             onEditAddress={handleEditAddress}
             onDeleteAddress={deleteAddress}
             pendingDelete={pendingDelete}
+            addressError={addressError}
           />
         )}
 
@@ -177,10 +181,11 @@ export function AddressesModalFlow({
         {step === 'map' && (
           <MapSelector
             initialPosition={
-              formData.lat && formData.long
+              formData.latitude !== undefined &&
+              formData.longitude !== undefined
                 ? {
-                    lat: parseFloat(formData.lat),
-                    lng: parseFloat(formData.long),
+                    lat: formData.latitude,
+                    lng: formData.longitude,
                   }
                 : undefined
             }

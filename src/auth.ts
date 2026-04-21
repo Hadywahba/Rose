@@ -8,16 +8,16 @@ export const authOption: NextAuthOptions = {
     Credentials({
       name: 'Credentials',
       credentials: {
-        email: {},
+        username: {},
         password: {},
         rememberMe: {},
       },
 
       authorize: async (credentials) => {
-        const response = await fetch(`${process.env.API_URL}/auth/signin`, {
+        const response = await fetch(`${process.env.API_URL}/auth/login`, {
           method: 'POST',
           body: JSON.stringify({
-            email: credentials?.email,
+            username: credentials?.username,
             password: credentials?.password,
           }),
           headers: {
@@ -27,14 +27,14 @@ export const authOption: NextAuthOptions = {
 
         const payload: ApiResponse<LoginResponse> = await response.json();
 
-        if ('error' in payload) {
-          throw new Error(payload.error);
+        if (payload.status === false) {
+          throw new Error(payload.message);
         }
 
         return {
-          id: payload.user._id,
-          user: payload.user,
-          accessToken: payload.token,
+          id: payload.payload.user.id,
+          user: payload.payload.user,
+          accessToken: payload.payload.token,
           rememberMe: credentials?.rememberMe === 'true',
         };
       },

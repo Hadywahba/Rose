@@ -1,21 +1,35 @@
 declare type ErrorResponse = {
-  error: string;
+  message: string;
+  status: false;
+  code: number;
 };
 
 declare type SuccessResponse<T> = {
+  status: true;
+  code: number;
+  payload: T;
+};
+
+declare type DeleteErrorResponse = {
   message: string;
-} & T;
+  status: false;
+  code: number;
+};
+
+declare type DeleteSuccessResponse = {
+  status: true;
+  code: number;
+  message: string;
+};
 
 declare type ApiResponse<T> = ErrorResponse | SuccessResponse<T>;
 
-
 declare type MetaData = {
-  currentPage: number;
+  page: number;
   limit: number;
   totalPages: number;
-  totalItems: number;
-}
-
+  total: number;
+};
 
 declare type PaginatedResponse<T> = {
   metadata: {
@@ -23,6 +37,8 @@ declare type PaginatedResponse<T> = {
     totalPages: number;
     limit: number;
     totalItems: number;
-    nextPage?:number;
+    nextPage?: number;
   };
 } & T;
+
+declare type DeleteApiResponse = DeleteErrorResponse | DeleteSuccessResponse;

@@ -1,32 +1,33 @@
 export interface ReviewsResponse {
-  message: string
-  metadata: Metadata
-  reviews: Review[]
+  metadata: Metadata;
+  data: Review[];
 }
 
 export interface Review {
-  _id: string
-  product: Product
-  user: User
-  rating: number
-  title: string
-  comment: string
-  status: string
-  createdAt: string
-  updatedAt: string
-  __v: number
+  id: string;
+  userId: string;
+  productId: string;
+  headline: string;
+  content: string;
+  rating: number;
+  createdAt: string;
+  updatedAt: string;
+  user: User;
+  product: ReviewProduct;
 }
 
-export interface Product {
-  _id: string
-  title: string
-  imgCover: string
-  id: string
+export interface ReviewProduct {
+  id: string;
+  title: string;
 }
 
 export interface User {
-  _id: string
-  firstName: string
-  lastName: string
-  photo: string
+  id: string;
+  username: string;
+  firstName: string;
+  lastName: string;
+}
+
+export interface AddReviewResponse {
+  review: Review;
 }

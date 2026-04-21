@@ -9,9 +9,7 @@ export async function GET(req: NextRequest) {
     if (!token) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
-    const { searchParams } = new URL(req.url);
-    const limit = searchParams.get('limit');
-    const API_URL = `https://flower.elevateegy.com/api/v1/addresses?limit=${limit}`;
+    const API_URL = `https://rose-app.elevate-bootcamp.cloud/api/addresses`;
     const response = await fetch(API_URL, {
       headers: {
         ...JSON_HEADER,

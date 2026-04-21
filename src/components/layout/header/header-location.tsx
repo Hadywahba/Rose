@@ -1,26 +1,22 @@
+import { Address } from '@/lib/types/address/address';
 import { cn } from '@/lib/utility/tailwind-merge';
 import { MapPin } from 'lucide-react';
 import React from 'react';
-import { User } from '@/lib/types/auth';
 
 type HeaderlocationProps = {
   isborder: boolean;
-  user: User | null;
+  address: Address[];
 };
-
-interface SessionUser {
-  addresses?: Array<{
-    city?: string;
-  }>;
-}
 
 export default function Headerlocation({
   isborder,
-  user,
+  address,
 }: HeaderlocationProps) {
+  const lastAddress = address?.[0];
+
   return (
     <>
-      {user ? (
+      {lastAddress ? (
         <div
           className={cn(
             'flex flex-col pl-6 text-sm',
@@ -28,9 +24,10 @@ export default function Headerlocation({
           )}
         >
           <span className="font-normal text-zinc-500">Deliver to:</span>
+
           <div className="flex items-center gap-1 font-semibold text-red-800 dark:text-softpink-200">
             <MapPin className="h-4 w-4" />
-            <span>{(user as SessionUser).addresses?.at(-1)?.city}</span>
+            <span>{lastAddress.city}</span>
           </div>
         </div>
       ) : null}

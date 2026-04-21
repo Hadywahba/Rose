@@ -17,11 +17,11 @@ export const useInfiniteCategories = () => {
     queryFn: async ({ pageParam = 1 }: { pageParam?: number }) => {
       const payload = await getCategories(LIMIT, pageParam);
 
-      if ('error' in payload) {
-        throw new Error(payload.error);
+      if (payload.status === false) {
+        throw new Error(payload.message);
       }
 
-      return payload;
+      return payload.payload;
     },
     retry: false,
     initialPageParam: 1,
