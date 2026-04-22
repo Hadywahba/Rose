@@ -6,7 +6,7 @@ export const getCartItems = async () => {
 
     if (data.status===false) {
       return {
-        error: new Error(data?.message ?? 'Failed to fetch cart'),
+        error: new Error(data?.message),
         data: [],
       };
     }

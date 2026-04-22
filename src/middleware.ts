@@ -10,14 +10,15 @@ const intlMiddleware = createIntlMiddleware(routing);
 const authPages = new Set(['/login', '/register', '/forgot-password']);
 
 // Pages that anyone can access
-const publicPages = new Set(['/home', '/products']);
+const publicPages = new Set(['/home', '/products', '/occasions']);
 
 // Pages that require authentication to perform actions (like add/edit)
 const protectedPages = new Set([
   '/product/add',
-  '/cart',
+  '/product/edit',
   '/checkout',
-  '/Order',
+  '/allOrders',
+  '/cart',
 ]);
 
 export default async function middleware(req: NextRequest) {

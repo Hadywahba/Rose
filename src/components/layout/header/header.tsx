@@ -32,7 +32,7 @@ export default async function Header() {
   // Display DataS
   const data = await getCartItems();
 
-    const address=await getAddresses()
+    const {dataAddress}=await getAddresses()
 
   // Variables
   const products = payload?.payload.data ?? [];
@@ -55,7 +55,7 @@ export default async function Header() {
           </Link>
           <Headerlocation
             isborder={true}
-           address={address.data}
+           address={dataAddress}
           />
         </div>
 
@@ -80,7 +80,7 @@ export default async function Header() {
         user={(session?.user as User) ?? null}
         products={products}
         cartdata={data.data.length}
-         address={address.data}
+         address={dataAddress}
       />
     </header>
   );

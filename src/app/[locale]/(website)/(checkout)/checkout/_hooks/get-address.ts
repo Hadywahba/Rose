@@ -1,24 +1,17 @@
 import { getAddress } from '@/lib/services/address/address.service';
 
 export const getAddresses = async () => {
-  try {
-    const data = await getAddress();
+  const dataAddress = await getAddress();
 
-    if (data.status===false) {
-      return {
-        error: new Error(data?.message ?? 'Failed to fetch addresses'),
-        data: [],
-      };
-    }
-
+  if (dataAddress.status === false) {
     return {
-      error: null,
-      data: data.payload.addresses ?? [],
-    };
-  } catch {
-    return {
-      error: new Error('Failed to fetch addresses'),
-      data: [],
+      error: new Error(dataAddress?.message),
+      dataAddress: [],
     };
   }
+
+  return {
+    error: null,
+    dataAddress: dataAddress.payload.addresses ?? [],
+  };
 };

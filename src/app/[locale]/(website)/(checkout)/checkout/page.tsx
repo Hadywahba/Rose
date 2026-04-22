@@ -6,14 +6,14 @@ import { getAddresses } from './_hooks/get-address';
 
 export default async function page() {
   // Fetch Data From Server
-  const { data, error } = await getAddresses();
+  const { dataAddress, error } = await getAddresses();
 
   return (
     <>
       <CheckoutProvider>
         <CheckoutLayout
           myAddresses={<MyAddresses />}
-          address={data}
+          address={dataAddress}
           addressError={error}
         />
       </CheckoutProvider>

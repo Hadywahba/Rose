@@ -18,7 +18,7 @@ export default async function HeaderUserName({
 
   const data = await getCartItems();
 
-  const address = await getAddresses();
+  const {dataAddress} = await getAddresses();
 
   return (
     <>
@@ -26,7 +26,7 @@ export default async function HeaderUserName({
         user={(session?.user as User) ?? null}
         products={products}
         cartdata={data.data.length}
-        address={address.data}
+        address={dataAddress}
       />
     </>
   );
