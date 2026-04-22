@@ -2,10 +2,15 @@ import { AddressesPayload } from '@/lib/types/address/address';
 import { cookies } from 'next/headers';
 export const getAddress = async () => {
   const cookieStore = cookies();
-  const response = await fetch(`${process.env.NEXTAUTH_URL}/api/address`, {
+  const cookieHeader = cookieStore
+    .getAll()
+    .map((c) => `${c.name}=${c.value}`)
+    .join('; ');
+  const baseUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000';
+  const response = await fetch(`${baseUrl}/api/address`, {
     cache: 'no-store',
     headers: {
-      Cookie: cookieStore.toString(),
+      Cookie: cookieHeader,
     },
   });
   if (!response.ok) {
