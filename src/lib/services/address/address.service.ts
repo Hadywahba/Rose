@@ -14,7 +14,7 @@ export const getAddress = async () => {
     },
   });
   if (!response.ok) {
-    throw new Error(`Failed to fetch address: ${response.statusText}`);
+    return { status: false, message: response.statusText, payload: null } as unknown as ApiResponse<AddressesPayload>;
   }
 
   const payload: ApiResponse<AddressesPayload> = await response.json();
