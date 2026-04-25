@@ -13,8 +13,8 @@ import { SearchParams } from '@/lib/types/global';
 import catchError from '@/lib/utility/catch-error';
 import { fetchAllProductsService } from '@/lib/actions/products/fetch-all-products.service';
 import { ProductsResponse } from '@/lib/types/products/product';
-import { getCartItems } from '@/app/[locale]/(website)/(checkout)/cart/_hooks/get-cart';
 import { getAddresses } from '@/app/[locale]/(website)/(checkout)/checkout/_hooks/get-address';
+import { displayCart } from '@/app/[locale]/(website)/(checkout)/cart/_hooks/get-cart';
 
 
 export default async function Header() {
@@ -30,9 +30,9 @@ export default async function Header() {
   );
 
   // Display DataS
-  const data = await getCartItems();
+const {data }=await displayCart()
 
-    const {dataAddress}=await getAddresses()
+    const {address}=await getAddresses()
 
   // Variables
   const products = payload?.payload.data ?? [];
@@ -55,7 +55,7 @@ export default async function Header() {
           </Link>
           <Headerlocation
             isborder={true}
-           address={dataAddress}
+           address={address}
           />
         </div>
 
@@ -68,7 +68,7 @@ export default async function Header() {
         {/* Header Info */}
         <HeaderInfo
           user={(session?.user as User) ?? null}
-          cartdata={data.data.length}
+          cartdata={data.length}
         />
       </div>
 
@@ -79,8 +79,8 @@ export default async function Header() {
       <HeaderMobile
         user={(session?.user as User) ?? null}
         products={products}
-        cartdata={data.data.length}
-         address={dataAddress}
+        cartdata={data.length}
+         address={address}
       />
     </header>
   );

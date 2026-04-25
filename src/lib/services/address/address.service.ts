@@ -1,21 +1,14 @@
+import { JSON_HEADER } from '@/lib/constants/api.constant';
 import { AddressesPayload } from '@/lib/types/address/address';
-import { cookies } from 'next/headers';
+import { getToken } from '@/lib/utility/manage-token';
 export const getAddress = async () => {
-  const cookieStore = cookies();
-  const cookieHeader = cookieStore
-    .getAll()
-    .map((c) => `${c.name}=${c.value}`)
-    .join('; ');
-  const baseUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000';
-  const response = await fetch(`${baseUrl}/api/address`, {
-    cache: 'no-store',
+  const token = await getToken();
+  const response = await fetch(`process.env.API_URL}/addresses`, {
     headers: {
-      Cookie: cookieHeader,
+      ...JSON_HEADER,
+      Authorization: `Bearer ${token?.accessToken}`,
     },
   });
-  if (!response.ok) {
-    return { status: false, message: response.statusText, payload: null } as unknown as ApiResponse<AddressesPayload>;
-  }
 
   const payload: ApiResponse<AddressesPayload> = await response.json();
   return payload;
