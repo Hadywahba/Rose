@@ -1,15 +1,15 @@
-//^^==> to get token to use in mutation in server actions
+'use server';
 
-import { decode, encode, JWT } from "next-auth/jwt";
-import { cookies } from "next/headers";
-
+import { decode, encode, JWT } from 'next-auth/jwt';
+import { cookies } from 'next/headers';
 const cookieName =
-  process.env.NODE_ENV === "production"
-    ? "__Secure-next-auth.session-token"
-    : "next-auth.session-token";
-
+  process.env.NODE_ENV === 'production'
+    ? '__Secure-next-auth.session-token'
+    : 'next-auth.session-token';
 export async function getToken() {
   const tokenCookie = cookies().get(cookieName)?.value;
+
+  if (!tokenCookie) return null;
 
   try {
     const jwt = await decode({
@@ -19,27 +19,25 @@ export async function getToken() {
 
     return jwt;
   } catch (error) {
-    console.error("Error decoding token", error);
+    console.error('Error decoding token', error);
 
     return null;
   }
 }
 
-// =====================================================================================================================
-//^^==>set Token Manually
-export async function setToken(token: JWT) {
+export async function setToken(jwt: JWT) {
   const encodedToken = await encode({
-    token,
+    token: jwt,
     secret: process.env.NEXTAUTH_SECRET!,
-    maxAge: 60 * 60 * 24 * 7,
+    maxAge: 7 * 24 * 60 * 60, // 7 days,
   });
 
   cookies().set(cookieName, encodedToken, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    maxAge: 1000 * 60 * 60 * 24 * 7,
-    path: "/",
-    sameSite: "lax",
-    expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: 7 * 24 * 60 * 60, // 7 days
+    path: '/',
+    sameSite: 'lax',
+    expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
   });
 }

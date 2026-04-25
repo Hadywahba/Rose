@@ -16,7 +16,6 @@ import { ProductsResponse } from '@/lib/types/products/product';
 import { getAddresses } from '@/app/[locale]/(website)/(checkout)/checkout/_hooks/get-address';
 import { displayCart } from '@/app/[locale]/(website)/(checkout)/cart/_hooks/get-cart';
 
-
 export default async function Header() {
   // Variable
   const session = await getServerSession(authOption);
@@ -30,14 +29,12 @@ export default async function Header() {
   );
 
   // Display DataS
-const {data }=await displayCart()
+  const { data } = await displayCart();
 
-    const {address}=await getAddresses()
+  const { address } = await getAddresses();
 
   // Variables
   const products = payload?.payload.data ?? [];
-
-
 
   return (
     <header>
@@ -53,10 +50,7 @@ const {data }=await displayCart()
               className="hidden lg:flex"
             />
           </Link>
-          <Headerlocation
-            isborder={true}
-           address={address}
-          />
+          <Headerlocation isborder={true} address={address} />
         </div>
 
         {/* Search Bar */}
@@ -80,7 +74,7 @@ const {data }=await displayCart()
         user={(session?.user as User) ?? null}
         products={products}
         cartdata={data.length}
-         address={address}
+        address={address}
       />
     </header>
   );
