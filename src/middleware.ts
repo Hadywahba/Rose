@@ -32,7 +32,14 @@ export default async function middleware(req: NextRequest) {
   const purePathname = `/${rest.join('/')}`.replace(/\/$/, '') || '/';
 
   // Get authentication token
-  const token = await getToken({ req });
+ const token = await getToken({
+  req,
+  secret: process.env.NEXTAUTH_SECRET,
+  // secureCookie: true,
+});
+
+  console.log("TOKEN:", token);
+  console.log("PATH:", purePathname);
 
   // Allow public pages
   if (publicPages.has(purePathname)) {
