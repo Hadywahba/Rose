@@ -1,4 +1,4 @@
-import { PaymentMethods } from "@/lib/enums/payment-method.enum";
+import { PaymentMethods } from '@/lib/enums/payment-method.enum';
 
 export interface PaymentTypes {
   img: string;
@@ -6,5 +6,5 @@ export interface PaymentTypes {
   id: number;
   title: string;
   text: string;
-   type: PaymentMethods;
+  type: PaymentMethods;
 }

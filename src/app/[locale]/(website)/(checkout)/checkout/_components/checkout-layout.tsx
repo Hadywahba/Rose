@@ -6,6 +6,7 @@ import CheckOutContent from './checkout-content';
 import PaymentMethods from './payment-methods';
 import { CheckoutStep } from '@/lib/types/checkout/checkout';
 import { Address } from '@/lib/types/address/address';
+import AddNotes from './add-notes';
 
 type Props = {
   myAddresses: React.ReactNode;
@@ -33,6 +34,10 @@ export default function CheckoutLayout({
     },
     [CHECKOUT_STEPS.payment]: {
       checkout: <PaymentMethods setStep={setStep} />,
+    },
+
+    [CHECKOUT_STEPS.notes]: {
+      checkout: <AddNotes setStep={setStep} />,
     },
   };
 

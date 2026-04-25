@@ -8,7 +8,7 @@ export const paymentMethods: PaymentTypes[] = [
     alt: 'cash',
     text: 'payment-methods.cash.text',
     title: 'payment-methods.cash.title',
-    type: PaymentMethods.cash,
+    type: PaymentMethods.CASH_ON_DELIVERY,
   },
   {
     id: 2,
@@ -16,6 +16,6 @@ export const paymentMethods: PaymentTypes[] = [
     alt: 'visa',
     text: 'payment-methods.visa.text',
     title: 'payment-methods.visa.title',
-    type: PaymentMethods.visa,
+    type: PaymentMethods.CREDIT_CARD,
   },
 ];

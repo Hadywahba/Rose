@@ -28,7 +28,7 @@ export default function CheckOutContent({
   const locale = useLocale();
 
   // Variable
-  const steps = [CHECKOUT_STEPS.address, CHECKOUT_STEPS.payment];
+const steps = [CHECKOUT_STEPS.address, CHECKOUT_STEPS.payment ,CHECKOUT_STEPS.notes ];
 
   // Variable
   const arabic = locale === 'ar';
@@ -39,7 +39,7 @@ export default function CheckOutContent({
       <SharedProgress
         step={CHECKOUT_STEPS.address}
         steps={steps}
-        firstValue={'25%'}
+        firstValue={'33.3%'}
       />
       {/* Title */}
       <h1 className="text-3xl font-semibold capitalize">

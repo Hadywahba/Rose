@@ -718,6 +718,10 @@
       },
       "payment-loading": "loading....",
       "select-required": "Please select all required items"
+    },
+    "notes": {
+      "title": "Order Notes",
+      "placeholder": "Add any special instructions or notes for your order..."
     }
   },
   "products": {
@@ -971,5 +975,8 @@
     "edit": "edit",
     "actions": "actions"
   },
-  "please-login-first": "please login first"
+  "please-login-first": "please login first",
+  "order-notes": "Enter your notes",
+  "order-payment-method": "Enter your PaymentMethod",
+  "order-address-id": "Enter your Address Id"
 }

@@ -710,6 +710,10 @@
       },
       "payment-loading": "جاري التحميل...",
       "select-required": "يرجى اختيار جميع العناصر المطلوبة"
+    },
+    "notes": {
+      "title": "ملاحظات الطلب",
+      "placeholder": "أضف أي تعليمات خاصة أو ملاحظات لطلبك..."
     }
   },
   "products": {
@@ -961,5 +965,8 @@
     "edit": "تعديل",
     "actions": "إجراءات"
   },
-  "please-login-first": "يرجى تسجيل الدخول أولاً"
+  "please-login-first": "يرجى تسجيل الدخول أولاً",
+  "order-notes": "أدخل ملاحظاتك",
+  "order-payment-method": " ادخل طريقة الدفع",
+  "order-address-id": "أدخل عنوانك"
 }

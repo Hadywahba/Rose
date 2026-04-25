@@ -1,17 +1,17 @@
-'use client';
+import SharedProgress from '@/components/shared/shared-progress';
 import { Button } from '@/components/ui/button';
 import { CHECKOUT_STEPS } from '@/lib/constants/checkout.constant';
+import { CheckoutMethodProps } from '@/lib/types/checkout/checkout';
 import { cn } from '@/lib/utility/tailwind-merge';
-import { ArrowLeft, MoveLeft, MoveRight } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import React from 'react';
 import { useLocale, useTranslations } from 'use-intl';
-import PaymentCard from './payment-card';
-import SharedProgress from '@/components/shared/shared-progress';
-import { CheckoutMethodProps } from '@/lib/types/checkout/checkout';
+import Notes from './notes';
+import PaymentButton from './payment-button';
 
-export default function PaymentMethods({ setStep }: CheckoutMethodProps) {
+export default function AddNotes({ setStep }: CheckoutMethodProps) {
   // Translation
-  const t = useTranslations('checkout');
+  const t = useTranslations('');
 
   // Hook
   const locale = useLocale();
@@ -24,14 +24,13 @@ export default function PaymentMethods({ setStep }: CheckoutMethodProps) {
     CHECKOUT_STEPS.payment,
     CHECKOUT_STEPS.notes,
   ];
-
   return (
     <main className="flex flex-col">
       {/* Progress Section */}
       <SharedProgress
-        step={CHECKOUT_STEPS.payment}
+        step={CHECKOUT_STEPS.notes}
         steps={steps}
-        secondValue={'66.6%'}
+        secondValue={'100%'}
       />
 
       {/* Button & Title */}
@@ -44,7 +43,7 @@ export default function PaymentMethods({ setStep }: CheckoutMethodProps) {
         {/* Back Button */}
         <Button
           onClick={() => {
-            setStep(CHECKOUT_STEPS.address);
+            setStep(CHECKOUT_STEPS.payment);
           }}
           variant="primary"
           className="w-24 rounded-lg bg-zinc-100 py-5 capitalize text-zinc-800 hover:bg-zinc-300"
@@ -61,32 +60,13 @@ export default function PaymentMethods({ setStep }: CheckoutMethodProps) {
             </>
           )}
         </Button>
-
-        {/* Text */}
-        <p className="text-3xl font-semibold capitalize">
-          {t('payment-method')}{' '}
-        </p>
       </div>
 
-      {/* Payment Method */}
-      <section className="flex w-full flex-col border-b-[.0625rem] border-zinc-100 p-3 pb-4 dark:border-zinc-300">
-        <PaymentCard />
-      </section>
+      {/* Content */}
+      <Notes />
 
-      {/* Next Step */}
-      <div className="mb-4 flex justify-end">
-        <Button
-          onClick={() => {
-            setStep(CHECKOUT_STEPS.notes);
-          }}
-          variant="primary"
-          className="w-[9.5rem] rounded-lg py-5 capitalize"
-        >
-          {arabic && <MoveLeft className="h-5 w-5" />}
-          {t('next-step')}
-          {!arabic && <MoveRight className="h-5 w-5" />}
-        </Button>
-      </div>
+        {/* Checkout Button */}
+      <PaymentButton />
     </main>
   );
 }
