@@ -50,9 +50,6 @@ export const authOption: NextAuthOptions = {
         token.accessToken = user.accessToken;
         token.user = user.user;
         token.rememberMe = user.rememberMe;
-        if (!user.rememberMe) {
-          token.exp = Math.floor(Date.now() / 1000) + 60 * 5; // 5 minutes
-        }
       }
 
       return token;
