@@ -50,6 +50,9 @@ export const authOption: NextAuthOptions = {
         token.accessToken = user.accessToken;
         token.user = user.user;
         token.rememberMe = user.rememberMe;
+        if (!user.rememberMe) {
+          token.exp = Math.floor(Date.now() / 1000) + 60 * 5; // 5 minutes
+        }
       }
 
       return token;
@@ -60,18 +63,7 @@ export const authOption: NextAuthOptions = {
       return session;
     },
   },
-  //  remeber me cookie
-  cookies: {
-    sessionToken: {
-      name: `next-auth.session-token`,
-      options: {
-        httpOnly: true,
-        sameSite: 'lax',
-        path: '/',
-        secure: process.env.NODE_ENV === 'production',
-      },
-    },
-  },
+
   pages: {
     signIn: '/login',
     signOut: '/login',
