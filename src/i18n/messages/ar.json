@@ -611,7 +611,6 @@
       "order": "طلب",
       "createdIn": "تاريخ الإنشاء",
       "totalPrice": "إجمالي السعر",
-      "paid": "مدفوع",
       "status": "الحالة",
       "paymentMethod": "طريقة الدفع",
       "deliveryStatus": "حالة التوصيل",

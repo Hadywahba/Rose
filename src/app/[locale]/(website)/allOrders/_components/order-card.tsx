@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useFormatter, useLocale, useTranslations } from 'next-intl';
+import { useFormatter, useTranslations } from 'next-intl';
 import { Order } from '@/lib/types/order/order';
 import {
   CheckCircle2,
@@ -14,7 +14,7 @@ import OrderHeader from './order-header';
 import OrderSummary from './order-summary';
 import PaymentAndDelivery from './order-payment';
 import OrderItemsSection from './order-section';
-import { formatCurrency } from '@/lib/utility/convert-numbers';
+import { useCurrency } from '@/lib/hooks/use-convert';
 
 type OrderCardProps = {
   order: Order;
@@ -24,7 +24,9 @@ export default function OrderCard({ order }: OrderCardProps) {
   // Translations
   const t = useTranslations('orders');
   const format = useFormatter();
-  const locale = useLocale();
+
+  // Hook
+  const currency = useCurrency();
 
   // State
   const [showAll, setShowAll] = React.useState(false);
@@ -36,11 +38,10 @@ export default function OrderCard({ order }: OrderCardProps) {
 
   const created = format.dateTime(new Date(order.createdAt), 'date-max');
 
-  const formattedTotal = formatCurrency(
-    format,
+  const formattedTotal = `${format.number(
     Number(order.total ?? 0),
-    locale,
-  );
+    'numbers',
+  )} ${currency}`;
 
   const paymentMethodLabel =
     order.paymentMethod === 'CASH_ON_DELIVERY'

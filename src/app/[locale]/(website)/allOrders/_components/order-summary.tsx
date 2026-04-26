@@ -1,8 +1,10 @@
+'use client';
+
+import { useCurrency } from '@/lib/hooks/use-convert';
 import { GlobalStatus, Order } from '@/lib/types/order/order';
-import { formatCurrency } from '@/lib/utility/convert-numbers';
 import { cn } from '@/lib/utility/tailwind-merge';
 import { BadgeCheck, Clock, Loader2 } from 'lucide-react';
-import { useFormatter, useLocale, useTranslations } from 'next-intl';
+import { useFormatter, useTranslations } from 'next-intl';
 
 interface OrderSummaryProps {
   formattedTotal: string;
@@ -18,15 +20,22 @@ export default function OrderSummary({
   // Translations
   const t = useTranslations('orders');
   const format = useFormatter();
-  const locale = useLocale();
+
+  // Currency hook
+  const currency = useCurrency();
 
   // Variables
   const discount = Number(order.discount ?? 0);
   const shipping = Number(order.shipping ?? 0);
-  const subtotal = formatCurrency(format, Number(order.subtotal ?? 0), locale);
-  const formattedDiscount = formatCurrency(format, discount, locale);
-  const formattedShipping = formatCurrency(format, shipping, locale);
 
+  const formatMoney = (value: number) =>
+    `${format.number(value, 'numbers')} ${currency}`;
+
+  const subtotalText = formatMoney(Number(order.subtotal ?? 0));
+  const discountText = formatMoney(discount);
+  const shippingText = formatMoney(shipping);
+
+  // Payment status badge
   const paymentStatusBadge =
     order.paymentStatus === 'PAID'
       ? {
@@ -53,12 +62,13 @@ export default function OrderSummary({
 
   return (
     <div className="border-b border-zinc-200 pb-4 dark:border-zinc-700">
-      {/* Top row: total + status */}
+      {/* Top row */}
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="flex flex-col">
           <span className="text-xs font-medium uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
             {t('card.totalPrice')}
           </span>
+
           <span className="text-2xl font-extrabold text-zinc-800 dark:text-zinc-50">
             {formattedTotal}
           </span>
@@ -74,6 +84,7 @@ export default function OrderSummary({
             <PaymentStatusIcon className="h-3.5 w-3.5" />
             {paymentStatusBadge.label}
           </span>
+
           <span
             className={cn(
               'rounded-full px-4 py-1.5 text-xs font-bold tracking-wide shadow-sm',
@@ -85,24 +96,26 @@ export default function OrderSummary({
         </div>
       </div>
 
-      {/* Price breakdown */}
+      {/* Breakdown */}
       <div className="mt-3 flex flex-wrap gap-x-6 gap-y-1 text-sm text-zinc-500 dark:text-zinc-400">
         <span>
           {t('card.subtotal')}:{' '}
           <span className="font-semibold text-zinc-700 dark:text-zinc-200">
-            {subtotal}
+            {subtotalText}
           </span>
         </span>
+
         {discount > 0 && (
           <span className="text-emerald-600 dark:text-emerald-400">
             {t('card.discount')}:{' '}
-            <span className="font-semibold">-{formattedDiscount}</span>
+            <span className="font-semibold">-{discountText}</span>
           </span>
         )}
+
         <span>
           {t('card.shipping')}:{' '}
           <span className="font-semibold text-zinc-700 dark:text-zinc-200">
-            {shipping === 0 ? t('card.freeShipping') : formattedShipping}
+            {shipping === 0 ? t('card.freeShipping') : shippingText}
           </span>
         </span>
       </div>
