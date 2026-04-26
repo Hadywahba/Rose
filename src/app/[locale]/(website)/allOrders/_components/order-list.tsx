@@ -4,25 +4,33 @@ import { OrderResponse } from '@/lib/types/order/order';
 import { PackageOpen } from 'lucide-react';
 import OrderCard from './order-card';
 import { SearchParams } from '@/lib/types/global';
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 import ListError from '@/components/error/list-error';
+import AppPagination from '@/components/shared/app-pagination';
 
 type OrderListProps = {
   searchParams: SearchParams;
 };
 
 export async function OrdersList({ searchParams }: OrderListProps) {
+  // Translations
   const t = await getTranslations('orders');
+  const locale = await getLocale();
 
+  //   Variables
   const nextParams: SearchParams = {
     ...searchParams,
     page: searchParams.page ?? '1',
-    limit: searchParams.limit ?? '10',
+    limit: searchParams.limit ?? '4',
   };
 
   const [payload, error] = await catchError<PaginatedResponse<OrderResponse>>(
     () => fetchAllOrderService(nextParams),
   );
+
+  const metadata = payload?.payload.metadata;
+
+  const totalPages = metadata?.totalPages ?? 1;
 
   const orders = payload?.payload?.data ?? [];
 
@@ -47,6 +55,19 @@ export async function OrdersList({ searchParams }: OrderListProps) {
           </div>
         ) : (
           orders.map((order) => <OrderCard key={order.id} order={order} />)
+        )}
+
+        {totalPages > 1 && (
+          <div className="mt-6 flex justify-center">
+            <AppPagination
+              pathname={'/allOrders'}
+              searchParams={searchParams}
+              currentPage={Number(metadata?.page)}
+              totalPages={totalPages}
+              show={orders.length > 0}
+              locale={locale}
+            />
+          </div>
         )}
       </ListError>
     </div>

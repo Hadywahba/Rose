@@ -36,7 +36,7 @@ export type AddOrderResponse = {
 
 export type OrderResponse = {
   data: Order[];
-  metadata: Metadata;
+  metadata: MetaData;
 };
 
 export type GlobalStatus = {
