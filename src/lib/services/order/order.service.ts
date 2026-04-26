@@ -4,7 +4,7 @@ import { convertSearchParams } from '@/lib/utility/convert-search-params-to-stri
 import { getToken } from '@/lib/utility/manage-token';
 
 export async function fetchAllOrderService(searchParams: SearchParams) {
-    // Variables
+  // Variables
   const token = await getToken();
   const query = convertSearchParams(searchParams).toString();
 
@@ -13,7 +13,7 @@ export async function fetchAllOrderService(searchParams: SearchParams) {
       ...JSON_HEADER,
       Authorization: `Bearer ${token?.accessToken}`,
     },
-    next: { tags: ['Orders'], revalidate: 60 * 10 },
+    cache: 'no-cache',
   });
 
   if (!resp.ok) {

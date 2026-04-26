@@ -38,3 +38,13 @@ export type OrderResponse = {
   data: Order[];
   metadata: Metadata;
 };
+
+export type GlobalStatus = {
+  label: string;
+  className: string;
+};
+
+export type Delivery = {
+  label: string;
+  className: string;
+};
