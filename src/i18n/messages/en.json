@@ -513,6 +513,10 @@
   "product-new": "new",
   "orders": {
     "title": "Orders",
+    "subtitle": "Track and manage all your orders",
+    "title-order": "Order",
+    "title-created": "Created",
+    "order-notes":"Notes Order",
     "empty": {
       "title": "No orders yet",
       "description": "Your orders will appear here once you place one."
@@ -522,12 +526,19 @@
       "createdIn": "Created in",
       "totalPrice": "Total Price",
       "paid": "Paid",
+      "processing": "Processing",
+      "pendingPayment": "Pending Payment",
       "status": "Status",
       "paymentMethod": "Payment Method",
       "deliveryStatus": "Delivery Status",
       "orderItems": "Order Items",
       "showAll": "Show All",
-      "showLess": "Show Less"
+      "showLess": "Show Less",
+      "subtotal": "Subtotal",
+      "discount": "Discount",
+      "shipping": "Shipping",
+      "freeShipping": "Free",
+      "address": "Delivery Address"
     },
     "statuses": {
       "inProgress": "In Progress",

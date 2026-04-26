@@ -27,12 +27,10 @@ export default function Hero() {
   };
 
   // Variables
-  const price =
-    locale === 'ar'
-      ? format.number(PRICE, 'currency-after-number')
-      : format
-          .number(PRICE, 'currency-after-number')
-          .replace(/^(\D+)?(\d+(\.\d+)?)/, '$2\u00A0$1');
+  const finalPrice = format.number(Number(PRICE ?? 0), 'numbers');
+  const currency = locale === 'ar' ? 'ج.م' : 'EGP';
+
+  const price = `${finalPrice} ${currency}`;
 
   return (
     <section className="mx-auto flex w-full flex-col items-center justify-center gap-6 px-10 pb-6 pt-10 sm:px-20 lg:flex lg:flex-row lg:items-center lg:justify-between">

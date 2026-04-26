@@ -1,6 +1,11 @@
-import OrdersPage from '@/app/[locale]/(website)/allOrders/_components/orders-page';
+import React from 'react';
+import { RouteProps } from '@/lib/types/global';
+import OrderContent from './_components/orders-content';
 
-export default function Page() {
-  // Page Wrapper
-  return <OrdersPage />;
+export default function page({ searchParams }: RouteProps) {
+  return (
+    <>
+      <OrderContent searchParams={searchParams} />
+    </>
+  );
 }

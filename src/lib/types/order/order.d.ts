@@ -1,5 +1,13 @@
 import { Product } from '../products/product';
 
+export type OrderAddress = {
+  id: string;
+  title: string;
+  city: string;
+  street: string;
+  phone: string;
+};
+
 export type OrderItem = {
   id: string;
   orderId: string;
@@ -28,8 +36,24 @@ export type Order = {
   createdAt: string;
   updatedAt: string;
   orderItems: OrderItem[];
+  address?: OrderAddress;
 };
 
 export type AddOrderResponse = {
   order: Order;
+};
+
+export type OrderResponse = {
+  data: Order[];
+  metadata: MetaData;
+};
+
+export type GlobalStatus = {
+  label: string;
+  className: string;
+};
+
+export type Delivery = {
+  label: string;
+  className: string;
 };
