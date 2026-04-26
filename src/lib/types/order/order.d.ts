@@ -33,3 +33,8 @@ export type Order = {
 export type AddOrderResponse = {
   order: Order;
 };
+
+export type OrderResponse = {
+  data: Order[];
+  metadata: Metadata;
+};
