@@ -1,5 +1,13 @@
 import { Product } from '../products/product';
 
+export type OrderAddress = {
+  id: string;
+  title: string;
+  city: string;
+  street: string;
+  phone: string;
+};
+
 export type OrderItem = {
   id: string;
   orderId: string;
@@ -28,6 +36,7 @@ export type Order = {
   createdAt: string;
   updatedAt: string;
   orderItems: OrderItem[];
+  address?: OrderAddress;
 };
 
 export type AddOrderResponse = {

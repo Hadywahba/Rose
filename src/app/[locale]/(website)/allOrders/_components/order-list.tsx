@@ -27,7 +27,7 @@ export async function OrdersList({ searchParams }: OrderListProps) {
   const [payload, error] = await catchError<PaginatedResponse<OrderResponse>>(
     () => fetchAllOrderService(nextParams),
   );
-
+  // Variables
   const metadata = payload?.payload.metadata;
 
   const totalPages = metadata?.totalPages ?? 1;

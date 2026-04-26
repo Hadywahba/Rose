@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useFormatter, useTranslations } from 'next-intl';
+import { useFormatter, useLocale, useTranslations } from 'next-intl';
 import { Order } from '@/lib/types/order/order';
 import {
   CheckCircle2,
@@ -14,31 +14,34 @@ import OrderHeader from './order-header';
 import OrderSummary from './order-summary';
 import PaymentAndDelivery from './order-payment';
 import OrderItemsSection from './order-section';
+import { formatCurrency } from '@/lib/utility/convert-numbers';
 
 type OrderCardProps = {
   order: Order;
 };
 
 export default function OrderCard({ order }: OrderCardProps) {
-  // Translation
+  // Translations
   const t = useTranslations('orders');
   const format = useFormatter();
+  const locale = useLocale();
 
   // State
   const [showAll, setShowAll] = React.useState(false);
 
-  // status
+  // Variables
   const state = order.status;
-
   const isCancelled = state === 'CANCELLED';
   const isDelivered = state === 'DELIVERED';
 
-  // formatting
   const created = format.dateTime(new Date(order.createdAt), 'date-max');
 
-  const formattedTotal = format.number(Number(order.total ?? 0), 'currency');
+  const formattedTotal = formatCurrency(
+    format,
+    Number(order.total ?? 0),
+    locale,
+  );
 
-  // payment
   const paymentMethodLabel =
     order.paymentMethod === 'CASH_ON_DELIVERY'
       ? t('payment.cash')
@@ -47,17 +50,15 @@ export default function OrderCard({ order }: OrderCardProps) {
   const PaymentIcon =
     order.paymentMethod === 'CASH_ON_DELIVERY' ? Banknote : CreditCard;
 
-  // global status
   const globalStatus = isCancelled
-    ? { label: t('statuses.cancelled'), className: 'bg-red-600 text-white' }
+    ? { label: t('statuses.cancelled'), className: 'bg-red-500 text-white' }
     : isDelivered
-      ? { label: t('statuses.done'), className: 'bg-emerald-600 text-white' }
+      ? { label: t('statuses.done'), className: 'bg-emerald-500 text-white' }
       : {
           label: t('statuses.inProgress'),
-          className: 'bg-blue-600 text-white',
+          className: 'bg-blue-500 text-white',
         };
 
-  // delivery
   const delivery = isCancelled
     ? {
         label: t('delivery.cancelled'),
@@ -79,10 +80,10 @@ export default function OrderCard({ order }: OrderCardProps) {
   const DeliveryIcon = delivery.icon;
 
   return (
-    <section className="overflow-hidden rounded-xl border border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-950">
+    <article className="overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm transition-shadow hover:shadow-md dark:border-zinc-700 dark:bg-zinc-950">
       <OrderHeader order={order} created={created} />
 
-      <div className="bg-zinc-200 px-4 py-4 dark:bg-zinc-900">
+      <div className="px-5 py-5">
         <OrderSummary
           order={order}
           formattedTotal={formattedTotal}
@@ -94,6 +95,7 @@ export default function OrderCard({ order }: OrderCardProps) {
           PaymentIcon={PaymentIcon}
           delivery={delivery}
           DeliveryIcon={DeliveryIcon}
+          order={order}
         />
 
         <OrderItemsSection
@@ -102,6 +104,6 @@ export default function OrderCard({ order }: OrderCardProps) {
           setShowAll={setShowAll}
         />
       </div>
-    </section>
+    </article>
   );
 }
