@@ -21,7 +21,7 @@ export default async function Header() {
   const session = await getServerSession(authOption);
   const nextParams: SearchParams = {
     page: '1',
-    limit: '200',
+    limit: '100',
   };
 
   const [payload] = await catchError<PaginatedResponse<ProductsResponse>>(() =>

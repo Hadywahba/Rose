@@ -30,7 +30,7 @@ export default function OccasionFilterList() {
     occasion?.pages.flatMap((page) => page.data).filter(Boolean) || [];
 
   const active = filters.occasion;
-  console.log(occasionItems);
+
   return (
     <ListError errors={error}>
       <div
