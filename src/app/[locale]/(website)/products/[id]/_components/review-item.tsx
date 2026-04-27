@@ -1,6 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Rating } from '@/components/ui/rating';
 import { Review } from '@/lib/types/products/reviews/reviews-response';
+import { normalize } from '@/lib/utility/normalize-url';
 import { useLocale } from 'next-intl';
 
 export default function ReviewItem({
@@ -30,7 +31,7 @@ export default function ReviewItem({
   // variables
   const isOwner = currentUser ? review.user.id === currentUser.id : false;
 
-  const avatarSrc = isOwner ? currentUser?.photo : null;
+  const avatarSrc = isOwner ? normalize(currentUser?.photo) : null;
 
   return (
     <div className="space-y-2">

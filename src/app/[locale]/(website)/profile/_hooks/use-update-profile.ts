@@ -14,6 +14,7 @@ export const useUpdateProfile = () => {
   // Navigations
   const router = useRouter();
 
+  // Mutations
   const { mutate, isPending, error } = useMutation({
     mutationFn: async (fields: ProfileFormFields) => {
       const payload = await updateUserProfile(fields);

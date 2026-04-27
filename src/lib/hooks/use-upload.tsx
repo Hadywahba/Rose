@@ -3,6 +3,7 @@ import { uploadImage } from '../actions/upload/upload-image.action';
 import { toast } from 'sonner';
 
 export const UseUpload = () => {
+  // Mutations
   const { mutate, isPending, error } = useMutation({
     mutationFn: async (file: File) => {
       const payload = await uploadImage(file);
@@ -12,9 +13,6 @@ export const UseUpload = () => {
       }
 
       return payload;
-    },
-    onSuccess: () => {
-      toast.success('success');
     },
 
     onError: (error) => {

@@ -47,6 +47,7 @@ export default function ProfileContent({ user }: ProfileContentProps) {
           <ProfileAvatar
             photo={user.photo || null}
             name={`${user.firstName} ${user.lastName}`}
+            user={user}
           />
           <h2 className="mt-3 text-xl font-bold text-zinc-800 dark:text-zinc-50">
             {user.firstName} {user.lastName}

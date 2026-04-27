@@ -573,6 +573,7 @@
     "reset": "reset"
   },
   "profile": {
+    "profile-success": "Profile picture added successfully. Please save your changes now.",
     "phone-required": "Phone number is required",
     "phone-invalid": "Phone number must be at least 10 digits",
     "first-name-required": "First name is required",

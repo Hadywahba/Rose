@@ -20,13 +20,13 @@ export default function ProfileSidebar({ active, onChange }: ProfileSidebarProps
   ];
 
   return (
-    <aside className="flex flex-row gap-2 sm:flex-col">
+    <aside className="flex flex-row gap-2 sm:flex-col shrink-0">
       {tabs.map((tab) => (
         <button
           key={tab.key}
           onClick={() => onChange(tab.key)}
           className={cn(
-            'flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition-colors',
+            'flex w-full items-center  gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition-colors',
             active === tab.key
               ? 'bg-maroon-600 text-white shadow-sm dark:bg-softpink-400 dark:text-zinc-900'
               : 'text-zinc-600 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800',

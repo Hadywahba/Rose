@@ -6,14 +6,20 @@ import { Camera, Expand, X } from 'lucide-react';
 import { UseUpload } from '@/lib/hooks/use-upload';
 import { ImageContext } from '@/components/providers/app/profile/profile-provider';
 import { normalize } from '@/lib/utility/normalize-url';
-
+import { useUpdateProfile } from '../_hooks/use-update-profile';
+import { ProfileFormFields } from '@/lib/schema/profile/profile.schema';
 
 type ProfileAvatarProps = {
   photo: string | null;
   name: string;
+  user: User;
 };
 
-export default function ProfileAvatar({ photo, name }: ProfileAvatarProps) {
+export default function ProfileAvatar({
+  photo,
+  name,
+  user,
+}: ProfileAvatarProps) {
   // refs
   const fileRef = useRef<HTMLInputElement>(null);
 
@@ -23,29 +29,51 @@ export default function ProfileAvatar({ photo, name }: ProfileAvatarProps) {
 
   // hooks
   const { UploadImages, isPending } = UseUpload();
+  const { updateProfile } = useUpdateProfile();
 
-  // Context
+  // context
   const { setImage, image } = useContext(ImageContext)!;
 
-  // Variables
-  const currentPhoto = normalize(preview ?? image ?? photo);
+  // raw image source
+  const rawPhoto = preview ?? image ?? photo;
 
-  // Functions
+  // safe normalize (avoid breaking blob URLs)
+  const currentPhoto = rawPhoto?.startsWith('blob:')
+    ? rawPhoto
+    : normalize(rawPhoto);
+
+  // handle file change
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    // instant preview
     const previewUrl = URL.createObjectURL(file);
     setPreview(previewUrl);
 
-    // upload via react-query mutation
     UploadImages(file, {
       onSuccess: (res) => {
-        if (res.payload?.url) {
-          setImage(res.payload.url);
-        }
+        const uploadedPhoto = res.payload?.url;
+
+        if (!uploadedPhoto) return;
+
+        // update context immediately
+        setImage(uploadedPhoto);
+
+        const payload: ProfileFormFields = {
+          firstName: user?.firstName,
+          lastName: user?.lastName,
+          phone: user?.phone,
+          photo: uploadedPhoto,
+        };
+
+        updateProfile(payload, {
+          onSuccess: (data) => {
+            const finalPhoto = data.payload.user.photo;
+            setImage(finalPhoto);
+          },
+        });
       },
+
       onError: () => {
         setPreview(null);
       },
@@ -58,16 +86,16 @@ export default function ProfileAvatar({ photo, name }: ProfileAvatarProps) {
       <div className="relative mx-auto w-fit">
         <div className="relative h-32 w-32 overflow-hidden rounded-full ring-4 ring-maroon-200 dark:ring-maroon-800">
           <Image
-            src={currentPhoto}
+            src={currentPhoto || '/images/logo.png'}
             alt={name}
             fill
             sizes="128px"
             className="object-cover"
-            unoptimized
+            unoptimized={currentPhoto?.startsWith('blob:')}
           />
         </div>
 
-        {/* Expand button */}
+        {/* Expand */}
         <button
           type="button"
           onClick={() => setLightbox(true)}
@@ -76,7 +104,7 @@ export default function ProfileAvatar({ photo, name }: ProfileAvatarProps) {
           <Expand className="h-4 w-4" />
         </button>
 
-        {/* Change photo button */}
+        {/* Change photo */}
         <button
           type="button"
           onClick={() => fileRef.current?.click()}
@@ -102,7 +130,6 @@ export default function ProfileAvatar({ photo, name }: ProfileAvatarProps) {
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
           onClick={() => setLightbox(false)}
         >
-          {/* close */}
           <button
             className="absolute right-4 top-4 rounded-full bg-white/10 p-2 text-white hover:bg-white/20"
             onClick={() => setLightbox(false)}
@@ -110,16 +137,16 @@ export default function ProfileAvatar({ photo, name }: ProfileAvatarProps) {
             <X className="h-5 w-5" />
           </button>
 
-          {/* image */}
           <div
             className="relative h-80 w-80 overflow-hidden rounded-2xl sm:h-[28rem] sm:w-[28rem]"
             onClick={(e) => e.stopPropagation()}
           >
             <Image
-              src={currentPhoto}
+              src={currentPhoto || '/images/logo.png'}
               alt={name}
               fill
               className="object-cover"
+              unoptimized={currentPhoto?.startsWith('blob:')}
             />
           </div>
         </div>

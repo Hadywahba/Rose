@@ -46,7 +46,7 @@ export default function ProfileForm({ user }: ProfileFormProps) {
       firstName: user?.firstName || '',
       lastName: user?.lastName || '',
       phone: user?.phone || '',
-      photo: image?.includes('/upload/temp/') ? image : null,
+      photo: image !== user.photo ? image : null,
     },
   });
 
@@ -56,7 +56,6 @@ export default function ProfileForm({ user }: ProfileFormProps) {
       firstName: values.firstName,
       lastName: values.lastName,
       phone: values.phone,
-      photo: image || null,
     };
 
     updateProfile(payload, {
@@ -191,4 +190,3 @@ export default function ProfileForm({ user }: ProfileFormProps) {
     </Form>
   );
 }
-

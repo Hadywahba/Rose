@@ -663,6 +663,7 @@
     "reset": "إعادة ضبط"
   },
   "profile": {
+    "profile-success": "تمت إضافة صورة الملف الشخصي بنجاح. من فضلك قم بحفظ التغييرات الآن.",
     "first-name-required": "الاسم الأول مطلوب",
     "last-name-required": "اسم العائلة مطلوب",
     "phone-required": "رقم الهاتف مطلوب",

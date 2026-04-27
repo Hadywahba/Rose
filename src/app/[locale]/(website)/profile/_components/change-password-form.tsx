@@ -4,16 +4,16 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
-import { Loader2, Save } from 'lucide-react';
-import { useMutation } from '@tanstack/react-query';
-import { resetPassword } from '@/lib/services/auth/reset-password.service';
-import { toast } from 'sonner';
+
+// import { useMutation } from '@tanstack/react-query';
+// import { resetPassword } from '@/lib/services/auth/reset-password.service';
+// import { toast } from 'sonner';
 
 type ChangePasswordFormProps = {
   email: string;
 };
 
-export default function ChangePasswordForm({ email }: ChangePasswordFormProps) {
+export default function ChangePasswordForm({  }: ChangePasswordFormProps) {
   const t = useTranslations('profile');
 
   const [form, setForm] = useState({
@@ -23,19 +23,19 @@ export default function ChangePasswordForm({ email }: ChangePasswordFormProps) {
   });
   const [errors, setErrors] = useState<Partial<typeof form>>({});
 
-  const mutation = useMutation({
-    mutationFn: () =>
-      resetPassword({ email, newPassword: form.newPassword, password: form.password }),
-    onSuccess: (data) => {
-      if (data.status === false) {
-        toast.error(data.message);
-        return;
-      }
-      toast.success(t('password.success'));
-      setForm({ password: '', newPassword: '', confirmPassword: '' });
-    },
-    onError: () => toast.error(t('password.error')),
-  });
+  // const mutation = useMutation({
+  //   mutationFn: () =>
+  //     resetPassword({ email, newPassword: form.newPassword, password: form.password }),
+  //   onSuccess: (data) => {
+  //     if (data.status === false) {
+  //       toast.error(data.message);
+  //       return;
+  //     }
+  //     toast.success(t('password.success'));
+  //     setForm({ password: '', newPassword: '', confirmPassword: '' });
+  //   },
+  //   onError: () => toast.error(t('password.error')),
+  // });
 
   const validate = () => {
     const errs: Partial<typeof form> = {};
@@ -49,7 +49,7 @@ export default function ChangePasswordForm({ email }: ChangePasswordFormProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
-    mutation.mutate();
+   
   };
 
   const fields: { name: keyof typeof form; label: string }[] = [
@@ -86,15 +86,10 @@ export default function ChangePasswordForm({ email }: ChangePasswordFormProps) {
         <Button
           type="submit"
           variant="primary"
-          disabled={mutation.isPending}
+          
           className="flex items-center gap-2"
         >
-          {mutation.isPending ? (
-            <Loader2 className="h-4 w-4 animate-spin" />
-          ) : (
-            <Save className="h-4 w-4" />
-          )}
-          {mutation.isPending ? t('saving') : t('save')}
+         
         </Button>
       </div>
     </form>
