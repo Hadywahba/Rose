@@ -21,6 +21,8 @@ import {
 import { cn } from '@/lib/utility/tailwind-merge';
 import SubmitButton from '@/components/features/auth/submit-button';
 import { PhoneInput } from '@/components/ui/phone-input';
+import { useContext } from 'react';
+import { ImageContext } from '@/components/providers/app/profile/profile-provider';
 
 type ProfileFormProps = {
   user: User;
@@ -29,6 +31,9 @@ type ProfileFormProps = {
 export default function ProfileForm({ user }: ProfileFormProps) {
   // Translations
   const t = useTranslations('profile');
+
+  // Context
+  const { image, setImage } = useContext(ImageContext)!;
 
   // Hook
   const { error, isPending, updateProfile } = useUpdateProfile();
@@ -41,13 +46,25 @@ export default function ProfileForm({ user }: ProfileFormProps) {
       firstName: user?.firstName || '',
       lastName: user?.lastName || '',
       phone: user?.phone || '',
+      photo: image?.includes('/upload/temp/') ? image : null,
     },
   });
 
   // Function
   const onSubmit: SubmitHandler<ProfileFormFields> = (values) => {
-    console.log(values);
-    updateProfile(values);
+    const payload: ProfileFormFields = {
+      firstName: values.firstName,
+      lastName: values.lastName,
+      phone: values.phone,
+      photo: image || null,
+    };
+
+    updateProfile(payload, {
+      onSuccess: (data) => {
+        const finalPhoto = data.payload.user.photo;
+        setImage(finalPhoto);
+      },
+    });
   };
 
   return (
@@ -175,4 +192,3 @@ export default function ProfileForm({ user }: ProfileFormProps) {
   );
 }
 
-// {profileMutation.isPending ? t('saving') : t('save')}

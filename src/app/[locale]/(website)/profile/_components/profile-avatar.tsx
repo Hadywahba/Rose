@@ -1,14 +1,15 @@
 'use client';
 
 import Image from 'next/image';
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { Camera, Expand, X } from 'lucide-react';
-
 import { UseUpload } from '@/lib/hooks/use-upload';
-// import { useProfileContext } from '@/components/providers/profile-context';
+import { ImageContext } from '@/components/providers/app/profile/profile-provider';
+import { normalize } from '@/lib/utility/normalize-url';
+
 
 type ProfileAvatarProps = {
-  photo: string;
+  photo: string | null;
   name: string;
 };
 
@@ -22,12 +23,14 @@ export default function ProfileAvatar({ photo, name }: ProfileAvatarProps) {
 
   // hooks
   const { UploadImages, isPending } = UseUpload();
-  // const { setPhoto } = useProfileContext();
 
-  // current image
-  const currentPhoto = preview ?? photo;
+  // Context
+  const { setImage, image } = useContext(ImageContext)!;
 
-  // handle file change
+  // Variables
+  const currentPhoto = normalize(preview ?? image ?? photo);
+
+  // Functions
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -39,10 +42,12 @@ export default function ProfileAvatar({ photo, name }: ProfileAvatarProps) {
     // upload via react-query mutation
     UploadImages(file, {
       onSuccess: (res) => {
-        const uploadedUrl = res.payload.url;
-
-        // sync with context
-        // setPhoto(uploadedUrl);
+        if (res.payload?.url) {
+          setImage(res.payload.url);
+        }
+      },
+      onError: () => {
+        setPreview(null);
       },
     });
   };
@@ -52,7 +57,14 @@ export default function ProfileAvatar({ photo, name }: ProfileAvatarProps) {
       {/* Avatar */}
       <div className="relative mx-auto w-fit">
         <div className="relative h-32 w-32 overflow-hidden rounded-full ring-4 ring-maroon-200 dark:ring-maroon-800">
-          <Image src={currentPhoto} alt={name} fill className="object-cover" />
+          <Image
+            src={currentPhoto}
+            alt={name}
+            fill
+            sizes="128px"
+            className="object-cover"
+            unoptimized
+          />
         </div>
 
         {/* Expand button */}

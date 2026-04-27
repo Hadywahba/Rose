@@ -9,7 +9,7 @@ export const profileSchema = (t: Translations) =>
 
     phone: z.string().nonempty(t('phone-required')).min(10, t('phone-invalid')),
 
-    photo: z.string().optional(),
+    photo: z.string().nullable().optional(),
   });
 
 export type ProfileFormFields = z.infer<ReturnType<typeof profileSchema>>;

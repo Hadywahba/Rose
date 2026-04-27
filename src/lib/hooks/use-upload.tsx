@@ -19,7 +19,6 @@ export const UseUpload = () => {
 
     onError: (error) => {
       toast.error(error.message);
-      console.log(error.message);
     },
   });
 

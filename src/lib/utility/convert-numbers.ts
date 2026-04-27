@@ -1,4 +1,3 @@
-
 export function formatPhoneNumberToArabic(phone: string, locale: string) {
   if (locale === 'ar') {
     const arabicDigits = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
@@ -6,5 +5,3 @@ export function formatPhoneNumberToArabic(phone: string, locale: string) {
   }
   return phone;
 }
-
-
