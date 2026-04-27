@@ -6,7 +6,7 @@ declare type User = {
   firstName: string;
   lastName: string;
   gender: 'MALE' | 'FEMALE';
-  photo: string;
+  photo: string | null;
   emailVerified: boolean;
   phoneVerified: boolean;
   role: 'USER' | 'ADMIN' | string;
@@ -14,6 +14,17 @@ declare type User = {
   updatedAt: string;
 };
 
-declare type  UserResponsePayload = {
+declare type UserResponsePayload = {
   user: User;
-}
+};
+
+declare type UpdateProfilePayload = {
+  firstName?: string;
+  lastName?: string;
+  phone: string;
+  photo?: string | null;
+};
+
+declare type UpdateProfileResponse = {
+  user: User;
+};
