@@ -291,11 +291,7 @@
         "text": "We never sell data; only essential sharing with payment and shipping."
       }
     },
-    "chips": [
-      "Transparency",
-      "Security",
-      "Control"
-    ],
+    "chips": ["Transparency", "Security", "Control"],
     "cta1": "Go to Store",
     "cta2": "Terms & Conditions"
   },
@@ -348,6 +344,8 @@
     "product-added-successfully": "Product Added successfully"
   },
   "auth": {
+    "save": "Save Changes",
+    "saving": "Saving...",
     "forget-password": {
       "forgot-password": "forgot password?",
       "forget-text": "worry not, we’ll send you instructions to help you reset it.",
@@ -516,7 +514,7 @@
     "subtitle": "Track and manage all your orders",
     "title-order": "Order",
     "title-created": "Created",
-    "order-notes":"Notes Order",
+    "order-notes": "Notes Order",
     "empty": {
       "title": "No orders yet",
       "description": "Your orders will appear here once you place one."
@@ -574,9 +572,51 @@
     "price-to": "to",
     "reset": "reset"
   },
+  "profile": {
+    "phone-required": "Phone number is required",
+    "phone-invalid": "Phone number must be at least 10 digits",
+    "first-name-required": "First name is required",
+    "last-name-required": "Last name is required",
+    "title": "My Profile",
+    "subtitle": "Manage your personal information",
+    "editSection": "Edit Information",
+    "updateSuccess": "Profile updated successfully",
+    "updateError": "Failed to update profile",
+    "photoSuccess": "Photo updated successfully",
+    "photoError": "Failed to update photo",
+    "changePhoto": "Change photo",
+    "expandPhoto": "View photo",
+    "fields": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "phone": "Phone",
+      "email": "Email",
+      "username": "Username"
+    },
+    "badges": {
+      "email": "Email Verified",
+      "phone": "Phone Verified"
+    },
+    "gender": {
+      "male": "Male",
+      "female": "Female"
+    },
+    "tabs": {
+      "account": "My Account",
+      "password": "Change Password"
+    },
+    "password": {
+      "current": "Current Password",
+      "new": "New Password",
+      "confirm": "Confirm New Password",
+      "success": "Password changed successfully",
+      "error": "Failed to change password",
+      "required": "Password is required",
+      "minLength": "Password must be at least 8 characters",
+      "mismatch": "Passwords do not match"
+    }
+  },
   "header": {
-    "home": "Home",
-    "products": "Products",
     "categories": "Categories",
     "occasion": "Occasions",
     "contact": "Contact",
@@ -661,41 +701,25 @@
           "name": "Member One",
           "role": "Frontend Developer",
           "bio": "Responsible for crafting the visual experience of Rose. Loves clean UI, smooth animations, and making sure every pixel is in its right place.",
-          "works": [
-            "UI Components",
-            "Animations",
-            "Responsive Design"
-          ]
+          "works": ["UI Components", "Animations", "Responsive Design"]
         },
         {
           "name": "Member Two",
           "role": "Backend Developer",
           "bio": "The engine behind Rose. Builds the APIs, manages the database, and makes sure everything runs fast and secure.",
-          "works": [
-            "REST APIs",
-            "Database Design",
-            "Authentication"
-          ]
+          "works": ["REST APIs", "Database Design", "Authentication"]
         },
         {
           "name": "Member Three",
           "role": "Full Stack Developer",
           "bio": "Bridges the gap between frontend and backend. Works across the entire stack to deliver seamless features end-to-end.",
-          "works": [
-            "Next.js",
-            "State Management",
-            "Integrations"
-          ]
+          "works": ["Next.js", "State Management", "Integrations"]
         },
         {
           "name": "Member Four",
           "role": "UI/UX & Frontend",
           "bio": "Turns designs into reality. Focuses on user experience, accessibility, and making Rose feel intuitive for every customer.",
-          "works": [
-            "Design System",
-            "Accessibility",
-            "User Testing"
-          ]
+          "works": ["Design System", "Accessibility", "User Testing"]
         }
       ]
     }

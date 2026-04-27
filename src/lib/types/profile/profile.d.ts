@@ -14,6 +14,17 @@ declare type User = {
   updatedAt: string;
 };
 
-declare type  UserResponsePayload = {
+declare type UserResponsePayload = {
   user: User;
-}
+};
+
+declare type UpdateProfilePayload = {
+  firstName?: string;
+  lastName?: string;
+  phone: string;
+  photo?: string;
+};
+
+declare type UpdateProfileResponse = {
+  user: User;
+};
