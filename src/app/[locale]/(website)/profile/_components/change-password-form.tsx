@@ -48,6 +48,7 @@ export default function ChangePasswordForm() {
       },
     });
   };
+
   return (
     <Form {...form}>
       <form
@@ -61,13 +62,13 @@ export default function ChangePasswordForm() {
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-sm font-normal text-zinc-800 dark:text-zinc-50">
-                {tProfile('auth.register.password')}
+                {tProfile('auth.password.old-password')}
               </FormLabel>
               <FormControl>
                 <Input
                   {...field}
                   type="password"
-                  placeholder={tProfile('auth.register.password-placeholder')}
+                  placeholder={tProfile('auth.password.old-password-placholder')}
                   className={cn(
                     'h-11 w-full border-zinc-300 text-black placeholder:text-start placeholder:text-zinc-400 focus:border-gray-300 focus:outline-none focus:ring-0 dark:border-zinc-600 dark:text-zinc-50',
                   )}
@@ -85,13 +86,13 @@ export default function ChangePasswordForm() {
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-sm font-normal text-zinc-800 dark:text-zinc-50">
-                {tProfile('auth.register.password')}
+                {tProfile('auth.password.new-password')}
               </FormLabel>
               <FormControl>
                 <Input
                   {...field}
                   type="password"
-                  placeholder={tProfile('auth.register.password-placeholder')}
+                  placeholder={tProfile('auth.password.new-password-placholder')}
                   className={cn(
                     'h-11 w-full border-zinc-300 text-black placeholder:text-start placeholder:text-zinc-400 focus:border-gray-300 focus:outline-none focus:ring-0 dark:border-zinc-600 dark:text-zinc-50',
                   )}
@@ -109,7 +110,7 @@ export default function ChangePasswordForm() {
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-sm font-normal text-zinc-800 dark:text-zinc-50">
-                {tProfile('auth.register.confirm-password')}
+                {tProfile('auth.password.confirm-password')}
               </FormLabel>
               <FormControl>
                 <div className="relative">
@@ -117,7 +118,7 @@ export default function ChangePasswordForm() {
                     {...field}
                     type="password"
                     placeholder={tProfile(
-                      'auth.register.confirm-password-placeholder',
+                      'auth.password.new-password-placholder',
                     )}
                     className={cn(
                       'h-11 w-full border-zinc-300 text-black placeholder:text-start placeholder:text-zinc-400 focus:border-gray-300 focus:outline-none focus:ring-0 dark:border-zinc-600 dark:text-zinc-50',

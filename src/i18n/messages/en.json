@@ -472,6 +472,13 @@
         "error": "Failed to create account"
       }
     },
+    "password": {
+      "old-password": "Current Password",
+      "old-password-placholder": "enter Password",
+      "new-password": "New Password",
+      "new-password-placholder": "enter New Password",
+      "confirm-password": "Confirm New Password"
+    },
     "popover": {
       "login": "login",
       "register": "register"

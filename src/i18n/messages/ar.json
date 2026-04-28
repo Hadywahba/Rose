@@ -489,7 +489,15 @@
       "register": "إنشاء حساب"
     },
     "successfully-login": "تم تسجيل الدخول بنجاح",
-    "change password": "تغيير كلمة المرور"
+    "change password": "تغيير كلمة المرور",
+
+    "password": {
+      "old-password": "كلمة المرور الحالية",
+      "old-password-placholder": "أدخل كلمة المرور",
+      "new-password": "كلمة المرور الجديدة",
+      "new-password-placholder": "أدخل كلمة المرور الجديدة",
+      "confirm-password": "تأكيد كلمة المرور الجديدة"
+    }
   },
   "validation": {
     "password": {
