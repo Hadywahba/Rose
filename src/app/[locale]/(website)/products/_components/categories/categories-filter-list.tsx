@@ -22,12 +22,12 @@ export default function CategoriesFilterList() {
     useInfiniteCategories();
 
   const { setFilter, filters } = useFilters({
-    category: null,
+    categoryId: null,
   });
 
   // Variables
   const categories = category?.pages.flatMap((page) => page.data) || [];
-  const active = filters.category;
+  const active = filters.categoryId;
 
   return (
     <ListError errors={error}>
@@ -87,7 +87,7 @@ export default function CategoriesFilterList() {
                   : `https://rose-app.elevateegy.com/uploads/${item.image}`;
                 return (
                   <Button
-                    onClick={() => setFilter('category', item.id)}
+                    onClick={() => setFilter('categoryId', item.id)}
                     key={item.id}
                     variant="carousel"
                     className={cn(

@@ -11,7 +11,7 @@ export default function CategoryFilter() {
   const t = useTranslations('product.filters');
 
   // Hook
-  const { filters, resetFilter } = useFilters({ category: null });
+  const { filters, resetFilter } = useFilters({ categoryId: null });
 
   return (
     <section className="w-full border-b-1 border-zinc-100 dark:border-zinc-600 lg:w-[18.875rem]">
@@ -24,9 +24,9 @@ export default function CategoryFilter() {
         </h2>
 
         {/* Rest Button */}
-        {filters.category && (
+        {filters.categoryId && (
           <Button
-            onClick={() => resetFilter('category')}
+            onClick={() => resetFilter('categoryId')}
             className="w-fit gap-1 bg-transparent px-0 capitalize text-red-600 hover:bg-transparent dark:bg-transparent dark:hover:bg-transparent dark:text-red-500"
           >
             <X className="text-red-600 dark:text-red-500" />

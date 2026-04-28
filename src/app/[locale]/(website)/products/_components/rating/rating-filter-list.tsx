@@ -5,20 +5,20 @@ import { useFilters } from '../../_hooks/use-filter';
 
 export default function RatingFilterList() {
   // Hook
-  const { filters, setFilter, resetFilter } = useFilters({ rateAvg: null });
+  const { filters, setFilter, resetFilter } = useFilters({ minRating: null });
 
   // State
   const [hoverRating, setHoverRating] = useState<number | null>(null);
 
   // Variables
-  const activeRating = filters.rateAvg ? Number(filters.rateAvg) : null;
+  const activeRating = filters.minRating ? Number(filters.minRating) : null;
 
   // Function
   const handleRatingClick = (rateAvg: number) => {
     if (activeRating === rateAvg) {
-      resetFilter('rateAvg'); // reset this filter
+      resetFilter('minRating'); // reset this filter
     } else {
-      setFilter('rateAvg', rateAvg.toString());
+      setFilter('minRating', rateAvg.toString());
     }
   };
 

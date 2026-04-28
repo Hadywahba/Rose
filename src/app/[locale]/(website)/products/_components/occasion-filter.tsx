@@ -11,7 +11,7 @@ export default function OccasionFilter() {
   const t = useTranslations('product-filter');
 
   // Hook
-  const { filters, resetFilter } = useFilters({ occasion: null });
+  const { filters, resetFilter } = useFilters({ occasionId: null });
 
   return (
     <section className="w-full border-y-2 border-zinc-100 dark:border-zinc-600 lg:w-[18.875rem]">
@@ -24,9 +24,9 @@ export default function OccasionFilter() {
         </h2>
 
         {/* Rest Button */}
-        {filters.occasion && (
+        {filters.occasionId && (
           <Button
-            onClick={() => resetFilter('occasion')}
+            onClick={() => resetFilter('occasionId')}
             className="w-fit gap-1 bg-transparent px-0 capitalize text-red-600 hover:bg-transparent dark:bg-transparent dark:hover:bg-transparent dark:text-red-500"
           >
             <X className="text-red-600 dark:text-red-500" />

@@ -8,7 +8,6 @@ import { cn } from '@/lib/utility/tailwind-merge';
 import ProductAddButton from './product-add-button';
 import { Product } from '@/lib/types/products/product';
 
-
 // Types
 type ProductCardProps = {
   src: StaticImageData | string;
@@ -33,7 +32,7 @@ export default function ProductCard({
   title = 'Flower App',
   salesCount,
   priceAfterSale,
-  priceBeforeSale,
+
   showWishListBtn = false,
   createdAt,
   productInfo,
@@ -86,20 +85,6 @@ export default function ProductCard({
                     .replace(/^([^\d]+)\s*/, '')
                     .concat(' EGP')}
             </span>
-            <span
-              className={cn(
-                'text-base text-zinc-400 line-through dark:text-zinc-500',
-                arabic ? 'pr-3' : 'pl-3',
-              )}
-            >
-              {arabic
-                ? t('price-number-currancy-base-0', { price: priceBeforeSale })
-                : t('price-number-currancy-base-0', {
-                    price: priceBeforeSale,
-                  })
-                    .replace(/^([^\d]+)\s*/, '')
-                    .concat(' EGP')}
-            </span>
           </div>
         </div>
 
@@ -109,7 +94,7 @@ export default function ProductCard({
 
       {/* Badge */}
       <div className="absolute end-4 top-3 flex gap-2">
-        {salesCount >= 1 && (
+        {salesCount >= 50 && (
           <div>
             <Badge
               className="z-10 h-6 w-fit text-sm font-medium uppercase dark:bg-softpink-200 dark:hover:bg-softpink-300"

@@ -20,8 +20,8 @@ export default function PriceFilter() {
 
   // Hook
   const { filters } = useFilters({
-    'priceAfterDiscount[gte]': '',
-    'priceAfterDiscount[lte]': '',
+    'maxPrice': '',
+    'minPrice': '',
   });
 
   //  Functions
@@ -30,8 +30,8 @@ export default function PriceFilter() {
 
     // Reset both filters in one go
     const params = new URLSearchParams(window.location.search);
-    params.delete('priceAfterDiscount[gte]');
-    params.delete('priceAfterDiscount[lte]');
+    params.delete('maxPrice');
+    params.delete('minPrice');
     params.delete('page');
 
     router.push(`?${params.toString()}`);
@@ -50,9 +50,9 @@ export default function PriceFilter() {
         </h2>
 
         {/* Rest Button */}
-        {(filters['priceAfterDiscount[gte]'] ||
-          filters['priceAfterDiscount[lte]'] ||
-          (filters['priceAfterDiscount[gte]'] && filters['priceAfterDiscount[lte]'])) && (
+        {(filters['maxPrice'] ||
+          filters['minPrice'] ||
+          (filters['maxPrice'] && filters['minPrice'])) && (
           <Button
             onClick={handleResetPrice}
             className="w-fit gap-1 bg-transparent px-0 capitalize text-red-600 hover:bg-transparent dark:bg-transparent dark:text-red-500 dark:hover:bg-transparent"

@@ -2,7 +2,7 @@ import { getCategories } from '@/lib/services/category/category.service';
 import { CategoriesResponse } from '@/lib/types/category/category';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-const LIMIT = 6;
+const LIMIT = 100;
 
 export const useInfiniteCategories = () => {
   const {

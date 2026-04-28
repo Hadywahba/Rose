@@ -12,7 +12,7 @@ export default function RatingFilter() {
   const t = useTranslations('product.filters');
 
   // Hook
-  const { filters, resetFilter } = useFilters({ rateAvg: null });
+  const { filters, resetFilter } = useFilters({ minRating: null });
 
   return (
     <section className="w-full lg:w-[18.875rem]">
@@ -25,9 +25,9 @@ export default function RatingFilter() {
         </h2>
 
         {/* Rest Button */}
-        {filters.rateAvg && (
+        {filters.minRating && (
           <Button
-            onClick={() => resetFilter('rateAvg')}
+            onClick={() => resetFilter('minRating')}
             className="w-fit gap-1 bg-transparent px-0 capitalize text-red-600 hover:bg-transparent dark:bg-transparent dark:text-red-500 dark:hover:bg-transparent"
           >
             <X className="text-red-600 dark:text-red-500" />

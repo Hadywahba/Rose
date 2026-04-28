@@ -20,16 +20,16 @@ export default function PriceFilterInputs({
 
   // Hook
   const { filters, setFilter } = useFilters({
-    'priceAfterDiscount[gte]': '',
-    'priceAfterDiscount[lte]': '',
+    maxPrice: '',
+    minPrice: '',
   });
 
   // Ref to track if we're in reset mode
   const isResettingRef = useRef(false);
 
   // State
-  const [from, setFrom] = useState(filters['priceAfterDiscount[gte]'] ?? '');
-  const [to, setTo] = useState(filters['priceAfterDiscount[lte]'] ?? '');
+  const [from, setFrom] = useState(filters['minPrice'] ?? '');
+  const [to, setTo] = useState(filters['maxPrice'] ?? '');
 
   // Variables
   const [debouncedFrom] = useDebounce(from, DEBOUNCE_TIME);
@@ -40,9 +40,9 @@ export default function PriceFilterInputs({
     if (
       !resetFlag &&
       !isResettingRef.current &&
-      debouncedFrom !== (filters['priceAfterDiscount[gte]'] || '')
+      debouncedFrom !== (filters['minPrice'] || '')
     ) {
-      setFilter('priceAfterDiscount[gte]', debouncedFrom || null);
+      setFilter('minPrice', debouncedFrom || null);
     }
   }, [debouncedFrom, setFilter, resetFlag, filters]);
 
@@ -50,9 +50,9 @@ export default function PriceFilterInputs({
     if (
       !resetFlag &&
       !isResettingRef.current &&
-      debouncedTo !== (filters['priceAfterDiscount[lte]'] || '')
+      debouncedTo !== (filters['maxPrice'] || '')
     ) {
-      setFilter('priceAfterDiscount[lte]', debouncedTo || null);
+      setFilter('maxPrice', debouncedTo || null);
     }
   }, [debouncedTo, setFilter, resetFlag, filters]);
 

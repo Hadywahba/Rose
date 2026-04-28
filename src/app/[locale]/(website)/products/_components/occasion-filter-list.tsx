@@ -22,14 +22,14 @@ export default function OccasionFilterList() {
     useOccasion();
 
   const { setFilter, filters } = useFilters({
-    occasion: null,
+    occasionId: null,
   });
 
   // Variable
   const occasionItems =
     occasion?.pages.flatMap((page) => page.data).filter(Boolean) || [];
 
-  const active = filters.occasion;
+  const active = filters.occasionId;
 
   return (
     <ListError errors={error}>
@@ -86,7 +86,7 @@ export default function OccasionFilterList() {
                   : `https://rose-app.elevateegy.com/uploads/${item.image}`;
                 return (
                   <Button
-                    onClick={() => setFilter('occasion', item.id)}
+                    onClick={() => setFilter('occasionId', item.id)}
                     key={item.id}
                     variant="carousel"
                     className={cn(
