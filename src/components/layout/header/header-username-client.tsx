@@ -9,8 +9,10 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { ChevronDown } from 'lucide-react';
 import { User } from '@/lib/types/auth';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { cn } from '@/lib/utility/tailwind-merge';
+import { useRouter } from '@/i18n/navigation';
+import { signOut } from 'next-auth/react';
 
 interface HeaderUsernameClientProps {
   user: User | null;
@@ -19,8 +21,14 @@ interface HeaderUsernameClientProps {
 export default function HeaderUsernameClient({
   user,
 }: HeaderUsernameClientProps) {
+  // Translation
+  const t = useTranslations('header');
+
   // Hook
   const locale = useLocale();
+
+  // Navigation
+  const router = useRouter();
 
   return (
     <>
@@ -34,15 +42,36 @@ export default function HeaderUsernameClient({
             </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem>Profile</DropdownMenuItem>
-            <DropdownMenuItem>Orders</DropdownMenuItem>
-            <DropdownMenuItem>Logout</DropdownMenuItem>
+            <DropdownMenuItem
+              className="cursor-pointer"
+              onClick={() => {
+                router.push('/profile');
+              }}
+            >
+              {t('profile')}
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              className="cursor-pointer"
+              onClick={() => {
+                router.push('/allOrders');
+              }}
+            >
+              {t('orders')}
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              className="cursor-pointer"
+              onClick={() => {
+                signOut();
+              }}
+            >
+              {t('logout')}
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
         <div className="group relative inline-block">
           <button className="px-4 py-2 font-medium dark:text-white">
-            login
+            {t('login')}
           </button>
 
           {/* Hover Login */}

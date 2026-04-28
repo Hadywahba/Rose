@@ -472,11 +472,31 @@
         "error": "Failed to create account"
       }
     },
+    "password": {
+      "old-password": "Current Password",
+      "old-password-placholder": "enter Password",
+      "new-password": "New Password",
+      "new-password-placholder": "enter New Password",
+      "confirm-password": "Confirm New Password"
+    },
     "popover": {
       "login": "login",
       "register": "register"
     },
-    "successfully-login": "successfully login"
+    "successfully-login": "successfully login",
+    "change password": "change password"
+  },
+  "validation": {
+    "password": {
+      "required": "Password is required",
+      "min": "Password must be at least {count} characters long",
+      "uppercase": "Password must contain at least one uppercase letter",
+      "lowercase": "Password must contain at least one lowercase letter",
+      "number": "Password must contain at least one number",
+      "special": "Password must contain at least one special character",
+      "match": "Passwords do not match",
+      "same": "New password must be different from current password"
+    }
   },
   "reviews": {
     "title": "Product Reviews",
@@ -604,7 +624,8 @@
     },
     "tabs": {
       "account": "My Account",
-      "password": "Change Password"
+      "password": "Change Password",
+      "deleteAccount": "Delete Account"
     },
     "password": {
       "current": "Current Password",
@@ -615,6 +636,23 @@
       "required": "Password is required",
       "minLength": "Password must be at least 8 characters",
       "mismatch": "Passwords do not match"
+    },
+    "deleteAccount": {
+      "title": "Delete Account",
+      "description": "Once you delete your account, there is no going back. Please be certain.",
+      "button": "Delete My Account",
+      "warnings": [
+        "All your personal data will be permanently removed",
+        "Your order history will be deleted",
+        "This action cannot be undone"
+      ]
+    },
+    "deleteModal": {
+      "title": "Are you sure?",
+      "description": "This action is permanent and cannot be undone. All your data will be lost.",
+      "cancel": "Cancel",
+      "confirm": "Yes, delete my account",
+      "deleting": "Deleting..."
     }
   },
   "header": {
@@ -625,7 +663,10 @@
     "login": "Login",
     "register": "Register",
     "deliver to": "Deliver to",
-    "search": "What awesome gift are you looking for?"
+    "search": "What awesome gift are you looking for?",
+    "profile": "Profile",
+    "orders": "Orders",
+    "logout": "Logout"
   },
   "footer": {
     "title": "Rose E-Commerce App",

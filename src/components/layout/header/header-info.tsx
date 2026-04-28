@@ -24,13 +24,9 @@ export default function HeaderInfo({ user, cartdata }: HeaderInfoProps) {
   // navigation
   const router = useRouter();
 
-  // Querys
-  // const { data } = useCart();
-
-  // Hooks
-
   // Variables
   const numOfCartItems = user ? cartdata : null;
+
   return (
     <div className="flex items-center gap-1">
       <HeaderUsernameClient user={user} />

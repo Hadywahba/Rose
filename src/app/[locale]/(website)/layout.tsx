@@ -10,10 +10,13 @@ export default function layout({ children }: { children: React.ReactNode }) {
     <main>
       {/* Header */}
       <Header />
+
+      {/* Next Auth  */}
       <NextAuthProvider>
         {/* children Section */}
         {children}
       </NextAuthProvider>
+
       {/* Footer */}
       <Footer />
     </main>

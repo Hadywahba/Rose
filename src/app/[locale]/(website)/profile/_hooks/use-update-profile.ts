@@ -30,9 +30,8 @@ export const useUpdateProfile = () => {
       router.refresh();
     },
 
-    onError: (error) => {
+    onError: () => {
       toast.error(t('updateError'));
-      console.log(error);
     },
   });
 

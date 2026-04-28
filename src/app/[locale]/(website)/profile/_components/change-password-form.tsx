@@ -1,97 +1,146 @@
 'use client';
 
 import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
+import { useChangePassword } from '../_hooks/use-change-password';
+import {
+  ChangePasswordFormFields,
+  changeSchema,
+} from '@/lib/schema/profile/change-password.schema';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { cn } from '@/lib/utility/tailwind-merge';
+import SubmitButton from '@/components/features/auth/submit-button';
 
-// import { useMutation } from '@tanstack/react-query';
-// import { resetPassword } from '@/lib/services/auth/reset-password.service';
-// import { toast } from 'sonner';
+export default function ChangePasswordForm() {
+  // Translations
+  const tProfile = useTranslations('');
+  const tValidation = useTranslations('validation');
 
-type ChangePasswordFormProps = {
-  email: string;
-};
+  // Mutation
+  const { ChangePassword, error, isPending } = useChangePassword();
 
-export default function ChangePasswordForm({  }: ChangePasswordFormProps) {
-  const t = useTranslations('profile');
-
-  const [form, setForm] = useState({
-    password: '',
-    newPassword: '',
-    confirmPassword: '',
+  // Form
+  const form = useForm<ChangePasswordFormFields>({
+    mode: 'all',
+    resolver: zodResolver(changeSchema(tValidation)),
+    defaultValues: {
+      confirmPassword: '',
+      currentPassword: '',
+      newPassword: '',
+    },
   });
-  const [errors, setErrors] = useState<Partial<typeof form>>({});
 
-  // const mutation = useMutation({
-  //   mutationFn: () =>
-  //     resetPassword({ email, newPassword: form.newPassword, password: form.password }),
-  //   onSuccess: (data) => {
-  //     if (data.status === false) {
-  //       toast.error(data.message);
-  //       return;
-  //     }
-  //     toast.success(t('password.success'));
-  //     setForm({ password: '', newPassword: '', confirmPassword: '' });
-  //   },
-  //   onError: () => toast.error(t('password.error')),
-  // });
-
-  const validate = () => {
-    const errs: Partial<typeof form> = {};
-    if (!form.password) errs.password = t('password.required');
-    if (!form.newPassword || form.newPassword.length < 8) errs.newPassword = t('password.minLength');
-    if (form.newPassword !== form.confirmPassword) errs.confirmPassword = t('password.mismatch');
-    setErrors(errs);
-    return Object.keys(errs).length === 0;
+  // Function
+  const onsubmit: SubmitHandler<ChangePasswordFormFields> = async (data) => {
+    ChangePassword(data, {
+      onSuccess: () => {
+        form.reset();
+      },
+    });
   };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!validate()) return;
-   
-  };
-
-  const fields: { name: keyof typeof form; label: string }[] = [
-    { name: 'password', label: t('password.current') },
-    { name: 'newPassword', label: t('password.new') },
-    { name: 'confirmPassword', label: t('password.confirm') },
-  ];
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-      {fields.map((field) => (
-        <div key={field.name} className="flex flex-col gap-1.5">
-          <label className="text-sm font-semibold text-zinc-600 dark:text-zinc-300">
-            {field.label}
-          </label>
-          <Input
-            type="password"
-            value={form[field.name]}
-            onChange={(e) => {
-              setForm((p) => ({ ...p, [field.name]: e.target.value }));
-              setErrors((p) => ({ ...p, [field.name]: undefined }));
-            }}
-            error={!!errors[field.name]}
-            className="w-full"
-            noWrapper
-          />
-          {errors[field.name] && (
-            <p className="text-xs text-red-500">{errors[field.name]}</p>
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(onsubmit)}
+        className="space-y-4 border-t-2 border-zinc-200 pt-4 dark:border-zinc-600"
+      >
+        {/*Old Password */}
+        <FormField
+          control={form.control}
+          name="currentPassword"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-sm font-normal text-zinc-800 dark:text-zinc-50">
+                {tProfile('auth.password.old-password')}
+              </FormLabel>
+              <FormControl>
+                <Input
+                  {...field}
+                  type="password"
+                  placeholder={tProfile('auth.password.old-password-placholder')}
+                  className={cn(
+                    'h-11 w-full border-zinc-300 text-black placeholder:text-start placeholder:text-zinc-400 focus:border-gray-300 focus:outline-none focus:ring-0 dark:border-zinc-600 dark:text-zinc-50',
+                  )}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
           )}
-        </div>
-      ))}
+        />
 
-      <div className="flex justify-end">
-        <Button
-          type="submit"
-          variant="primary"
-          
-          className="flex items-center gap-2"
-        >
-         
-        </Button>
-      </div>
-    </form>
+        {/* New Password */}
+        <FormField
+          control={form.control}
+          name="newPassword"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-sm font-normal text-zinc-800 dark:text-zinc-50">
+                {tProfile('auth.password.new-password')}
+              </FormLabel>
+              <FormControl>
+                <Input
+                  {...field}
+                  type="password"
+                  placeholder={tProfile('auth.password.new-password-placholder')}
+                  className={cn(
+                    'h-11 w-full border-zinc-300 text-black placeholder:text-start placeholder:text-zinc-400 focus:border-gray-300 focus:outline-none focus:ring-0 dark:border-zinc-600 dark:text-zinc-50',
+                  )}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        {/* Confirm Password */}
+        <FormField
+          control={form.control}
+          name="confirmPassword"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-sm font-normal text-zinc-800 dark:text-zinc-50">
+                {tProfile('auth.password.confirm-password')}
+              </FormLabel>
+              <FormControl>
+                <div className="relative">
+                  <Input
+                    {...field}
+                    type="password"
+                    placeholder={tProfile(
+                      'auth.password.new-password-placholder',
+                    )}
+                    className={cn(
+                      'h-11 w-full border-zinc-300 text-black placeholder:text-start placeholder:text-zinc-400 focus:border-gray-300 focus:outline-none focus:ring-0 dark:border-zinc-600 dark:text-zinc-50',
+                    )}
+                  />
+                </div>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        {/* Submit Button */}
+        <SubmitButton
+          error={error}
+          isSubmitting={form.formState.isSubmitting}
+          isValid={form.formState.isValid}
+          isPending={isPending}
+          loading="forget-password.form.submit.loading"
+          text="change password"
+        />
+      </form>
+    </Form>
   );
 }
