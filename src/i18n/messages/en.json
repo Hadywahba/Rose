@@ -668,6 +668,24 @@
     "orders": "Orders",
     "logout": "Logout"
   },
+  "category": {
+    "title": "Categories",
+    "subtitle": "Browse all our product categories",
+    "empty": "No categories found",
+    "page": "Page",
+    "prev": "Previous",
+    "next": "Next",
+    "card": {
+      "products": "products",
+      "viewSubcategories": "View subcategories"
+    },
+    "subcategory": {
+      "title": "Subcategories of",
+      "close": "Close",
+      "placeholder": "Subcategories will appear here",
+      "empty": "No subcategories available"
+    }
+  },
   "footer": {
     "title": "Rose E-Commerce App",
     "discover": "Discover our website",

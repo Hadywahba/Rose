@@ -30,11 +30,11 @@ export default async function OccasionList({
     PaginatedResponse<OccasionsResponse>
   >(() => fetchAllOccasions(nextParams));
 
-  const metadata = payload?.payload.metadata ?? { totalPages: 0, currentPage: 1 };
-  const totalPages = Number(metadata.totalPages);
-  const currentPage = Number(metadata.currentPage);
-  const occasion = payload?.payload.data ?? [];
+  const metadata = payload?.payload.metadata;
 
+  const totalPages = metadata?.totalPages ?? 1;
+
+  const occasion = payload?.payload?.data ?? [];
   return (
     <ListError errors={error}>
       <div className="container mx-auto px-4 py-8">
@@ -46,7 +46,6 @@ export default async function OccasionList({
                 key={occ.id}
                 name={occ.title}
                 image={occ.image}
-              
                 createdAt={occ.createdAt}
                 updatedAt={occ.updatedAt}
                 id={occ.id}
@@ -68,7 +67,7 @@ export default async function OccasionList({
             <AppPagination
               pathname={'/occasions'}
               searchParams={searchParams}
-              currentPage={currentPage}
+              currentPage={Number(metadata?.page)}
               totalPages={totalPages}
               show={occasion.length > 0}
               locale={locale}

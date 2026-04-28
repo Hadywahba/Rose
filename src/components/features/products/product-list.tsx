@@ -31,20 +31,11 @@ export default async function ProductsList({
     PaginatedResponse<ProductsResponse>
   >(() => fetchAllProductsService(nextParams));
 
-  const limit = Number(nextParams.limit);
-  const totalProducts = payload?.payload.data ?? [];
-  const metadata = payload?.payload.metadata ?? { currentPage: 1 };
+  const metadata = payload?.payload.metadata;
 
-  const productsCount = totalProducts.length;
-  const isLastPage = productsCount < limit;
+  const totalPages = metadata?.totalPages ?? 1;
 
-  const safeTotalPages = isLastPage
-    ? metadata.currentPage
-    : metadata.currentPage + 1;
-
-  const totalPages = safeTotalPages;
-
-  const products = payload?.payload.data ?? [];
+  const products = payload?.payload?.data ?? [];
 
   return (
     <div className="col-span-9">
@@ -95,7 +86,7 @@ export default async function ProductsList({
             <AppPagination
               pathname={'/products'}
               searchParams={searchParams}
-              currentPage={payload?.payload.metadata?.currentPage ?? 1}
+              currentPage={Number(metadata?.page)}
               totalPages={totalPages}
               show={products.length > 0}
               locale={locale}

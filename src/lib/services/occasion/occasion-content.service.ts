@@ -14,7 +14,7 @@ export const getOccasion = async (
   if (name) {
     url.searchParams.append('search', name);
   }
-  console.log(url.toString());
+
   const response = await fetch(url.toString(), {
     method: 'GET',
     headers: {
