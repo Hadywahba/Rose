@@ -761,6 +761,24 @@
     "orders": "الطلبات",
     "logout": "تسجيل الخروج"
   },
+  "category": {
+    "title": "الفئات",
+    "subtitle": "تصفح جميع فئات المنتجات",
+    "empty": "لا توجد فئات",
+    "page": "صفحة",
+    "prev": "السابق",
+    "next": "التالي",
+    "card": {
+      "products": "منتج",
+      "viewSubcategories": "عرض الفئات الفرعية"
+    },
+    "subcategory": {
+      "title": "الفئات الفرعية لـ",
+      "close": "إغلاق",
+      "placeholder": "ستظهر الفئات الفرعية هنا",
+      "empty": "لا توجد فئات فرعية"
+    }
+  },
   "checkout": {
     "checkout-summary": {
       "summary": "مراجعة الطلب",

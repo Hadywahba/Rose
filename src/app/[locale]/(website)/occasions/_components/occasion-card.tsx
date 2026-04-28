@@ -34,7 +34,9 @@ export default function OccasionsCard({
   });
 
   // Variabeles
-  const imageUrl = `https://flower.elevateegy.com/uploads/${image}`;
+  const imageUrl = image?.startsWith('http')
+    ? image
+    : `https://rose-app.elevateegy.com/uploads/${image}`;
   return (
     <Card className="group h-full overflow-hidden transition-all duration-300 hover:shadow-xl dark:border-zinc-400">
       <CardContent className="p-0">

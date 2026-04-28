@@ -10,6 +10,12 @@ export interface Category {
   updatedAt: string;
   immutable: boolean;
   _count: CategoryCount;
+  subCategories: SubCategory[];
+}
+
+export interface SubCategory {
+  id: string;
+  title: string;
 }
 
 export type CurrentCategory = Category;

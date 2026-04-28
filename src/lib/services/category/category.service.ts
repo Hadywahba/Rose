@@ -15,7 +15,6 @@ export const getCategories = async (
     url.searchParams.append('search', name);
   }
 
-  console.log(url.toString());
 
   const response = await fetch(url.toString(), {
     method: 'GET',
