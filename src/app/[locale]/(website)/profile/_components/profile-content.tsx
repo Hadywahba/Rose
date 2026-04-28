@@ -7,8 +7,9 @@ import ChangePasswordForm from './change-password-form';
 import ProfileAvatar from './profile-avatar';
 import ProfileInfoBadges from './profile-info-badges';
 import { useTranslations } from 'next-intl';
-import { KeyRound, UserCircle2 } from 'lucide-react';
+import {  KeyRound, Trash2, UserCircle2 } from 'lucide-react';
 import { ImageProvider } from '@/components/providers/app/profile/profile-provider';
+import DeleteAccount from './delete-account';
 
 type ProfileContentProps = {
   user: User;
@@ -32,6 +33,13 @@ export default function ProfileContent({ user }: ProfileContentProps) {
       label: t('tabs.password'),
       icon: (
         <KeyRound className="h-5 w-5 text-maroon-600 dark:text-softpink-400" />
+      ),
+    },
+
+    deleteAccount: {
+      label: t('tabs.deleteAccount'),
+      icon: (
+        <Trash2 className="h-5 w-5 text-maroon-600 dark:text-softpink-400" />
       ),
     },
   };
@@ -61,17 +69,20 @@ export default function ProfileContent({ user }: ProfileContentProps) {
         <div className="mx-6 my-4 border-t border-zinc-100 dark:border-zinc-800" />
 
         {/* Body: sidebar + content */}
-        <div className="flex flex-col gap-6 px-6 pb-8 sm:flex-row">
+        <div className="flex flex-col gap-4 px-4 pb-8 sm:flex-row sm:gap-6 sm:px-6">
           {/* Sidebar */}
-          <div className="sm:w-48 sm:shrink-0">
+          <div className="w-full sm:w-48 sm:shrink-0">
             <ProfileSidebar active={activeTab} onChange={setActiveTab} />
           </div>
 
           {/* Divider vertical */}
           <div className="hidden w-px bg-zinc-100 dark:bg-zinc-800 sm:block" />
 
+          {/* Divider horizontal mobile */}
+          <div className="block border-t border-zinc-100 dark:border-zinc-800 sm:hidden" />
+
           {/* Tab content */}
-          <div className="flex-1">
+          <div className="min-w-0 flex-1">
             <div className="mb-5 flex items-center gap-2">
               {tabTitle[activeTab].icon}
               <p className="text-sm font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
@@ -80,9 +91,8 @@ export default function ProfileContent({ user }: ProfileContentProps) {
             </div>
 
             {activeTab === 'account' && <ProfileForm user={user} />}
-            {activeTab === 'password' && (
-              <ChangePasswordForm />
-            )}
+            {activeTab === 'password' && <ChangePasswordForm />}
+            {activeTab === 'deleteAccount' && <DeleteAccount />}
           </div>
         </div>
       </div>

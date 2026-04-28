@@ -624,7 +624,8 @@
     },
     "tabs": {
       "account": "My Account",
-      "password": "Change Password"
+      "password": "Change Password",
+        "deleteAccount": "Delete Account"
     },
     "password": {
       "current": "Current Password",
@@ -635,6 +636,23 @@
       "required": "Password is required",
       "minLength": "Password must be at least 8 characters",
       "mismatch": "Passwords do not match"
+    },
+    "deleteAccount": {
+      "title": "Delete Account",
+      "description": "Once you delete your account, there is no going back. Please be certain.",
+      "button": "Delete My Account",
+      "warnings": [
+        "All your personal data will be permanently removed",
+        "Your order history will be deleted",
+        "This action cannot be undone"
+      ]
+    },
+    "deleteModal": {
+      "title": "Are you sure?",
+      "description": "This action is permanent and cannot be undone. All your data will be lost.",
+      "cancel": "Cancel",
+      "confirm": "Yes, delete my account",
+      "deleting": "Deleting..."
     }
   },
   "header": {
