@@ -625,7 +625,7 @@
     "tabs": {
       "account": "My Account",
       "password": "Change Password",
-        "deleteAccount": "Delete Account"
+      "deleteAccount": "Delete Account"
     },
     "password": {
       "current": "Current Password",
@@ -663,7 +663,10 @@
     "login": "Login",
     "register": "Register",
     "deliver to": "Deliver to",
-    "search": "What awesome gift are you looking for?"
+    "search": "What awesome gift are you looking for?",
+    "profile": "Profile",
+    "orders": "Orders",
+    "logout": "Logout"
   },
   "footer": {
     "title": "Rose E-Commerce App",
