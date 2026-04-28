@@ -81,7 +81,7 @@ export default function ProfileContent({ user }: ProfileContentProps) {
 
             {activeTab === 'account' && <ProfileForm user={user} />}
             {activeTab === 'password' && (
-              <ChangePasswordForm email={user.email} />
+              <ChangePasswordForm />
             )}
           </div>
         </div>

@@ -476,7 +476,8 @@
       "login": "login",
       "register": "register"
     },
-    "successfully-login": "successfully login"
+    "successfully-login": "successfully login",
+    "change password": "change password"
   },
   "validation": {
     "password": {

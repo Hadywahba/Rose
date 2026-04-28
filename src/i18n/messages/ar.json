@@ -488,7 +488,8 @@
       "login": "تسجيل الدخول",
       "register": "إنشاء حساب"
     },
-    "successfully-login": "تم تسجيل الدخول بنجاح"
+    "successfully-login": "تم تسجيل الدخول بنجاح",
+    "change password": "تغيير كلمة المرور"
   },
   "validation": {
     "password": {

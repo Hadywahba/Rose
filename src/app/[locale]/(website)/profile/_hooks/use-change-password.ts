@@ -4,7 +4,7 @@ import { changePasswordProfile } from '@/lib/actions/profile/change-password-pro
 import { ChangePasswordFormFields } from '@/lib/schema/profile/change-password.schema';
 import { useMutation } from '@tanstack/react-query';
 
-export const useUpdateProfile = () => {
+export const useChangePassword = () => {
   // Mutations
   const { mutate, isPending, error } = useMutation({
     mutationFn: async (fields: ChangePasswordFormFields) => {
