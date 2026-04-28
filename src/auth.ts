@@ -45,7 +45,7 @@ export const authOption: NextAuthOptions = {
     maxAge: 60 * 60 * 24 * 7, // default 7 days
   },
   callbacks: {
-    jwt: ({ token, user }) => {
+    jwt: ({ token, user, trigger, session }) => {
       if (user) {
         token.accessToken = user.accessToken;
         token.user = user.user;
@@ -54,7 +54,13 @@ export const authOption: NextAuthOptions = {
           token.exp = Math.floor(Date.now() / 1000) + 60 * 5; // 5 minutes
         }
       }
-
+      // It Used For Change Password
+      if (trigger === 'update' && session) {
+        token.user = {
+          ...token.user,
+          ...session.user,
+        };
+      }
       return token;
     },
 
