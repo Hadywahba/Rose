@@ -478,6 +478,18 @@
     },
     "successfully-login": "successfully login"
   },
+  "validation": {
+    "password": {
+      "required": "Password is required",
+      "min": "Password must be at least {count} characters long",
+      "uppercase": "Password must contain at least one uppercase letter",
+      "lowercase": "Password must contain at least one lowercase letter",
+      "number": "Password must contain at least one number",
+      "special": "Password must contain at least one special character",
+      "match": "Passwords do not match",
+      "same": "New password must be different from current password"
+    }
+  },
   "reviews": {
     "title": "Product Reviews",
     "general-rating": "General rating:",
