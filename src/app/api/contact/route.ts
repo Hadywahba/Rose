@@ -9,7 +9,9 @@ export async function GET() {
       role: 'Frontend Developer',
       phone: '+201010432457',
       address: 'Alexandria, Egypt',
-      image: '/images/hady wahba - Frontend developer.jpg',
+      github: 'https://github.com/Hadywahba',
+      portfolio: 'https://portfolio-six-lyart-57.vercel.app',
+      linkedin: 'https://www.linkedin.com/in/hadywahba/',
     };
 
     return NextResponse.json(data);

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Github, Linkedin } from 'lucide-react';
+import { Github, Linkedin, UserRound } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 import { ContactInfo } from '@/lib/types/contact/contact';
 
@@ -10,6 +10,7 @@ type Member = {
   image: string;
   github?: string;
   linkedin?: string;
+  portfolio?: string;
 };
 
 interface ContactTeamProps {
@@ -22,36 +23,20 @@ export default async function ContactTeam({ contact }: ContactTeamProps) {
 
   const members: Member[] = [
     {
-      name: t('members.0.name'),
+      name: 'Hady Wahba',
       role: t('members.0.role'),
       bio: t('members.0.bio'),
-      image: contact.image || '/images/avatar1.png',
-      github: contact.github || 'https://github.com',
-      linkedin: contact.linkedin || 'https://linkedin.com',
+      image: '/assets/images/IMG-20240422-WA0028.jpg',
+      github: contact.github,
+      linkedin: contact.linkedin,
+      portfolio: contact.portfolio,
     },
     {
-      name: t('members.1.name'),
+      name: 'Elevate Team',
       role: t('members.1.role'),
       bio: t('members.1.bio'),
-      image: '/images/avatar2.png',
-      github: 'https://github.com',
-      linkedin: 'https://linkedin.com',
-    },
-    {
-      name: t('members.2.name'),
-      role: t('members.2.role'),
-      bio: t('members.2.bio'),
-      image: '/images/avatar3.png',
-      github: 'https://github.com',
-      linkedin: 'https://linkedin.com',
-    },
-    {
-      name: t('members.3.name'),
-      role: t('members.3.role'),
-      bio: t('members.3.bio'),
-      image: '/images/avatar1.png',
-      github: 'https://github.com',
-      linkedin: 'https://linkedin.com',
+      image: '/assets/images/WhatsApp Image 2026-04-28 at 18.34.57.jpeg',
+      linkedin: 'https://www.linkedin.com/company/elevatecheg',
     },
   ];
 
@@ -68,7 +53,7 @@ export default async function ContactTeam({ contact }: ContactTeamProps) {
       </div>
 
       {/* Team grid */}
-      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
         {members.map((member, index) => (
           <div
             key={index}
@@ -122,6 +107,17 @@ export default async function ContactTeam({ contact }: ContactTeamProps) {
                   className="flex h-9 w-9 items-center justify-center rounded-full bg-zinc-100 text-zinc-600 transition-colors hover:bg-maroon-600 hover:text-white dark:bg-zinc-700 dark:text-zinc-300 dark:hover:bg-maroon-600"
                 >
                   <Linkedin className="h-4 w-4" />
+                </a>
+              )}
+
+              {member.portfolio && (
+                <a
+                  href={member.portfolio}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-zinc-100 text-zinc-600 transition-colors hover:bg-maroon-600 hover:text-white dark:bg-zinc-700 dark:text-zinc-300 dark:hover:bg-maroon-600"
+                >
+                  <UserRound className="h-4 w-4" />
                 </a>
               )}
             </div>

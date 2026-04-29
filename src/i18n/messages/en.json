@@ -151,24 +151,12 @@
       "heading": "The People Behind Rose",
       "members": [
         {
-          "name": "Member One",
           "role": "Frontend Developer",
-          "bio": "Passionate about building beautiful and responsive user interfaces."
+          "bio": "Frontend Developer with more than one year of hands-on experience creating modern, responsive, and high-performance web applications."
         },
         {
-          "name": "Member Two",
-          "role": "Backend Developer",
-          "bio": "Loves crafting scalable APIs and robust server-side solutions."
-        },
-        {
-          "name": "Member Three",
-          "role": "UI/UX Designer",
-          "bio": "Turns ideas into elegant and user-friendly design experiences."
-        },
-        {
-          "name": "Member Four",
-          "role": "Full Stack Developer",
-          "bio": "Bridges the gap between design and functionality seamlessly."
+          "role": "Backend Developer and UI/UX Designer",
+          "bio": "Responsible for building scalable APIs and robust server-side solutions, while designing intuitive and user-friendly UI/UX experiences."
         }
       ]
     },
@@ -758,16 +746,29 @@
       "works-on": "Works on",
       "members": [
         {
-          "name": "Member One",
           "role": "Frontend Developer",
-          "bio": "Responsible for crafting the visual experience of Rose. Loves clean UI, smooth animations, and making sure every pixel is in its right place.",
-          "works": ["UI Components", "Animations", "Responsive Design"]
+          "bio": "Responsible for crafting and delivering the full visual experience of the Rose platform, focusing on building scalable, high-performance, and user-friendly interfaces. Passionate about creating clean, maintainable code and translating design concepts into responsive, pixel-perfect UIs. Pays strong attention to detail, ensuring smooth animations, seamless interactions, and consistent design across all devices and screen sizes.",
+          "works": [
+            "Reusable UI components",
+            "Smooth animations",
+            "Responsive design",
+            "Performance optimization",
+            "API integration",
+            "State management",
+            "Component architecture",
+            "Pixel-perfect UI"
+          ]
         },
         {
-          "name": "Member Two",
-          "role": "Backend Developer",
-          "bio": "The engine behind Rose. Builds the APIs, manages the database, and makes sure everything runs fast and secure.",
-          "works": ["REST APIs", "Database Design", "Authentication"]
+          "role": "Backend Developer & UI/UX",
+          "bio": "Responsible for building and maintaining APIs, managing databases, and ensuring high performance and strong security. Focuses on scalable backend architecture while delivering simple and effective user experiences through UI/UX design.",
+          "works": [
+            "REST APIs",
+            "Database Design",
+            "Authentication",
+            "Performance",
+            "UI/UX Design"
+          ]
         },
         {
           "name": "Member Three",
@@ -777,7 +778,7 @@
         },
         {
           "name": "Member Four",
-          "role": "UI/UX & Frontend",
+          "role": "  Frontend",
           "bio": "Turns designs into reality. Focuses on user experience, accessibility, and making Rose feel intuitive for every customer.",
           "works": ["Design System", "Accessibility", "User Testing"]
         }
