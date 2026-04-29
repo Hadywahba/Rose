@@ -6,7 +6,7 @@ import Hero from './_components/hero';
 import OccasionSection from './_components/occasion-section';
 import HeroServiceSection from './_components/hero-service-section';
 import { SearchParams } from '@/lib/types/global';
-import MostPopular from './_components/most-popular';
+import BestSelling from './_components/best-selling';
 
 type HomeProps = {
   searchParams: SearchParams;
@@ -24,8 +24,8 @@ export default function Home({ searchParams }: HomeProps) {
       {/* Hero Service */}
       <HeroServiceSection />
 
-       {/* Most Popular */}
-      <MostPopular searchParams={searchParams} />
+      {/* Best Selling */}
+      <BestSelling searchParams={searchParams} />
 
       {/* About Section */}
       <About />

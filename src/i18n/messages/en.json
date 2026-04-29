@@ -72,7 +72,8 @@
       }
     },
     "most-popular": {
-      "most-popular-product": "most popular"
+      "most-popular-product": "most popular",
+      "all": "All"
     }
   },
   "about": {
@@ -678,10 +679,9 @@
     "title": "My Wishlist",
     "subtitle": "Save your favorite products",
     "items-count": "items saved",
-      "empty-title": "Your wishlist is empty",
-      "empty-subtitle": "Browse our products and add the ones you love",
-      "empty-button": "Browse Products"
- 
+    "empty-title": "Your wishlist is empty",
+    "empty-subtitle": "Browse our products and add the ones you love",
+    "empty-button": "Browse Products"
   },
   "footer": {
     "title": "Rose E-Commerce App",
@@ -1080,9 +1080,15 @@
     "edit": "edit",
     "actions": "actions"
   },
+  "best-selling": {
+    "label": " best selling",
+    "title": "<checkOut>Check Out</checkOut> What Everyone’s <buying>Buying</buying> Right Now",
+    "text": "Not sure what to choose?",
+    "btn-text": "Explore gifts",
+    "description": "Start with our best sellers, these are the gifts our customers keep coming back for. Whether you&apos;re celebrating a birthday,anniversary or wedding, our top picks are guaranteed to leave a lasting impression."
+  },
   "please-login-first": "please login first",
   "order-notes": "Enter your notes",
   "order-payment-method": "Enter your PaymentMethod",
   "order-address-id": "Enter your Address Id"
- 
 }
