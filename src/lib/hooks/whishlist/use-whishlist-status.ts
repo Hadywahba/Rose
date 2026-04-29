@@ -1,25 +1,23 @@
 'use client';
 
 import { fetchWishlistStatusAction } from '@/lib/actions/whishlist/fetch-whishlist-product-status.action';
-import { GetWishlistResponse } from '@/lib/types/wishlist/wishlist';
 import { useQuery } from '@tanstack/react-query';
 
 export function useWishlistStatus() {
-  const { data, isLoading, isFetching } = useQuery({
+  const { data, isLoading, isFetching } = useQuery<WishlistItem[]>({
     queryKey: ['wishlist-check'],
     queryFn: async () => {
-      const payload: ApiResponse<GetWishlistResponse> =
-        await fetchWishlistStatusAction();
-      // check-error
+      const payload = await fetchWishlistStatusAction();
+
       if (payload.status === false) {
-        throw new Error(payload.message);
+        return [];
       }
-      const items = payload.payload.wishlistItems;
+
+      const items = payload.payload?.wishlistItems;
       return Array.isArray(items) ? items : [];
     },
-
-    staleTime: 30_000, //30Second
+    staleTime: 30_000,
   });
 
-  return { data, isLoading, isFetching };
+  return { data: data ?? [], isLoading, isFetching };
 }

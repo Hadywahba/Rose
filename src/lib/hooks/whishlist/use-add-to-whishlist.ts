@@ -11,51 +11,41 @@ export function useAddToWhishlist(productId: string) {
 
   const { mutate: onAddToWhishlist, isPending: addWhishlistPending } =
     useMutation({
-      mutationFn: async () => {
-        const payload = await addToWhishlistAction(productId);
-
-        if (payload.status === false) {
-          throw new Error(payload.message);
-        }
-
-        return payload;
-      },
+      mutationFn: () => addToWhishlistAction(productId),
 
       onMutate: async () => {
-        await queryClient.cancelQueries({
-          queryKey: ['wishlist-check'],
-        });
+        await queryClient.cancelQueries({ queryKey: ['wishlist-check'] });
 
-        const previous = queryClient.getQueryData<string[]>(['wishlist-check']);
+        const previous = queryClient.getQueryData<WishlistItem[]>(['wishlist-check']);
 
-        queryClient.setQueryData<string[]>(['wishlist-check'], (old = []) => {
-          if (!Array.isArray(old)) return [];
-
-          if (old.includes(productId)) return old;
-
-          return [...old, productId];
+        // Optimistic: add temp item so UI reacts instantly
+        queryClient.setQueryData<WishlistItem[]>(['wishlist-check'], (old = []) => {
+          if (old.some((item) => item.productId === productId)) return old;
+          return [...old, { id: `temp-${productId}`, productId } as WishlistItem];
         });
 
         return { previous };
       },
 
       onError: (error, _vars, context) => {
-        if (context?.previous) {
+        // Rollback on failure
+        if (context?.previous !== undefined) {
           queryClient.setQueryData(['wishlist-check'], context.previous);
         }
-
-        toast.error(error.message);
+        toast.error(error instanceof Error ? error.message : 'Failed to add');
       },
 
-      onSuccess: () => {
+      onSuccess: (payload) => {
+        if (payload.status === false) {
+          toast.error(payload.message);
+          return;
+        }
         toast.success(t('product-added-successfully'));
       },
 
-      // 🔄 sync lightly
-      onSettled: async () => {
-        await queryClient.invalidateQueries({
-          queryKey: ['wishlist-check'],
-        });
+      onSettled: () => {
+        // Always sync with server after mutation
+        queryClient.invalidateQueries({ queryKey: ['wishlist-check'] });
       },
     });
 

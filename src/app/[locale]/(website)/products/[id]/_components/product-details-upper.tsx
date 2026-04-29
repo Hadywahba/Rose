@@ -27,26 +27,21 @@ export default function ProductDetailsUpper({ product }: { product: Product }) {
   const { add, has, remove } = useLocalWishlist();
 
   // Server wishlist (auth)
-  const { data } = useWishlistStatus();
+  const { data: wishlistItems } = useWishlistStatus();
 
-  const wishlistItems = data ?? [];
+  const wishlistItem = wishlistItems.find((item) => item.productId === product.id);
 
-  const inServerWishlist = wishlistItems.some(
-    (item: { productId: string }) => item.productId === product.id,
-  );
-
+  const inServerWishlist = !!wishlistItem;
   const inLocalWishlist = has(product.id);
 
   const isWishlisted =
     session.status === 'authenticated' ? inServerWishlist : inLocalWishlist;
 
   // Mutations
-  const { onAddToWhishlist, addWhishlistPending } = useAddToWhishlist(
-    product.id,
-  );
+  const { onAddToWhishlist, addWhishlistPending } = useAddToWhishlist(product.id);
 
   const { onRemoveFromWhishlist, removeWhishlistPending } =
-    useRemoveFromWhishlist(product.id);
+    useRemoveFromWhishlist(wishlistItem?.id ?? '', product.id);
 
   const isLoading = addWhishlistPending || removeWhishlistPending;
 
@@ -65,8 +60,6 @@ export default function ProductDetailsUpper({ product }: { product: Product }) {
   ].filter(Boolean);
 
   const inStock = product?.stock !== 0;
-
- 
 
   // Function
   const handleWishlistToggle = () => {

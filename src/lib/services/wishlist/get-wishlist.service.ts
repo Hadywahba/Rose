@@ -1,6 +1,4 @@
 import { JSON_HEADER } from '@/lib/constants/api.constant';
-import { GetWishlistResponse } from '@/lib/types/wishlist/wishlist';
-
 import { getToken } from '@/lib/utility/manage-token';
 
 export async function fetchAllWishlistService() {

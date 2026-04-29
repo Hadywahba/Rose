@@ -5,54 +5,45 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 
-export function useRemoveFromWhishlist(productId: string) {
-    const t = useTranslations();
+export function useRemoveFromWhishlist(wishlistItemId: string, productId: string) {
+  const t = useTranslations();
   const queryClient = useQueryClient();
 
   const { mutate: onRemoveFromWhishlist, isPending: removeWhishlistPending } =
     useMutation({
-      mutationFn: async () => {
-        const payload = await removeFromWhishlistAction(productId);
-
-        if (payload.status === false) {
-          throw new Error(payload.message);
-        }
-
-        return payload;
-      },
+      mutationFn: () => removeFromWhishlistAction(wishlistItemId),
 
       onMutate: async () => {
-        await queryClient.cancelQueries({
-          queryKey: ['wishlist-check'],
-        });
+        await queryClient.cancelQueries({ queryKey: ['wishlist-check'] });
 
-        const previous = queryClient.getQueryData<string[]>(['wishlist-check']);
+        const previous = queryClient.getQueryData<WishlistItem[]>(['wishlist-check']);
 
-        queryClient.setQueryData<string[]>(['wishlist-check'], (old = []) => {
-          if (!Array.isArray(old)) return [];
-
-          return old.filter((id) => id !== productId);
-        });
+        // Optimistic: remove by productId so UI reacts instantly
+        queryClient.setQueryData<WishlistItem[]>(['wishlist-check'], (old = []) =>
+          old.filter((item) => item.productId !== productId),
+        );
 
         return { previous };
       },
 
       onError: (error, _vars, context) => {
-        if (context?.previous) {
+        // Rollback on failure
+        if (context?.previous !== undefined) {
           queryClient.setQueryData(['wishlist-check'], context.previous);
         }
-
-        toast.error(error.message);
+        toast.error(error instanceof Error ? error.message : 'Failed to remove');
       },
 
-      onSuccess: () => {
-        toast.success(t('remove-from-whishlist'));
+      onSuccess: (payload) => {
+        if (payload.status === false) {
+          toast.error(payload.message);
+          return;
+        }
+        toast.success(t('product-removed-successfully-0'));
       },
 
-      onSettled: async () => {
-        await queryClient.invalidateQueries({
-          queryKey: ['wishlist-check'],
-        });
+      onSettled: () => {
+        queryClient.invalidateQueries({ queryKey: ['wishlist-check'] });
       },
     });
 

@@ -54,7 +54,7 @@ declare type SuccessWishlistResponse = {
   code: number;
 };
 
-export interface GetWishlistResponse {
+declare interface GetWishlistResponse {
   wishlistItems: WishlistItem[];
 }
 
