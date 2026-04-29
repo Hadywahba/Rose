@@ -1,8 +1,13 @@
 export async function fetchWishlistStatusAction() {
-  const resp = await fetch(`/api/wishlist`, {
+  const baseUrl =
+    process.env.NEXTAUTH_URL ||
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    'http://localhost:3000';
+
+  const resp = await fetch(`${baseUrl}/api/wishlist`, {
     cache: 'no-store',
   });
 
-  const payload = resp.json();
+  const payload = await resp.json();
   return payload;
 }

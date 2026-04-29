@@ -9,7 +9,6 @@ import Empty from '@/components/shared/empty';
 import ListError from '@/components/error/list-error';
 import { Product, ProductsResponse } from '@/lib/types/products/product';
 
-
 type ProductsListProps = {
   searchParams: SearchParams;
 };
@@ -61,7 +60,6 @@ export default async function ProductsList({
                   quantity={product.stock}
                   createdAt={product.createdAt}
                   productInfo={product}
-                  priceBeforeSale={product.price}
                 />
               );
             })}

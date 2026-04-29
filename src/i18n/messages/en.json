@@ -674,6 +674,15 @@
       "empty": "No subcategories available"
     }
   },
+  "wishlist": {
+    "title": "My Wishlist",
+    "subtitle": "Save your favorite products",
+    "items-count": "items saved",
+      "empty-title": "Your wishlist is empty",
+      "empty-subtitle": "Browse our products and add the ones you love",
+      "empty-button": "Browse Products"
+ 
+  },
   "footer": {
     "title": "Rose E-Commerce App",
     "discover": "Discover our website",
@@ -1075,4 +1084,5 @@
   "order-notes": "Enter your notes",
   "order-payment-method": "Enter your PaymentMethod",
   "order-address-id": "Enter your Address Id"
+ 
 }

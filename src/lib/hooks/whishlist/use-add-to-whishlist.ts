@@ -1,20 +1,14 @@
 'use client';
 
 import { addToWhishlistAction } from '@/lib/actions/whishlist/add-to-whishlist.action';
-import { WhishlistCheck } from '@/lib/types/products/product';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 
-type WishlistCheckCache = Pick<WhishlistCheck, 'message' | 'isInWishlist'>;
-
 export function useAddToWhishlist(productId: string) {
-  // Translations
   const t = useTranslations();
-  // Query
   const queryClient = useQueryClient();
 
-  // Mutation
   const { mutate: onAddToWhishlist, isPending: addWhishlistPending } =
     useMutation({
       mutationFn: async () => {
@@ -26,65 +20,41 @@ export function useAddToWhishlist(productId: string) {
 
         return payload;
       },
-      // optimistic
+
       onMutate: async () => {
-        // 1️⃣ Stop any active refetch for this query.
-        // We are about to change the cache manually (optimistic update),
-        // so we must prevent background refetches from overwriting it.
         await queryClient.cancelQueries({
-          queryKey: ['wishlist-check', productId],
+          queryKey: ['wishlist-check'],
         });
 
-        // 2️⃣ Save the current cache state BEFORE changing it.
-        // This snapshot is critical for rollback if the server request fails.
-        const previous = queryClient.getQueryData<WishlistCheckCache>([
-          'wishlist-check',
-          productId,
-        ]);
+        const previous = queryClient.getQueryData<string[]>(['wishlist-check']);
 
-        // 3️⃣ OPTIMISTIC UPDATE:
-        // Immediately update the cache to the expected final state.
-        // The UI reacts instantly (heart icon switches without waiting).
-        queryClient.setQueryData<WishlistCheckCache>(
-          ['wishlist-check', productId],
-          {
-            message: 'success',
-            isInWishlist: true,
-          },
-        );
-        // 4️⃣ Return the previous cache value.
-        // React Query will pass this to onError for rollback if needed.
+        queryClient.setQueryData<string[]>(['wishlist-check'], (old = []) => {
+          if (!Array.isArray(old)) return [];
+
+          if (old.includes(productId)) return old;
+
+          return [...old, productId];
+        });
+
         return { previous };
       },
 
       onError: (error, _vars, context) => {
-        // 5️⃣ ROLLBACK:
-        // If the mutation fails, restore the cache to its previous state.
-        // This reverts the UI back to the original value.
         if (context?.previous) {
-          queryClient.setQueryData(
-            ['wishlist-check', productId],
-            context.previous,
-          );
+          queryClient.setQueryData(['wishlist-check'], context.previous);
         }
+
         toast.error(error.message);
       },
 
       onSuccess: () => {
-        toast.success(t('product-added-to-whishlist-successfully'));
+        toast.success(t('product-added-successfully'));
       },
 
+      // 🔄 sync lightly
       onSettled: async () => {
-        // 7️⃣ Final synchronization step (runs on success OR error).
-        // Ensure the cache is fully aligned with the server state.
-        // Revalidate the wishlist status for this product
         await queryClient.invalidateQueries({
-          queryKey: ['wishlist-check', productId],
-        });
-
-        // Revalidate the wishlist items list
-        await queryClient.invalidateQueries({
-          queryKey: ['wishlist-items'],
+          queryKey: ['wishlist-check'],
         });
       },
     });

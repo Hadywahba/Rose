@@ -1,3 +1,5 @@
+import { Occasion } from '../occasion/occasion';
+
 export interface ProductCategory {
   id: string;
   title: string;
@@ -21,7 +23,7 @@ export interface Product {
   ratings: number;
   stock: number;
   price: string;
-  discountType: 'PERCENT' | 'FIXED';
+  discountType: string;
   discountValue: string;
   cover: string;
   gallery: string;
@@ -32,7 +34,7 @@ export interface Product {
   updatedAt: string;
   category: ProductCategory;
   subCategory: ProductCategory | null;
-  occasions: unknown[];
+  occasions: Occasion[];
   _count: ProductCount;
 }
 export interface AddProductResponse {

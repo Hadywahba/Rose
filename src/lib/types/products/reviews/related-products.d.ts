@@ -1,3 +1,5 @@
+import { Occasion } from '../../occasion/occasion';
+
 export interface RelatedProduct {
   id: string;
   title: string;
@@ -17,7 +19,7 @@ export interface RelatedProduct {
   updatedAt: string;
   category: ProductCategory;
   subCategory: ProductCategory | null;
-  occasions: unknown[];
+  occasions: Occasion[];
   _count: ProductCount;
 }
 

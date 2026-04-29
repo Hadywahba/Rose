@@ -14,7 +14,6 @@ type ProductCardProps = {
   title?: string;
   rate: number;
   rateCount?: number;
-  priceBeforeSale: string;
   priceAfterSale: number;
   salesCount: number;
   productId: string;
@@ -32,7 +31,6 @@ export default function ProductCard({
   title = 'Flower App',
   salesCount,
   priceAfterSale,
-
   showWishListBtn = false,
   createdAt,
   productInfo,

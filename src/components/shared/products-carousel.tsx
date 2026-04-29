@@ -9,7 +9,6 @@ import {
 } from '@/components/ui/carousel';
 import { Product } from '@/lib/types/products/product';
 import { RelatedProduct } from '@/lib/types/products/reviews/related-products';
-import { getFinalPrice } from '@/lib/utility/pricing';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import { useState } from 'react';
@@ -46,11 +45,7 @@ export default function ProductsCarousel({
       <CarouselContent>
         {itemsToShow?.map((product) => {
           // Function
-          const finalPrice = getFinalPrice({
-            price: product.price,
-            discountType: product.discountType,
-            discountValue: product.discountValue,
-          });
+
           return (
             <CarouselItem
               key={product.id}
@@ -61,8 +56,7 @@ export default function ProductsCarousel({
                 title={product.title}
                 rate={product.rating}
                 rateCount={product.ratings}
-                priceBeforeSale={product.price}
-                priceAfterSale={finalPrice}
+                priceAfterSale={Number(product.price)}
                 salesCount={Number(product.stock)}
                 productId={product.id}
                 createdAt={product.createdAt}

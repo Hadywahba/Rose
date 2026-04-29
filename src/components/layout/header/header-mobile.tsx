@@ -19,9 +19,10 @@ interface HeaderInfoProps {
   user: User | null;
   products: Product[];
    cartdata: number;
-     address: Address[];
+   address: Address[];
+     wishlistdata: number;
 }
-export default function HeaderMobile({ user, products , cartdata , address }: HeaderInfoProps) {
+export default function HeaderMobile({ user, products , cartdata , address , wishlistdata }: HeaderInfoProps) {
   // Translation
   const t = useTranslations('homepage');
 
@@ -66,7 +67,7 @@ export default function HeaderMobile({ user, products , cartdata , address }: He
         </div>
 
         {/* Header Info */}
-        <HeaderInfo user={user} cartdata={cartdata} />
+        <HeaderInfo user={user} cartdata={cartdata} wishlistdata={wishlistdata} />
       </div>
 
       {/* Mobile sliding menu */}

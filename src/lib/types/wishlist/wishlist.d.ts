@@ -29,6 +29,8 @@ declare type WishlistProduct = {
   updatedAt: string;
   category: ProductCategory;
   subCategory: ProductSubCategory | null;
+  occasions: Occasion[];
+  _count: ProductCount;
 };
 
 declare type ProductCategory = {
@@ -59,4 +61,3 @@ export interface GetWishlistResponse {
 declare type ApiWishlistResponseResponse =
   | ErrorWishlistResponse
   | SuccessWishlistResponse;
-

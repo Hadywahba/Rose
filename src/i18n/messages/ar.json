@@ -671,7 +671,7 @@
   },
   "hot-0": "تريند",
   "product-removed-successfully-0": "تمت إزالة المنتج بنجاح",
-  "remove-from-whishlist": "إزالة من قائمة المفضلة",
+  "remove-from-whishlist": "تمت زالة المنتج من قائمة المفضلة",
   "product-added-successfully": "تمت إضافة المنتج بنجاح",
   "add-to-wishlist": "أضف إلى قائمة المفضلة",
   "product-filter": {
@@ -1066,5 +1066,13 @@
   "please-login-first": "يرجى تسجيل الدخول أولاً",
   "order-notes": "أدخل ملاحظاتك",
   "order-payment-method": " ادخل طريقة الدفع",
-  "order-address-id": "أدخل عنوانك"
+  "order-address-id": "أدخل عنوانك",
+  "wishlist": {
+    "title": "قائمة المفضلة",
+    "subtitle": "احفظ منتجاتك المفضلة",
+    "items-count": "منتج محفوظ",
+    "empty-title": "قائمة المفضلة فارغة",
+    "empty-subtitle": "تصفح منتجاتنا وأضف ما يعجبك",
+    "empty-button": "تصفح المنتجات"
+  }
 }
