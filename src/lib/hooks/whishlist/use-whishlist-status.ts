@@ -14,7 +14,8 @@ export function useWishlistStatus() {
       if (payload.status === false) {
         throw new Error(payload.message);
       }
-      return payload;
+      const items = payload.payload.wishlistItems;
+      return Array.isArray(items) ? items : [];
     },
 
     staleTime: 30_000, //30Second

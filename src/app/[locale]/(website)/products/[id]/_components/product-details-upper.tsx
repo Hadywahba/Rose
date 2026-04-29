@@ -8,7 +8,6 @@ import { cn } from '@/lib/utility/tailwind-merge';
 import { Button } from '@/components/ui/button';
 import { FaSpinner } from 'react-icons/fa';
 import { Product } from '@/lib/types/products/product';
-import { getFinalPrice } from '@/lib/utility/pricing';
 import { useSession } from 'next-auth/react';
 import { useLocalWishlist } from '@/lib/hooks/local-storage/use-local-storage-whishlist';
 import { useAddToWhishlist } from '@/lib/hooks/whishlist/use-add-to-whishlist';
@@ -30,7 +29,7 @@ export default function ProductDetailsUpper({ product }: { product: Product }) {
   // Server wishlist (auth)
   const { data } = useWishlistStatus();
 
-  const wishlistItems = data?.payload?.wishlistItems ?? [];
+  const wishlistItems = data ?? [];
 
   const inServerWishlist = wishlistItems.some(
     (item: { productId: string }) => item.productId === product.id,
@@ -67,11 +66,7 @@ export default function ProductDetailsUpper({ product }: { product: Product }) {
 
   const inStock = product?.stock !== 0;
 
-  const finalPrice = getFinalPrice({
-    price: product.price,
-    discountType: product.discountType,
-    discountValue: product.discountValue,
-  });
+ 
 
   // Function
   const handleWishlistToggle = () => {
@@ -132,7 +127,7 @@ export default function ProductDetailsUpper({ product }: { product: Product }) {
 
         {/* Price */}
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-3xl font-bold">{finalPrice} EGP</span>
+          <span className="text-3xl font-bold">{product.price} EGP</span>
 
           <div className="ms-3 flex items-center gap-1.5 rounded-full bg-zinc-100 px-3 py-1 text-sm dark:bg-zinc-600">
             <Package className="h-4 w-4" />

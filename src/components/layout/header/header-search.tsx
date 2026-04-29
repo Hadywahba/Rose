@@ -1,14 +1,13 @@
 'use client';
 
 import { Input } from '@/components/ui/input';
-
 import { Search } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 import ProductSearch from './product-search';
 import { useDebounce } from 'use-debounce';
 import { useTranslations } from 'next-intl';
 import { Product } from '@/lib/types/products/product';
-import { getFinalPrice } from '@/lib/utility/pricing';
+
 
 interface SearchProps {
   products: Product[];
@@ -84,17 +83,13 @@ export default function HeaderSearch({ products }: SearchProps) {
               </p>
             ) : filteredProducts.length > 0 ? (
               filteredProducts.map((product: Product) => {
-                const finalPrice = getFinalPrice({
-                  price: product.price,
-                  discountType: product.discountType,
-                  discountValue: product.discountValue,
-                });
+               
                 return (
                   <ProductSearch
                     key={product.id}
-                    priceBeforeSale={Number(product.price)}
+                  
                     productId={product.id}
-                    priceAfterSale={finalPrice}
+                    priceAfterSale={Number(product.price)}
                     rate={product.rating}
                     salesCount={Number(product.discountValue)}
                     src={product.cover}

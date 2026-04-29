@@ -6,6 +6,7 @@ export async function GET(request: NextRequest) {
   const token = await getToken({
     req: request,
     secret: process.env.NEXTAUTH_SECRET,
+    secureCookie: process.env.NODE_ENV === 'production',
   });
 
   if (!token?.accessToken) {

@@ -15,6 +15,7 @@ import { fetchAllProductsService } from '@/lib/actions/products/fetch-all-produc
 import { ProductsResponse } from '@/lib/types/products/product';
 import { getAddresses } from '@/app/[locale]/(website)/(checkout)/checkout/_hooks/get-address';
 import { displayCart } from '@/app/[locale]/(website)/(checkout)/cart/_hooks/get-cart';
+import { displayWishlist } from '@/app/[locale]/(website)/wishlist/_hook/get-wishlist';
 
 export default async function Header() {
   // Variable
@@ -30,6 +31,7 @@ export default async function Header() {
 
   // Display DataS
   const { data } = await displayCart();
+  const { dataWishlist } = await displayWishlist();
 
   const { address } = await getAddresses();
 
@@ -63,6 +65,7 @@ export default async function Header() {
         <HeaderInfo
           user={(session?.user as User) ?? null}
           cartdata={data.length}
+          wishlistdata={dataWishlist?.length}
         />
       </div>
 
@@ -75,6 +78,7 @@ export default async function Header() {
         products={products}
         cartdata={data.length}
         address={address}
+         wishlistdata={dataWishlist?.length}
       />
     </header>
   );

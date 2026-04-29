@@ -12,7 +12,6 @@ type SearchProps = {
   title?: string;
   rate: number;
   rateCount?: number;
-  priceBeforeSale: number;
   priceAfterSale: number;
   salesCount: number;
   productId: string;
@@ -29,7 +28,6 @@ export default function ProductSearch({
   rateCount = 0,
   title = 'Flower App',
   priceAfterSale,
-  priceBeforeSale,
 }: SearchProps) {
   return (
     <div className="flex items-center justify-between gap-4 border-b p-3">
@@ -53,7 +51,7 @@ export default function ProductSearch({
           </h3>
 
           <p className="text-base font-semibold text-zinc-900 dark:text-zinc-100">
-            {priceAfterSale ?? priceBeforeSale} EGP
+            {priceAfterSale} EGP
           </p>
         </div>
       </div>

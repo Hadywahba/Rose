@@ -26,12 +26,14 @@ export default function ProductCardWhishlistButtons({
   // Server wishlist
   const { data } = useWishlistStatus();
 
-  const wishlistItems = data?.payload?.wishlistItems ?? [];
+  const wishlistItems = Array.isArray(data) ? data : [];
 
-  const inServerWishlist = wishlistItems.some(
-    (item: { productId: string }) => item.productId === productId,
+  // Find the wishlist item to get its ID for removal
+  const wishlistItem = wishlistItems.find(
+    (item: { productId: string; id: string }) => item.productId === productId,
   );
 
+  const inServerWishlist = !!wishlistItem;
   const inLocalWishlist = has(productId);
 
   const isInWishlist =
@@ -41,8 +43,9 @@ export default function ProductCardWhishlistButtons({
   const { onAddToWhishlist, addWhishlistPending } =
     useAddToWhishlist(productId);
 
+  // Pass wishlistItemId (not productId) to remove
   const { onRemoveFromWhishlist, removeWhishlistPending } =
-    useRemoveFromWhishlist(productId);
+    useRemoveFromWhishlist(wishlistItem?.id ?? productId);
 
   const isLoading = addWhishlistPending || removeWhishlistPending;
 
