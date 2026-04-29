@@ -4,7 +4,7 @@ import { JSON_HEADER } from '@/lib/constants/api.constant';
 import { OrderFormSchema } from '@/lib/schema/order/order-schema';
 import { AddOrderResponse } from '@/lib/types/order/order';
 import { getToken } from '@/lib/utility/manage-token';
-
+import { revalidatePath } from 'next/cache';
 export async function AddNewOrder(data: OrderFormSchema) {
   // Auth — retrieve the current user token
   const token = await getToken();
@@ -21,5 +21,6 @@ export async function AddNewOrder(data: OrderFormSchema) {
 
   // Response — parse and return the JSON payload
   const payload: ApiResponse<AddOrderResponse> = await response.json();
+  revalidatePath(`/cart`);
   return payload;
 }

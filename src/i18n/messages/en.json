@@ -1090,5 +1090,6 @@
   "please-login-first": "please login first",
   "order-notes": "Enter your notes",
   "order-payment-method": "Enter your PaymentMethod",
-  "order-address-id": "Enter your Address Id"
+  "order-address-id": "Enter your Address Id",
+  "order success":"Your order has been placed successfully"
 }
