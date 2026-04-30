@@ -4,7 +4,7 @@ import { ForgotResponse } from '@/lib/types/auth/forget-password/forgot';
 
 export const forgetPassword = async (data: ForgotPasswordFormFields) => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API}/auth/forgotPassword`,
+    `${process.env.NEXT_PUBLIC_API}/auth/forgot-password`,
     {
       method: 'POST',
       headers: {

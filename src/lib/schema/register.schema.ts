@@ -4,6 +4,14 @@ import { Translations } from '../types/global';
 export const getRegisterSchema = (t: Translations) =>
   z
     .object({
+      username: z
+        .string()
+        .min(3, t('login.username-min-required'))
+        .nonempty(t('login.username-required'))
+        .regex(
+          /^[A-Za-z]+(?:\s[A-Za-z]+){0,2}$/,
+          t('login.username-regex-required'),
+        ),
       firstName: z
         .string()
         .nonempty(t('auth.register.validation.first-name-required')),
@@ -39,14 +47,39 @@ export const getRegisterSchema = (t: Translations) =>
         .refine((password) => /[!@#$%^&*#?]/.test(password), {
           message: t('auth.register.schema.password-character'),
         }),
-      rePassword: z
+      confirmPassword: z
         .string()
         .nonempty(t('auth.register.validation.confirm-password-required')),
     })
-    .refine((data) => data.password === data.rePassword, {
+    .refine((data) => data.password === data.confirmPassword, {
       message: t('auth.register.validation.passwords-not-match'),
-      path: ['rePassword'],
+      path: ['confirmPassword'],
     });
 
 // Type inference
 export type RegisterFormFields = z.infer<ReturnType<typeof getRegisterSchema>>;
+
+export const registeremailschema = (t: Translations) =>
+  z.object({
+    email: z.email({
+      error: (issue) =>
+        issue.input
+          ? t('auth.register.validation.email-invalid')
+          : t('auth.register.validation.email-required'),
+    }),
+  });
+
+// Verify Password Form Fields
+export type RegisterEmailFormFields = z.infer<
+  ReturnType<typeof registeremailschema>
+>;
+
+export const registerverifyschema = (t: Translations) =>
+  z.object({
+    code: z.string(t('register-code')),
+  });
+
+// Verify Password Form Fields
+export type RegisterVerifyFormFields = z.infer<
+  ReturnType<typeof registerverifyschema>
+>;

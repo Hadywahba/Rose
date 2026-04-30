@@ -1,4 +1,5 @@
 'use client';
+
 import { Input } from '@/components/ui/input';
 import {
   Form,
@@ -43,7 +44,8 @@ export function RegisterForm() {
       phone: '',
       gender: '',
       password: '',
-      rePassword: '',
+      confirmPassword: '',
+      username: '',
     },
     resolver: zodResolver(getRegisterSchema(t)),
     mode: 'all',
@@ -68,6 +70,29 @@ export function RegisterForm() {
             onSubmit={form.handleSubmit(onSubmit)}
             className="space-y-4 border-t-2 border-zinc-200 pt-4 dark:border-zinc-600"
           >
+            {/* username */}
+            <FormField
+              control={form.control}
+              name="username"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-zinc-800 dark:text-zinc-50">
+                    username
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      className="w-full text-black placeholder:text-zinc-400 dark:text-zinc-50"
+                      placeholder="enter your name"
+                      {...field}
+                    />
+                  </FormControl>
+
+                  {/* Feedback */}
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
             {/* First Name & Last Name */}
             <div className="grid grid-cols-2 gap-3">
               {/* First Name */}
@@ -192,10 +217,10 @@ export function RegisterForm() {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent className="bg-white dark:bg-zinc-700">
-                      <SelectItem value="male">
+                      <SelectItem value="MALE">
                         {t('auth.register.gender-male')}
                       </SelectItem>
-                      <SelectItem value="female">
+                      <SelectItem value="FEMALE">
                         {t('auth.register.gender-female')}
                       </SelectItem>
                     </SelectContent>
@@ -232,7 +257,7 @@ export function RegisterForm() {
             {/* Confirm Password */}
             <FormField
               control={form.control}
-              name="rePassword"
+              name="confirmPassword"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-sm font-normal text-zinc-800 dark:text-zinc-50">

@@ -32,10 +32,10 @@ export default function ProfileAvatar({
   const { updateProfile } = useUpdateProfile();
 
   // context
-  const { setImage, image } = useContext(ImageContext)!;
+  const { setImage } = useContext(ImageContext)!;
 
   // raw image source
-  const rawPhoto = preview ?? image ?? photo;
+  const rawPhoto = preview ?? photo ?? null;
 
   // safe normalize (avoid breaking blob URLs)
   const currentPhoto = rawPhoto?.startsWith('blob:')

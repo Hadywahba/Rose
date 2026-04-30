@@ -416,6 +416,8 @@
       "last-name": "Last name",
       "last-name-placeholder": "Last Name",
       "email": "Email",
+      "verify-title": "Verify your account",
+      "verify-sub-title": "We’ve sent a verification code to your email. Please enter it below to complete your registration.",
       "email-placeholder": "user@example.com",
       "phone": "Phone",
       "phone-placeholder": "1012345678",
@@ -428,6 +430,8 @@
       "confirm-password": "Confirm Password",
       "confirm-password-placeholder": "••••••••",
       "create-account": "Create Account",
+      "verify-account":"Continue",
+      "verify-code":"Verify Code",
       "creating-account": "Creating Account...",
       "already-have-account": "Already have an account?  <span> Login </span>",
       "login": "Login",
@@ -1091,5 +1095,5 @@
   "order-notes": "Enter your notes",
   "order-payment-method": "Enter your PaymentMethod",
   "order-address-id": "Enter your Address Id",
-  "order success":"Your order has been placed successfully"
+  "order success": "Your order has been placed successfully"
 }
