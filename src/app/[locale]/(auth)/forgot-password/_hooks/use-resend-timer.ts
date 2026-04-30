@@ -1,19 +1,44 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 
 const STORAGE_KEY = 'otp_expires_at';
 const OTP_DURATION = 30; // seconds
 
 export function useResendTimer() {
-  const [timeLeft, setTimeLeft] = useState(0);
+  // Start with 0 to avoid SSR mismatch — will sync from localStorage on mount
+  const [timeLeft, setTimeLeft] = useState<number>(0);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const readExpiresAt = () => {
+  const readExpiresAt = (): number | null => {
+    if (typeof window === 'undefined') return null;
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return null;
     const value = Number(raw);
     return Number.isNaN(value) ? null : value;
   };
+
+  const tick = useCallback(() => {
+    const expiresAt = readExpiresAt();
+    if (!expiresAt) {
+      setTimeLeft(0);
+      return;
+    }
+    const seconds = Math.max(0, Math.ceil((expiresAt - Date.now()) / 1000));
+    setTimeLeft(seconds);
+    if (seconds === 0) {
+      localStorage.removeItem(STORAGE_KEY);
+    }
+  }, []);
+
+  // Sync from localStorage on mount
+  useEffect(() => {
+    tick();
+    intervalRef.current = setInterval(tick, 1000);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [tick]);
 
   const startTimer = useCallback(() => {
     const expiresAt = Date.now() + OTP_DURATION * 1000;
@@ -24,31 +49,6 @@ export function useResendTimer() {
   const clearTimer = useCallback(() => {
     localStorage.removeItem(STORAGE_KEY);
     setTimeLeft(0);
-  }, []);
-
-  useEffect(() => {
-    const tick = () => {
-      const expiresAt = readExpiresAt();
-
-      if (!expiresAt) {
-        setTimeLeft(0);
-        return;
-      }
-
-      const diff = Math.max(0, expiresAt - Date.now());
-      const seconds = Math.ceil(diff / 1000);
-
-      setTimeLeft(seconds);
-
-      if (seconds === 0) {
-        localStorage.removeItem(STORAGE_KEY);
-      }
-    };
-
-    tick(); // sync immediately
-    const interval = setInterval(tick, 1000);
-
-    return () => clearInterval(interval);
   }, []);
 
   return {
