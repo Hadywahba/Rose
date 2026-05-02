@@ -6,11 +6,11 @@ export const getRegisterSchema = (t: Translations) =>
     .object({
       username: z
         .string()
-        .min(3, t('login.username-min-required'))
-        .nonempty(t('login.username-required'))
+        .min(3, t('auth.login.username-min-required'))
+        .nonempty(t('auth.login.username-required'))
         .regex(
           /^[A-Za-z]+(?:\s[A-Za-z]+){0,2}$/,
-          t('login.username-regex-required'),
+          t('auth.login.username-regex-required'),
         ),
       firstName: z
         .string()
