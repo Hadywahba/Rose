@@ -68,7 +68,7 @@ export default function LoginPopover() {
               <FormItem>
                 <FormLabel>{t('login.email')}</FormLabel>
                 <FormControl>
-                  <Input {...field} placeholder="user@example.com" />
+                  <Input {...field} className="w-full" placeholder="user@example.com" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
