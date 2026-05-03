@@ -1,6 +1,5 @@
 import { useRouter } from '@/i18n/navigation';
 import { resetPassword } from '@/lib/services/auth/reset-password.service';
-import { ResetPasswordPayload } from '@/lib/types/auth/forget-password/reset';
 import { useMutation } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
 import { toast } from 'sonner';
@@ -21,15 +20,15 @@ export const useResetPassword = () => {
     mutationFn: async (data: ResetPasswordPayload) => {
       const payload = await resetPassword(data);
 
-      if (payload.status===false) {
+      if (payload.status === false) {
         throw new Error(payload.message);
       }
 
       return payload;
     },
 
-    onError: () => {
-      toast.error(t('reset-password.reset-error'));
+    onError: (err) => {
+      toast.error(err.message);
     },
 
     onSuccess: () => {

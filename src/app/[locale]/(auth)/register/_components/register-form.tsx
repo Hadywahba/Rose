@@ -77,12 +77,12 @@ export function RegisterForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-zinc-800 dark:text-zinc-50">
-                    username
+                    {t('auth.login.user-name')}
                   </FormLabel>
                   <FormControl>
                     <Input
                       className="w-full text-black placeholder:text-zinc-400 dark:text-zinc-50"
-                      placeholder="enter your name"
+                      placeholder={t('auth.login.user-name-placeholder')}
                       {...field}
                     />
                   </FormControl>
@@ -245,7 +245,7 @@ export function RegisterForm() {
                       type="password"
                       placeholder={t('auth.register.password-placeholder')}
                       className={cn(
-                        'h-11 w-full border-zinc-300 pr-10 text-black placeholder:text-start placeholder:text-zinc-400 focus:border-gray-300 focus:outline-none focus:ring-0 dark:border-zinc-600 dark:text-zinc-50',
+                        'h-11 w-full border-zinc-300 text-black placeholder:text-start placeholder:text-zinc-400 focus:border-gray-300 focus:outline-none focus:ring-0 dark:border-zinc-600 dark:text-zinc-50',
                       )}
                     />
                   </FormControl>
@@ -272,7 +272,7 @@ export function RegisterForm() {
                           'auth.register.confirm-password-placeholder',
                         )}
                         className={cn(
-                          'h-11 w-full border-zinc-300 pr-10 text-black placeholder:text-start placeholder:text-zinc-400 focus:border-gray-300 focus:outline-none focus:ring-0 dark:border-zinc-600 dark:text-zinc-50',
+                          'h-11 w-full border-zinc-300 text-black placeholder:text-start placeholder:text-zinc-400 focus:border-gray-300 focus:outline-none focus:ring-0 dark:border-zinc-600 dark:text-zinc-50',
                         )}
                       />
                     </div>

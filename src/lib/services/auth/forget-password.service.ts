@@ -1,6 +1,6 @@
 import { JSON_HEADER } from '@/lib/constants/api.constant';
 import { ForgotPasswordFormFields } from '@/lib/schema/forgot-password';
-import { ForgotResponse } from '@/lib/types/auth/forget-password/forgot';
+
 
 export const forgetPassword = async (data: ForgotPasswordFormFields) => {
   const response = await fetch(
@@ -13,7 +13,7 @@ export const forgetPassword = async (data: ForgotPasswordFormFields) => {
       body: JSON.stringify(data),
     },
   );
-  const payload: ApiResponse<ForgotResponse> = await response.json();
+  const payload: ApiForgotPassResponse = await response.json();
 
   return payload;
 };

@@ -73,12 +73,12 @@ export default function LoginForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-zinc-800 dark:text-zinc-50">
-                    username
+                    {t('login.user-name')}
                   </FormLabel>
                   <FormControl>
                     <Input
                       className="w-full text-black placeholder:text-zinc-400 dark:text-zinc-50"
-                      placeholder="enter your name"
+                      placeholder={t('login.user-name-placeholder')}
                       {...field}
                     />
                   </FormControl>
