@@ -22,7 +22,6 @@ import {
 import { Input } from '@/components/ui/input';
 import { UserEmail } from '@/components/providers/app/forget-password/email-provider';
 import { toast } from 'sonner';
-import { useResendTimer } from '../_hooks/use-resend-timer';
 import { FORGOT_PASSWORD_STEPS } from '@/lib/constants/auth.constant';
 import { ForgotPasswordFormProps } from '@/lib/types/auth/forget-password/verify';
 
@@ -37,7 +36,6 @@ export default function ForgotPasswordForm({
 
   // Hook
   const { error, forgot, isPending } = useForgot();
-  const { timeLeft, startTimer } = useResendTimer();
 
   // Form
   const form = useForm<ForgotPasswordFormFields>({
@@ -54,12 +52,8 @@ export default function ForgotPasswordForm({
 
     forgot(data, {
       onSuccess: () => {
-        if (timeLeft === 0) {
-          startTimer();
-        }
-
         toast.success(t('forget-password.forget-message'));
-        setStep(FORGOT_PASSWORD_STEPS.verify);
+        setStep(FORGOT_PASSWORD_STEPS.reset);
       },
     });
   };

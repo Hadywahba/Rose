@@ -4,7 +4,8 @@ import { Translations } from '../types/global';
 export const resetSchema = (t: Translations) =>
   z
     .object({
-      password: z
+      token: z.string(),
+      newPassword: z
         .string()
         .nonempty(t('reset-password.form.schema.password-required'))
         .min(8, { message: t('reset-password.form.schema.password-min') })
@@ -20,11 +21,11 @@ export const resetSchema = (t: Translations) =>
         .refine((password) => /[!@#$%^&*]/.test(password), {
           message: t('reset-password.form.schema.password-character'),
         }),
-      newPassword: z
+      confirmPassword: z
         .string()
         .nonempty(t('reset-password.form.schema.confirmpassword-required')),
     })
-    .refine((data) => data.password === data.newPassword, {
+    .refine((data) => data.newPassword === data.newPassword, {
       message: t('reset-password.form.schema.password-match'),
       path: ['newPassword'],
     });

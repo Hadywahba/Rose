@@ -1,15 +1,13 @@
 'use client';
 
-import React, { useContext } from 'react';
+import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslations } from 'next-intl';
 import SubmitButton from '@/components/features/auth/submit-button';
-
 import {
   ResetPasswordFormFields,
   resetSchema,
 } from '@/lib/schema/reset-password';
-import { ResetPasswordPayload } from '@/lib/types/auth/forget-password/reset';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useResetPassword } from '../_hooks/use-reset-password';
 import {
@@ -21,18 +19,10 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { UserEmail } from '@/components/providers/app/forget-password/email-provider';
-import { FORGOT_PASSWORD_STEPS } from '@/lib/constants/auth.constant';
-import { ForgotPasswordFormProps } from '@/lib/types/auth/forget-password/verify';
 
-export default function ResetPasswordForm({
-  setStep,
-}: ForgotPasswordFormProps) {
+export default function ResetPasswordForm() {
   // Translation
   const t = useTranslations('auth');
-
-  // Context
-  const { email } = useContext(UserEmail)!;
 
   // Hook
   const { error, isPending, resetpassword } = useResetPassword();
@@ -42,25 +32,15 @@ export default function ResetPasswordForm({
     mode: 'all',
     resolver: zodResolver(resetSchema(t)),
     defaultValues: {
+      token: '',
+      confirmPassword: '',
       newPassword: '',
-      password: '',
     },
   });
 
   // Function
   const onsubmit: SubmitHandler<ResetPasswordFormFields> = (data) => {
-    if (!email) return;
-
-    const payload: ResetPasswordPayload = {
-      email,
-      newPassword: data.newPassword,
-    };
-
-    resetpassword(payload, {
-      onSuccess: () => {
-        setStep(FORGOT_PASSWORD_STEPS.email);
-      },
-    });
+    resetpassword(data);
   };
 
   return (
@@ -79,9 +59,35 @@ export default function ResetPasswordForm({
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onsubmit)}>
           <div className="space-y-3">
+            {/* token Field */}
+            <FormField
+              name="token"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-zinc-800 dark:text-zinc-50">
+                    {t('reset-password.token')}
+                  </FormLabel>
+                  {/* Field */}
+                  <FormControl>
+                    {/* Input */}
+                    <Input
+                      {...field}
+                      type="password"
+                      placeholder={t('reset-password.placeholder-token')}
+                      className="w-full text-black placeholder:text-zinc-400 dark:text-zinc-50"
+                    />
+                  </FormControl>
+
+                  {/* Feedback */}
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
             {/* Password Field */}
             <FormField
-              name="password"
+              name="newPassword"
               control={form.control}
               render={({ field }) => (
                 <FormItem>
@@ -107,7 +113,7 @@ export default function ResetPasswordForm({
 
             {/* New Password Field */}
             <FormField
-              name="newPassword"
+              name="confirmPassword"
               control={form.control}
               render={({ field }) => (
                 <FormItem>

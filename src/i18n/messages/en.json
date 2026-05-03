@@ -353,7 +353,7 @@
           "email-invalid": "Invalid email"
         }
       },
-      "forget-message": " OTP sent to your email",
+      "forget-message": " token sent to your email",
       "forget-error": "An error occurred while sending the OTP code."
     },
     "verifyPassword": {
@@ -370,6 +370,8 @@
       "successfully-reset-toast": "Your Password has been successfully reset."
     },
     "reset-password": {
+      "token": "token",
+      "placeholder-token": "enter your token",
       "create-new-password": "create a new password",
       "reset-text": "Set a strong password to secure your account.",
       "form": {

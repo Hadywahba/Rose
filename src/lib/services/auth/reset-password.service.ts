@@ -1,20 +1,16 @@
 import { JSON_HEADER } from '@/lib/constants/api.constant';
-import {
-  ResetPasswordPayload,
-  ResetResponse,
-} from '@/lib/types/auth/forget-password/reset';
 
 export const resetPassword = async (data: ResetPasswordPayload) => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API}/auth/resetPassword`,
+    `${process.env.NEXT_PUBLIC_API}/auth/reset-password`,
     {
-      method: 'PUT',
+      method: 'POST',
       body: JSON.stringify(data),
       headers: {
         ...JSON_HEADER,
       },
     },
   );
-  const payload: ApiResponse<ResetResponse> = await response.json();
+  const payload: ApiVerifiyResponse = await response.json();
   return payload;
 };

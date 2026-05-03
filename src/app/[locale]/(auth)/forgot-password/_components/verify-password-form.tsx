@@ -54,7 +54,7 @@ export default function VerifyPasswordForm({
   const onsubmit: SubmitHandler<VerifyResetFields> = (values) => {
     verifyResetCode(values, {
       onSuccess: () => {
-        setStep(FORGOT_PASSWORD_STEPS.reset);
+        setStep(FORGOT_PASSWORD_STEPS);
       },
     });
   };
