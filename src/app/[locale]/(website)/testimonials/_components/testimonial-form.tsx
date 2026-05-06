@@ -11,46 +11,54 @@ import {
 } from '@/components/ui/form';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Input } from '@/components/ui/input';
-import { TestimonialFormFields, testimonialSchema } from '@/lib/schema/testimonial/testimonial.schema';
+import {
+  TestimonialFormFields,
+  testimonialSchema,
+} from '@/lib/schema/testimonial/testimonial.schema';
+import useAddTestimonial from '../_hook/use-add-testimonial';
+import { InteractiveRating } from '@/components/ui/InteractiveRating';
+import { Textarea } from '@/components/ui/textarea';
+import SubmitButton from '@/components/features/auth/submit-button';
 
 export default function TestimonialForm() {
   // Translation
   const t = useTranslations('testimonials');
 
   // Hook
-  const { addreview, error, isPending } = useAddTestimonial();
+  const { addTestimonial, error, isPending } = useAddTestimonial();
 
   // Form & Validation
   const form = useForm<TestimonialFormFields>({
     mode: 'all',
     resolver: zodResolver(testimonialSchema(t)),
     defaultValues: {
-      message: '',
+      content: '',
       name: '',
       rating: 0,
+      email: '',
+      image: '',
     },
   });
 
   // Function
   const onSubmit: SubmitHandler<TestimonialFormFields> = (values) => {
     console.log(values);
-    const formattedValues = {
-      ...values,
-      rating: Number(values.rating),
-    };
-    addreview(formattedValues, {
+
+    addTestimonial(values, {
       onSuccess: () => {
         form.reset({
+          content: '',
           name: '',
-          message: '',
           rating: 0,
+          email: '',
+          image: '',
         });
       },
     });
   };
 
   return (
-    <section className="h-150 rounded-xl bg-white px-8 pt-12 sm:p-12 shadow-2xl">
+    <section className="h-150 rounded-xl bg-white px-8 pt-12 shadow-2xl sm:p-12">
       {/* Title */}
       <h1 className="mb-4 text-3xl font-semibold">{t('form-title')}</h1>
       {/* Form */}
@@ -109,7 +117,7 @@ export default function TestimonialForm() {
             {/* FeedBack */}
             <FormField
               control={form.control}
-              name="message"
+              name="content"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-zinc-800 dark:text-zinc-50">
