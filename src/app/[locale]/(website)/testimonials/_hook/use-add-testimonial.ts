@@ -1,13 +1,13 @@
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
-import { useTranslations } from 'next-intl';
+// import { useTranslations } from 'next-intl';
 import { TestimonialFormFields } from '@/lib/schema/testimonial/testimonial.schema';
 import { addTestimonialAction } from '@/lib/actions/testimonial/add-testimonial.action';
 
 export default function useAddTestimonial() {
   // Translation
-  const t = useTranslations('testimonial');
+  // const t = useTranslations('testimonial');
 
   // Navigation
   const router = useRouter();
@@ -24,10 +24,11 @@ export default function useAddTestimonial() {
 
     onError: (error: Error) => {
       toast.error(error.message);
+       console.log(error)
     },
 
     onSuccess: () => {
-      toast.success(t('success'));
+      toast.success('success');
       router.push('/');
     },
   });

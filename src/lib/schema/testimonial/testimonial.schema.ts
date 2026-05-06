@@ -16,11 +16,11 @@ export const testimonialSchema = (t: Translations) =>
     email: z.email({
       error: (issue) =>
         issue.input
-          ? t('auth.register.validation.email-invalid')
-          : t('auth.register.validation.email-required'),
+          ? t('validation.email-invalid')
+          : t('validation.email-required'),
     }),
     content: z.string().nonempty(t('validation.message-required')),
-    image: z.string().nonempty(t('validation.image-required')),
+    image: z.string().optional(),
   });
 
 export type TestimonialFormFields = z.infer<
