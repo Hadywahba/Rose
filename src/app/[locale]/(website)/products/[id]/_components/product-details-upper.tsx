@@ -86,10 +86,10 @@ export default function ProductDetailsUpper({ product }: { product: Product }) {
       <div className="space-y-4">
         <div className="relative aspect-square w-full overflow-hidden md:aspect-[4/3]">
           <Image
-            src={product?.cover}
+            src={gallery[selectedIndex] ?? product?.cover}
             alt={product?.title}
             fill
-            className="rounded-2xl object-contain"
+            className="rounded-2xl object-contain transition-opacity duration-300"
             priority
           />
         </div>
