@@ -20,10 +20,17 @@ const publicRoutes = [
   '/terms',
   '/about',
   '/categorie',
+  '/testimonials',
 ];
 
 // Protected pages (actions require auth)
-const protectedRoutes = ['/checkout', '/allOrders', '/cart', '/profile' , '/wishlist'];
+const protectedRoutes = [
+  '/checkout',
+  '/allOrders',
+  '/cart',
+  '/profile',
+  '/wishlist',
+];
 
 // Helper: check public routes (supports dynamic routes)
 const isPublicPage = (path: string) =>

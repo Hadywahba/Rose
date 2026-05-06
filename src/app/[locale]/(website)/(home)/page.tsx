@@ -18,7 +18,7 @@ export default async function Home({ searchParams }: HomeProps) {
   const { data, error } = await displayTestimonials();
 
   return (
-    <main className="mx-auto flex flex-col items-center justify-center">
+    <main className="mx-auto flex w-full flex-col items-center justify-center overflow-x-hidden">
       {/* Hero Section */}
       <Hero />
 

@@ -13,7 +13,7 @@ export default async function CategoriesPage({ searchParams }: CategoryPageProps
   const t = await getTranslations('category');
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-maroon-50 via-white to-softpink-100 px-4 py-10 dark:from-zinc-900 dark:via-maroon-950 dark:to-zinc-900">
+    <main className="min-h-screen overflow-x-hidden bg-gradient-to-br from-maroon-50 via-white to-softpink-100 px-4 py-10 dark:from-zinc-900 dark:via-maroon-950 dark:to-zinc-900">
       <div className="container mx-auto">
 
         {/* Header */}

@@ -5,10 +5,10 @@ export const testimonialSchema = (t: Translations) =>
   z.object({
     name: z
       .string()
-      .min(3, t('validation.username-min-required'))
+      .trim()
       .nonempty(t('validation.username-required'))
       .regex(
-        /^[\p{L}]+(?:\s[\p{L}]+){0,2}$/u,
+        /^[A-Za-z\u0600-\u06FF]+(?:\s[A-Za-z\u0600-\u06FF]+){0,2}$/,
         t('validation.username-regex-required'),
       ),
 

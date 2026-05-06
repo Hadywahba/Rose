@@ -74,7 +74,7 @@ export default async function BestSelling({ searchParams }: ProductsListProps) {
         </Link>
       </div>
 
-      <div className="col-span-12 md:col-span-9">
+      <div className="col-span-12 overflow-hidden md:col-span-9">
         <BestSellingProduct products={products} />
       </div>
     </section>

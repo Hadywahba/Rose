@@ -3,6 +3,7 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import SubmitError from '@/components/error/submit-error';
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utility/tailwind-merge';
 
 interface SubmitButtonProps {
   error: Error | null;
@@ -28,13 +29,16 @@ export default function SubmitButton({
   const t = useTranslations('auth');
 
   return (
-    <div className="flex flex-col gap-6 pt-9 mt-0">
+    <div className="mt-0 flex flex-col gap-6 pt-9">
       {/* Button */}
-      <div >
+      <div>
         <Button
           variant={'primary'}
           disabled={isPending || (!isValid && isSubmitting)}
-          className="w-full rounded-xl py-6 text-base"
+          className={cn(
+            'w-full rounded-xl py-6 text-base',
+            isPending && 'dark:text-zinc-100 text-zinc-800',
+          )}
         >
           {isPending ? t(loading) : t(text)}
         </Button>
@@ -42,7 +46,7 @@ export default function SubmitButton({
         {/* Optional Title */}
         {title && (
           <div className="mt-9 text-center">
-            <p className="border-t-2 border-zinc-200 py-4 dark:border-zinc-600 pt-5 text-center text-sm font-medium text-zinc-800 first-letter:capitalize dark:text-zinc-50">
+            <p className="border-t-2 border-zinc-200 py-4 pt-5 text-center text-sm font-medium text-zinc-800 first-letter:capitalize dark:border-zinc-600 dark:text-zinc-50">
               {t.rich(title, {
                 span: (chunk: React.ReactNode) =>
                   link ? (

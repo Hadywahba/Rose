@@ -336,6 +336,7 @@
     "save": "Save Changes",
     "saving": "Saving...",
     "submit-button": "Submit Review",
+    "submitting": "Submitting...",
     "form-button": "Write a Review",
     "forget-password": {
       "forgot-password": "forgot password?",
@@ -1105,6 +1106,8 @@
   "order-address-id": "Enter your Address Id",
   "order success": "Your order has been placed successfully",
   "testimonial": {
+    "testimonial-title": "Testimonials",
+    "testimonial-subtitle": "Real Words from Happy Customers",
     "title": "Your Opinion Matters",
     "text": "Share Your Experience with Rose",
     "description": "We believe your feedback helps us create even more beautiful bouquets and gifts. Share your story and help us serve you better.",
@@ -1115,7 +1118,6 @@
     "form-title": "Write Your Review",
     "form-first-field": "Name",
     "form-second-field": "Rate the Service",
-    "submitting": "Submitting...",
     "form-third-field": "Your Feedback",
     "name-placeholder": "Enter your name",
     "review": "Your Review",

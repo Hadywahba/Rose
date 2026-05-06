@@ -53,7 +53,6 @@ export default function TestimonialForm({ user }: userContentProps) {
       form.setValue('email', user.email ?? '');
     }
   }, [user, form]);
-  
 
   // handle file change
   const handleFileChange = (
@@ -127,7 +126,9 @@ export default function TestimonialForm({ user }: userContentProps) {
             name="image"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>{t('image')}</FormLabel>
+                <FormLabel className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
+                  {t('image')}
+                </FormLabel>
 
                 <FormControl>
                   <div className="flex w-full items-center gap-4">
@@ -256,7 +257,7 @@ export default function TestimonialForm({ user }: userContentProps) {
             isSubmitting={form.formState.isSubmitting}
             isValid={form.formState.isValid}
             isPending={isPending}
-            loading="testimonial.submitting"
+            loading="submitting"
             text="submit-button"
           />
         </form>
