@@ -1101,5 +1101,39 @@
   "order-notes": "Enter your notes",
   "order-payment-method": "Enter your PaymentMethod",
   "order-address-id": "Enter your Address Id",
-  "order success": "Your order has been placed successfully"
+  "order success": "Your order has been placed successfully",
+  "testimonial": {
+    "title": "Your feedback matters to us",
+    "text": "Share your experience with MedTrust",
+    "description": "At MedTrust, we believe your feedback is the cornerstone of improving the quality of our healthcare services. Share your story and help us serve you better.",
+    "text-title-first": "Complete confidentiality",
+    "description-title-first": "We respect your privacy and handle your feedback with the highest level of professionalism.",
+    "text-title-second": "Continuous improvement",
+    "description-title-second": "Every comment we receive is reviewed by our quality team.",
+    "form-title": "Leave a Review",
+    "form-first-field": "Name",
+    "form-second-field": "Rate the Service",
+    "submit-button": "Add Review",
+    "submitting": "Submitting...",
+    "form-third-field": "Your Feedback",
+    "name-placeholder": "Enter your name",
+    "review": "feedback",
+    "review-placeholder": "Enter your detailed feedback",
+    "page-title": "Real Experiences",
+    "page-subtitle": "Our Patients' Trust Is Our Priority",
+    "page-description": "We are proud to provide outstanding healthcare that leaves a positive impact on our patients' lives. Here's what those who trusted MedTrust have to say.",
+    "page-form-title": "Share Your Experience",
+    "page-form-subtitle": "Your feedback helps us improve our services to deliver the best possible care",
+    "form-button": "Write a Review",
+    "testimonial-empty": " No testimonials yet.",
+    "testimonial-sucess": "Your feedback has been submitted successfully.",
+    "testimonial-error": "Failed to submit your feedback. Please try again.",
+    "validation": {
+      "username-required": "Name is required",
+      "username-min-required": "Name must be at least 3 characters",
+      "username-regex-required": "Name must contain only letters and spaces",
+      "rating-required": "Rating is required",
+      "message-required": "Feedback message is required"
+    }
+  }
 }
