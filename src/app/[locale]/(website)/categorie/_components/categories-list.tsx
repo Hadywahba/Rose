@@ -65,7 +65,7 @@ export default function CategoriesListClient({
       ) : (
         <div className="flex flex-col gap-6">
           {/* Book container */}
-          <div className="relative rounded-3xl border border-zinc-200 bg-white shadow-lg dark:border-zinc-700 dark:bg-zinc-900">
+          <div className="relative overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-lg dark:border-zinc-700 dark:bg-zinc-900">
             {/* Page corner decoration */}
             <div className="absolute right-0 top-0 h-8 w-8 overflow-hidden rounded-tr-3xl">
               <div className="absolute right-0 top-0 h-0 w-0 border-b-[2rem] border-l-[2rem] border-b-transparent border-l-maroon-200 dark:border-l-maroon-800" />

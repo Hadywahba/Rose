@@ -346,7 +346,9 @@
   },
   "auth": {
     "save": "حفظ التغييرات",
+    "submit-button": "إرسال التقييم",
     "saving": "جاري الحفظ...",
+    "submitting": "جاري الإرسال...",
     "forget-password": {
       "forgot-password": "هل نسيت كلمة المرور؟",
       "forget-text": "لا تقلق، سنرسل لك تعليمات لمساعدتك في إعادة ضبطه.",
@@ -1093,5 +1095,47 @@
     "text": "لست متأكدًا ماذا تختار؟",
     "btn-text": "استكشف الهدايا",
     "description": "ابدأ بأكثر المنتجات مبيعًا، هذه هي الهدايا التي يعود عملاؤنا إليها دائمًا. سواء كنت تحتفل بعيد ميلاد، ذكرى سنوية أو زفاف، اختياراتنا المميزة ستترك انطباعًا دائمًا."
+  },
+  "testimonial": {
+    "testimonial-title": "آراء العملاء",
+    "testimonial-subtitle": "كلمات حقيقية من عملاء سعداء",
+    "title": "آراء عملائنا",
+    "text": "شاركنا تجربتك مع Rose",
+    "description": "رأيك يهمنا كثيراً. شاركنا تجربتك مع باقاتنا وهداياك لنقدم لك دائماً الأفضل.",
+    "text-title-first": "خصوصية تامة",
+    "description-title-first": "نحترم خصوصيتك ونتعامل مع تقييمك باحترافية عالية.",
+    "text-title-second": "تحسين مستمر",
+    "description-title-second": "كل تعليق نستلمه يُراجع من فريقنا لتحسين خدماتنا.",
+    "form-title": "اكتب تقييمك",
+    "form-first-field": "الاسم",
+    "form-second-field": "تقييم الخدمة",
+    "name-placeholder": "أدخل اسمك",
+    "review": "تعليقك",
+    "review-placeholder": "أخبرنا عن تجربتك مع باقاتنا وهداياك...",
+    "image": "صورتك",
+    "upload-image": "رفع صورة",
+    "uploading": "جاري الرفع...",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "email-placeholder": "example@email.com",
+    "page-title": "تجارب حقيقية",
+    "page-subtitle": "ثقة عملائنا هي أهم ما نملك",
+    "page-description": "نفخر بتقديم أجمل الباقات والهدايا التي تترك أثراً جميلاً. إليك ما يقوله من وثقوا بـ Rose.",
+    "page-form-title": "شاركنا تجربتك",
+    "page-form-subtitle": "تقييمك يساعدنا على تقديم أفضل الباقات والخدمات",
+    "testimonial-empty": "لا توجد تقييمات بعد.",
+    "testimonial-sucess": "تم إرسال تقييمك بنجاح، شكراً لك!",
+    "testimonial-error": "فشل إرسال التقييم، يرجى المحاولة مرة أخرى.",
+    "form-button": "اكتب تقييماً",
+    "validation": {
+      "username-required": "الاسم مطلوب",
+      "username-min-required": "يجب أن لا يقل الاسم عن 3 أحرف",
+      "username-regex-required": "الاسم يجب أن يحتوي على حروف ومسافات فقط",
+      "rating-required": "التقييم مطلوب",
+      "message-required": "رسالة التقييم مطلوبة",
+      "image-required": "التقييم مطلوبة",
+      "email-required": "البريد الإلكتروني مطلوب",
+      "email-invalid": "يرجى إدخال بريد إلكتروني صحيح"
+    }
   }
 }
