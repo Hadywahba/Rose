@@ -1,7 +1,7 @@
-import { useTranslations } from 'next-intl';
-import Image from 'next/image';
-import { Github, Linkedin, Globe } from 'lucide-react';
-import { ContactInfo } from '@/lib/types/contact/contact';
+import { useTranslations } from "next-intl";
+import Image from "next/image";
+import { Github, Linkedin, Globe } from "lucide-react";
+import { ContactInfo } from "@/lib/types/contact/contact";
 
 type Member = {
   name: string;
@@ -19,45 +19,43 @@ interface AboutTeamProps {
 }
 
 export default function AboutTeam({ contact }: AboutTeamProps) {
-  const t = useTranslations('about-page.team');
+  const t = useTranslations("about-page.team");
 
   const members: Member[] = [
     {
-      name: 'Hady Wahba',
-      role: t('members.0.role'),
-      bio: t('members.0.bio'),
+      name: "Hady Wahba",
+      role: t("members.0.role"),
+      bio: t("members.0.bio"),
       works: [
-        t('members.0.works.0'),
-        t('members.0.works.1'),
-        t('members.0.works.2'),
-        t('members.0.works.3'),
-        t('members.0.works.4'),
-        t('members.0.works.5'),
-        t('members.0.works.6'),
-        t('members.0.works.7'),
-        t('members.0.works.8'),
+        t("members.0.works.0"),
+        t("members.0.works.1"),
+        t("members.0.works.2"),
+        t("members.0.works.3"),
+        t("members.0.works.4"),
+        t("members.0.works.5"),
+        t("members.0.works.6"),
+        t("members.0.works.7"),
       ],
-      image: '/assets/images/IMG-20240422-WA0028.jpg',
+      image: "/assets/images/IMG-20240422-WA0028.jpg",
       github: contact.github,
       linkedin: contact.linkedin,
       portfolio: contact.portfolio,
-      gradient: 'from-maroon-600 to-maroon-800',
+      gradient: "from-maroon-600 to-maroon-800",
     },
     {
-      name: 'Elevate Team',
-      role: t('members.1.role'),
-      bio: t('members.1.bio'),
+      name: "Elevate Team",
+      role: t("members.1.role"),
+      bio: t("members.1.bio"),
       works: [
-        t('members.1.works.0'),
-        t('members.1.works.1'),
-        t('members.1.works.2'),
-         t('members.1.works.3'),
-          t('members.1.works.4'),
-           t('members.1.works.5'),
+        t("members.1.works.0"),
+        t("members.1.works.1"),
+        t("members.1.works.2"),
+        t("members.1.works.3"),
+        t("members.1.works.4"),
       ],
-      image: '/assets/images/WhatsApp Image 2026-04-28 at 18.34.57.jpeg',
-      linkedin: 'https://www.linkedin.com/company/elevatecheg',
-      gradient: 'from-softpink-600 to-maroon-600',
+      image: "/assets/images/WhatsApp Image 2026-04-28 at 18.34.57.jpeg",
+      linkedin: "https://www.linkedin.com/company/elevatecheg",
+      gradient: "from-softpink-600 to-maroon-600",
     },
   ];
 
@@ -67,10 +65,10 @@ export default function AboutTeam({ contact }: AboutTeamProps) {
         {/* Heading */}
         <div className="mb-14 text-center">
           <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-maroon-600 dark:text-softpink-300 md:text-xl">
-            {t('subtitle')}
+            {t("subtitle")}
           </p>
           <h2 className="text-3xl font-bold text-maroon-700 dark:text-softpink-200 sm:text-4xl">
-            {t('heading')}
+            {t("heading")}
           </h2>
         </div>
 
@@ -80,7 +78,7 @@ export default function AboutTeam({ contact }: AboutTeamProps) {
             <div
               key={index}
               className={`flex flex-col items-center gap-8 lg:flex-row lg:gap-16 ${
-                index % 2 !== 0 ? 'lg:flex-row-reverse' : ''
+                index % 2 !== 0 ? "lg:flex-row-reverse" : ""
               }`}
             >
               {/* Image side */}
@@ -105,7 +103,7 @@ export default function AboutTeam({ contact }: AboutTeamProps) {
 
                 {/* Role badge */}
                 <div
-                  className={`absolute -bottom-4 ${index % 2 !== 0 ? 'left-4' : 'right-4'} rounded-xl bg-gradient-to-r ${member.gradient} px-4 py-2 shadow-lg`}
+                  className={`absolute -bottom-4 ${index % 2 !== 0 ? "left-4" : "right-4"} rounded-xl bg-gradient-to-r ${member.gradient} px-4 py-2 shadow-lg`}
                 >
                   <p className="text-xs font-bold uppercase tracking-wide text-white">
                     {member.role}
@@ -125,7 +123,7 @@ export default function AboutTeam({ contact }: AboutTeamProps) {
                 {/* Works on */}
                 <div className="mb-6">
                   <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-maroon-600 dark:text-softpink-400">
-                    {t('works-on')}
+                    {t("works-on")}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {member.works.map((work, i) => (
