@@ -1,62 +1,61 @@
 import { fetchNotificationsAction } from '@/lib/actions/notifications/fetch-notifications.action';
-import { Notifications } from '@/lib/types/notification';
+import { NotificationsResponse } from '@/lib/types/notification';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
+
+const LIMIT = 6;
 
 export function useNotifications() {
   // Session state from NextAuth
   const { status } = useSession();
 
-  // { This prevents 401 Unauthorized requests }
+  // Prevent unauthorized requests
   const isAuthed = status === 'authenticated';
-  // ToDo
-  // Infinite notifications query
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
-    useInfiniteQuery({
-      // Cache key for notifications
-      queryKey: ['notifications'],
 
-      // Fetch notifications page by page
-      queryFn: async ({ pageParam }) => {
-        // { Call notifications API with pagination }
-        const payload: ApiResponse<PaginatedResponse<Notifications>> =
-          await fetchNotificationsAction(pageParam, 6);
+  const {
+    data: notifications,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading,
+    error,
+  } = useInfiniteQuery({
+    queryKey: ['notifications', LIMIT],
 
-        // { Handle API error responses }
-        if (payload.status === false) {
-          throw new Error(payload.message);
-        }
+    queryFn: async ({ pageParam = 1 }: { pageParam?: number }) => {
+      const payload = await fetchNotificationsAction(pageParam, LIMIT);
 
-        // { Return successful page response }
-        return payload;
-      },
+      if (payload.status === false) {
+        throw new Error(payload.message);
+      }
 
-      // { Initial page index }
-      initialPageParam: 1,
+      return payload.payload;
+    },
 
-      // { Determine next page number }
-      getNextPageParam: (lastPage) => {
-        const { currentPage, totalPages } = lastPage.payload.metadata;
+    // Initial page
+    initialPageParam: 1,
 
-        // { Load next page if more pages exist }
-        if (currentPage < totalPages) {
-          return currentPage + 1;
-        }
+    // Pagination handler
+    getNextPageParam: (lastPage: NotificationsResponse) => {
+      const { page, totalPages } = lastPage.metadata;
 
-        // { No more pages available }
-        return undefined;
-      },
+      return page < totalPages ? page + 1 : undefined;
+    },
 
-      // { Stop fetching when user is not authenticated }
-      enabled: isAuthed,
+    // Stop fetching if unauthenticated
+    enabled: isAuthed,
 
-      // { Disable automatic retries to avoid repeated 401 errors }
-      retry: false,
+    retry: false,
 
-      // { Prevent refetching when window gains focus }
-      refetchOnWindowFocus: false,
-    });
+    refetchOnWindowFocus: false,
+  });
 
-  // { Expose query state and helpers }
-  return { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading };
+  return {
+    notifications,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading,
+    error,
+  };
 }

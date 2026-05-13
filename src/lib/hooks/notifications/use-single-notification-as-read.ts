@@ -1,5 +1,5 @@
 import { markSingleNotificationsAsReadAction } from "@/lib/actions/notifications/mark-single-notification-as-read.action";
-import { MarkNotificationAsReadResponse } from "@/lib/types/notification";
+import { NotificationsResponse } from "@/lib/types/notification";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 
@@ -12,7 +12,7 @@ export function useSingleNotificationAsRead() {
     isPending,
   } = useMutation({
     mutationFn: async (notificationId: string) => {
-      const payload: ApiResponse<MarkNotificationAsReadResponse> =
+      const payload: ApiResponse<NotificationsResponse> =
         await markSingleNotificationsAsReadAction(notificationId);
 
       // check-error
@@ -21,9 +21,8 @@ export function useSingleNotificationAsRead() {
       }
       return payload;
     },
-    onSuccess: (data) => {
-      toast.success(data.payload.message);
-      // Invalidate and refetch notifications
+    onSuccess: () => {
+     
       queryClient.invalidateQueries({ queryKey: ["notifications"] });
     },
     onError: (error) => {

@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import { CheckoutContext } from '@/components/providers/app/checkout/payment-provider';
-import { Button } from '@/components/ui/button';
-import { MoveLeft, MoveRight } from 'lucide-react';
-import React, { useContext, useState } from 'react';
-import { useLocale, useTranslations } from 'use-intl';
-import SubmitError from '@/components/error/submit-error';
-import { useAddOrder } from '../_hooks/use-new-order';
+import { CheckoutContext } from "@/components/providers/app/checkout/payment-provider";
+import { Button } from "@/components/ui/button";
+import { MoveLeft, MoveRight } from "lucide-react";
+import React, { useContext, useState } from "react";
+import { useLocale, useTranslations } from "use-intl";
+import SubmitError from "@/components/error/submit-error";
+import { useAddOrder } from "../_hooks/use-new-order";
 
 export default function PaymentButton() {
   // Translation
-  const t = useTranslations('checkout');
+  const t = useTranslations("checkout");
 
   const [localError, setLocalError] = useState<Error | null>(null);
 
@@ -23,21 +23,30 @@ export default function PaymentButton() {
   const { AddOrder, error, isPending } = useAddOrder();
 
   // Variable
-  const arabic = locale === 'ar';
+  const arabic = locale === "ar";
   const isDisabled = !paymentMethod || !addressId || !notes;
 
   // Function
   const handlePayment = () => {
-    setLocalError(null); // reset
+    setLocalError(null);
+
     try {
       if (!addressId || !paymentMethod || !notes) {
-        throw new Error(t('payment-methods.select-required'));
+        throw new Error(t("payment-methods.select-required"));
       }
+
+      if (paymentMethod === "CREDIT_CARD") {
+        throw new Error(
+          t('checkout-mess'),
+        );
+      }
+
       const payload = {
         paymentMethod,
         addressId,
-        notes: notes,
+        notes,
       };
+
       AddOrder(payload);
     } catch (err) {
       setLocalError(err instanceof Error ? err : new Error(String(err)));
@@ -55,8 +64,8 @@ export default function PaymentButton() {
         >
           {arabic && !isPending && <MoveLeft className="h-5 w-5" />}
           {isPending
-            ? t('payment-methods.payment-loading')
-            : t('checkout-summary.checkout-button')}
+            ? t("payment-methods.payment-loading")
+            : t("checkout-summary.checkout-button")}
           {!arabic && !isPending && <MoveRight className="h-5 w-5" />}
         </Button>
       </div>

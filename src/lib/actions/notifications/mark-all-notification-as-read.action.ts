@@ -1,34 +1,23 @@
-"use server";
+'use server';
 
-import { JSON_HEADER } from "@/lib/constants/api.constant";
-import { getToken } from "@/lib/utility/manage-token";
-
-const   MARK_ALL_NOTIFICATIONS_AS_READ=`https://flower.elevateegy.com/api/v1/notifications/mark-all-read`;
+import { JSON_HEADER } from '@/lib/constants/api.constant';
+import { getToken } from '@/lib/utility/manage-token';
 
 export async function markAllNotificationsAsReadAction() {
-  // get token
-  const token = await getToken();
-  // Guard
-  if (!token?.accessToken) {
-    return Response.json(
-      { message: "No Access Token Available ,Login First", code: 401 },
-      { status: 401 }
-    );
-  }
+  //token
+  const tokenObj = await getToken();
 
-  const resp = await fetch(
-    MARK_ALL_NOTIFICATIONS_AS_READ,
+  const token = tokenObj?.accessToken;
 
-    {
-      method: "POST",
-      headers: {
-        ...JSON_HEADER,
-        Authorization: `Bearer ${token.accessToken}`,
-      },
-    }
-  );
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/notifications`, {
+    method: 'PATCH',
+    headers: {
+      ...JSON_HEADER,
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-  const payload = await resp.json();
+  const payload: DeleteApiResponse = await response.json();
 
   return payload;
 }

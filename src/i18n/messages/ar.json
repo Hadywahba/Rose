@@ -802,6 +802,7 @@
       "coupon-applied": "لم يتم تطبيق أي كوبونات",
       "checkout-button": "الدفع"
     },
+    "checkout-mess":"لا تزال خدمة الدفع بالبطاقة قيد التطوير وستتوفر قريباً. يُرجى استخدام النقد في الوقت الحالي.",
     "shipping-address": "عنوان الشحن",
     "next-step": "التالي",
     "back-step": "السابق",
@@ -1080,6 +1081,19 @@
   "order-notes": "أدخل ملاحظاتك",
   "order-payment-method": " ادخل طريقة الدفع",
   "order-address-id": "أدخل عنوانك",
+  "notifications": {
+    "title": "الإشعارات",
+    "count": "({count})",
+    "empty": "لا توجد إشعارات بعد",
+    "seeAll": "لقد رأيت جميع الإشعارات",
+    "loading": "جاري تحميل الإشعارات...",
+    "loadingMore": "جاري تحميل المزيد...",
+    "clearAll": "مسح الكل",
+    "markAllRead": "تعيين الكل كمقروء",
+    "markAsRead": "تعيين كمقروء",
+    "delete": "حذف",
+    "openMenu": "فتح خيارات الإشعار"
+  },
   "order success": "تم طلب الأوردر بنجاح",
   "wishlist": {
     "title": "قائمة المفضلة",

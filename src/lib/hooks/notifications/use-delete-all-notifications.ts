@@ -1,5 +1,5 @@
+import {  NotificationsResponse } from '@/lib/types/notification';
 import { deleteAllNotificationAction } from "@/lib/actions/notifications/delete-all-notifications.action";
-import { DeleteNotificationResponse } from "@/lib/types/notification";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 
@@ -12,7 +12,7 @@ export function useDeleteAllNotifications() {
     isPending,
   } = useMutation({
     mutationFn: async () => {
-      const payload: ApiResponse<DeleteNotificationResponse> =
+      const payload: ApiResponse<NotificationsResponse> =
         await deleteAllNotificationAction();
 
       // check-error
@@ -21,8 +21,8 @@ export function useDeleteAllNotifications() {
       }
       return payload;
     },
-    onSuccess: (data) => {
-      toast.success(data.payload.message);
+    onSuccess: () => {
+     
       // Invalidate and refetch notifications
       queryClient.invalidateQueries({ queryKey: ["notifications"] });
     },

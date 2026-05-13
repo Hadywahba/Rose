@@ -11,7 +11,7 @@ import PaymentButton from './payment-button';
 
 export default function AddNotes({ setStep }: CheckoutMethodProps) {
   // Translation
-  const t = useTranslations('');
+  const t = useTranslations('checkout');
 
   // Hook
   const locale = useLocale();

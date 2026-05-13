@@ -40,7 +40,7 @@ export default async function BestSelling({ searchParams }: ProductsListProps) {
   return (
     <section className="mx-auto mb-20 grid w-full grid-cols-1 items-start justify-between gap-4 px-10 pb-6 sm:px-20 md:grid-cols-12">
       {/* Left Content */}
-      <div className="col-span-12 md:col-span-3">
+      <div className="col-span-12 lg:col-span-3">
         <p className="mb-3 font-sarabun text-lg font-bold uppercase tracking-[0.25em] text-softpink-500 dark:text-softpink-200">
           {t('label')}
         </p>
@@ -74,7 +74,7 @@ export default async function BestSelling({ searchParams }: ProductsListProps) {
         </Link>
       </div>
 
-      <div className="col-span-12 overflow-hidden md:col-span-9">
+      <div className="col-span-12 overflow-hidden lg:col-span-9">
         <BestSellingProduct products={products} />
       </div>
     </section>

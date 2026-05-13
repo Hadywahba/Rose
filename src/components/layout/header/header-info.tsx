@@ -9,7 +9,7 @@ import HeaderUsernameClient from './header-username-client';
 import { User } from '@/lib/types/auth';
 import { useLocale } from 'next-intl';
 import { useRouter } from '@/i18n/navigation';
-import NotificationsList from '@/components/features/notifications/notification-list';
+// import NotificationsList from '@/components/features/notifications/notification-list';
 import { cn } from '@/lib/utility/tailwind-merge';
 import { useLocalWishlist } from '@/lib/hooks/local-storage/use-local-storage-whishlist';
 
@@ -80,9 +80,9 @@ export default function HeaderInfo({
           </Badge>
         </button>
 
-        <button className="relative hover:text-red-800">
+        {/* <button className="relative hover:text-red-800">
           <NotificationsList />
-        </button>
+        </button> */}
       </div>
 
       <div className="hidden lg:flex">

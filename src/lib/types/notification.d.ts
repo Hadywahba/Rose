@@ -1,27 +1,22 @@
 export type Notification = {
+  id: string;
+  userId: string;
   type: string;
-  priority: string;
-  isRead: boolean;
-  _id: string;
   title: string;
-  body: string;
+  message: string;
+  isRead: boolean;
+  link: string;
   createdAt: string;
   updatedAt: string;
-  __v: number;
 };
 
-export type Notifications = {
-  notifications: Notification[];
+export type NotificationsResponse = {
+  data: Notification[];
+  metadata: MetaData;
 };
 
-export type MarkNotificationAsReadResponse = {
+export type MarkAllNotificationsAsReadResponse = {
+  status: boolean;
+  code: number;
   message: string;
-  modifiedCount: number;
-  unreadCount: number;
-};
-
-export type DeleteNotificationResponse = {
-  message: string;
-  deletedCount: number;
-  unreadCount?: number;
 };

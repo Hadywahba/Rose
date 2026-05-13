@@ -81,7 +81,7 @@ export default function BestSellingProduct({
                 api.scrollPrev();
               }
             }}
-            className="absolute -left-3 top-[35%] z-10 flex size-8 -translate-y-1/2 items-center justify-center rounded-full bg-maroon-600 text-white transition-all md:-left-2 lg:-left-0"
+            className="absolute left-3 top-[35%] z-10 flex size-8 -translate-y-1/2 items-center justify-center rounded-full bg-maroon-600 text-white transition-all md:-left-0 lg:-left-0"
           >
             <ChevronLeft size={20} />
           </button>
@@ -98,7 +98,7 @@ export default function BestSellingProduct({
                 api.scrollNext();
               }
             }}
-            className="absolute -right-3 top-[35%] z-10 flex size-8 -translate-y-1/2 items-center justify-center rounded-full bg-maroon-600 text-white transition-all md:-right-2 lg:-right-3"
+            className="absolute right-0 top-[35%] z-10 flex size-8 -translate-y-1/2 items-center justify-center rounded-full bg-maroon-600 text-white transition-all md:-right-0 lg:-right-0"
           >
             <ChevronRight size={20} />
           </button>

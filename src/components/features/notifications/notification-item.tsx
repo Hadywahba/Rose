@@ -1,16 +1,17 @@
-"use client";
+'use client';
 
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { useDeleteSingleNotification } from "@/lib/hooks/notifications/use-delete-single-notification";
-import { useSingleNotificationAsRead } from "@/lib/hooks/notifications/use-single-notification-as-read";
-import { Notification } from "@/lib/types/notification";
-import { cn } from "@/lib/utility/tailwind-merge";
-import { Check, MoreHorizontalIcon, Trash2 } from "lucide-react";
+} from '@/components/ui/dropdown-menu';
+import { useReadSingleNotification } from '@/lib/hooks/notifications/use-read-single-notification';
+import { useSingleNotificationAsRead } from '@/lib/hooks/notifications/use-single-notification-as-read';
+import { Notification } from '@/lib/types/notification';
+import { cn } from '@/lib/utility/tailwind-merge';
+import { Check, MoreHorizontalIcon, Trash2 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 type NotificationItemProps = {
   notification: Notification;
@@ -20,19 +21,17 @@ export default function NotificationItem({
   notification,
 }: NotificationItemProps) {
   // Translation
+  const t = useTranslations('notifications');
 
-  // Hooks
   const { onMarkAsRead, isPending } = useSingleNotificationAsRead();
-  const { onSingleDelete, isPending: isDeletePending } =
-    useDeleteSingleNotification();
+  const { readSingleMessage, isPending: isDeletePending } =
+    useReadSingleNotification();
 
-  // Variables
   const isActionsDisabled = isPending || isDeletePending;
   const isMarkAsReadDisabled = notification.isRead || isActionsDisabled;
 
-  // Functions
   const handleTriggerPointerDown = (
-    e: React.PointerEvent<HTMLButtonElement>
+    e: React.PointerEvent<HTMLButtonElement>,
   ) => {
     e.stopPropagation();
   };
@@ -44,48 +43,45 @@ export default function NotificationItem({
   const handleMarkAsReadSelect = (e: Event) => {
     e.preventDefault();
     e.stopPropagation();
-    onMarkAsRead(notification._id);
+    onMarkAsRead(notification.id);
   };
 
   const handleDeleteSelect = (e: Event) => {
     e.preventDefault();
     e.stopPropagation();
-    onSingleDelete(notification._id);
+    readSingleMessage(notification.id);
   };
 
   return (
-    // ✅ Semantic wrapper for a notification item
     <article
       aria-label="Notification item"
       className={cn(
         notification.isRead
-          ? "bg-zinc-200 dark:bg-zinc-800"
-          : "dark:bg-zinc-900",
-        "flex items-start max-w-[21rem] justify-between py-2 px-2 rounded-none border-t border-b border-zinc-300 dark:border-zinc-600"
+          ? 'bg-zinc-200 dark:bg-zinc-800'
+          : 'dark:bg-zinc-900',
+        'flex max-w-[21rem] items-start justify-between rounded-none border-b border-t border-zinc-300 px-2 py-2 dark:border-zinc-600',
       )}
     >
       <header className="notification-content max-w-[80%]">
-        <h3 className="font-semibold text-lg text-zinc-800 dark:text-zinc-50">
+        <h3 className="text-lg font-semibold text-zinc-800 dark:text-zinc-50">
           {notification.title}
         </h3>
-
-        <p className="text-sm text-zinc-500 line-clamp-3 dark:text-zinc-400">
-          {notification.body}
+        <p className="line-clamp-3 text-sm text-zinc-500 dark:text-zinc-400">
+          {notification.message}
         </p>
       </header>
 
-      {/* ✅ Actions grouped */}
-      <nav className="notification-action" aria-label="Notification actions">
+      <nav aria-label={t('openMenu')}>
         <DropdownMenu modal={false}>
           <DropdownMenuTrigger asChild>
             <button
               type="button"
-              aria-label="Open notification actions menu"
-              className="outline-none border-0 focus:outline-none"
+              aria-label={t('openMenu')}
+              className="border-0 outline-none focus:outline-none"
               onPointerDown={handleTriggerPointerDown}
               onClick={handleTriggerClick}
             >
-              <MoreHorizontalIcon aria-hidden="true" focusable="false" />
+              <MoreHorizontalIcon aria-hidden="true" />
             </button>
           </DropdownMenuTrigger>
 
@@ -94,28 +90,27 @@ export default function NotificationItem({
               disabled={isMarkAsReadDisabled}
               onSelect={handleMarkAsReadSelect}
               className={cn(
-                notification.isRead ? "opacity-60" : "",
-                "flex items-center gap-2 cursor-pointer"
+                notification.isRead ? 'opacity-60' : '',
+                'flex cursor-pointer items-center gap-2',
               )}
               aria-disabled={isMarkAsReadDisabled}
             >
-              <Check className="size-4" aria-hidden="true" focusable="false" />
-              <span>Mark as read</span>
+              <Check className="size-4" aria-hidden="true" />
+              <span>{t('markAsRead')}</span>
             </DropdownMenuItem>
 
             <DropdownMenuItem
               disabled={isActionsDisabled}
               onSelect={handleDeleteSelect}
-              className="flex items-center gap-2 cursor-pointer"
+              className="flex cursor-pointer items-center gap-2"
               aria-disabled={isActionsDisabled}
             >
               <Trash2
                 size={16}
-                className="dark:text-[#a6252a]"
+                className="text-maroon-600 dark:text-softpink-400"
                 aria-hidden="true"
-                focusable="false"
               />
-              <span>Delete notification</span>
+              <span>{t('delete')}</span>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

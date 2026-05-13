@@ -817,6 +817,7 @@
       "coupon-applied": "no coupons applied",
       "checkout-button": "checkout"
     },
+    "checkout-mess":"Credit payment is still under development and will be available soon. Please use cash for now",
     "shipping-address": "shipping address",
     "next-step": " next",
     "back-step": " back",
@@ -1104,6 +1105,19 @@
   "order-notes": "Enter your notes",
   "order-payment-method": "Enter your PaymentMethod",
   "order-address-id": "Enter your Address Id",
+  "notifications": {
+    "title": "Notifications",
+    "count": "({count})",
+    "empty": "No notifications yet",
+    "seeAll": "You have seen all notifications",
+    "loading": "Loading notifications...",
+    "loadingMore": "Loading more...",
+    "clearAll": "Clear all",
+    "markAllRead": "Mark all as read",
+    "markAsRead": "Mark as read",
+    "delete": "Delete",
+    "openMenu": "Open notification actions"
+  },
   "order success": "Your order has been placed successfully",
   "testimonial": {
     "testimonial-title": "Testimonials",
