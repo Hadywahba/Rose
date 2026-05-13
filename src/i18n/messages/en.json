@@ -173,6 +173,12 @@
       "message": "Message",
       "message-placeholder": "Write your message here...",
       "submit": "Send Message",
+      "name-req": "Name is required",
+      "email-req": "Email is required",
+      "subject-req": "Subject is required",
+      "message-req": "Message is required",
+      "loading": "Sending...",
+      "send-new": "  Send another message",
       "success": {
         "title": "Message Sent!",
         "description": "Thank you for reaching out. We'll get back to you within 24 hours."
@@ -817,7 +823,7 @@
       "coupon-applied": "no coupons applied",
       "checkout-button": "checkout"
     },
-    "checkout-mess":"Credit payment is still under development and will be available soon. Please use cash for now",
+    "checkout-mess": "Credit payment is still under development and will be available soon. Please use cash for now",
     "shipping-address": "shipping address",
     "next-step": " next",
     "back-step": " back",
