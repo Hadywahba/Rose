@@ -121,14 +121,14 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             type="button"
             onClick={handleTogglePassword}
             className={cn(
-              'absolute top-1/2 flex -translate-y-1/2 items-center justify-center p-1 text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200',
+              'absolute top-1/2 flex -translate-y-1/2 items-center justify-center p-1 text-zinc-500 hover:text-zinc-800 dark:text-white dark:hover:text-zinc-200',
               locale === 'ar' ? 'left-2' : 'right-2',
             )}
           >
             {showPassword ? (
               <Eye className="size-4" />
             ) : (
-              <EyeOff className="size-4" />
+              <EyeOff className="size-4 " />
             )}
           </button>
         </div>

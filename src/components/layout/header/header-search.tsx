@@ -1,13 +1,12 @@
-'use client';
+"use client";
 
-import { Input } from '@/components/ui/input';
-import { Search } from 'lucide-react';
-import React, { useEffect, useRef, useState } from 'react';
-import ProductSearch from './product-search';
-import { useDebounce } from 'use-debounce';
-import { useTranslations } from 'next-intl';
-import { Product } from '@/lib/types/products/product';
-
+import { Input } from "@/components/ui/input";
+import { Search } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
+import ProductSearch from "./product-search";
+import { useDebounce } from "use-debounce";
+import { useTranslations } from "next-intl";
+import { Product } from "@/lib/types/products/product";
 
 interface SearchProps {
   products: Product[];
@@ -15,11 +14,11 @@ interface SearchProps {
 
 export default function HeaderSearch({ products }: SearchProps) {
   // Translation
-  const t = useTranslations('product');
+  const t = useTranslations("product");
 
   // State
   const [showProduct, setShowProduct] = useState(false);
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [debouncedQuery] = useDebounce(query, 300);
 
@@ -36,8 +35,8 @@ export default function HeaderSearch({ products }: SearchProps) {
         setShowProduct(false);
       }
     }
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   // Filter products based on query
@@ -47,7 +46,7 @@ export default function HeaderSearch({ products }: SearchProps) {
       return;
     }
 
-    if (debouncedQuery.trim() === '') {
+    if (debouncedQuery.trim() === "") {
       setFilteredProducts(products);
     } else {
       const filtered = products.filter((product) =>
@@ -56,6 +55,12 @@ export default function HeaderSearch({ products }: SearchProps) {
       setFilteredProducts(filtered);
     }
   }, [debouncedQuery, products]);
+
+  // Functions
+  const onSelect = () => {
+    setShowProduct(false);
+    setQuery("");
+  };
 
   return (
     <div ref={wrapperRef} className="relative flex-grow">
@@ -66,28 +71,26 @@ export default function HeaderSearch({ products }: SearchProps) {
         onChange={(e) => setQuery(e.target.value)}
         type="text"
         value={query}
-        placeholder={t('search-placeholder')}
+        placeholder={t("search-placeholder")}
         className="h-12 w-full rounded-lg border-gray-200 pl-10 focus:border-none focus-visible:ring-zinc-200 dark:text-white"
       />
 
       {showProduct && (
         <div className="absolute top-12 z-40 w-full rounded-sm bg-zinc-50 shadow-md dark:bg-zinc-800">
           <h1 className="border-y-[.0625rem] border-zinc-200 p-3 text-base font-semibold text-maroon-700 dark:text-softpink-200">
-            {t('product-you-may-liked')}
+            {t("product-you-may-liked")}
           </h1>
 
           <div className="max-h-[25rem] w-full overflow-y-auto py-2">
             {products.length === 0 ? (
               <p className="p-3 text-zinc-500 dark:text-zinc-100">
-                {t('no-products-available')}
+                {t("no-products-available")}
               </p>
             ) : filteredProducts.length > 0 ? (
               filteredProducts.map((product: Product) => {
-               
                 return (
                   <ProductSearch
                     key={product.id}
-                  
                     productId={product.id}
                     priceAfterSale={Number(product.price)}
                     rate={product.rating}
@@ -98,12 +101,14 @@ export default function HeaderSearch({ products }: SearchProps) {
                     quantity={product.stock}
                     createdAt={product.createdAt}
                     product={product}
+                    productid={product.id}
+                    onSelect={onSelect}
                   />
                 );
               })
             ) : (
               <p className="p-3 text-zinc-500 dark:text-zinc-100">
-                {t('product-not-found')}
+                {t("product-not-found")}
               </p>
             )}
           </div>

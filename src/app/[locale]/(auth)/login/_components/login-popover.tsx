@@ -66,7 +66,7 @@ export default function LoginPopover() {
             name="username"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{t("login.user-name")}</FormLabel>
+                <FormLabel className="text-zinc-800 dark:text-zinc-50">{t("login.user-name")}</FormLabel>
                 <FormControl>
                   <Input
                     className="w-full text-black placeholder:text-zinc-400 dark:text-zinc-50"
@@ -85,7 +85,7 @@ export default function LoginPopover() {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{t("login.password")}</FormLabel>
+                <FormLabel className="text-zinc-800 dark:text-zinc-50">{t("login.password")}</FormLabel>
                 <FormControl>
                   <Input
                     className="w-full text-black placeholder:text-zinc-400 dark:text-zinc-50"

@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import ProductCard from '@/components/features/products/product-card';
+import ProductCard from "@/components/features/products/product-card";
 import {
   Carousel,
   CarouselApi,
   CarouselContent,
   CarouselItem,
-} from '@/components/ui/carousel';
-import { Product } from '@/lib/types/products/product';
-import { RelatedProduct } from '@/lib/types/products/reviews/related-products';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useLocale } from 'next-intl';
-import { useState } from 'react';
+} from "@/components/ui/carousel";
+import { Product } from "@/lib/types/products/product";
+import { RelatedProduct } from "@/lib/types/products/reviews/related-products";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useLocale } from "next-intl";
+import { useState } from "react";
 
 type ProductsCarouselProps = {
   relatedProducts?: RelatedProduct[];
@@ -23,10 +23,9 @@ export default function ProductsCarousel({
   products,
 }: ProductsCarouselProps) {
   const locale = useLocale();
-  const isRTL = locale === 'ar';
+  const isRTL = locale === "ar";
   const [api, setApi] = useState<CarouselApi | null>(null);
 
-  // استخدم relatedProducts لو موجودة وإلا استخدم products
   const itemsToShow = relatedProducts?.length
     ? relatedProducts
     : (products ?? []);
@@ -35,9 +34,9 @@ export default function ProductsCarousel({
     <Carousel
       setApi={setApi}
       opts={{
-        align: 'start',
+        align: "start",
         loop: true,
-        direction: isRTL ? 'rtl' : 'ltr',
+        direction: isRTL ? "rtl" : "ltr",
         dragFree: true,
       }}
       className="relative w-full"
@@ -84,9 +83,14 @@ export default function ProductsCarousel({
                     api.scrollPrev();
                   }
                 }}
-                className="absolute -left-3 top-[35%] z-10 flex size-8 -translate-y-1/2 items-center justify-center rounded-full bg-maroon-600 text-white transition-all md:-left-2 lg:-left-0"
+                className={`absolute top-[35%] z-10 flex size-8 -translate-y-1/2 items-center justify-center rounded-full bg-maroon-600 text-white transition-all duration-300 hover:bg-maroon-700
+              ${
+                isRTL
+                  ? "-right-3 md:-right-2 lg:-right-1"
+                  : "-left-3 md:-left-2 lg:-left-1"
+              }`}
               >
-                <ChevronLeft size={20} />
+                {isRTL ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
               </button>
 
               {/* RIGHT BUTTON */}
@@ -101,9 +105,14 @@ export default function ProductsCarousel({
                     api.scrollNext();
                   }
                 }}
-                className="absolute -right-3 top-[35%] z-10 flex size-8 -translate-y-1/2 items-center justify-center rounded-full bg-maroon-600 text-white transition-all md:-right-2 lg:-right-3"
+                className={`absolute top-[35%] z-10 flex size-8 -translate-y-1/2 items-center justify-center rounded-full bg-maroon-600 text-white transition-all duration-300 hover:bg-maroon-700
+              ${
+                isRTL
+                  ? "-left-3 md:-left-2 lg:-left-3"
+                  : "-right-3 md:-right-2 lg:-right-3"
+              }`}
               >
-                <ChevronRight size={20} />
+                {isRTL ? <ChevronLeft size={20} /> : <ChevronRight size={20} />}
               </button>
             </>
           )

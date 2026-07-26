@@ -1,10 +1,11 @@
-'use client';
+"use client";
 
-import Image, { StaticImageData } from 'next/image';
-import React from 'react';
-import { Star } from 'lucide-react';
-import { Product } from '@/lib/types/products/product';
-import { RelatedProduct } from '@/lib/types/products/reviews/related-products';
+import Image, { StaticImageData } from "next/image";
+import React from "react";
+import { Star } from "lucide-react";
+import { Product } from "@/lib/types/products/product";
+import { RelatedProduct } from "@/lib/types/products/reviews/related-products";
+import Link from "next/link";
 
 // Types
 type SearchProps = {
@@ -20,17 +21,25 @@ type SearchProps = {
   showWishListBtn?: boolean;
   quantity: number;
   product: Product | RelatedProduct;
+  productid: string;
+  onSelect: () => void;
 };
 
 export default function ProductSearch({
   src,
   rate,
   rateCount = 0,
-  title = 'Flower App',
+  title = "Flower App",
   priceAfterSale,
+  productid,
+  onSelect,
 }: SearchProps) {
   return (
-    <div className="flex items-center justify-between gap-4 border-b p-3">
+    <Link
+      href={`/products/${productid}`}
+      onClick={onSelect}
+      className="flex items-center justify-between gap-4 border-b p-3 hover:bg-maroon-400 dark:hover:bg-softpink-400 transition-colors duration-300"
+    >
       {/* Left: Image + Info */}
       <div className="flex min-w-0 flex-1 items-center gap-3">
         {/* Image */}
@@ -63,6 +72,6 @@ export default function ProductSearch({
         <span className="font-semibold">{rate} / 5</span>
         <span className="text-blue-500">({rateCount} ratings)</span>
       </div>
-    </div>
+    </Link>
   );
 }

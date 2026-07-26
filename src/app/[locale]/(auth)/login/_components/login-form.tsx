@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { SubmitHandler, useForm } from "react-hook-form";
 import {
   Form,
   FormControl,
@@ -9,41 +9,36 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { useTranslations } from 'next-intl';
-import { Link } from '@/i18n/navigation';
-import SubmitButton from '@/components/features/auth/submit-button';
-import { Eye, EyeOff } from 'lucide-react';
-import { useLocale } from 'next-intl';
-import { cn } from '@/lib/utility/tailwind-merge';
-import React, { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import useLogin from '../_hooks/use-login';
-import RememberMe from './remeber-me';
-import { LoginFormFields, loginSchema } from '@/lib/schema/login.schema';
+} from "@/components/ui/form";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import SubmitButton from "@/components/features/auth/submit-button";
+import React, { useState } from "react";
+import { Input } from "@/components/ui/input";
+import useLogin from "../_hooks/use-login";
+import RememberMe from "./remeber-me";
+import { LoginFormFields, loginSchema } from "@/lib/schema/login.schema";
 
 export default function LoginForm() {
   // Translation
-  const t = useTranslations('auth');
+  const t = useTranslations("auth");
 
   //mutation
   const { isPending, login, error } = useLogin();
 
   // State
-  const [showPassword, setShowPassword] = useState(false);
+
   const [rememberMe, setRememberMe] = useState(true);
 
-  // Hook
-  const locale = useLocale();
+
 
   // Form & Validation
   const form = useForm<LoginFormFields>({
-    mode: 'all',
+    mode: "all",
     resolver: zodResolver(loginSchema(t)),
     defaultValues: {
-      username: '',
-      password: '',
+      username: "",
+      password: "",
     },
   });
 
@@ -57,7 +52,7 @@ export default function LoginForm() {
       {/* Title Part */}
 
       <h1 className="border-b-2 border-zinc-200 pb-4 text-center font-edwardian text-lg font-normal capitalize text-maroon-700 dark:border-zinc-600 dark:text-softpink-300 sm:text-xl md:text-3xl lg:text-5xl">
-        {t('login.title')}
+        {t("login.title")}
       </h1>
 
       <Form {...form}>
@@ -73,12 +68,12 @@ export default function LoginForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-zinc-800 dark:text-zinc-50">
-                    {t('login.user-name')}
+                    {t("login.user-name")}
                   </FormLabel>
                   <FormControl>
                     <Input
                       className="w-full text-black placeholder:text-zinc-400 dark:text-zinc-50"
-                      placeholder={t('login.user-name-placeholder')}
+                      placeholder={t("login.user-name-placeholder")}
                       {...field}
                     />
                   </FormControl>
@@ -96,34 +91,15 @@ export default function LoginForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-zinc-800 dark:text-zinc-50">
-                    {t('login.password')}
+                    {t("login.password")}
                   </FormLabel>
                   <FormControl>
-                    <div className="relative">
-                      <Input
-                        className="w-full text-black placeholder:text-zinc-400 dark:text-zinc-50"
-                        placeholder="***********"
-                        {...field}
-                        type={cn(showPassword ? 'password' : 'text')}
-                      />
-                      <div>
-                        <Button
-                          variant={'carousel'}
-                          onClick={() => setShowPassword((prev) => !prev)}
-                          type="button"
-                          className={cn(
-                            'absolute top-1/2 size-5 -translate-y-1/2',
-                            locale === 'ar' ? 'left-0' : 'right-0',
-                          )}
-                        >
-                          {showPassword ? (
-                            <EyeOff className="size-5 text-zinc-400 dark:text-zinc-500" />
-                          ) : (
-                            <Eye className="size-5 text-zinc-400 dark:text-zinc-500" />
-                          )}
-                        </Button>
-                      </div>
-                    </div>
+                    <Input
+                      className="w-full text-black placeholder:text-zinc-400 dark:text-zinc-50"
+                      placeholder="***********"
+                      {...field}
+                      type="password"
+                    />
                   </FormControl>
 
                   {/* Feedback */}
@@ -138,7 +114,7 @@ export default function LoginForm() {
             href="/forgot-password"
             className="mt-2 text-end text-sm font-semibold text-maroon-700 dark:text-softpink-300"
           >
-            {t('login.forget-password')}
+            {t("login.forget-password")}
           </Link>
 
           <div className="mt-6">

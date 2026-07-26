@@ -6,7 +6,6 @@ import {
   CarouselItem,
 } from '@/components/ui/carousel';
 import { useRef } from 'react';
-
 import { useLocale, useTranslations } from 'next-intl';
 import Autoplay from 'embla-carousel-autoplay';
 import MainHeading from './main-heading';
@@ -15,7 +14,7 @@ import ListError from '@/components/error/list-error';
 import StartFeedback from '../../testimonials/_components/start-feedback';
 
 interface TestimonialProps {
-  data?: Testimonial[]; // 👈 مهم نخليها optional عشان الأمان
+  data?: Testimonial[];
   error: Error | null;
 }
 
