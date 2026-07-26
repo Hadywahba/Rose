@@ -7,7 +7,8 @@ type ImageContextType = {
   setImage: (url: string | null) => void;
 };
 
-export const ImageContext = createContext<ImageContextType | null>(null);
+export const 
+ImageContext = createContext<ImageContextType | null>(null);
 
 const STORAGE_KEY = 'uploaded_image';
 

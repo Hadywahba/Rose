@@ -1,5 +1,5 @@
-import React from 'react';
-import { Button } from '@/components/ui/button';
+import React from "react";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -7,10 +7,10 @@ import {
   CardDescription,
   CardTitle,
   CardFooter,
-} from '@/components/ui/card';
-import Image from 'next/image';
-import { Calendar } from 'lucide-react';
-import { Link } from '@/i18n/navigation';
+} from "@/components/ui/card";
+import Image from "next/image";
+import { Calendar } from "lucide-react";
+import { Link } from "@/i18n/navigation";
 
 interface OccasionProps {
   name: string;
@@ -27,14 +27,14 @@ export default function OccasionsCard({
   createdAt,
   id,
 }: OccasionProps) {
-  const formattedDate = new Date(createdAt).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
+  const formattedDate = new Date(createdAt).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
   });
 
   // Variabeles
-  const imageUrl = image?.startsWith('http')
+  const imageUrl = image?.startsWith("http")
     ? image
     : `https://rose-app.elevateegy.com/uploads/${image}`;
   return (
@@ -70,7 +70,7 @@ export default function OccasionsCard({
       </CardHeader>
 
       <CardFooter className="flex flex-col gap-2 pt-0 sm:flex-row sm:gap-3">
-        <Link href={`/product?occasion=${id}`} className="w-full">
+        <Link href={`/products?occasionId=${id}`} className="w-full">
           <Button
             className="w-full bg-maroon-600 hover:bg-maroon-700 sm:flex-1"
             size="default"
